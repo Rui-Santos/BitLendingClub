@@ -1,0 +1,244 @@
+<section id="content">
+        <div class="container_12">
+            <div>
+            	<div class="grid_8">
+                	<article class="spacing-1">
+                        <h3>Instructor #<?= $this->currentInstructor->getId(); ?></h3>
+                        <div>
+                            <figure class="img-indent">
+                                <!--<a title="" data-gal="prettyPhoto" class="lightbox-image" href="images/page5-img1-big.jpg">-->
+                                    <img alt="" src="/images/anonymous_silhouette.jpg" style="opacity: 1;">
+                                <!--<span></span></a>-->
+                            <span class="img-shadow"></span></figure>
+                            <div class="extra-wrap pad-bot">
+                                <p>
+                                    <?= $this->currentInstructor->getDescription(); ?>
+                                </p>
+                                
+                                <ul class="list-1">
+
+                                    <?php if($this->currentInstructor->getNda()): ?>
+                                    <li><a href="/data/instructors/<?= $this->currentInstructor->getNda() ?>" target="_blank">NDA</a></li>
+                                    <?php endif; ?>                                        
+                                        
+                                    <?php if($this->currentInstructor->getContract()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getContract() ?>" target="_blank">Contract</a></li>
+                                    <?php endif; ?> 
+                                        
+                                        
+                                    <?php if($this->currentInstructor->getFeedback1()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getFeedback1() ?>" target="_blank">Feedback 1</a></li>
+                                    <?php endif; ?>
+                                        
+                                    <?php if($this->currentInstructor->getFeedback2()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getFeedback2() ?>" target="_blank">Feedback 2</a></li>
+                                    <?php endif; ?>
+                                        
+                                    <?php if($this->currentInstructor->getFeedback3()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getFeedback3() ?>" target="_blank">Feedback 3</a></li>
+                                    <?php endif; ?>
+                                        
+                                    <?php if($this->currentInstructor->getFeedback4()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getFeedback4() ?>" target="_blank">Feedback 4</a></li>
+                                    <?php endif; ?>
+                                        
+                                    <?php if($this->currentInstructor->getFeedback5()): ?>
+                                        <li><a href="/data/instructors/<?= $this->currentInstructor->getFeedback5() ?>" target="_blank">Feedback 5</a></li>
+                                    <?php endif; ?>
+                                        
+
+                                        
+                                        
+                                </ul>
+                                
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </article>
+                </div>
+                <article class="grid_4">
+                	<h3>Instructor's details</h3>
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Years of experience:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getYears_of_experience(); ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Years of experience as a trainer:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getYears_of_experience_tariner(); ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Level of English:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getLevel_of_english(); ?>
+                            </p>
+                        </div>
+                     </div>
+                    <?php if ($this->currentInstructor->getIsCcie() != Model_Instructor::IS_CCIE_NO) : ?>
+                        <div class="wrapper">
+                            <span class="dropcap_1">
+                                Is CCIE Certified:
+                            </span>
+                            <div class="extra-wrap">
+                                <p class="p1">
+                                    <?= Model_Instructor::$_isCcie[$this->currentInstructor->getIsCcie()]; ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($this->currentInstructor->getIsCcsi() != Model_Instructor::IS_CCIE_NO) : ?>
+                        <div class="wrapper">
+                            <span class="dropcap_1">
+                                Is CCSI Certified:
+                            </span>
+                            <div class="extra-wrap">
+                                <p class="p1">
+                                    <?= Model_Instructor::$_isCcie[$this->currentInstructor->getIsCcsi()]; ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Other languages:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getOther_languages(); ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Travels:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getTravel() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Driving license:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getDriving_license() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Visa for EU:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getVisa_eu() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Visa for US:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getVisa_us() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+<!--                    	<span class="dropcap_1">
+                        	Rate in <?= $this->currentInstructor->getCurrency_type() == 1 ? '&#36;' : '&euro;' ; ?>  
+                        </span>
+
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getRate_eur(); ?>
+                            </p>
+                        </div>-->
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Residence country:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->countries[$this->currentInstructor->getResidence_country()]; ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                           Notification period:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getNotification_period(); ?>
+                            </p>
+                        </div>
+                     </div>
+                        
+                    <div class="wrapper">
+                    	<span class="dropcap_1">
+                           Training customers:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getTraining_customers(); ?>
+                            </p>
+                        </div>
+                     </div>
+ 
+                     <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Lead online trainings:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getLead_online_trainings() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+ 
+                     <div class="wrapper">
+                    	<span class="dropcap_1">
+                        	Experience online trainings:
+                        </span>
+                        <div class="extra-wrap">
+                            <p class="p1">
+                            	<?= $this->currentInstructor->getExperience_online_trainings() ? 'Yes' : 'No'; ?>
+                            </p>
+                        </div>
+                     </div>
+
+                </article>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </section>

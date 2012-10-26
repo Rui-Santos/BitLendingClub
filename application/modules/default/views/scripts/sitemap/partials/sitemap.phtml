@@ -1,0 +1,40 @@
+<ul>
+    <?php
+    $view = Zend_Layout::getMvcInstance()->getView();
+    $selPage = Zend_Controller_Front::getInstance()->getRequest()->getParam('page');
+    $selCategory = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+    $categories = $view->instructCategories->getMenuCategories();
+    
+    foreach ($this->container as $page) {
+        $params = $page->get('params');
+        $curClass = (isset($params['page']) && ($params['page'] == $selPage)) ? 'current' : 'normal';
+        if (!$selPage && !$selCategory && $page->getLabel() == 'Home')
+            $curClass = 'current';
+        if (!$selPage && $selCategory && $page->getLabel() == 'IT Trainers')
+            $curClass = 'current';
+        ?>    
+        <li class="<?= $curClass ?>">
+            <a href="<?= $page->getHref(); ?>"><?= $page->getLabel() ?></a>
+            <?php
+            if ($page->getLabel() == 'IT Trainers') {
+                ?>
+                <ul>
+                    <?php
+                    
+                    foreach ($categories as $categorykey => $categoryvalue) {
+                        ?>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => "category", 'action' => 'category', 'slug' => $categorykey, "page" => 1), "categories_inside", true);?>"><?= $categoryvalue ?></a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <?php
+            }
+            ?>
+        </li>
+        <?php
+    }
+    ?>
+</ul>

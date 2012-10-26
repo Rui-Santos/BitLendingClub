@@ -1,0 +1,38 @@
+<section>
+    <form method="post" enctype="multipart/form-data">
+        <section>
+            <dl>
+                <?php echo $this->form->getElement('email'); ?>
+    
+                <?php echo $this->form->getElement('password'); ?>
+                
+                <?php echo $this->form->getElement('password_confirm'); ?>
+                
+                <?php echo $this->form->getElement('firstname'); ?>
+                
+                <?php echo $this->form->getElement('lastname'); ?>                                
+                
+                <?php echo $this->form->getElement('birthDate'); ?>
+                
+                <?php echo $this->form->getElement('role_id'); ?>
+                
+                <?php echo $this->form->getElement('title'); ?>
+
+                <?php echo $this->form->getElement('fb_user_id'); ?>
+                
+                <?php echo $this->form->getElement('address'); ?>
+                
+                <?php echo $this->form->getElement('avatar'); ?>
+                
+                <?php echo $this->form->getElement('username'); ?>
+            </dl>
+        </section>
+        <div class="delimiter"></div>
+        <section class="submit">
+            <dl>
+                <?php echo $this->form->getElement('save'); ?>
+                <?php echo $this->form->getElement('cancel'); ?>
+            </dl>
+        </section>
+    </form>
+</section>

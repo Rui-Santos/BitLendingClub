@@ -1,0 +1,68 @@
+<section id="content">
+        <div class="container_12">
+            <article class="a1">
+            	<h3><?= $this->categoryName ?></h3>
+                <form id="product-search" action="<?php echo $this->url(array('module' => 'default', 'controller' => 'search'),"default", true); ?>" method="get">
+                	<strong>Search:</strong>
+                    <input name="phrase" type="text" value="" />
+                    <a class="button-1" onclick="document.getElementById('product-search').submit()">Search<b></b></a>
+                </form>
+                
+                
+                <div class="wrapper spacing-1">
+                    
+                    <?php
+                        $instructor_i = 0;
+                        foreach ($this->instructors as $instructor){
+                            $instructor_i ++;
+                            $class = $instructor_i == 2 ? 'omega' : 'alpha';
+                            ?>
+                    
+                                <div class="grid_6 <?= $class ?>">
+                                    <div class="wrapper">
+                                            <figure class="img-indent">
+                                            <!--<a data-gal="prettyPhoto[1]" class="lightbox-image" href="/images/anonymous_silhouette.jpg">-->
+                                                <img alt="" src="/images/anonymous_silhouette.jpg">
+                                             <!--<span></span></a>-->
+                                        <span class="img-shadow"></span></figure>
+                                        <div class="extra-wrap">
+                                            <h6 class="p1">
+                                                <a style="display: block;" class="link" href="<?php echo $this->url(array('controller' => 'instructor', 'action' => 'index', 'id' => $instructor->getId()),"instructors_page", 'true'); ?>">
+                                                  Instructor #<?= $instructor->getId() ?>
+                                                </a>  
+                                            </h6>
+                                           <!-- 
+                                            <strong class="str1 p1">
+                                                Instructor #<?= $instructor->getId() ?>
+                                            </strong>
+                                           -->
+                                            <p class="p3">
+                                                <?
+                                                    $description = $instructor->getDescription();
+                                                    //echo 200 > mb_strlen($description, 'UTF-8') ? $description : mb_substr($description, 0, 200, 'UTF-8').'...';
+                                                    echo $description;
+                                                ?>
+                                                <a style="display: block;" class="link" href="<?php echo $this->url(array('controller' => 'instructor', 'action' => 'index', 'id' => $instructor->getId()),"instructors_page", 'true'); ?>">read more...</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>                    
+                    
+                            <?php
+                            if($instructor_i == 2){
+                                $instructor_i = 0;
+                                ?>
+                                    </div>
+                                    <div class="wrapper spacing-1">
+                                <?php
+                            }
+                        }
+                    ?>
+                    
+                </div>
+                <?php 
+                    echo $this->paginationControl($this->instructors, 'Sliding', 'partials/paginator.phtml'); 
+                ?>   
+            </article>
+        </div>
+    </section>

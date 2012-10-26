@@ -1,0 +1,25 @@
+<section id="page-section">
+    <header>
+        <h2><?php echo $this->translate("Change Debit Amount User #" . $this->userItem->getId()); ?></h2>
+    </header>    
+    <section>
+        
+        <form action="" method="post">
+            <dl>
+                <dt><?php echo $this->translate('Full name'); ?></dt>
+                <dd><?php echo $this->userItem->getFullname(); ?></dd>
+                
+                <dt><?php echo $this->translate('E-mail'); ?></dt>
+                <dd><?php echo $this->userItem->getEmail(); ?></dd>
+                
+                <dt><?php echo $this->translate('Current Debit Amount'); ?></dt>
+                <dd><strong><?php echo $this->userItem->getDebitAmount(); ?></strong></dd>
+                
+                <?php echo $this->form->getElement('debit_amount'); ?>
+            </dl>
+            
+            <?php echo $this->form->getElement('save'); ?>
+        </form>
+        
+    </section>
+</section>

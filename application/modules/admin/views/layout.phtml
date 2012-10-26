@@ -1,0 +1,57 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
+        <?php
+        echo $this->headScript()
+                ->prependFile('/js/jquery-1.7.1.min.js')
+                ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
+                ->appendFile('/js/jquery.filedrop.js')
+                ->appendFile('/js/jqModal.js')
+                ->appendFile('/js/jquery-ui-timepicker-addon.js')
+                ->appendFile('/js/jquery.slug.js')
+                ->appendFile('/js/admin.js')
+                ->appendFile('/js/tiny_mce/tiny_mce.js')
+        ?>
+        <?php
+        echo $this->headLink()
+                ->prependStylesheet('/styles/reset.css')
+                ->appendStylesheet('/styles/admin.css')
+                ->appendStylesheet('/styles/all.css')
+                ->appendStylesheet('/styles/jqModal.css')
+                ->appendStylesheet('/styles/smoothness/jquery-ui-1.8.18.custom.css');
+        ?>
+        
+        <script type="text/javascript">
+        tinyMCE.init({
+                mode : "textareas",
+                editor_selector : "mceEditor",
+                theme: "advanced"
+        });
+        </script>        
+        
+        <title><?php echo $this->translate('Administration Panel'); ?></title>
+        <base href="<?php echo $this->url(array('module' => 'admin'), null, true); ?>/" />
+    </head>
+    <body>        
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <header id="page-header">
+                    <h1><?php echo $this->translate('Administration Panel'); ?></h1>
+                </header>
+                <nav id="page-nav">
+                    <h3><?php echo $this->translate('Main'); ?></h3>
+                    <?php echo $this->navigation()->menu(); ?>
+                </nav>
+
+                <section id="page-container">
+                    <?php echo $this->layout()->content ?>
+                </section>
+
+                <footer id="page-footer">
+                    <p>&copy; <?php echo $this->translate('Copy rights reserved.'); ?></p>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

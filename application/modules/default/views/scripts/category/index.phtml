@@ -1,0 +1,44 @@
+<section id="content">
+        <div class="container_12">
+            <article class="a1">
+            	<h3>IT Trainers</h3>
+                <div class="wrapper spacing-1">
+                    
+                    <?php
+                        $instructor_i = 0;
+                        foreach ($this->categories as $instructor){
+                            $instructor_i ++;
+                            $class = $instructor_i == 2 ? 'omega' : 'alpha';
+                            ?>
+                    
+                                <div class="grid_6 <?= $class ?>">
+                                    <div class="wrapper">
+                                        <div class="extra-wrap">
+                                            <h6 class="p0"><a href="<?php echo $this->url(array('controller' => 'category', 'action' => "category", 'slug' => $instructor->getSlug()), "categories_inside");?>"><?= $instructor->getName(); ?></a></h6>
+                                            <strong class="str1 p1"><a href="<?php echo $this->url(array('controller' => 'category', 'action' => "category", 'slug' => $instructor->getSlug()), "categories_inside");?>"><?= $instructor->getName() ?></a></strong>
+                                            <p class="p3">
+                                                <?= $instructor->getDescription() ?>
+                                                <br>
+                                                <a class="link" href="<?php echo $this->url(array('controller' => 'category', 'action' => "category", 'slug' => $instructor->getSlug()), "categories_inside");?>">read more...</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>                    
+                    
+                            <?php
+                            if($instructor_i == 2){
+                                $instructor_i = 0;
+                                ?>
+                                    </div>
+                                    <div class="wrapper spacing-1">
+                                <?php
+                            }
+                        }
+                    ?>
+                    
+                </div>
+ 
+ 
+            </article>
+        </div>
+    </section>

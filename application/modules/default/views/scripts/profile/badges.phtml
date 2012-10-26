@@ -1,0 +1,30 @@
+<div id="page-wrapper" style="background-color:#fff;">
+
+    <?php echo $this->partial('profile/partials/header.phtml',array('user' => $this->user, 'total_user_savings' => $this->total_user_savings)); ?>
+    
+    <section id="page-container">
+        <div id="page-section-profile" class = "profile-section-padding">
+       	    <h1 class = "user-section-heading"><?php echo $this->translate('Моите значки'); ?></h1>
+			<div class ="badge-section">
+            	<ul>
+            		<?php foreach($this->allBadges as $key => $badge) : ?>
+            		<li class = "badge-list-item">
+            		<?php if($this->badgesStatus[$key]) : ?>
+            			<div class = "badge-list-item-hover-wrapper">
+	            			<div class = "badge-list-item-hover">
+	            				<h1><?php echo $badge->getName(); ?></h1>
+	            				<h2><?php echo $this->translate('добиена на ').$this->badgesDate[$key]->format('d.m.Y'); ?></h2>
+	            			</div>
+	            		</div>
+            			<img class = "badge-list-item-image badge-item-enabled" src = "/images/<?php echo $badge->getEnabledIcon();?>" data-id="<?php echo $badge->getId();?>" />
+            		<?php else : ?>
+            			<img class = "badge-list-item-image" src = "/images/<?php echo $badge->getDisabledIcon();?>" data-id="<?php echo $badge->getId();?>" />
+            		<?php endif;?>
+            		</li>
+            		<?php endforeach;?>
+            	</ul>
+            </div>
+        </div>
+    </section>    
+
+</div>

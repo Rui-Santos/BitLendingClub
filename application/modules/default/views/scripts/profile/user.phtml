@@ -1,0 +1,15 @@
+<div id="page-wrapper" style="background-color:#fff;">
+    <?php echo $this->partial('profile/partials/user-header.phtml', array('user' => $this->user, 'total_user_savings' => $this->total_user_savings)); ?>
+    <section id="page-container">
+        <div id="page-section-profile">      
+            <h2><?php echo $this->translate('Активности'); ?></h2>
+            <?php if ($this->events->count() !== 0) : ?>
+                <?php foreach ($this->events as $event) : ?>
+                    <?php echo $this->activityStream($event); ?>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <?php echo $this->translate('няма активности за този потребител'); ?>
+            <?php endif; ?>
+        </div>
+    </section>
+</div>

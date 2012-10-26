@@ -1,0 +1,14 @@
+<?php
+$this->navigation()->findByResource(
+        Zend_Controller_Front::getInstance()->getRequest()->module . 
+        Zend_Controller_Front::getInstance()->getRequest()->controller); ?>
+<ul>
+    <?php foreach ($this->container as $page): ?>
+        <?php if ($page->isVisible() && $this->navigation()->accept($page)) : ?>
+            <?php ($page->isActive() ? $active = "class=\"active\"" : $active = ""); ?> 
+            <li>
+                <a href="<?php echo $page->getHref() ?>" <?php echo $active; ?>> <?php echo $page->getLabel() ?></a>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ul>

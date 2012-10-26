@@ -1,0 +1,30 @@
+<footer id="paginator">
+    <?php if ($this->pageCount): ?>
+        <div class="arrow-left">
+            <!-- Previous page link -->
+            <?php if (isset($this->previous)): ?>
+                <a href="<?php echo $this->url(array('page' => $this->previous)); ?>"><?php echo $this->translate('Претходна Страна'); ?></a>
+            <?php else: ?>
+                <span class="disabled"><?php echo $this->translate('Претходна Страна'); ?></span>
+            <?php endif; ?>
+        </div>
+        <div class="list-pages">            
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a>
+                <?php else: ?>
+                    <a href="<?php echo $this->url(array('page' => $page)); ?>" class="active"><?php echo $page; ?></a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        <div class="arrow-right">            
+            <!-- Next page link -->
+            <?php if (isset($this->next)): ?>
+                <a href="<?php echo $this->url(array('page' => $this->next)); ?>"><?php echo $this->translate('Следна Страна'); ?></a>
+            <?php else: ?>
+                <span class="disabled"><?php echo $this->translate('Следна Страна'); ?></span>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</footer>

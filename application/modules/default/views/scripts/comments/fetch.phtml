@@ -1,0 +1,17 @@
+
+<?php foreach ($this->comments as $comment) : ?>
+<li class="comment-item"><?php if (!is_null($comment->getUser()->getAvatar())) :?>
+	<img class="user_avatar_comment"
+	src="/data/users/<?php echo $comment->getUser()->getAvatar(); ?>"> <?php else : ?>
+	<img class="user_avatar_comment" src="/images/avatar_profile_small.jpg">
+	<?php endif;?>
+	<div class="comment-text-block">
+		<h2>
+			<?php echo $comment->getUser()->getFirstName().' '.$comment->getUser()->getLastName(); ?>
+		</h2>
+		<div class="comment-text">
+			<?php echo $comment->getMessage(); ?>
+		</div>
+	</div> <br style="clear: both;" />
+</li>
+<?php endforeach;?>

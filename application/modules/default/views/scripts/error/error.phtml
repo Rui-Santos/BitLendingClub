@@ -1,0 +1,45 @@
+<section id="content">
+    <div id="page-404">
+        <article class="content-box">
+            <div class="inner">
+                <strong class="heading404">
+                    Sorry!
+                </strong>
+                <b class="heading404">
+                    Page not found
+                </b>
+                <p class="first">
+                    The page you are looking for might have been <br>removed, had its name changed, or is temporarily unavailable.
+                </p>
+                <p class="last">
+                    Please try using our search box below to look <br>for information on the internet:
+                </p>
+                <form method="get" id="search-alt">
+                    <input type="text" name="search">
+                    <a class="button-1" onclick="document.getElementById('search-alt').submit()">Search<b></b></a>
+                </form>
+            </div>
+        </article>
+    </div>     
+</section>
+        
+        
+<?php if (isset($this->exception)): ?>
+    <!-- VISIBLE ONLY IN DEVELOPMENT STAGE -->
+    <section id="page-container-error-development">
+
+        <h2><?php echo $this->translate('Exception information:'); ?> 
+            <span><?php echo $this->translate('(only in development stage)'); ?></span></h2>
+        <p>
+            <strong><?php echo $this->translate('Message:'); ?></strong> 
+            <?php echo $this->exception->getMessage(); ?>
+        </p>
+
+        <h2><?php echo $this->translate('Stack trace:'); ?></h2>
+        <pre><?php echo $this->exception->getTraceAsString(); ?></pre>
+
+        <h2><?php echo $this->translate('Request Parameters:'); ?></h2>
+        <pre><?php echo $this->escape(var_export($this->request->getParams(), true)); ?></pre>
+
+    </section>        
+<?php endif; ?>

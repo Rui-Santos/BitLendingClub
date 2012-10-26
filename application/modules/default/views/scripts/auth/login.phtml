@@ -1,0 +1,63 @@
+<div id="login-section">
+    <header>
+        <h2><?php echo $this->translate('ЛОГИРАЈ СЕ'); ?></h2>
+        <?php echo $this->translate('или'); ?>        
+        <a href="#" id="register-dialog"><?php echo $this->translate('Регистрирај се'); ?></a>
+        
+        <a href="#" id="login-close">
+            <img src="/images/close.png" alt="" /><?php echo $this->translate('затвори'); ?>
+        </a>
+    </header>    
+    <div id="login-container">
+        <section class="login-details">
+            <h3><?php echo $this->translate('ЛОГИН'); ?></h3>
+
+            <form action="<?php echo $this->url(array('module' => 'default', 
+                'controller' => 'auth', 'action' => 'login'), null, true); ?>" method="post" onsubmit="return doLogin(this);">
+            <dl>
+                <?php echo $this->form->getElement('email'); ?>
+
+                <?php echo $this->form->getElement('password'); ?>
+                
+            </dl>                            
+                
+            <p>
+                <?php echo $this->form->getElement('remember_me'); ?>                                            
+            </p>    
+
+            <?php if ($this->errorLoginCredentials): ?>
+                <p class="errors"><?php echo $this->translate('The e-mail or password you entered is incorrect.'); ?></p>
+            <?php endif; ?>
+                
+            <?php echo $this->form->getElement('login'); ?>
+            </form>
+
+            <!--<p><a href="javascript:void(0);"><?php echo $this->translate('Го заборавивте корисничкото име?'); ?></a></p>-->
+
+            <p><a href="#" id="forgotten-password"><?php echo $this->translate('Ја заборавивте лозинката?'); ?></a></p>        
+        </section> 
+        <section class="facebook-details">
+            <h3><?php echo $this->translate('КОРИСНИК СТЕ НА FACEBOOK?'); ?></h3>
+
+            <p><?php echo $this->translate('Можете да се логирате со вашиот Facebook профил на нашиот сајт.'); ?></p>
+
+            <script type="text/javascript">
+                $(function(){  
+                    $('.fb-login-button').click(function(e){
+                        FB.login(function(response) {
+                            if (response.authResponse) {
+                                this.location = '<?php echo $this->url(
+                                        array('controller' => 'auth', 'action' => 'facebook-login'), 
+                                            null, true); ?>?token=' + response.authResponse.accessToken;
+                            }
+                        }, {scope: 'email'});
+                    
+                        e.preventDefault();
+                    });                                        
+                });
+            </script>
+            
+            <a href="#" class="fb-login-button" title="<?php echo $this->translate('Login with Facebook'); ?>">&nbsp;</a>
+        </section>
+    </div>    
+</div>

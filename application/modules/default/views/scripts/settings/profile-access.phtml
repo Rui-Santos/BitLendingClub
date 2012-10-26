@@ -1,0 +1,52 @@
+<div id="page-wrapper">
+
+    <header id="page-header">
+        <h1><?php echo $this->translate('Profile Access'); ?></h1>
+    </header>
+
+    <?php echo $this->partial('settings/navigation.phtml'); ?>
+    
+    <section id="page-container">
+        <section id="page-section">
+            <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+
+            <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+                <div class="form-message-success">
+                <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                    <p><?php echo $msg ?></p>
+                <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($flashMessenger->setNamespace('error')->hasMessages()): ?>
+                <div class="form-message-error">
+                <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                    <p><?php echo $msg ?></p>
+                <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            
+            <h2><?php echo $this->translate('Лични податоци'); ?></h2>
+            <p><?php echo $this->translate('Сами изберете го нивото на приватност на вашиот Gruper.mk профил. '); ?></p>            
+            
+            <dl class="page-form-access">
+                <dt class="title"><?php echo $this->translate('Деактивирање:'); ?></dt>
+                <dd class="description"><?php echo $this->translate('Currently your <strong>public profile is active</strong>. If you disable it you can 
+                                                not communicate with your friends, add new ones to recommend their offers, 
+                                                and to comment on their activities in Gruper.mk.'); ?></dd>
+                <dt class="title">&nbsp;</dt>
+                <dd class="description">
+                    <button class="button-silver">X&nbsp;Деактивирај го мојот профил</button>
+                </dd>
+            </dl>
+            
+            <?php echo $this->partial('settings/profile-access/form.phtml', array('form' => $this->form)); ?>
+            
+        </section>                  
+    </section>
+
+    <footer id="page-footer">
+        <p>&copy; <?php echo $this->translate('2012 Grouper.mk Сите права задржани.'); ?></p>
+    </footer>
+
+</div>

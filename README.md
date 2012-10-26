@@ -1,4 +1,4 @@
 BitLendingClub
-==============
+======
 
-Bitcoin lending platform.
+Bitcoin Lending Platform

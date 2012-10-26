@@ -1,0 +1,41 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
+        <?php echo $this->headScript()
+                ->prependFile('/js/jquery-1.7.1.min.js')
+                ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
+                ->appendFile('/js/jquery.filedrop.js')
+                ->appendFile('/js/jqModal.js')
+                ->appendFile('/js/jquery-ui-timepicker-addon.js')
+                ->appendFile('/js/jquery.slug.js')
+                ->appendFile('/js/admin.js'); ?>
+        <?php
+        echo $this->headLink()
+                ->prependStylesheet('/styles/reset.css')
+                ->appendStylesheet('/styles/admin.css')
+                ->appendStylesheet('/styles/jqModal.css')
+                ->appendStylesheet('/styles/smoothness/jquery-ui-1.8.18.custom.css');
+        ?>
+        <title><?php echo $this->translate('Administration Panel'); ?></title>
+        <base href="<?php echo $this->url(array('module' => 'admin'), null, true);?>/" />
+    </head>
+    <body>        
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <header id="page-header">
+                    <h1><?php echo $this->translate('Administration Panel'); ?></h1>
+                </header>
+
+                <section id="page-container">
+                    <?php echo $this->layout()->content ?>
+                </section>
+
+                <footer id="page-footer">
+                    
+                </footer>
+            </div>
+        </div>
+        <div class="jqmWindow" id="main-modal-dialog"></div>
+    </body>
+</html>

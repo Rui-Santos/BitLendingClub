@@ -1,0 +1,30 @@
+<?php
+$this->headMeta()->appendName('keywords', $this->translate('Search'));
+$this->headMeta()->appendName('description', $this->translate('Search'));
+?>
+
+<div id="page-wrapper" style="background: none;">    
+    <div id="static-container">                
+        <header id="page-header-static">
+            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>" class="back-button"><?php echo $this->translate('Back'); ?></a>
+            <h1><?php echo $this->translate("Search results"); ?></h1>
+        </header>  
+        <section id="page-container-static">
+            <?php foreach ($this->result as $key => $result) : ?>
+                <header>
+                    <h4><?php echo $this->translate($key); ?></h4>
+                </header>
+                <?php if (count($result) > 0 ) : ?>
+                    <?php foreach ($result as $key2 => $entity) : ?>
+                        <div>
+                            <a href="<?php echo $this->url($entity['href']); ?>"><?php echo $entity['title']; ?></a><br />
+                            <?php echo $entity['content'] ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <?php echo $this->translate('No Results found.') ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </section>        
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<form action="" method="post">
+
+<dl class="page-form-access no-border">
+    <dt class="title"><?php echo $this->translate('За мене:'); ?></dt>
+    <dd class="description"><?php echo $this->form->getElement('about_me'); ?></dd>
+    
+    <dt class="title"><?php echo $this->translate('Приватност:'); ?></dt>
+    <dd class="description">
+        <dl>
+            <?php echo $this->form->getDisplayGroup('privacy'); ?>
+        </dl>
+    </dd>
+    
+    <dt class="title">&nbsp;</dt>
+    <dd class="description"><?php echo $this->form->getElement('save'); ?></dd>
+</dl>
+    
+</form>

@@ -1,0 +1,120 @@
+<div id="list-block">
+	<section>
+
+		<div class="deal-item">
+			<div class="deal-photo">
+				<div class="deal-photo-shadow"></div>
+				<img src="/images/deal_item_photo.jpg" width="239" height="118"
+					alt="" />
+			</div>
+			<div class="deal-info">
+				<h2>
+					<a
+						href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'deal' => $this->deal->getId()), null, true); ?>">
+						<?php echo $this->wordLimit($this->deal->getName(), 15); ?>
+					</a>
+				</h2>
+				<p>
+					<?php echo $this->wordLimit($this->deal->getDescription(), 20); ?>
+					<a href="#"><?php echo $this->translate('повеќе'); ?>
+					</a>
+				</p>
+				<ul>
+					<li><img src="/images/clock.png" width="20" height="20" alt="" /> <strong
+						class="side-deal-countdown"
+						data-timestamp="<?php echo $this->deal->getExpiryDate()->getTimestamp()*1000; ?>">00:00:00</strong>
+						- <?php echo $this->deal->getVauchers()->count(). " " .$this->translate('купени купони'); ?>
+					</li>
+					<li><img src="/images/food.png" width="20" height="20" alt="" /> <?php echo $this->deal->getCategory()->getName(); ?>
+					</li>
+				</ul>
+			</div>
+			<div class="deal-stats">
+				<div class="deal-stats-shadow"></div>
+				<div class="deal-discount-price">
+					<span>-<?php echo (int) $this->deal->getDiscountPercentage(); ?>%
+					</span>
+				</div>
+				<ul>
+					<li class="info"><img class="price-strike" src="/images/strike.png"
+						alt="" /> <?php echo $this->translate('Вредност: ').round($this->deal->getPublicPrice()).' ден.'; ?>
+						<br /> <?php echo $this->translate('Заштедувате: ').round($this->deal->getPublicPrice() - $this->deal->getDiscountedPrice()).' ден. '; ?>
+					</li>
+					<li class="price"><?php echo $this->translate('ЦЕНА: ').round($this->deal->getDiscountedPrice()).' ден.'; ?>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div class="comments-block">
+	
+	<div class="comments-header">
+		<div class="back-button-comments">
+			<a href="#"><?php echo $this->translate('Назад');?></a>
+		</div>
+		<div class="comment-heading">
+			<img src="/images/comment.png">
+			<?php echo $this->translate('Коментирај за зделката'); ?>
+		</div>
+		<div class="comment-subsribe-button"><a href="#"><?php echo $this->translate('Следи ја темата +'); ?> </a></div>
+	</div>
+	
+	<div class ="comment-input-dummy <?php if($this->error) echo "error" ?>">
+		<form>
+			<!--  --><input class = "comment-input-text-dummy" type="text" name="comment" value="<?php echo $this->translate('Клик тука за да внесете ваше мислење за зделката...') ?>" onfocus=""/>
+			<?php if($this->error) : ?>
+			<div class="form-message-error"><?php echo $this->error;?></div>
+			<?php endif; ?>
+		</form>
+	</div>
+	
+	<div class ="comment-input">
+	    
+	    <div class = "comment-input-block">
+	    	<h2><?php echo $this->translate('Вашиот коментар:') ?></h2>
+			<form method="post">
+				<textarea class = "comment-input-text" name="comment"></textarea>
+				<a href="#"><?php echo $this->translate('како работат коментарите?') ?></a>
+				<div class = "submit-comment-button">
+					<input type="submit" value="<?php echo $this->translate('Испрати') ?>" class="button" />
+				</div>
+			</form>
+			<br style="clear: both;" />
+		</div>
+		
+		<div class = "grouper-tip-message right">
+			<p class="grouper-tip-text green"><?php echo $this->translate('Групер совет!') ?></p>
+			<br>
+			<p class="grouper-tip-text gray"><?php echo $this->translate('Проверете во колоната десно дали го има прашањето што сакате да 
+					го поставите. Доколку го нема пишете ни коментари и ние во најкус можен рок ќе ви одговориме.') ?></p>
+		</div>
+		
+	</div>
+	
+	<div class= "deal-comments">
+		<ul class="comment-list">
+			<?php foreach ($this->comments as $comment) : ?>
+			<li class = "comment-item">
+					<?php if (!is_null($comment->getUser()->getAvatar())) :?>
+						<img class = "user_avatar_comment" src ="/data/users/<?php echo $comment->getUser()->getAvatar(); ?>">
+					<?php else : ?>
+						<img class = "user_avatar_comment" src ="/images/avatar_profile_small.jpg">
+					<?php endif;?>
+				<div class= "comment-text-block">
+					<h2><?php echo $comment->getUser()->getFirstName().' '.$comment->getUser()->getLastName(); ?></h2>
+					<div class= "comment-text"><?php echo $comment->getMessage(); ?></div>
+				</div>
+				<br style="clear: both;" />
+			</li>
+			<?php endforeach;?>
+		</ul>
+	</div>
+	
+	<div class="comments-load-more" data-id = "<?php echo $this->deal->getId(); ?>">
+		<a href="#"><?php echo $this->translate('Прикажи ги останатите коментари'); ?></a>
+	</div>
+
+</div>
+

@@ -1,0 +1,283 @@
+/* SEARCH FIELD
+------------------------------------------------------ */
+
+.search-field-block input {
+    line-height: 30px;
+    padding: 0 4px;    
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #444;
+    font-size: 12px;
+    height: 28px;
+    outline: 0;
+    width: 110px;            
+}
+
+.search-field-block {
+    background: url('/images/search_input.png') no-repeat scroll right bottom transparent;
+    height: 29px;
+    padding-left: 2px;
+    padding-right: 10px;
+    padding-top: 2px;
+}                    
+
+.search-field-holder {
+    position: relative;
+    background: url('/images/search_input_icon.png') no-repeat scroll left bottom transparent;
+    float: left;
+    margin-left: 12px;
+    margin-top: 6px;
+    padding-left: 23px;
+}
+
+.search-field-holder.focused {
+    background-position: left bottom;
+}
+
+.search-field-holder.focused .search-field-block {
+    background-position: right bottom;
+}
+
+.search-field-holder.focused input {
+    color: #444;
+    width: 215px;
+}
+
+#search-result {
+    display: none;
+    position: absolute; 
+    top: 44px; 
+    left: 0; 
+    overflow: visible; 
+    z-index: 999;
+}
+
+.search-result-block {
+    background: url('/images/search_result_bg.png') top left repeat-y;
+    width: 715px;
+    padding: 0px 15px;    
+}
+
+.search-result-title {
+    background: #c8e8ff url('/images/search_result_title.png') top left repeat-x;
+    height: 28px;
+    padding-left: 12px;
+    padding-right: 10px;
+    border-bottom: 1px solid #cfcfcf;
+    font-weight: bold;
+    color: black;
+    line-height: 26px;
+    text-shadow: 0px 1px 0px white;
+}
+
+.search-result-title:first-child {
+    border-top: 1px solid #cfcfcf;
+}
+
+.search-result-title a{
+    display: block;
+    float: right;
+    background: url('/images/search_result_title_more.png') center right no-repeat;
+    padding-right: 15px;
+    font-weight: normal;
+    color: #569ece;
+    cursor: pointer;
+}
+
+ul.search-result-list {
+    display:block;float:none;
+}
+
+ul.search-result-list li {
+    display: block;
+    float: none;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+ul.search-result-list li a:link, ul.search-result-list li a:active, ul.search-result-list li a:visited { 
+    display: block; 
+    cursor: pointer; 
+    text-decoration: none;
+}
+
+ul.search-result-list li a:hover {
+    background: #04609e url('/images/search_result_list_hover.png') top left repeat-x;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+ul.search-result-list li:last-child { 
+    border-bottom: 1px solid #cfcfcf; 
+}
+
+ul.search-result-list li:hover p { 
+    color:white; 
+}
+
+ul.search-result-list li:hover div.search-result-deal-price {
+    color: white;
+}
+
+ul.search-result-list li:hover div.search-result-deal-price span {
+    color: #c9e9ff;
+}
+
+ul.search-result-list li:hover div.search-result-deal-price strong {
+    color: #00ff00;
+}
+
+ul.search-result-list li:hover div.search-result-deal-price small {
+    color: #c9e9ff;
+}
+
+ul.search-result-list li:hover div.search-result-deal-text,
+ul.search-result-list li:hover div.search-result-user-text strong {
+    color: white;
+}
+
+ul.search-result-list li:hover div.search-result-user-text p {    
+    color: #C9E9FF;
+}
+
+.search-result-deal {
+    padding: 8px 13px;
+    position: relative;
+    min-height: 60px;
+}
+
+.search-result-deal-photo {
+    float: left;
+    position: relative;
+    width: 98px;
+    height: 60px;    
+}
+
+.search-result-deal-photo img{
+    display: block;
+    border: 0;
+    width: 98px;
+    height: 60px;
+}
+
+.search-result-deal-photo span{
+    display: block;
+    background: url('/images/search_result_deal_shadow.png') top left no-repeat;
+    width: 98px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.search-result-deal-text {
+    padding-left: 10px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+}
+
+.search-result-deal-text p { 
+    color: #0b6fb1; 
+    font-weight: bold; 
+    padding-top: 3px; 
+    line-height: 14px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    margin-bottom: 4px;
+}
+
+.search-result-deal-text em { 
+    display: block; 
+    font-style: normal; 
+    color: #888; 
+    padding-top: 4px; 
+}
+
+.search-result-deal-text div.search-result-deal-price { 
+    font-weight: bold; 
+    color: black; 
+    padding-top: 4px; 
+}
+
+.search-result-deal-text div.search-result-deal-price span {
+    color: #9b9b9b;
+    position: relative;
+    font-weight: normal;
+    _text-decoration: line-through;
+}
+
+.search-result-deal-text div.search-result-deal-price span div {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    background: url('/images/deal_price_line.png') 0 0 no-repeat;
+    width: 42px;
+    height: 15px;
+}
+
+.search-result-deal-text div.search-result-deal-price strong {
+    color:#007f00;
+}
+
+.search-result-deal-text div.search-result-deal-price small{
+    font-size: 12px;
+    color: #6d6d6d;
+    font-weight: normal;
+}
+
+.search-result-user {
+    padding: 8px 13px;
+    padding-right: 27px;
+    position: relative;
+    min-height: 38px;
+}
+
+.search-result-user-photo {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+
+.search-result-user-photo img {
+    display: block;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.search-result-user-text {
+    overflow: hidden;
+    float: left;
+    padding-top: 4px;
+    padding-left: 9px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.search-result-user-text strong {
+    display: block;
+    color: #0b6fb1;
+    margin-bottom: 4px;
+}
+
+.search-result-user-text p {
+    color:#6d6d6d;
+}
+
+.search-result-footer {
+    width: 745px; 
+    height: 21px; 
+    position: absolute; 
+    left: 0; 
+    bottom: -20px; 
+    background-image: url('/images/search_result_footer.png');    
+}

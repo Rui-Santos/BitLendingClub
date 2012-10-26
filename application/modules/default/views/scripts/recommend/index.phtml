@@ -1,0 +1,104 @@
+<div id="page-wrapper" style="background-color:#fff;">
+
+    <header id="page-header-recommend">
+        <a href="#" class="back-button"><?php echo $this->translate('Назад'); ?></a>
+        <h1><?php echo $this->translate('Recommend a friend'); ?></h1>
+    </header>
+
+    <section id="page-container-recommend">
+        
+        <div class="page-section-recommend">
+            <h2><?php echo $this->translate('Препоачај на пријател и добиј 50 групер поени, на 50 ден. во вашата Gruper торбичка!!!'); ?></h2>
+            <p><?php echo $this->translate('Добијте 50 групер поени кога некој што се го поканиле на Gruper.mk ќе купи нивниот прв Gruper купон, 
+                                            поканете што повеќе пријатели и уживајте додека вашата торбичка се полни со поени од пријателите кои 
+                                            ги имате препорачано да се приклучат на Gruper.mk'); ?></p>
+
+            <div class="page-section-recommend-link">
+                <form id="recommendFormId" action="#" method="post">
+                    
+                    <p>
+                        <?php echo $this->translate('Вашиот уникатен Gruper.mk линк за препорачување на пријатели:'); ?>
+                        <?php echo $this->formText('link', $this->serverUrl() . $this->url(
+                                array('did' => $this->dealId, 'token' => $this->token)), 
+                                array('id' => 'link_id', 'onclick' => 'javascript:this.focus();this.select();')); ?>
+                    </p>
+
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" onclick="recommendObj.setOptions({'link' : '<?php echo $this->url(array('module' => 'default', 'controller' => 'recommend', 'action' => 'submit-recommendation-aj')); ?>'}).prompt('mail');"><img src="/images/mail_icon.png" alt="" /><?php echo $this->translate('Сподели по Email'); ?></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="recommendObj.setOptions({
+                                'link' : '<?php echo $this->url(array('module' => 'default', 'controller' => 'recommend', 'action' => 'fb-recommendation-aj')); ?>',
+                                'fbParams' : {
+                                    'message' : '<?php echo $this->fbParams['message'] ?>',
+                                    'name' : '<?php echo $this->fbParams['name'] ?>', 
+                                    'caption' : '<?php echo $this->fbParams['caption'] ?>',
+                                    'description' : '<?php echo $this->fbParams['description']?>',
+                                    'link' : '<?php substr(Zend_Registry::get('config')->absoluteUrl, 0, strlen(Zend_Registry::get('config')->absoluteUrl - 1)) . $this->url(array('did' => $this->dealId, 'token' => $this->token))?>',
+                                    'picture' : '<?php echo $this->fbParams['picture'] ?>'
+                                }
+                            }).prompt('fb');"><img src="/images/facebook_icon.png" alt="" /><?php echo $this->translate('Сподели на Facebook'); ?></a>
+                        </li>
+                        <li>
+                            <?php if (Service_Auth::getLoggedUser()->getTwitterAccessToken() != '') : ?>
+                                <a href="javascript:void(0);" onclick="recommendObj.setOptions({'link' : '<?php echo $this->url(array('module' => 'default', 'controller' => 'recommend', 'action' => 'twitter-recommendation-aj')); ?>'}).prompt('twitter');"><img src="/images/twitter_icon.png" alt="" /><?php echo $this->translate('Црцори на Twitter'); ?></a>
+                            <?php else: ?>                                
+                                <a href="<?php echo $this->url(array('action' => 'twitter-authorize', 'did' => $this->dealId)); ?>"><img src="/images/twitter_icon.png" alt="" /><?php echo $this->translate('Црцори на Twitter'); ?></a>                                
+                            <?php endif; ?>
+                        </li>
+                    </ul>
+                    
+                    <?php echo $this->formHidden('token', $this->token, array('id' => 'token_id')); ?>
+                    <?php echo $this->formHidden('deal_id', $this->dealId, array()); ?>
+                    
+                </form>
+                
+                <img src="/images/recommend_friend.png" alt="" class="recommend-friend" />
+            </div>
+        </div>
+        
+        <div class="page-section-recommend">
+            <h2><?php echo $this->translate('Имате прашања за тоа како функционира препорачувањето на пријател ?'); ?></h2>
+            <p><?php echo $this->translate('Прочитајте ги трите најчесто поставувани прашања за оваа услуга.'); ?></p>
+            
+            <ul class="recommend-info">
+                <li>
+                    <h3><?php echo $this->translate('Што е ова?'); ?></h3>
+                    <p><?php echo $this->translate('Ви даваме 50 ден. во 
+                            Grouper денари за секој пријател 
+                            кој ќе го препорачате, кога тој ќе ја купи неговата прва зделка. 
+                            Тоа е нашиот начин да ви се заблагодариме за тоа што ја ширите 
+                            веста и ја зголемувате моќта на групното купување. Grouper денарите 
+                            може да бидат искористени за секое наредно Grouper купување 
+                            и никогаш не истекуваат.'); ?>
+                    </p>
+                </li>
+                <li>
+                    <h3><?php echo $this->translate('Кои се правилата?'); ?></h3>
+                    <p><?php echo $this->translate('
+                        Ако некој се регистрира на Grouper во рок од 72 часа по 
+                        кликнување на Вашиот линк, ќе ве известиме во рок од 24 часа по 
+                        нивното прво купување и автоматски ќе ви додадеме 50 ден. во вашата торбичка. 
+                        Можете да препорачате колку што сакате пријатели. Проверете го Вашиот 
+                        биланс во делот "Мој Профил" > "Мои Трансакции" откога ќе се логирате.'); ?>
+                    </p>
+                </li>
+                <li>
+                    <h3><?php echo $this->translate('Како да учествувам?'); ?></h3>
+                    <p><?php echo $this->translate('Сподели го твојот персонализиран линк за 
+                        препорака користејќи некои од алатките горе. Ако некој го кликне тој линк, 
+                        ние ќе знаеме дека вие сте го пратиле.'); ?>
+                    </p>
+                </li>
+            </ul>
+            
+            <p class="recommend-contact-info">
+                Се уште не ви е јасно како функционира "препорачај пријател" услугата, пишете ни детално на <a href="mailto:contact@gruper.mk">contact@gruper.mk</a>                
+            </p>
+        </div>
+    </section>
+    <footer id="page-footer-recommend">
+        <p>&nbsp;</p>
+    </footer>
+</div>

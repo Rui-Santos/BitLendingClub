@@ -1,0 +1,13 @@
+<div class="page-section-activity-item">
+    <div class="activity-type">
+        <img src="/images/user_small.png" alt="" />
+    </div>
+    <div class="activity-user-badge">
+<!--        <img src="/images/avatar_profile_small.jpg" alt="" class="user-avatar" />-->
+        <img src="<?php echo $this->thumbnail('/data/users/', $this->params['picture'], 41, 41);?>" alt="" class="user-avatar" />
+    </div>
+    <div class="activity-message">
+        <h3><?php echo $this->wordLimit($this->params['message'], 15); ?></h3>
+        <p><?php echo $this->date($this->params['date']) ?>.</p>
+    </div>
+</div>

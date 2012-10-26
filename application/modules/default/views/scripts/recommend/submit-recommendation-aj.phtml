@@ -1,0 +1,38 @@
+<div id="recommend-email-section">
+    <header>
+        <h2><?php echo $this->translate('Сподели по Email'); ?></h2>
+        
+        <a href="#" id="recommend-email-close">
+            <img src="/images/close.png" alt="" /><?php echo $this->translate('затвори'); ?>
+        </a>        
+    </header>
+    
+    <div id="recommend-email-container">
+        <section class="recommend-email-details">
+            
+            <form action="<?php echo $this->url(array('module' => 'default',
+                        'controller' => 'recommend', 'action' => 'submit-recommendation-aj'), null, true);?>" method="post" onsubmit="return recommendObj.doSendmail(this);">
+            <dl>
+                <?php echo $this->form->getElement('email'); ?>
+
+                <?php echo $this->form->getElement('link'); ?>                
+                
+                <?php echo $this->form->getElement('token'); ?>
+                
+                <?php echo $this->form->getElement('deal_id'); ?>
+
+                <?php echo $this->form->getElement('type'); ?>
+                
+                <dt>&nbsp;</dt>
+                <dd class="actions">
+                    <?php echo $this->form->getElement('send'); ?>                
+                    
+                    <?php echo $this->form->getElement('cancel'); ?>                
+                </dd>
+            </dl>
+                
+            </form>
+            
+        </section>
+    </div>
+</div>                         

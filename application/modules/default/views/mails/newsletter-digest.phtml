@@ -1,0 +1,24 @@
+Dear Customer,<br /><br />
+
+We are very happy to present you the new version of the most incredible site from many years ago until now.<br /><br />
+
+<?php if (count($this->digest) != 0) :?>
+    <?php foreach ($this->digest as $category => $deals) : ?>
+        <section>
+                <?php echo $this->translate('Category No: '); ?><?php echo $category; ?>
+                <?php foreach ($deals as $deal) : ?>
+                <div>
+                    <dl>
+                        <dt><?php echo $this->translate('Deal name'); ?></dt>
+                        <dd><?php echo $deal->getName(); ?></dd>
+                    </dl>
+                </div>
+                <?php endforeach; ?>
+        </section>
+    <?php endforeach; ?>
+<?php else :  ?>
+    <?php echo $this->translate('Няма нови сделки'); ?>
+<?php endif ; ?>
+<a href="<?php echo $this->url; ?>"><?php echo $this->translate('към сайта'); ?></a>
+Best Regards,<br />
+Gruper.mk

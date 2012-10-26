@@ -1,0 +1,42 @@
+<div id="page-wrapper" style="background-color:#fff;">
+
+    <?php echo $this->partial('profile/partials/header.phtml', array('user' => $this->user, 'total_user_savings' => $this->total_user_savings)); ?>
+
+    <section id="page-container">
+
+        <div id="page-section-profile">      
+
+            <h2><?php echo $this->translate('Активности'); ?></h2>
+            <?php foreach ($this->events as $event) : ?>
+                <?php echo $this->activityStream($event); ?>
+<!--                <div class="page-section-activity-item">
+                    <div class="activity-type">
+                        <img src="/images/user_small.png" alt="" />
+                    </div>
+                    <div class="activity-user-badge">
+                        <img    src="/images/avatar_profile_small.jpg" alt="" class="user-avatar" />
+                    </div>
+                    <div class="activity-message">
+                        <h3><strong><?php echo Service_Auth::getLoggedUser()->getFullName() ?></strong> се регистрираше на Gruper.mk </h3>
+                        <p>пред 2 дена.</p>
+                    </div>
+                </div>-->
+            <?php endforeach; ?>
+
+
+            <!--            <div class="page-section-activity-item">
+                            <div class="activity-type">
+                                <img src="/images/badge.png" alt="" />
+                            </div>
+                            <div class="activity-user-badge">
+                                <img src="/images/badge_facebook.png" alt="" />
+                            </div>
+                            <div class="activity-message">
+                                <h3><strong>Vladimir Vasilevski</strong> доби значка за поврзување со Facebook plug-in на Gruper.mk</h3>
+                                <p>пред 2 дена.</p>
+                            </div>
+                        </div>            -->
+        </div>
+    </section>
+
+</div>

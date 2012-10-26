@@ -1,0 +1,69 @@
+<section id="content">
+    <div class="container_12">
+        <div>
+            <div class="grid_4">
+                <h3>Feedback</h3>
+                <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+                <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+                    <div class="form-message-success">
+                        <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                            <p><?php echo $msg ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <form id="contact-form" method="post" action="">
+                        <fieldset>
+
+                            <?= $this->oForm->name; ?>
+
+                            <?= $this->oForm->email; ?>
+
+                            <?= $this->oForm->phone; ?>
+
+                            <?= $this->oForm->country; ?>
+
+                            <?= $this->oForm->tech; ?>
+
+                            <?= $this->oForm->whento; ?>
+
+                            <?= $this->oForm->authorized; ?>
+
+                            <?= $this->oForm->online; ?>
+
+                            <?= $this->oForm->travel; ?>
+
+                            <?= $this->oForm->cert; ?>
+
+                            <?= $this->oForm->speccert; ?>
+
+                            <?= $this->oForm->delivery; ?>
+
+                            <?= $this->oForm->rate; ?>
+
+                            <?= $this->oForm->info; ?>                    
+
+                            <?= $this->oForm->captcha; ?>  
+
+                            <div class="clear"></div>
+                            <div class="btns">
+                                <!--
+                                    <a class="button-1" data-type="reset">Clear</a>
+                                -->
+                                <a class="button-1" data-type="submit" onclick="document.getElementById('contact-form').submit();" >Send Message</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                <?php endif; ?>
+            </div>
+            <div class="grid_8">
+                <h3>Contact us</h3>
+                <p>
+                    In <strong>It-instructor.com</strong> we are trying to provide the best service to our clients. 
+                    From this form you can contact us and send a request for any training we offer here or just to give your feedback to us. <br /><br /> Thank you!
+                    <!--                    Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo, sed imperdiet lectus est ornare odio. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin consectetuer velit in dui. Phasellus wisi purus, interdum vitae, rutrum accumsan, viverra in, velit. Sed enim risus, congue non, tristique in, commodo eu, metus. Aenean tortor mi, imperdiet id, gravida eu, posuere eu, felis. Mauris sollicitudin, turpis in hendrerit sodales, lectus ipsum pellentesque ligula, sit amet scelerisque urna nibh ut arcu. Aliquam in lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla placerat aliquam wisi. Mauris viverra odio. Quisque fermentum pulvinar odio. Proin posuere est vitae ligula. Etiam euismod. Cras a eros.-->
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</section>

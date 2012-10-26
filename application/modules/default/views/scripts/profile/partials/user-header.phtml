@@ -1,0 +1,36 @@
+<header id="header-profile">
+    <h1><?php echo $this->user->getFullName() ?></h1>
+    <p>последна активност пред 10 мин. ....</p>                
+
+    <a href="<?php echo $this->url(array('controller' => 'profile'), null, true); ?>" class="button settings-button"><?php echo $this->translate('Добави в приятели'); ?></a>
+    <nav class="tab-nav">
+        <?php $this->navigation()->menu()->setPartial('profile/partials/navigation.phtml');?>
+        <?php echo $this->navigation()->menu()->render(); ?>    
+    </nav>
+</header>
+<nav id="page-nav">
+    <div id="page-nav-profile">
+
+    	<?php if ($this->user->getAvatar()) : ?>
+        <img src="<?php echo $this->thumbnail('/data/users/', $this->user->getAvatar(), 205, 230); ?>"  alt="" id="profile-avatar" />
+		<?php else : ?>
+		    <img src="/images/profile_1.jpg" alt="" id="profile-avatar" />
+		<?php endif ?>
+        
+        
+        <div id="page-nav-profile-content">
+            <p id="page-nav-profile-desc">Со Gruper заштедивте:</p>
+            <p id="page-nav-profile-count"><strong><?php echo $this->total_user_savings; ?></strong> Ден.</p>
+
+            <div id="page-nav-profile-badge-title">
+                <img src="/images/badge.png" alt="" /> <?php echo $this->translate('Моите значки'); ?>
+            </div>                
+
+            <div id="page-nav-profile-badges">
+            	<?php foreach ($this->user->getUserBadges() as $userBadge) : ?>
+                	<img src="/images/<?php echo $userBadge->getBadge()->getEnabledIcon()?>" alt="" />
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>        
+</nav>

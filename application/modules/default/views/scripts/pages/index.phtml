@@ -1,0 +1,18 @@
+<?php 
+$this->headMeta()->appendName('keywords', $this->pageItem->getMetaKeywords());
+$this->headMeta()->appendName('description', $this->pageItem->getMetaDescription());
+?>
+
+<div id="page-wrapper" style="background: none;">    
+    <div id="static-container">                
+        <header id="page-header-static">
+            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'index', 'action' => 'index'), null, true); ?>" class="back-button"><?php echo $this->translate('Back'); ?></a>
+            <h1><?php echo $this->pageItem->getTitle(); ?></h1>
+        </header>  
+        
+        <section id="page-container-static">
+            
+            <?php echo $this->pageItem->getContent(); ?>            
+        </section>        
+    </div>
+</div>

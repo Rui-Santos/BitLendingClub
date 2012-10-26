@@ -1,0 +1,24 @@
+<?php $actionName = Zend_Controller_Front::getInstance()->getRequest()->getActionName(); ?>
+<nav id="page-nav">
+    <h3><?php echo $this->translate('Кориснички панел'); ?></h3>
+    <ul>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'subscriptions')); ?>" class="<?php echo $actionName == 'subscriptions' ? 'selected' : ''; ?>"><?php echo $this->translate('Subscriptions'); ?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'profile-access')); ?>" class="<?php echo $actionName == 'profile-access' ? 'selected' : ''; ?>"><?php echo $this->translate('Profile Access'); ?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'personal')); ?>" class="<?php echo $actionName == 'personal' ? 'selected' : ''; ?>"><?php echo $this->translate('Personal Data'); ?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'avatar')); ?>" class="<?php echo $actionName == 'avatar' ? 'selected' : ''; ?>"><?php echo $this->translate('Avatar'); ?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'change-password')); ?>" class="<?php echo $actionName == 'change-password' ? 'selected' : ''; ?>"><?php echo $this->translate('Change Password'); ?></a>
+        </li>            
+        <li>
+            <a href="<?php echo $this->url(array('action' => 'change-email')); ?>" class="<?php echo $actionName == 'change-email' ? 'selected' : ''; ?>"><?php echo $this->translate('Change E-mail'); ?></a>
+        </li>
+    </ul>
+</nav>

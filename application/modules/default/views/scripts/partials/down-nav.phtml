@@ -1,0 +1,9 @@
+<nav>
+    <ul id="category-deals-nav">
+<!--    <li class="active"><a href="#"><?php echo $this->translate('Подарете Grouper картичка'); ?></a></li>-->
+        <?php foreach ($this->categories as $category) : ?>
+            <li><a href="#" onclick="javascript:return switcher.ajaxLoad('<?php echo $category->getId(); ?>', this);"><?php echo $category->getName() ?></a></li>
+        <?php endforeach; ?> 
+        
+    </ul>
+</nav>   

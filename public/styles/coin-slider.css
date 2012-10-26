@@ -1,0 +1,77 @@
+.slider-holder {
+	float:left;
+	width:635px;
+	margin:0 6px 0 0;
+}
+#slider-container {
+	width:635px;
+	height:339px;
+	margin:0 auto;
+	border-radius:7px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	box-shadow:1px 1px 1px #c9c8c8;
+	-moz-box-shadow:1px 1px 1px #c9c8c8;
+	-webkit-box-shadow:1px 1px 1px #c9c8c8;
+}
+#coin-slider{
+	overflow:hidden;
+	background:url(../images/loader.gif) 50% 50% no-repeat;
+	width:569px;
+	height:341px;
+	margin:0 auto;
+}
+.coin-slider{
+	position:relative;
+	margin:0 auto 36px auto;
+	width:635px;
+	height:303px;
+}
+#coin-slider img {display:none;}
+.coin-slider a{text-decoration:none;outline:none;border:none}
+.cs-buttons{
+	font-size:0px;
+	position:absolute;
+	line-height:0;
+	bottom:-36px;
+	left:0;
+	right:0;
+	background:#eee;
+	border:1px solid #c1c1c1;
+	border-top:none;
+	top:auto;
+	padding:10px;
+	text-align:right;
+	border-radius:0 0 7px 7px;
+	-moz-border-radius:0 0 7px 7px;
+	-webkit-border-radius:0 0 7px 7px;
+	box-shadow:1px 0 0 #fff inset;
+	-moz-box-shadow:1px 0 0 #fff inset;
+	-webkit-box-shadow:1px 0 0 #fff inset;
+}
+.cs-buttons a{
+	margin:0 0 0 8px;
+	height:16px;
+	width:16px;
+	background: url(../images/slider-pagination.png) no-repeat right 0;
+	position:relative;
+	display:inline-block;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	position:relative;
+	overflow:hidden;
+	border-radius:8px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	box-shadow:1px 1px 2px #dadada;
+	-moz-box-shadow:1px 1px 2px #dadada;
+	-webkit-box-shadow:1px 1px 2px #dadada;
+}
+
+	.cs-buttons a:hover, .cs-buttons a.cs-active {
+		background: url(../images/slider-pagination.png) no-repeat 0 0;
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+	}

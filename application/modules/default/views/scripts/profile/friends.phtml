@@ -1,0 +1,28 @@
+<div id="page-wrapper" style="background-color:#fff;">
+
+    <?php echo $this->partial('profile/partials/header.phtml', array('user' => $this->user,'total_user_savings' => $this->total_user_savings)); ?>
+
+    <section id="page-container">
+
+        <div id="page-section-profile" class = "profile-section-padding">
+        <h1 class = "user-section-heading"><?php echo $this->translate('Моите пријатели'); ?></h1>
+		 <ul>
+           <?php foreach ($this->friends as $friend) : ?>
+           		<li class = "friend-item">
+           			<?php if(is_null($friend->getUserB()->getAvatar())) : ?>
+           				<img class = "friend-item-image" src = "/images/avatar_profile_small.jpg"/>
+           			<?php else : ?>
+           				<img class = "friend-item-image" src = "/data/users/<?php echo $friend->getUserB()->getAvatar();?>"/>
+           			<?php endif;?>
+           			
+           			<div class="friend-info">
+           				<h1><?php echo $friend->getUserB()->getFirstName().' '.$friend->getUserB()->getLastName(); ?></h1>
+           				<h2 class="friend-years">25 godini</h2>
+           			</div>
+           		</li>
+           <?php endforeach;?>
+         </ul>  
+        </div>
+    </section>    
+
+</div>

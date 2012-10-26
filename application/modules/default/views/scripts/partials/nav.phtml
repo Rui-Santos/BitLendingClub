@@ -1,0 +1,28 @@
+<?php $request = Zend_Controller_Front::getInstance()->getRequest(); ?>
+
+<nav>
+    <ul>
+        <li <?php echo $request->getControllerName() == 'index' ? 'class="active"' : ''; ?>><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>"><?php echo $this->translate('Денешна зделка'); ?></a></li>
+        <li <?php echo $request->getControllerName() == 'deals' ? 'class="active"' : ''; ?> >
+            <div class="fl">
+                <a href="<?php echo $this->url(array('controller' => 'deals', 'action' => 'index'), null, true); ?>"><?php echo $this->translate('Сите зделки'); ?></a>
+            </div>
+
+            <div class="deal-categories">
+                <a href="" class="deal-categories-button"><span><?php echo count($this->categories); ?></span></a>
+
+                <div>
+                    <ul>
+                        <?php foreach ($this->categories as $category) : ?>
+                            <li>
+                                <a href="<?php echo $this->url(array('controller' => 'deals', 'action' => 'index', 'cid' => $category->getId())); ?>"><?php echo $category->getName(); ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>                        
+            </div> 
+        </li>
+        <li><a href="<?php echo $this->url(array('action' => 'list', 'controller' => 'deals')); ?>"><?php echo $this->translate('Производи'); ?></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'category' => $this->tripsCategory->getId())); ?>"><?php echo $this->tripsCategory->getName(); ?></a></li>
+    </ul>
+</nav>

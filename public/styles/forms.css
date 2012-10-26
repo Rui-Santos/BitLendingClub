@@ -1,0 +1,226 @@
+input[type="text"],input[type=password],textarea{font-family: Arial, Helvetica, sans-serif;font-size:13px;vertical-align:middle;font-weight:normal;margin:0;border:none;outline:none !important;}
+/* main search form */
+#main-search {
+	float:right;
+	position:relative;
+	background:url(../images/main-search-bg.gif) no-repeat 0 0;
+	width:186px;
+	height:26px;
+}
+	#main-search input {
+		position:absolute;
+		background:none;
+		border:none;
+		width:150px;
+		padding:5px;
+		display:block;
+		font-size:12px;
+		color:#303030;
+		outline:none;
+	}
+	.main-search-submit {
+		position:absolute;
+		right:5px;
+		top:3px;
+		background:url(../images/main-search-submit.gif) no-repeat 0 0;
+		width:19px;
+		height:20px;
+	}
+		.main-search-submit:hover {background:url(../images/main-search-submit.gif) no-repeat 0 bottom;}
+/* product search form */
+#product-search {
+	background:url(../images/products-search-bg.png) no-repeat 0 0;
+	padding:4px 0 25px 50px;
+}
+	#product-search strong {
+		display:inline-block;
+		color:#575656;
+		font-size:13px;
+		line-height:18px;
+		margin:7px 9px 0 0;
+		font-weight:normal;
+	}
+	#product-search input {
+		display:inline-block;
+		background:#fff;
+		border:1px solid #d4d4d4;
+		border-radius:5px;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		font-size:13px;
+		height:16px !important;
+		padding:7px 10px;
+		width:405px;
+		margin:0 8px 0 0;
+		color:#575757;
+		outline:none;
+	}
+	#product-search a {margin:2px 0 0 0;}
+/*404 Search-form & Under Construction*/
+#page-404 #search-alt {
+	position:relative;
+	display:block;
+}
+#page-404 #search-alt input {
+	width:278px; 
+	font-size:13px;
+	padding:8px 10px 6px 10px;
+	background:#fff;
+	outline:none;
+	font-family:Arial, Helvetica, sans-serif;
+	display:inline-block;
+	color:#575656;
+	margin:0 8px 0 0;
+	box-shadow: none !important;
+	border:1px solid #d4d4d4;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	height:16px !important;
+	outline:none;
+}
+	#page-404 #search-alt a {margin:1px 0 0 0;}
+#newsletter-form input {
+	width:278px; 
+	font-size:13px;
+	padding:8px 10px 6px 10px;
+	background:#fff;
+	outline:none;
+	font-family:Arial, Helvetica, sans-serif;
+	display:inline-block;
+	color:#575656;
+	margin:0 8px 0 0;
+	box-shadow: none !important;
+	border:1px solid #d4d4d4;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	height:16px !important;
+	outline:none;
+}
+	#newsletter-form a {margin:2px 0 0 0;}
+/* Contact form */
+#contact-form {
+	display:block; 
+	position:relative;
+	margin:5px 0 0 0;
+        padding-bottom: 50px;
+}
+#contact-form label {
+	display:block; 
+	height: auto;
+	position:relative;
+}
+
+#contact-form ul.errors {
+	color: red;
+}
+
+#contact-form .elWrap{
+    padding-bottom: 10px;
+}
+
+	#contact-form label.message {
+		height:auto;
+		position:relative;
+	}
+#contact-form span {
+	display:none;
+	color:#f00;
+	margin:0 0 0 5px;
+	font-size:11px;
+	line-height:14px;
+}
+#contact-form label span.errors {
+	display:block;
+	margin:0;
+	position:absolute;
+	right:0;
+	top:0;
+	width:180px;
+	text-align: right;
+}
+#contact-form input {
+	width:278px; 
+	font-size:13px;
+	padding:8px 10px 6px 10px;
+	background:#fff;
+	outline:none;
+	font-family:Arial, Helvetica, sans-serif;
+	display:block;
+	color:#575656;
+	margin:0;
+	box-shadow: none !important;
+	border:1px solid #d4d4d4;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	height:16px !important;
+}
+#contact-form select{
+    width: 302px; padding:8px 10px 6px 10px;
+}
+#contact-form textarea {
+	height:166px;
+	width:278px; 
+	font-size:13px;
+	padding:8px 10px 6px 10px;
+	background:#fff;
+	outline:none;
+	font-family:Arial, Helvetica, sans-serif;
+	display:block;
+	color:#575656;
+	margin:0;
+	box-shadow: none !important;
+	border:1px solid #d4d4d4;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	overflow:auto;
+	resize:none;
+}
+#contact-form .btns {
+	padding:0;
+	position:absolute;
+	bottom:3px;
+	right: -9px;
+	height:auto;
+	width:auto;
+	left: auto;
+	padding:0 0 2px 0;
+}
+	#contact-form .btns a {
+		margin:0 9px 0 0;
+	}
+.success {
+	display:none;
+	font-size:13px;
+	line-height:18px;
+	padding:0;
+	top:-19px;
+	left:5px;
+	position:absolute;
+	word-spacing:-1px;
+	color:#939393;
+}
+
+/* ------------- * Login - form * ------------- */
+#login-form fieldset{border:none}
+	#login-form .field{overflow:hidden;min-height:45px;height:auto !important;height:45px;padding:4px}
+		#login-form input[type=text],#login-form input[type=password]{
+			width:365px; 
+			font-size:13px;
+			padding:9px 14px 9px 14px;
+			background:#fff;
+			outline:none;
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			display:block;
+			color:#7d7d7d;
+			margin:0;
+			box-shadow:none !important;
+			border:1px solid #d0d0d0;
+		}
+		#login-form input[type="checkbox"]{margin:0 10px 0 0;vertical-align:middle;}
+		#login-form a{float:right;}			
+				#login-form small{color:red;font-weight:bold;padding:0 0 0 5px}		
+		#login-form label[for=remember]{font-size:12px;color:#333;float:left;padding:10px 0 0 18px}	
