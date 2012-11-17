@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <nav>
-        <requests>
-            <label>Requests</label>
+        <users>
+            <label>Users</label>
             <module>admin</module>
-            <controller>requests</controller>
+            <controller>users</controller>
             <action>index</action>
-        </requests>
-        <categories>
-            <label>Categories</label>
-            <module>admin</module>
-            <controller>categories</controller>
-            <action>index</action>
-        </categories>
-        <countries>
-            <label>Countries</label>
-            <module>admin</module>
-            <controller>countries</controller>
-            <action>index</action>
-        </countries>
-        <instructors>
-            <label>Instructors</label>
-            <module>admin</module>
-            <controller>instructors</controller>
-            <action>index</action>
-        </instructors>
-        <pages>
-            <label>Pages</label>
-            <module>admin</module>
-            <controller>pages</controller>
-            <action>index</action>
-        </pages>
-        <company>
-            <label>Companies</label>
-            <module>admin</module>
-            <controller>companies</controller>
-            <action>index</action>
-        </company>        
+        </users>
     </nav>
 </config>

@@ -27,6 +27,7 @@
 	z-index: 600;
 	text-align: center;
 	line-height: 0;
+	z-index: 9999;
 }
 #jquery-lightbox a img { border: none; }
 #lightbox-container-image-box {

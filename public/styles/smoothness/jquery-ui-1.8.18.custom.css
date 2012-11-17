@@ -585,5 +585,9 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
     background: none;
     outline: 0;
     position: relative;
-    top: 3px;
+    top: -5px;
+    left: 3px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
 }

@@ -10,6 +10,21 @@
     top: 15%;
     left: 50%;
     margin-left: -300px;
+    background: #fff;
+    width: 500px;
+}
+
+#subdeal-section h2 {
+	padding-left: 30px;
+}
+
+#subdeal-close {
+	float: right;
+	margin-right: 5px;
+}
+
+#subdeal-container {
+	padding-left: 50px;
 }
 
 .jqmOverlay { 
