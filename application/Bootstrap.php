@@ -163,8 +163,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
 
-        $config_front = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation_front.xml', 'nav');
-        $view->navigation_front = new Zend_Navigation($config_front);
+//        $config_front = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation_front.xml', 'nav');
+//        $view->navigation_front = new Zend_Navigation($config_front);
 
         /*
           $view->navigation_front = new Zend_Navigation(array(
@@ -201,7 +201,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         //$frontController = Zend_Controller_Front::getInstance();
         //$view->page = $frontController->getParam('page');
-        $view->instructCategories = new Model_Category();
+        //$view->instructCategories = new Model_Category();
     }
 
     protected function _initViewScripts()
