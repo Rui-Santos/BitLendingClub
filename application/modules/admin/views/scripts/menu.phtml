@@ -1,9 +1,6 @@
 
 <?php $view = Zend_Layout::getMvcInstance()->getView(); ?>
 <?php $selPage = Zend_Controller_Front::getInstance()->getRequest()->getControllerName(); 
-
-$user = new Model_User();
-$user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
 ?>
 <li class="<?php echo ($selPage == "index" ? "active main-nav-arrow" : ""); ?>">
     <a class="main-menu-link" href="<?= $view->url(array('module' => 'admin'), null, true) ?>">
@@ -11,51 +8,9 @@ $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
         Начало
     </a>
 </li>  
-<?php if($user->getIsAdmin()): ?>
-<li class="<?php echo ($selPage == "categories" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'categories', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_090_table.png"></div>
-        Категории
-    </a>
-</li>
-<?php endif; ?>
-<li class="<?php echo ($selPage == "deals" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'deals', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_319_sort.png"></div>
-        Продажби
-    </a>
-</li>
-<?php if($user->getIsAdmin()): ?>
-<li class="<?php echo ($selPage == "pages" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'pages', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_036_file.png"></div>
-        Страници
-    </a>
-</li>
-<?php endif; ?>
 <li  class="<?php echo ($selPage == "users" ? "active main-nav-arrow" : ""); ?>">
     <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'users', 'action' => 'index', 'module' => 'admin'), null, true);?>">
         <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_003_user.png"></div>
         Потребители
     </a>
 </li>
-<?php if($user->getIsAdmin()): ?>
-<li class="<?php echo ($selPage == "accounts" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'accounts', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_227_usd.png"></div>
-        Банкови сметки
-    </a>
-</li>
-<li class="<?php echo ($selPage == "tds" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'tds', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_263_bank.png"></div>
-        ТД и Офиси
-    </a>
-</li>
-<li class="<?php echo ($selPage == "reports" ? "active main-nav-arrow" : ""); ?>">
-    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'reports', 'action' => 'index', 'module' => 'admin'), null, true);?>">
-        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_041_charts.png"></div>
-        Статистика
-    </a>
-</li>
-<?php endif; ?>

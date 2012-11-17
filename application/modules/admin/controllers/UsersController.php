@@ -17,7 +17,7 @@ class Admin_UsersController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_helper->authentication->checkAuthentication(false);
+//        $this->_helper->authentication->checkAuthentication(false);
         $this->_model = new Model_User();
         $this->view->headScript()->appendFile('/js/tiny_mce/tiny_mce.js', $type = 'text/javascript', $attrs = array());
     }
@@ -25,16 +25,17 @@ class Admin_UsersController extends Zend_Controller_Action
     public function indexAction()
     {
         $user = new Model_User();
-        $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
-        
-        
-        if($user->getIsAdmin()) {
+        //$user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
+//        
+//        
+//        if($user->getIsAdmin()) {
+
         $paginator = new Zend_Paginator(
                 new App_Paginator_Adapter_Doctrine($this->_model->getAll()));
-        } else {
+//        } else {
             $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll(array('id' =>$user->getId()))));
-        }
+                new App_Paginator_Adapter_Doctrine($this->_model->getAll())); //array('id' =>$user->getId())
+//        }
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
         $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
@@ -48,10 +49,7 @@ class Admin_UsersController extends Zend_Controller_Action
      */
     public function createAction()
     {
-        $tdModel = new Model_Td();
         $form = new Admin_Form_User(array(
-                'titlesOpts' => Model_User::$titles,
-                'tdOpts' => $tdModel->getFormOpts(),
 //            'rolesOpts' => $this->_model->getRoleOpts(),
             ));
 
@@ -82,10 +80,7 @@ class Admin_UsersController extends Zend_Controller_Action
         if ($id == 0) {
             throw new InvalidArgumentException('Invalid request parameter: $id');
         }
-        $tdModel = new Model_Td();
         $form = new Admin_Form_User(array(
-                'titlesOpts' => Model_User::$titles,
-                'tdOpts' => $tdModel->getFormOpts(),
 //            'rolesOpts' => $this->_model->getRoleOpts(),
             ));
 

@@ -3,15 +3,6 @@
 class Model_User extends Model_Abstract
 {
 
-    const PUBLIC_AND_FRIEND = 1;
-    const FRIEND_ONLY = 2;
-    CONST HIDDEN = 3;
-    /**
-     * Is email confirmed or not constants
-     */
-    const NOT_CONFIRMED = 0;
-    const CONFIRMED = 1;
-
     /**
      * Role types
      */
@@ -37,17 +28,6 @@ class Model_User extends Model_Abstract
      * @var string
      */
     protected $_entityName = 'Entity_Users';
-
-    /**
-     * All types of supported titles
-     */
-    public static $titles = array("Mr" => "Mr", "Ms" => "Ms", "Mrs" => "Mrs");
-
-    /**
-     * All types of gender
-     * @return arrau
-     */
-    public static $genders = array('M' => 'Male', 'F' => 'Female');
 
     /**
      * All types of transactions type id's that are added to total savings

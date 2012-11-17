@@ -41,7 +41,7 @@
                             
                             <td><?php echo $user->getEmail();?></td>
                             <td><?php echo $user->getFullname();?></td>
-                            <td><?php echo $user->getRole()->getName();?></td>
+                            <td><?php // echo $user->getRole()->getName();?></td>
                             <td><?php echo $this->date($user->getCreatedAt());?></td>
                             <td class="center">
                                 <a class="link-button-amount" href="<?php echo $this->url(array('action' => 'change-debit-amount', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Change Debit Amount'); ?>">

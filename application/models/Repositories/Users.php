@@ -90,58 +90,12 @@ class Repository_Users extends EntityRepository
             }
         }
 
-        if (isset($params['is_email_confirmed']) && $params['is_email_confirmed'] == Model_User::CONFIRMED) {
-            $entity->setIsEmailConfirmed(Model_User::CONFIRMED);
-        } else {
-            $entity->setIsEmailConfirmed(Model_User::NOT_CONFIRMED);
-        }
-
         if (isset($params['firstname'])) {
             $entity->setFirstname($params['firstname']);
         }
 
         if (isset($params['lastname'])) {
             $entity->setLastname($params['lastname']);
-        }
-
-        if (isset($params['title'])) {
-            if (empty($params['title'])) {
-                $entity->setTitle(null);
-            } else {
-                $entity->setTitle($params['title']);
-            }
-        }
-
-        if (isset($params['fb_user_id'])) {
-            if (empty($params['fb_user_id'])) {
-                $entity->setFbUserId(null);
-            } else {
-                $entity->setFbUserId($params['fb_user_id']);
-            }
-        }
-
-        if (isset($params['login_count'])) {
-            $entity->setLoginCount($params['login_count']);
-        }
-
-        if (isset($params['debit_amount'])) {
-            $entity->setDebitAmount($params['debit_amount']);
-        }
-
-        if (isset($params['avatar'])) {
-            if (empty($params['avatar'])) {
-                $entity->setAvatar(null);
-            } else {
-                $entity->setAvatar($params['avatar']);
-            }
-        }
-
-        if (isset($params['birthDate'])) {
-            if (empty($params['birthDate'])) {
-                $entity->setBirthDate(null);
-            } else {
-                $entity->setBirthDate(DateTime::createFromFormat('d/m/Y', $params['birthDate']));
-            }
         }
 
         if (isset($params['address'])) {
@@ -152,58 +106,12 @@ class Repository_Users extends EntityRepository
             }
         }
 
-        if (isset($params['role_id'])) {
-            $role = $em->getRepository('Entity_UserRoles')->find($params['role_id']);
-            if ($role) {
-                $entity->setRole($role);
-            }
-        }
-
-        if (isset($params['country_id'])) {
-            if (empty($params['country_id'])) {
-                $entity->setCountry(null);
-            } else {
-                $country = $em->getRepository('Entity_Countries')->find($params['country_id']);
-                if ($country) {
-                    $entity->setCountry($country);
-                }
-            }
-        }
-
-        if (isset($params['city_id'])) {
-            if (empty($params['city_id'])) {
-                $entity->setCity(null);
-            } else {
-                $city = $em->getRepository('Entity_Cities')->find($params['city_id']);
-                if ($city) {
-                    $entity->setCity($city);
-                }
-            }
-        }
-
-        if (isset($params['municipality_id'])) {
-            if (empty($params['municipality_id'])) {
-                $entity->setMunicipality(null);
-            } else {
-                $municipality = $em->getRepository('Entity_Municipalities')->find($params['municipality_id']);
-                if ($municipality) {
-                    $entity->setMunicipality($municipality);
-                }
-            }
-        }
-
-        if (isset($params['gender'])) {
-            if (empty($params['gender'])) {
-                $entity->setGender(null);
-            } else {
-                $entity->setGender($params['gender']);
-            }
-        }
-
-        if (isset($params['is_agree_terms_conditions'])
-            && intval($params['is_agree_terms_conditions']) == Model_User::AGREE_TERMS_CONDITIONS) {
-            $entity->setIsAgreeTermsConditions(Model_User::AGREE_TERMS_CONDITIONS);
-        }
+//        if (isset($params['role_id'])) {
+//            $role = $em->getRepository('Entity_UserRoles')->find($params['role_id']);
+//            if ($role) {
+//                $entity->setRole($role);
+//            }
+//        }
 
         if (isset($params['is_active'])) {
             if (empty($params['is_active'])) {
@@ -213,30 +121,7 @@ class Repository_Users extends EntityRepository
             }
         }
 
-        if (isset($params['twitterAccessToken'])) {
-            if (empty($params['twitterAccessToken'])) {
-                $entity->setTwitterAccessToken(null);
-            } else {
-                $entity->setTwitterAccessToken($params['twitterAccessToken']);
-            }
-        }
-
-        if (isset($params['twitterAccessTokenSecret'])) {
-            if (empty($params['twitterAccessTokenSecret'])) {
-                $entity->setTwitterAccessTokenSecret(null);
-            } else {
-                $entity->setTwitterAccessTokenSecret($params['twitterAccessTokenSecret']);
-            }
-        }
-
-        if (isset($params['confirmation_key'])) {
-            if (empty($params['confirmation_key'])) {
-                $entity->setConfirmationKey(null);
-            } else {
-                $entity->setConfirmationKey($params['confirmation_key']);
-            }
-        }
-
+        
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);
