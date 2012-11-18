@@ -1,0 +1,72 @@
+<section id="page-section">
+
+    <header>
+        <h2><?php echo $this->translate('Users'); ?></h2>
+        <a class="link-button-create button" href="<?php echo $this->url(
+                array('action' => 'create')); ?>"><?php echo $this->translate('Add User'); ?></a>
+    </header>
+
+    <section>
+        <table class="list-table" >
+            <colgroup>
+                <col width="*" />
+                <col width="25%" />
+                <col width="10%" />
+                <col width="20%" />
+                <col width="10%" />
+            </colgroup>    
+            <thead>
+                <tr>
+                    <th><?php echo $this->translate('E-mail'); ?></th>
+                    <th><?php echo $this->translate('Name'); ?></th>
+                    <th><?php echo $this->translate('Role'); ?></th>
+                    <th><?php echo $this->translate('Created On'); ?></th>                                                                                
+                    <th class="center"><?php echo $this->translate('Actions'); ?></th>
+                </tr>
+            </thead>
+
+            <tfoot>
+                <tr>
+                    <td colspan="20">
+                        <?php echo $this->paginationControl(
+                                $this->userList, 'Sliding', 'partials/paginator.phtml'); ?>                
+                    </td>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                <?php if ($this->userList->getTotalItemCount() > 0): ?>
+                    <?php foreach ($this->userList as $user): ?>
+                        <tr>
+                            
+                            <td><?php echo $user->getEmail();?></td>
+                            <td><?php echo $user->getFullname();?></td>
+                            <td><?php // echo $user->getRole()->getName();?></td>
+                            <td><?php echo $this->date($user->getCreatedAt());?></td>
+                            <td class="center">                          
+                                <a class="link-button-update" href="<?php echo $this->url(array('action' => 'update', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Update'); ?>">
+                                    <img src="/images/update.png" alt="" />
+                                </a>
+                                <?php if($user->getIsActive()==1):?>
+                                <a class="link-button-delete confirm" href="<?php echo $this->url(array('action' => 'deactivate', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Deactivate'); ?>">
+                                    <img src="/images/delete.png" alt="" />
+                                </a>
+                                <?php endif;?>
+                                <?php if($user->getIsActive()==0):?>
+                                <a class="link-button-delete" href="<?php echo $this->url(array('action' => 'activate', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Activate'); ?>">
+                                    <img src="/images/badge.png" alt="" />
+                                </a>
+                                <?php endif;?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="20"><?php echo $this->translate('No users found.'); ?></td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </section>
+
+</section>    

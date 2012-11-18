@@ -1,0 +1,8 @@
+<section id="page-section">
+    <header>
+        <h2><?php echo $this->translate("Update User #" . $this->id); ?></h2>
+    </header>    
+    <section>
+        <?php echo $this->partial('users/form.phtml', array('form' => $this->form, 'isUploaded' => $this->isUploaded));?>
+    </section>
+</section>
