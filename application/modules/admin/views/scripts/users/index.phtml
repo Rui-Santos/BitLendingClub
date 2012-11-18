@@ -43,16 +43,20 @@
                             <td><?php echo $user->getFullname();?></td>
                             <td><?php // echo $user->getRole()->getName();?></td>
                             <td><?php echo $this->date($user->getCreatedAt());?></td>
-                            <td class="center">
-                                <a class="link-button-amount" href="<?php echo $this->url(array('action' => 'change-debit-amount', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Change Debit Amount'); ?>">
-                                    <img src="/images/dollar.png" alt="" />
-                                </a>                                
+                            <td class="center">                          
                                 <a class="link-button-update" href="<?php echo $this->url(array('action' => 'update', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Update'); ?>">
                                     <img src="/images/update.png" alt="" />
                                 </a>
-                                <a class="link-button-delete confirm" href="<?php echo $this->url(array('action' => 'delete', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Delete'); ?>">
+                                <?php if($user->getIsActive()==1):?>
+                                <a class="link-button-delete confirm" href="<?php echo $this->url(array('action' => 'deactivate', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Deactivate'); ?>">
                                     <img src="/images/delete.png" alt="" />
                                 </a>
+                                <?php endif;?>
+                                <?php if($user->getIsActive()==0):?>
+                                <a class="link-button-delete" href="<?php echo $this->url(array('action' => 'activate', 'id' => $user->getId())); ?>" title="<?php echo $this->translate('Activate'); ?>">
+                                    <img src="/images/badge.png" alt="" />
+                                </a>
+                                <?php endif;?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

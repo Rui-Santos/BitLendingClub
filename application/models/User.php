@@ -21,7 +21,6 @@ class Model_User extends Model_Abstract
      */
     const ACTIVE_USER = 1;
     const INACTIVE_USER = 0;
-    const AGREE_TERMS_CONDITIONS = 1;
 
     /**
      * Define entityName based on model
@@ -35,68 +34,68 @@ class Model_User extends Model_Abstract
      */
     public static $transactionTypesAddedToSavings = array(1, 2);
 
-    /**
-     * Get all roles as array
-     *
-     * @return arrau
-     */
-    public function getRoleOpts()
-    {
-        $roles = array();
-
-        $rolesEntities = $this->getRepository('Entity_UserRoles')->findAll();
-        foreach ($rolesEntities as $entity) {
-            $roles[$entity->getId()] = $entity->getName();
-        }
-
-        return $roles;
-    }
-
-    /**
-     * Get role by ID
-     *
-     * @param integer $roleId
-     * @return Entity_UserRoles
-     */
-    public function getRole($roleId)
-    {
-        if (intval($roleId) == 0) {
-            throw new InvalidArgumentException('Invalid parameter $roleId');
-        }
-
-        return $this->getRepository('Entity_UserRoles')->find($roleId);
-    }
-
-    /**
-     * Get role by name
-     *
-     * @param string $roleName
-     * @return Entity_UserRoles
-     */
-    public function getRoleByName($roleName)
-    {
-        if (empty($roleName)) {
-            throw new InvalidArgumentException('Invalid parameter $roleName');
-        }
-
-        return $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
-    }
-
-    /**
-     * Get role by name
-     *
-     * @param string $roleName
-     * @return integer
-     */
-    public function getRoleIdByName($roleName)
-    {
-        if (empty($roleName)) {
-            throw new InvalidArgumentException('Invalid parameter $roleName');
-        }
-
-        $roleItem = $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
-        return (int) $roleItem->getId();
-    }
+//    /**
+//     * Get all roles as array
+//     *
+//     * @return arrau
+//     */
+//    public function getRoleOpts()
+//    {
+//        $roles = array();
+//
+//        $rolesEntities = $this->getRepository('Entity_UserRoles')->findAll();
+//        foreach ($rolesEntities as $entity) {
+//            $roles[$entity->getId()] = $entity->getName();
+//        }
+//
+//        return $roles;
+//    }
+//
+//    /**
+//     * Get role by ID
+//     *
+//     * @param integer $roleId
+//     * @return Entity_UserRoles
+//     */
+//    public function getRole($roleId)
+//    {
+//        if (intval($roleId) == 0) {
+//            throw new InvalidArgumentException('Invalid parameter $roleId');
+//        }
+//
+//        return $this->getRepository('Entity_UserRoles')->find($roleId);
+//    }
+//
+//    /**
+//     * Get role by name
+//     *
+//     * @param string $roleName
+//     * @return Entity_UserRoles
+//     */
+//    public function getRoleByName($roleName)
+//    {
+//        if (empty($roleName)) {
+//            throw new InvalidArgumentException('Invalid parameter $roleName');
+//        }
+//
+//        return $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
+//    }
+//
+//    /**
+//     * Get role by name
+//     *
+//     * @param string $roleName
+//     * @return integer
+//     */
+//    public function getRoleIdByName($roleName)
+//    {
+//        if (empty($roleName)) {
+//            throw new InvalidArgumentException('Invalid parameter $roleName');
+//        }
+//
+//        $roleItem = $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
+//        return (int) $roleItem->getId();
+//    }
 
     /**
      * Get user by specific email
@@ -125,9 +124,9 @@ class Model_User extends Model_Abstract
             throw new InvalidArgumentException('Invalid argument: params');
         }
 
-        if (!isset($params['role_id'])) {
-            $params['role_id'] = $this->getRoleIdByName(self::REGULAR_ROLE);
-        }
+//        if (!isset($params['role_id'])) {
+//            $params['role_id'] = $this->getRoleIdByName(self::REGULAR_ROLE);
+//        }
 
         if (isset($params['password']) && !empty($params['password'])) {
             $params['password'] = md5($params['password']);
@@ -619,6 +618,28 @@ class Model_User extends Model_Abstract
         }
 
         return $sum;
+    }
+    
+    public function deactivateUser($id)
+    {
+        $userItem = $this->get($id);
+
+        if ($userItem) {
+            return $this->getRepository()->deactivateUser($userItem->getId());
+        }
+
+        return false;
+    }
+    
+    public function activateUser($id)
+    {
+        $userItem = $this->get($id);
+
+        if ($userItem) {
+            return $this->getRepository()->activateUser($userItem->getId());
+        }
+
+        return false;
     }
 
 }

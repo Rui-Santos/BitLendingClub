@@ -114,8 +114,44 @@ class Admin_UsersController extends Zend_Controller_Action
             throw new InvalidArgumentException('Invalid request parameter: $id');
         }
 
-        $dealItem = $this->_model->delete($id);
-        if ($dealItem) {
+        $userItem = $this->_model->delete($id);
+        if ($userItem) {
+            $this->_helper->redirector('index');
+        }
+    }
+    
+    /**
+     *
+     * @throws InvalidArgumentException 
+     */
+    public function deactivateAction()
+    {
+        # fetching the id and checks 
+        $id = $this->_request->getParam('id', 0);
+        if (intval($id) == 0) {
+            throw new InvalidArgumentException('Invalid request parameter: $id');
+        }
+
+        $userItem = $this->_model->deactivateUser($id);
+        if ($userItem) {
+            $this->_helper->redirector('index');
+        }
+    }
+    
+    /**
+     *
+     * @throws InvalidArgumentException 
+     */
+    public function activateAction()
+    {
+        # fetching the id and checks 
+        $id = $this->_request->getParam('id', 0);
+        if (intval($id) == 0) {
+            throw new InvalidArgumentException('Invalid request parameter: $id');
+        }
+
+        $userItem = $this->_model->activateUser($id);
+        if ($userItem) {
             $this->_helper->redirector('index');
         }
     }

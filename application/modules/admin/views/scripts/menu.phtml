@@ -5,12 +5,12 @@
 <li class="<?php echo ($selPage == "index" ? "active main-nav-arrow" : ""); ?>">
     <a class="main-menu-link" href="<?= $view->url(array('module' => 'admin'), null, true) ?>">
         <div class="main-nav-icon-big"><img  src="/images/glyphicons/glyphicons_138_computer_proces.png"></div>
-        Начало
+        Home
     </a>
 </li>  
 <li  class="<?php echo ($selPage == "users" ? "active main-nav-arrow" : ""); ?>">
     <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'users', 'action' => 'index', 'module' => 'admin'), null, true);?>">
         <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_003_user.png"></div>
-        Потребители
+        Users
     </a>
 </li>

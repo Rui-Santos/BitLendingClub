@@ -113,13 +113,8 @@ class Repository_Users extends EntityRepository
 //            }
 //        }
 
-        if (isset($params['is_active'])) {
-            if (empty($params['is_active'])) {
-                $entity->setIsActive(Model_User::INACTIVE_USER);
-            } else {
-                $entity->setIsActive(Model_User::ACTIVE_USER);
-            }
-        }
+        
+        $entity->setIsActive(Model_User::ACTIVE_USER);  
 
         
         $em->persist($entity);
@@ -301,6 +296,38 @@ class Repository_Users extends EntityRepository
         $this->getEntityManager()->flush();
         $this->getEntityManager()->refresh($userEntity);
         return $userEntity;
+    }
+    
+    public function deactivateUser($userId)
+    {
+        $entity = $this->find($userId);
+
+        if ($entity) {
+            $entity->setIsActive(0);
+            
+            $this->getEntityManager()->persist($entity);
+            $this->getEntityManager()->flush();
+
+            return true;
+        }
+
+        return false;
+    }
+    
+    public function activateUser($userId)
+    {
+        $entity = $this->find($userId);
+
+        if ($entity) {
+            $entity->setIsActive(1);
+            
+            $this->getEntityManager()->persist($entity);
+            $this->getEntityManager()->flush();
+
+            return true;
+        }
+
+        return false;
     }
 	
 }

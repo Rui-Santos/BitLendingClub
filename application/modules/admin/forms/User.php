@@ -3,17 +3,12 @@
 class Admin_Form_User extends Admin_Form_Abstract
 {
     protected $_rolesOpts = array();
-    protected $_titlesOpts = array();
     protected $_recordExistsValidator;
     
     public function __construct($options = null)
     {
         if (isset($options['rolesOpts'])) {
             $this->_rolesOpts = $options['rolesOpts'];
-        }
-        
-        if (isset($options['titlesOpts'])) {
-            $this->_titlesOpts = $options['titlesOpts'];
         }
         
         parent::__construct($options);
@@ -72,53 +67,35 @@ class Admin_Form_User extends Admin_Form_Abstract
             'required' => true,
         )); 
         
-        $this->addElement('select', 'role_id', array(
-            'label' => 'User Role',
-            'class' => 'small',
-            'required' => true,
-            'id' => 'role_id',
-            'multiOptions' => $this->_rolesOpts,
-        ));        
+//        $this->addElement('select', 'role_id', array(
+//            'label' => 'User Role',
+//            'class' => 'small',
+//            'required' => true,
+//            'id' => 'role_id',
+//            'multiOptions' => $this->_rolesOpts,
+//        ));        
         
-        $this->addELement('text', 'birthDate', array(
-            'class' => 'small datepicker',
-            'label' => "Date of Birth",
-            'readonly' => true
-        ));
-                
-        $this->addElement('select', 'title', array(
-            'label' => 'Title',
-            'class' => 'small',
-            'id' => 'title',
-            'multiOptions' => array('' => '---') + $this->_titlesOpts,
-        ));
-        
-        $this->addElement('text', 'fb_user_id', array(
-            'label' => 'Facebook ID',
-            'class' => 'medium',            
-        ));                
-
         $this->addElement('text', 'address', array(
             'label' => 'Address',
             'class' => 'large',            
         ));        
         
         $this->addElement('text', 'username', array(
-            'label' => 'Username (legacy usage)',
+            'label' => 'Username',
             'class' => 'medium',
         ));        
         
-        $config = Zend_Registry::get('config');
-        $avatar = new Zend_Form_Element_File('avatar');
-        $avatar->setLabel('Upload an Avatar')
-            ->setDestination(realpath($config->paths->user_image))
-            ->setRequired(false)
-            ->setMaxFileSize(10240000) // limits the filesize on the client side
-            ->setDescription('Click Browse and click on the image file you would like to upload');
-        $avatar->addValidator('Count', false, 1);                // ensure only 1 file
-        $avatar->addValidator('Size', false, 10240000);            // limit to 10 meg
-        $avatar->addValidator('Extension', false, 'jpg,jpeg,png,gif'); // only JPEG, PNG, and GIFs
-        $this->addElement($avatar);
+//        $config = Zend_Registry::get('config');
+//        $avatar = new Zend_Form_Element_File('avatar');
+//        $avatar->setLabel('Upload an Avatar')
+//            ->setDestination(realpath($config->paths->user_image))
+//            ->setRequired(false)
+//            ->setMaxFileSize(10240000) // limits the filesize on the client side
+//            ->setDescription('Click Browse and click on the image file you would like to upload');
+//        $avatar->addValidator('Count', false, 1);                // ensure only 1 file
+//        $avatar->addValidator('Size', false, 10240000);            // limit to 10 meg
+//        $avatar->addValidator('Extension', false, 'jpg,jpeg,png,gif'); // only JPEG, PNG, and GIFs
+//        $this->addElement($avatar);
         
         $this->addElement('button', 'save', array(
             'label' => 'Save',

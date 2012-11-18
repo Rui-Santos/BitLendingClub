@@ -30,23 +30,23 @@ class Entity_Users
     /**
      * @var string $email
      *
-     * @Column(name="email", type="string", length=150, precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $email;
 
     /**
      * @var string $password
      *
-     * @Column(name="password", type="string", length=32, precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="password", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
      */
-//    private $password;
+    private $password;
 
     /**
      * @var boolean $isActive
      * 
-     * @Column(name="is_active", type="boolean", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="isActive", type="boolean", precision=0, scale=0, nullable=false, unique=false)
      */
-//    private $isActive;
+    private $isActive;
 
     /**
      * @var string $firstname
@@ -61,13 +61,6 @@ class Entity_Users
      * @Column(name="lastName", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
      */
     private $lastname;
-
-    /**
-     * @var bigint $fbUserId
-     *
-     * @Column(name="fb_user_id", type="bigint", precision=0, scale=0, nullable=true, unique=false)
-     */
-//    private $fbUserId;
 
     /**
      * @var datetime $createdAt
@@ -93,20 +86,6 @@ class Entity_Users
      * @Column(name="address", type="text", precision=0, scale=0, nullable=true, unique=false)
      */
     private $address;
-
-    /**
-     * @var string $twitterAccessToken
-     *
-     * @Column(name="twitter_access_token", type="string", length=400, precision=0, scale=0, nullable=true, unique=false)
-     */
-//    private $twitterAccessToken;
-
-    /**
-     * @var string $twitterAccessTokenSecret
-     *
-     * @Column(name="twitter_access_token_secret", type="string", length=400, precision=0, scale=0, nullable=true, unique=false)
-     */
- //   private $twitterAccessTokenSecret;
 
     public function __construct()
     {
@@ -163,45 +142,45 @@ class Entity_Users
         return $this->email;
     }
 
-//    /**
-//     * Set password
-//     *
-//     * @param string $password
-//     */
-//    public function setPassword($password)
-//    {
-//        $this->password = $password;
-//    }
-//
-//    /**
-//     * Get password
-//     *
-//     * @return string 
-//     */
-//    public function getPassword()
-//    {
-//        return $this->password;
-//    }
-//
-//    /**
-//     * Set isActive
-//     *
-//     * @param boolean $isActive
-//     */
-//    public function setIsActive($isActive)
-//    {
-//        $this->isActive = $isActive;
-//    }
-//
-//    /**
-//     * Get isActive
-//     *
-//     * @return boolean 
-//     */
-//    public function getIsActive()
-//    {
-//        return $this->isActive;
-//    }
+    /**
+     * Set password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 
     /**
      * Set firstname
@@ -242,26 +221,6 @@ class Entity_Users
     {
         return $this->lastname;
     }
-
-//    /**
-//     * Set fbUserId
-//     *
-//     * @param bigint $fbUserId
-//     */
-//    public function setFbUserId($fbUserId)
-//    {
-//        $this->fbUserId = $fbUserId;
-//    }
-//
-//    /**
-//     * Get fbUserId
-//     *
-//     * @return bigint 
-//     */
-//    public function getFbUserId()
-//    {
-//        return $this->fbUserId;
-//    }
 
     /**
      * Set createdAt
@@ -312,42 +271,6 @@ class Entity_Users
         return $this->address;
     }
 
-//    /**
-//     *
-//     * @param type $token 
-//     */
-//    public function setTwitterAccessToken($token)
-//    {
-//        $this->twitterAccessToken = $token;
-//    }
-//
-//    /**
-//     *
-//     * @return type 
-//     */
-//    public function getTwitterAccessToken()
-//    {
-//        return $this->twitterAccessToken;
-//    }
-//
-//    /**
-//     *
-//     * @param type $tokenSecret 
-//     */
-//    public function setTwitterAccessTokenSecret($tokenSecret)
-//    {
-//        $this->twitterAccessTokenSecret = $tokenSecret;
-//    }
-//
-//    /**
-//     *
-//     * @return type 
-//     */
-//    public function getTwitterAccessTokenSecret()
-//    {
-//        return $this->twitterAccessTokenSecret;
-//    }
-
     /**
      *
      * @return type 
@@ -359,11 +282,10 @@ class Entity_Users
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
            // 'role_id' => $this->getRole()->getId(),
-            //'fb_user_id' => $this->getFbUserId(),
             'address' => $this->getAddress(),
             'username' => $this->getUsername(),
-            //'twitterAccessToken' => $this->getTwitterAccessToken(),
-            //'twitterAccessTokenSecret' => $this->getTwitterAccessTokenSecret(),
+            'is_active' => $this->getIsActive(),
+            'password' => $this->getPassword()
         );
 
         return $result;
