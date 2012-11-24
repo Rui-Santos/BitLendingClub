@@ -106,12 +106,12 @@ class Repository_Users extends EntityRepository
             }
         }
 
-//        if (isset($params['role_id'])) {
-//            $role = $em->getRepository('Entity_UserRoles')->find($params['role_id']);
-//            if ($role) {
-//                $entity->setRole($role);
-//            }
-//        }
+        if (isset($params['role_id'])) {
+            $role = $em->getRepository('Entity_Roles')->find($params['role_id']);
+            if ($role) {
+                $entity->setRole($role);
+            }
+        }
 
         
         $entity->setIsActive(Model_User::ACTIVE_USER);  
@@ -122,6 +122,7 @@ class Repository_Users extends EntityRepository
         $em->refresh($entity);
 
         return $entity;
+       
     }
 
     /**
@@ -152,26 +153,7 @@ class Repository_Users extends EntityRepository
 //        return $entity;
 //    }
 
-    /**
-     * Increment login count
-     * 
-     * @param integer $userId 
-     * @return Entity_Users
-     */
-    public function incrementLoginCount($userId)
-    {
-        $userItem = $this->find($userId);
-        $em = $this->getEntityManager();
-
-        $currentLoginCount = $userItem->getLoginCount();
-        $userItem->setLoginCount($currentLoginCount + 1);
-
-        $em->persist($userItem);
-        $em->flush();
-
-        return $userItem;
-    }
-
+    
     /**
      * Update user password
      * 
@@ -258,44 +240,6 @@ class Repository_Users extends EntityRepository
         }
 
         return false;
-    }
-
-    /**
-     *
-     * @param type $user_id
-     * @param type $paramAmount
-     * @return type 
-     */
-    public function deductAmount($user_id, $paramAmount)
-    {
-        $userEntity = $this->find($user_id);
-        $ammount = $userEntity->getDebitAmount();
-        $newAmount = $ammount - $paramAmount;
-         
-        
-        $userEntity->setDebitAmount($newAmount);
-        $this->getEntityManager()->persist($userEntity);
-        $this->getEntityManager()->flush();
-        $this->getEntityManager()->refresh($userEntity);
-        return $userEntity;
-    }
-
-    /**
-     *
-     * @param type $user_id
-     * @param type $ammount
-     * @return type 
-     */
-    public function addAmount($user_id, $paramAmount)
-    {
-        $userEntity = $this->find($user_id);
-        $ammount = $userEntity->getDebitAmount();
-        $newAmount = $ammount + $paramAmount;
-        $userEntity->setDebitAmount($newAmount);
-        $this->getEntityManager()->persist($userEntity);
-        $this->getEntityManager()->flush();
-        $this->getEntityManager()->refresh($userEntity);
-        return $userEntity;
     }
     
     public function deactivateUser($userId)

@@ -1,16 +1,14 @@
 <div id="login-section">
     <header>
-        <h2><?php echo $this->translate('ЛОГИРАЈ СЕ'); ?></h2>
-        <?php echo $this->translate('или'); ?>        
-        <a href="#" id="register-dialog"><?php echo $this->translate('Регистрирај се'); ?></a>
+        <h2><?php echo $this->translate('Login'); ?></h2>
+        <?php echo $this->translate('or'); ?>        
+        <a href="#" id="register-dialog"><?php echo $this->translate('Register'); ?></a>
         
-        <a href="#" id="login-close">
-            <img src="/images/close.png" alt="" /><?php echo $this->translate('затвори'); ?>
-        </a>
+        
     </header>    
     <div id="login-container">
         <section class="login-details">
-            <h3><?php echo $this->translate('ЛОГИН'); ?></h3>
+            <h3><?php echo $this->translate('Login'); ?></h3>
 
             <form action="<?php echo $this->url(array('module' => 'default', 
                 'controller' => 'auth', 'action' => 'login'), null, true); ?>" method="post" onsubmit="return doLogin(this);">
@@ -32,14 +30,14 @@
             <?php echo $this->form->getElement('login'); ?>
             </form>
 
-            <!--<p><a href="javascript:void(0);"><?php echo $this->translate('Го заборавивте корисничкото име?'); ?></a></p>-->
+           
 
-            <p><a href="#" id="forgotten-password"><?php echo $this->translate('Ја заборавивте лозинката?'); ?></a></p>        
+            <p><a href="#" id="forgotten-password"><?php echo $this->translate('Forgot password?'); ?></a></p>        
         </section> 
         <section class="facebook-details">
-            <h3><?php echo $this->translate('КОРИСНИК СТЕ НА FACEBOOK?'); ?></h3>
+            <h3><?php echo $this->translate('Login with facebook'); ?></h3>
 
-            <p><?php echo $this->translate('Можете да се логирате со вашиот Facebook профил на нашиот сајт.'); ?></p>
+            <p><?php echo $this->translate('You can login with facebook'); ?></p>
 
             <script type="text/javascript">
                 $(function(){  

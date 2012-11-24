@@ -67,13 +67,13 @@ class Admin_Form_User extends Admin_Form_Abstract
             'required' => true,
         )); 
         
-//        $this->addElement('select', 'role_id', array(
-//            'label' => 'User Role',
-//            'class' => 'small',
-//            'required' => true,
-//            'id' => 'role_id',
-//            'multiOptions' => $this->_rolesOpts,
-//        ));        
+        $this->addElement('select', 'role_id', array(
+            'label' => 'User Role',
+            'class' => 'small',
+            'required' => true,
+            'id' => 'role_id',
+            'multiOptions' => $this->_rolesOpts,
+        ));        
         
         $this->addElement('text', 'address', array(
             'label' => 'Address',

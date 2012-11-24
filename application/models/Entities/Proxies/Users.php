@@ -14,10 +14,9 @@ class Entity_Proxy_Users {
         $this->setId($obj->getId());
         $this->setFirstname($obj->getFirstname());
         $this->setLastname($obj->getLastname());
-//        $this->setRoleName($obj->getRole()->getName());
-        $this->setDebitAmount($obj->getDebitAmount());
-        $this->setSocialAccountType($obj->getSocialAccountType());
-        $this->setTwitterAccessToken($obj->getTwitterAccessToken());
+        $this->setRoleName($obj->getRole()->getName());
+        
+        
     }
     
     public function setId($id)

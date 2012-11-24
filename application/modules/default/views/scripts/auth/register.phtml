@@ -2,16 +2,14 @@
     <?php if (count($this->form->getMessages()) > 0): ?>
         <div id="register-section-errors">
             <img src="/images/error_x.png" alt="" />
-            <?php echo $this->translate('Процесот на регистрација не е комплетен. Ве молиме, обидете се повторно'); ?>
+            <?php echo $this->translate('Registration is incomplete. Please, retry'); ?>
         </div>
     <?php endif; ?>
     <header>
-        <h2><?php echo $this->translate('РЕГИСТИРАЈ СЕ'); ?></h2>
-        <?php echo $this->translate('Полињата означени со * се задолжителни '); ?>       
+        <h2><?php echo $this->translate('Register'); ?></h2>
+        <?php echo $this->translate('The fields marked with * are required'); ?>       
             
-        <a href="#" id="register-close">
-            <img src="/images/close.png" alt="" /><?php echo $this->translate('затвори'); ?>
-        </a>
+      
     </header>    
     <div id="register-container">
         <section class="register-details">
@@ -29,34 +27,21 @@
                 
                 <?php echo $this->form->getElement('lastname'); ?>
                 
-                <?php echo $this->form->getElement('captcha'); ?>
+                <?php echo $this->form->getElement('username'); ?>
+                
+                <?php echo $this->form->getElement('address'); ?>
+                
+                <?php /* echo $this->form->getElement('captcha'); */?>
 
-                <?php echo $this->form->getElement('remember_me'); ?>                        
+                <?php // echo $this->form->getElement('remember_me'); ?>                        
             </dl>
             
-            <p id="register-subscribe-section">
-                <?php echo $this->form->getElement('subscription'); ?>    
-            </p>
+           
             
-            <p>
-                <?php $agreement = $this->form->getElement('is_agree_terms_conditions'); ?> 
-                
-                <?php echo $agreement; ?>
-                
-                <?php if (is_array($agreement->getMessages()) 
-                        && count($agreement->getMessages()) > 0): ?>
-                    <ul class="errors">
-                        <?php foreach ($agreement->getMessages() as $message): ?>
-                            <li><?php echo $message; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-            </p>
-                
             <p id="register-button-section">
                 <?php echo $this->form->getElement('register'); ?> 
-                <?php echo $this->translate('или'); ?> 
-                <a href="#" id="register-cancel"><?php echo $this->translate('откажи'); ?></a>
+                <?php echo $this->translate('or'); ?> 
+                <a href="#" id="register-cancel"><?php echo $this->translate('cancel'); ?></a>
             </p>
             
             </form>

@@ -27,9 +27,7 @@ class App_Auth_Adapter_Facebook implements Zend_Auth_Adapter_Interface
             $userItem = $userModel->getUserByEmail($facebookUserDetails->email);
 
             if ($userItem) {            
-                // Increase login counter            
-                $userModel->incrementLoginCount($userItem->getId());
-
+               
                 // Update Facebook Facebook ID
                 $userModel->updateFacebookUserId($facebookUserDetails->id, $userItem->getId());
             } else {

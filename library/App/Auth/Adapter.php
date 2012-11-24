@@ -18,9 +18,6 @@ class App_Auth_Adapter implements Zend_Auth_Adapter_Interface
         $userItem = $userModel->authenticate($this->_email, $this->_password);
         
         if ($userItem) {
-            // Increase login counter            
-            $userItem = $userModel->incrementLoginCount($userItem->getId());
-            
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, new Entity_Proxy_Users($userItem));
         } else {
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, -1);

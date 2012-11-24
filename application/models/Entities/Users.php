@@ -291,6 +291,19 @@ class Entity_Users
     {
         return $this->role;
     }
+    
+    /**
+     * Get role
+     *
+     * @return Entity_Roles 
+     */
+    public function getIsAdmin()
+    {
+        if($this->getRole()->getName()=='admin')
+            return true;
+        else 
+            return false;
+    }
 
     /**
      *

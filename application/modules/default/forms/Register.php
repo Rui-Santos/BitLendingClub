@@ -56,36 +56,37 @@ class Default_Form_Register extends Default_Form_Abstract
             'required' => true,
         )); 
         
-        $captcha = new Zend_Form_Element_Captcha('captcha', array(
-            'required' => true,
-            'captcha' => array(
-                'captcha' => 'Image',
-                'font' => APPLICATION_PATH . '/data/fonts/arial.ttf',
-                'fontSize' => 24,
-                'wordLen' => 5,
-                'height' => 60,
-                'width' => 258,
-                'imgDir' => APPLICATION_PATH . '/../public/data/captcha',
-                'imgUrl' => Zend_Controller_Front::getInstance()->getBaseUrl() . '/data/captcha',
-                'dotNoiseLevel' => 50,
-                'lineNoiseLevel' => 5
-            )
-        ));
-
-        $captcha->setLabel('Captcha:');
-        $this->addElement($captcha);
+        $this->addElement('text', 'address', array(
+            'label' => 'Address',
+            'class' => 'large',            
+        ));        
         
-        $this->addElement('checkbox', 'subscription', array(
-            'label' => 'Сакам да добивам екслузивни понуди на е-маил',
-        ));
+        $this->addElement('text', 'username', array(
+            'label' => 'Username',
+            'class' => 'medium',
+        ));        
         
-        $agreement = new Zend_Form_Element_Checkbox('is_agree_terms_conditions');
-        $agreement->setLabel('Ги прочитав, разбрав и се согласувам со дадените <a href="#">Општи одредби</a>');
-        $agreement->setRequired(true);
-        $agreement->setUncheckedValue('');
-        $agreement->addErrorMessage('Морате да се согласите со Условите за користење');
-        $this->addElement($agreement);
         
+//        $captcha = new Zend_Form_Element_Captcha('captcha', array(
+//            'required' => true,
+//            'captcha' => array(
+//                'captcha' => 'Image',
+//                'font' => APPLICATION_PATH . '/data/fonts/arial.ttf',
+//                'fontSize' => 24,
+//                'wordLen' => 5,
+//                'height' => 60,
+//                'width' => 258,
+//                'imgDir' => APPLICATION_PATH . '/../public/data/captcha',
+//                'imgUrl' => Zend_Controller_Front::getInstance()->getBaseUrl() . '/data/captcha',
+//                'dotNoiseLevel' => 50,
+//                'lineNoiseLevel' => 5
+//            )
+//        ));
+//
+//        $captcha->setLabel('Captcha:');
+//        $this->addElement($captcha);
+        
+       
         $this->addElement('button', 'register', array(
             'label' => 'Register',
             'type' => 'submit',

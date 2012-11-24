@@ -9,8 +9,11 @@ class App_Controller_Action_Helper_Authentication extends Zend_Controller_Action
      * @param type $type
      * @throws Exception 
      */
-    public function checkAuthentication($type = Model_User::REGULAR_ROLE)
+    public function checkAuthentication($isAdmin = false)
     {
+
+        $type = $this->_checkType($isAdmin);
+
         $functionCall = join('', array(self::PRE_FUNCTIONCALL, ucfirst($type)));
         $response = call_user_func_array(array($this, $functionCall), array());
         
@@ -18,6 +21,15 @@ class App_Controller_Action_Helper_Authentication extends Zend_Controller_Action
             $this->getActionController()->getHelper('redirector')->gotoUrl(
                 $this->getActionController()->view->url(array('module' => 'admin', 'controller' => 'auth'), null, true));
         }
+    }
+    
+    protected function _checkType($isAdmin)
+    {
+        $type = "admin";
+        if ($isAdmin == false) {
+            $type = "regular";
+        }
+        return $type;
     }
     /**
      *
@@ -49,7 +61,7 @@ class App_Controller_Action_Helper_Authentication extends Zend_Controller_Action
     
     public function checkAdmin()
     {
-        return Service_Auth::isLogged();
+        return Service_Auth::isLoggedAdmin();
     }
 
 }

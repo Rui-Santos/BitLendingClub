@@ -26,15 +26,10 @@ class Admin_DocumentsController extends Zend_Controller_Action
     {
         $user = new Model_User();
         $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
-//        
-//        
-        if($user->getIsAdmin()) {
-        $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll()));
-        } else {
+        
             $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll())); //array('id' =>$user->getId())
-        }
+                new App_Paginator_Adapter_Doctrine($this->_model->getAll())); 
+            
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
         $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);

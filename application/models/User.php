@@ -10,12 +10,7 @@ class Model_User extends Model_Abstract
     const REGULAR_ROLE = 'regular';
     const COMPANY_ROLE = 'company';
     const RESELLER_ROLE = 'reseller';
-
-    /**
-     * Reset password length
-     */
-    const RESET_PASSWORD_LENGTH = 8;
-
+    
     /**
      * User types
      */
@@ -34,68 +29,68 @@ class Model_User extends Model_Abstract
      */
     public static $transactionTypesAddedToSavings = array(1, 2);
 
-//    /**
-//     * Get all roles as array
-//     *
-//     * @return arrau
-//     */
-//    public function getRoleOpts()
-//    {
-//        $roles = array();
-//
-//        $rolesEntities = $this->getRepository('Entity_UserRoles')->findAll();
-//        foreach ($rolesEntities as $entity) {
-//            $roles[$entity->getId()] = $entity->getName();
-//        }
-//
-//        return $roles;
-//    }
-//
-//    /**
-//     * Get role by ID
-//     *
-//     * @param integer $roleId
-//     * @return Entity_UserRoles
-//     */
-//    public function getRole($roleId)
-//    {
-//        if (intval($roleId) == 0) {
-//            throw new InvalidArgumentException('Invalid parameter $roleId');
-//        }
-//
-//        return $this->getRepository('Entity_UserRoles')->find($roleId);
-//    }
-//
-//    /**
-//     * Get role by name
-//     *
-//     * @param string $roleName
-//     * @return Entity_UserRoles
-//     */
-//    public function getRoleByName($roleName)
-//    {
-//        if (empty($roleName)) {
-//            throw new InvalidArgumentException('Invalid parameter $roleName');
-//        }
-//
-//        return $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
-//    }
-//
-//    /**
-//     * Get role by name
-//     *
-//     * @param string $roleName
-//     * @return integer
-//     */
-//    public function getRoleIdByName($roleName)
-//    {
-//        if (empty($roleName)) {
-//            throw new InvalidArgumentException('Invalid parameter $roleName');
-//        }
-//
-//        $roleItem = $this->getRepository('Entity_UserRoles')->findOneByName($roleName);
-//        return (int) $roleItem->getId();
-//    }
+    /**
+     * Get all roles as array
+     *
+     * @return arrau
+     */
+    public function getRoleOpts()
+    {
+        $roles = array();
+
+        $rolesEntities = $this->getRepository('Entity_Roles')->findAll();
+        foreach ($rolesEntities as $entity) {
+            $roles[$entity->getId()] = $entity->getName();
+        }
+
+        return $roles;
+    }
+
+    /**
+     * Get role by ID
+     *
+     * @param integer $roleId
+     * @return Entity_UserRoles
+     */
+    public function getRole($roleId)
+    {
+        if (intval($roleId) == 0) {
+            throw new InvalidArgumentException('Invalid parameter $roleId');
+        }
+
+        return $this->getRepository('Entity_Roles')->find($roleId);
+    }
+
+    /**
+     * Get role by name
+     *
+     * @param string $roleName
+     * @return Entity_UserRoles
+     */
+    public function getRoleByName($roleName)
+    {
+        if (empty($roleName)) {
+            throw new InvalidArgumentException('Invalid parameter $roleName');
+        }
+
+        return $this->getRepository('Entity_Roles')->findOneByName($roleName);
+    }
+
+    /**
+     * Get role by name
+     *
+     * @param string $roleName
+     * @return integer
+     */
+    public function getRoleIdByName($roleName)
+    {
+        if (empty($roleName)) {
+            throw new InvalidArgumentException('Invalid parameter $roleName');
+        }
+
+        $roleItem = $this->getRepository('Entity_Roles')->findOneByName($roleName);
+        return (int) $roleItem->getId();
+    }
 
     /**
      * Get user by specific email
@@ -124,9 +119,9 @@ class Model_User extends Model_Abstract
             throw new InvalidArgumentException('Invalid argument: params');
         }
 
-//        if (!isset($params['role_id'])) {
-//            $params['role_id'] = $this->getRoleIdByName(self::REGULAR_ROLE);
-//        }
+        if (!isset($params['role_id'])) {
+            $params['role_id'] = $this->getRoleIdByName(self::REGULAR_ROLE);
+        }
 
         if (isset($params['password']) && !empty($params['password'])) {
             $params['password'] = md5($params['password']);
@@ -189,21 +184,6 @@ class Model_User extends Model_Abstract
     }
 
     /**
-     * Increment login count
-     *
-     * @param integer $userId
-     * @return Entity_Users
-     */
-    public function incrementLoginCount($userId)
-    {
-        if (intval($userId) == 0) {
-            throw new InvalidArgumentException('Invalid parameter $userId');
-        }
-
-        return $this->getRepository()->incrementLoginCount($userId);
-    }
-
-    /**
      * Authenticate user by email and password
      *
      * @param string $username
@@ -217,8 +197,9 @@ class Model_User extends Model_Abstract
         if (empty($email) || empty($password)) {
             throw new InvalidArgumentException('Invalid username or password');
         }
-
+        
         $entity = $this->getRepository()->findOneBy(array('email' => $email, 'password' => $password));
+        
         if ($entity) {
             return $entity;
         }
@@ -447,105 +428,7 @@ class Model_User extends Model_Abstract
         return $this->getRepository()->createOrUpdate($params, $user_id);
     }
 
-    /**
-     *
-     *
-     * @param array $params
-     * @param type $user_id
-     * @return boolean
-     */
-    public function updateSubscriptions(array $params, $user_id = null)
-    {
-        if (empty($params)) {
-            throw new InvalidArgumentException('Invalid parameter $params while updating user subscriptions ');
-        }
-        if (intval($user_id) == 0) {
-            throw new InvalidArgumentException('Invalid parameter $user_id while updating user subscriptions');
-        }
-        $subscriptions = $this->getRepository('Entity_UserSubscriptions')->findOneBy(array('user' => $user_id));
-        $subscriptionId = $subscriptions ? $subscriptions->getId() : null;
-        $subscriptionId = $this->getRepository('Entity_UserSubscriptions')->createOrUpdate($params + array('user_id' => $user_id), $subscriptionId);
-        if ($subscriptionId) {
-            $this->getRepository('Entity_SubscriptionsCategories')->remove($subscriptionId);
-            $this->getRepository('Entity_SubscriptionsCategories')->createOrUpdate($params, $subscriptionId);
-            $this->getRepository('Entity_SubscriptionsCities')->remove($subscriptionId);
-            $this->getRepository('Entity_SubscriptionsCities')->createOrUpdate($params, $subscriptionId);
-        }
-        return true;
-    }
-
-    /**
-     *
-     * @param type $userId
-     * @return array
-     */
-    public function getSubscriptionsCatsOpts($userId)
-    {
-        $cats = array();
-        $subscriptionEntity = $this->getRepository('Entity_UserSubscriptions')->findOneBy(array('user' => $userId));
-        if ($subscriptionEntity) {
-            $categories = $subscriptionEntity->getCategories();
-            foreach ($categories as $value) {
-                array_push($cats, $value->getCategory()->getId());
-            }
-        }
-
-        return $cats;
-    }
-
-    /**
-     *
-     * @param type $userId
-     * @return array
-     */
-    public function getSubscriptionsCitiesOpts($userId)
-    {
-        $citiesArr = array();
-        $subscriptionEntity = $this->getRepository('Entity_UserSubscriptions')->findOneBy(array('user' => $userId));
-        if ($subscriptionEntity) {
-            $cities = $subscriptionEntity->getCities();
-            foreach ($cities as $value) {
-                array_push($citiesArr, $value->getCity()->getId());
-            }
-        }
-
-        return $citiesArr;
-    }
-
-    /**
-     *
-     * @param type $userId
-     * @return type
-     * @throws InvalidArgumentException
-     */
-    public function getSubscription($userId)
-    {
-        if (intval($userId) == 0) {
-            throw new InvalidArgumentException('invalid parameter $userId');
-        }
-
-        $subscriptionEntity = $this->getRepository('Entity_UserSubscriptions')->findOneBy(array('user' => $userId));
-        return $subscriptionEntity;
-    }
-
-    /**
-     *  returning the social type of the user (public by default)
-     *
-     * @param type $user_id
-     * @param type $rule
-     * @return type
-     */
-    public function getType($user_id, $rule)
-    {
-        $user = $this->get($user_id);
-        $profileAccessSettings = $user->getProfileAccessSettings();
-        foreach ($profileAccessSettings as $value) {
-            if ($value->getRule()->getId() == $rule) {
-                return $value->getType()->getId();
-            }
-        }
-        return self::PUBLIC_AND_FRIEND;
-    }
+   
 
     /**
      *
@@ -578,47 +461,7 @@ class Model_User extends Model_Abstract
         return $opts;
     }
 
-    /**
-     * Get user debit amount
-     *
-     * @return number
-     */
-    public function getUserDebitAmount($userId = null)
-    {
-        if (is_null($userId)) {
-            $userId = Service_Auth::getId();
-        }
-
-        $debitAmount = 0.00;
-
-        $userItem = $this->get($userId);
-        if ($userItem) {
-            $debitAmount = $userItem->getDebitAmount();
-        }
-
-        return $debitAmount;
-    }
-
-    public function getTotalSavings($userid = null)
-    {
-        $sum = 0;
-        if (empty($userid))
-            return 0;
-        $user = $this->get($userid);
-        if (!$user) {
-            throw new InvalidArgumentException('invalid argument $userid');
-        }
-        foreach ($user->getTransactions() as $transaction) {
-            if (in_array($transaction->getType()->getId(), Model_User::$transactionTypesAddedToSavings)) {
-                foreach ($transaction->getItems() as $transactionItem) {
-                    $deal = $transactionItem->getDeal();
-                    $sum = $sum + $transactionItem->getQuantity() * ($deal->getPublicPrice() - $deal->getDiscountedPrice());
-                }
-            }
-        }
-
-        return $sum;
-    }
+    
     
     public function deactivateUser($id)
     {
@@ -641,5 +484,20 @@ class Model_User extends Model_Abstract
 
         return false;
     }
+    
+    /**
+     *
+     * @param array $criteria
+     * @return \Entity_User|boolean 
+     */
+    public function getUser(array $criteria = array()) {
+        $entity = $this->getRepository()->findOneBy($criteria);
+        if ($entity && $entity instanceof Entity_Users) {
+            return $entity;
+        } else {
+            return false;
+        }
+    }
+
 
 }

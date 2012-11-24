@@ -19,23 +19,44 @@
                 ->appendStylesheet('/styles/admin.css')
                 ->appendStylesheet('/styles/all.css')
                 ->appendStylesheet('/styles/jqModal.css')
+                ->appendStylesheet('/styles/bootstrap.min.css')
+                ->appendStylesheet('/styles/bootstrap-responsive.css')
+                 ->appendStylesheet('/styles/main.css')
                 ->appendStylesheet('/styles/smoothness/jquery-ui-1.8.18.custom.css');
         ?>
         <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
-        <title><?php echo $this->translate('It-instructor Administration Panel'); ?></title>
+        <title><?php echo $this->translate('BLC Admin Panel'); ?></title>
         <base href="<?php echo $this->url(array('module' => 'admin'), null, true); ?>/" />
     </head>
-    <body>        
+    <body id="login">        
          
         
-<section style="margin-top:400px;margin-left:700px;">
-    <header><h2>IT-Instructor Admin</h2></header>
-    <form action="" method="post">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4">&nbsp;</div>
+        <div class="span4">
+            <div class="page-header">
+                <h3>BLC Admin Panel</h3>
+            </div>
+            <div class="box" style="margin-bottom:500px;">
+                <h4 class="box-header round-top">Login</h4>
+                <div class="box-container-toggle">
+                    <div class="box-content">
+    <form class="well form-search" action="" method="post">
         <?php echo $this->form->getElement('email'); ?>
         <?php echo $this->form->getElement('password'); ?>
         <?php echo $this->form->getElement('login'); ?>
     </form>
-</section>
-        
+</div>
+                </div>
+            </div>
+            <!--/span-->
+            <div class="span4">&nbsp;</div>
+        </div>
+        <!--/span-->
+    </div>
+<footer>
+</footer>
+</div>
             </body>
 </html>

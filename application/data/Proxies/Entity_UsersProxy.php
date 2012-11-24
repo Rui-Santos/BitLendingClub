@@ -144,6 +144,24 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getAddress();
     }
 
+    public function setRole(\Entity_Roles $role)
+    {
+        $this->__load();
+        return parent::setRole($role);
+    }
+
+    public function getRole()
+    {
+        $this->__load();
+        return parent::getRole();
+    }
+
+    public function getIsAdmin()
+    {
+        $this->__load();
+        return parent::getIsAdmin();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -153,7 +171,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'firstname', 'lastname', 'createdAt', 'address');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'firstname', 'lastname', 'createdAt', 'role', 'address');
     }
 
     public function __clone()
