@@ -70,15 +70,15 @@ class Entity_Users
     private $createdAt;
 
    
-//    /**
-//     * @var UserRoles
-//     *
-//     * @ManyToOne(targetEntity="Entity_UserRoles")
-//     * @JoinColumns({
-//     *   @JoinColumn(name="role_id", referencedColumnName="id", nullable=true)
-//     * })
-//     */
-//    private $role;
+    /**
+     * @var Roles
+     *
+     * @ManyToOne(targetEntity="Entity_Roles")
+     * @JoinColumns({
+     *   @JoinColumn(name="roleId", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $role;
 
     /**
      * @var text $address
@@ -90,6 +90,7 @@ class Entity_Users
     public function __construct()
     {
  //       $this->isActive = 1;
+        
     }
 
     /**
@@ -270,6 +271,26 @@ class Entity_Users
     {
         return $this->address;
     }
+    
+    /**
+     * Set role
+     *
+     * @param Entity_Roles $roles
+     */
+    public function setRole(Entity_Roles $role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * Get role
+     *
+     * @return Entity_Roles 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
 
     /**
      *
@@ -281,7 +302,7 @@ class Entity_Users
             'email' => $this->getEmail(),
             'firstname' => $this->getFirstname(),
             'lastname' => $this->getLastname(),
-           // 'role_id' => $this->getRole()->getId(),
+            'role_id' => $this->getRole()->getId(),
             'address' => $this->getAddress(),
             'username' => $this->getUsername(),
             'is_active' => $this->getIsActive(),

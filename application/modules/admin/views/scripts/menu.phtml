@@ -14,3 +14,9 @@
         Users
     </a>
 </li>
+<li  class="<?php echo ($selPage == "documents" ? "active main-nav-arrow" : ""); ?>">
+    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'documents', 'action' => 'index', 'module' => 'admin'), null, true);?>">
+        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_039_notes.png"></div>
+        Documents
+    </a>
+</li>

@@ -1,13 +1,13 @@
 <?php
 
-class Model_Document extends Model_Abstract
+class Model_Role extends Model_Abstract
 {
 
     /**
      * Define entityName based on model
      * @var string
      */
-    protected $_entityName = 'Entity_Documents';
+    protected $_entityName = 'Entity_Roles';
 
     /**
      * All types of transactions type id's that are added to total savings
@@ -16,10 +16,10 @@ class Model_Document extends Model_Abstract
     public static $transactionTypesAddedToSavings = array(1, 2);
 
     /**
-     * Create document by specific params 
+     * Create document type by specific params 
      *
      * @param array $params
-     * @return Entity_Documents
+     * @return Entity_DocumentTypes
      */
     public function create(array $params)
     {
@@ -31,11 +31,11 @@ class Model_Document extends Model_Abstract
     }
 
     /**
-     * Update document by specific params
+     * Update document type by specific params
      *
      * @param array $params
      * @param integer $documentId
-     * @return Entity_Documents
+     * @return Entity_DocumentTypes
      */
     public function update(array $params, $documentId)
     {

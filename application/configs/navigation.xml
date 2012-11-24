@@ -7,5 +7,11 @@
             <controller>users</controller>
             <action>index</action>
         </users>
+        <documents>
+            <label>Documents</label>
+            <module>admin</module>
+            <controller>documents</controller>
+            <action>index</action>
+        </documents>
     </nav>
 </config>

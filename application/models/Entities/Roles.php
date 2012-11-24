@@ -3,12 +3,12 @@
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Users
+ * Roles
  *
- * @Table(name="documentTypes")
- * @Entity(repositoryClass="Repository_DocumentTypes")
+ * @Table(name="roles")
+ * @Entity(repositoryClass="Repository_Roles")
  */
-class Entity_DocumentTypes
+class Entity_Roles
 {
 
     /**

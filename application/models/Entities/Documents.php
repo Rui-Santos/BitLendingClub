@@ -5,10 +5,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Users
  *
- * @Table(name="users")
- * @Entity(repositoryClass="Repository_Users")
+ * @Table(name="documents")
+ * @Entity(repositoryClass="Repository_Documents")
  */
-class Entity_Users
+class Entity_Documents
 {
 
     /**
@@ -21,75 +21,61 @@ class Entity_Users
     private $id;
 
     /**
-     * @var string $username
+     * @var string $documentPath
      *
-     * @Column(name="userName", type="string", length=150, precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="documentPath", type="string", length=256, precision=0, scale=0, nullable=true, unique=false)
      */
-    private $username;
+    private $documentPath;
 
     /**
-     * @var string $email
-     *
-     * @Column(name="email", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $email;
-
-    /**
-     * @var string $password
-     *
-     * @Column(name="password", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $password;
-
-    /**
-     * @var boolean $isActive
+     * @var boolean $isReviewed
      * 
-     * @Column(name="isActive", type="boolean", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="reviewed", type="boolean", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $isActive;
-
-    /**
-     * @var string $firstname
-     *
-     * @Column(name="firstName", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $firstname;
-
-    /**
-     * @var string $lastname
-     *
-     * @Column(name="lastName", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $lastname;
+    private $isReviewed;
 
     /**
      * @var datetime $createdAt
      *
-     * @Column(name="dateRegistered", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @Column(name="dateUploaded", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $createdAt;
 
    
-//    /**
-//     * @var UserRoles
-//     *
-//     * @ManyToOne(targetEntity="Entity_UserRoles")
-//     * @JoinColumns({
-//     *   @JoinColumn(name="role_id", referencedColumnName="id", nullable=true)
-//     * })
-//     */
-//    private $role;
-
     /**
-     * @var text $address
+     * @var DocumentType
      *
-     * @Column(name="address", type="text", precision=0, scale=0, nullable=true, unique=false)
+     * @ManyToOne(targetEntity="Entity_DocumentTypes")
+     * @JoinColumns({
+     *   @JoinColumn(name="documentTypeId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $address;
+    private $documentType;
+    
+    /**
+     * @var Reviewer
+     *
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="reviewerId", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $reviewer;
+    
+    /**
+     * @var User
+     *
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="userId", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $user;
+
 
     public function __construct()
     {
- //       $this->isActive = 1;
+
     }
 
     /**
@@ -103,123 +89,43 @@ class Entity_Users
     }
 
     /**
-     * Set username
+     * Set documentPath
      *
-     * @param string $username
+     * @param string $documentPath
      */
-    public function setUsername($username)
+    public function setDocumentPath($documentPath)
     {
-        $this->username = $username;
+        $this->documentPath = $documentPath;
     }
 
     /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Get email
+     * Get documentPath
      *
      * @return string 
      */
-    public function getEmail()
+    public function getDocumentPath()
     {
-        return $this->email;
+        return $this->documentPath;
     }
 
     /**
-     * Set password
+     * Set isReviewed
      *
-     * @param string $password
+     * @param boolean $isReviewed
      */
-    public function setPassword($password)
+    public function setIsReviewed($isReviewed)
     {
-        $this->password = $password;
+        $this->isReviewed = $isReviewed;
     }
 
     /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    }
-
-    /**
-     * Get isActive
+     * Get isReviewed
      *
      * @return boolean 
      */
-    public function getIsActive()
+    public function getIsReviewed()
     {
-        return $this->isActive;
-    }
-
-    /**
-     * Set firstname
-     *
-     * @param string $firstname
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * Get firstname
-     *
-     * @return string 
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-    }
-
-    /**
-     * Get lastname
-     *
-     * @return string 
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
+        return $this->isReviewed;
     }
 
     /**
@@ -241,35 +147,67 @@ class Entity_Users
     {
         return $this->createdAt;
     }
-
+    
     /**
+     * Set reviewer
      *
-     * @return type 
+     * @param Entity_Users $reviewer
      */
-    public function getFullname()
+    public function setReviewer(Entity_Users $reviewer)
     {
-        return $this->getFirstname() . ' ' . $this->getLastname();
+        $this->reviewer = $reviewer;
     }
 
     /**
-     * Set address
+     * Get reviewer
      *
-     * @param text $address
+     * @return Entity_Users 
      */
-    public function setAddress($address)
+    public function getReviewer()
     {
-        $this->address = $address;
+        return $this->reviewer;
+    }
+    
+    /**
+     * Set user
+     *
+     * @param Entity_Users $user
+     */
+    public function setUser(Entity_Users $user)
+    {
+        $this->user = $user;
     }
 
     /**
-     * Get address
+     * Get user
      *
-     * @return text 
+     * @return Entity_Users 
      */
-    public function getAddress()
+    public function getUser()
     {
-        return $this->address;
+        return $this->user;
     }
+    
+    /**
+     * Set documentType
+     *
+     * @param Entity_DocumentTypes $user
+     */
+    public function setDocumentType(Entity_DocumentTypes $documentType)
+    {
+        $this->documentType = $documentType;
+    }
+
+    /**
+     * Get documentType
+     *
+     * @return Entity_DocumentTypes
+     */
+    public function getDocumentType()
+    {
+        return $this->documentType;
+    }
+
 
     /**
      *
@@ -278,14 +216,11 @@ class Entity_Users
     public function toArray()
     {
         $result = array(
-            'email' => $this->getEmail(),
-            'firstname' => $this->getFirstname(),
-            'lastname' => $this->getLastname(),
-           // 'role_id' => $this->getRole()->getId(),
-            'address' => $this->getAddress(),
-            'username' => $this->getUsername(),
-            'is_active' => $this->getIsActive(),
-            'password' => $this->getPassword()
+            'document_path' => $this->getDocumentPath(),
+            'documenttype_id' => $this->getDocumentType()->getId(),
+            'reviewer_id' => $this->getReviewer()->getId(),
+            'user_id' => $this->getUser()->getId(),
+            'is_reviewed' => $this->getIsReviewed()
         );
 
         return $result;
