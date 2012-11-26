@@ -47,10 +47,6 @@ class App_Auth_Adapter_Facebook implements Zend_Auth_Adapter_Interface
 
             $userItem = $userModel->get($userItem->getId());
             $authResult = new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, new Entity_Proxy_Users($userItem));
-            
-            //Adding facebook connect badge to the user
-            $userBadgesModel = new Model_UserBadges();
-            $userBadgesModel->addBadge($userItem->getId(), Model_UserBadges::FACEBOOK_CONNECT_BADGE_ID);
 			
             return $authResult;
         } else {
