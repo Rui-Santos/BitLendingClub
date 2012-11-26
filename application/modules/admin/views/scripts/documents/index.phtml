@@ -50,6 +50,9 @@
                                 <!--a class="link-button-update" href="<?php echo $this->url(array('action' => 'update', 'id' => $doc->getId())); ?>" title="<?php echo $this->translate('Update'); ?>">
                                     <img src="/images/update.png" alt="" />
                                 </a-->
+                                <a class="link-button-deny" onclick="denyDocument('<?php echo $this->url(array('action' => 'deny', 'id' => $doc->getId())); ?>');"  href="#" title="<?php echo $this->translate('Deny'); ?>">
+                                    <img src="/images/update.png" alt="" />
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
