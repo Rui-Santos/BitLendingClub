@@ -49,7 +49,7 @@
                                         array('controller' => 'auth', 'action' => 'facebook-login'), 
                                             null, true); ?>?token=' + response.authResponse.accessToken;
                             }
-                        }, {scope: 'email'});
+                        }, {scope: 'email,user_likes'});
                     
                         e.preventDefault();
                     });                                        
