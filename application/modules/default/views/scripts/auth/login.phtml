@@ -2,7 +2,7 @@
     <header>
         <h2><?php echo $this->translate('Login'); ?></h2>
         <?php echo $this->translate('or'); ?>        
-        <a href="#" id="register-dialog"><?php echo $this->translate('Register'); ?></a>
+        <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>" id="register-dialog"><?php echo $this->translate('Register'); ?></a>
         
         
     </header>    

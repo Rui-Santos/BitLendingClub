@@ -68,6 +68,14 @@ class Entity_Users
      * @Column(name="dateRegistered", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $createdAt;
+    
+    
+    /**
+     * @var datetime $rating
+     *
+     * @Column(name="rating", type="float", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $rating;
 
    
     /**
@@ -202,6 +210,26 @@ class Entity_Users
     {
         return $this->firstname;
     }
+    
+    /**
+     * Set rating
+     *
+     * @param float $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return string 
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
 
     /**
      * Set lastname
@@ -319,7 +347,8 @@ class Entity_Users
             'address' => $this->getAddress(),
             'username' => $this->getUsername(),
             'is_active' => $this->getIsActive(),
-            'password' => $this->getPassword()
+            'password' => $this->getPassword(),
+            'rating' => $this->getRating()
         );
 
         return $result;

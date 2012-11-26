@@ -77,12 +77,14 @@ class Admin_Form_User extends Admin_Form_Abstract
         
         $this->addElement('text', 'address', array(
             'label' => 'Address',
-            'class' => 'large',            
+            'class' => 'large',  
+            'required' => true,
         ));        
         
         $this->addElement('text', 'username', array(
             'label' => 'Username',
             'class' => 'medium',
+            'required' => true,
         ));        
         
 //        $config = Zend_Registry::get('config');

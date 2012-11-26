@@ -32,8 +32,12 @@ class Default_AuthController extends Zend_Controller_Action
                 
                 if ($result->isValid()) {                    
                     $this->_helper->viewRenderer->setNoRender(true);
+                    
+                     $user = new Model_User();
+                     $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
+                    
                     $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
-                    $this->getResponse()->setBody(json_encode(array("success" => "true")));
+                    $this->getResponse()->setBody(App_DoctrineDebug::dump($user));
                 } else {
                     $this->view->errorLoginCredentials = true;
                 }

@@ -17,7 +17,7 @@ class Admin_UsersController extends Zend_Controller_Action
 
     public function init()
     {
-//        $this->_helper->authentication->checkAuthentication(false);
+        $this->_helper->authentication->checkAuthentication(false);
         $this->_model = new Model_User();
         $this->view->headScript()->appendFile('/js/tiny_mce/tiny_mce.js', $type = 'text/javascript', $attrs = array());
     }
@@ -25,17 +25,11 @@ class Admin_UsersController extends Zend_Controller_Action
     public function indexAction()
     {
         $user = new Model_User();
-        //$user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
-//        
-//        
-//        if($user->getIsAdmin()) {
+        $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
 
-        $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll()));
-//        } else {
             $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll())); //array('id' =>$user->getId())
-//        }
+                new App_Paginator_Adapter_Doctrine($this->_model->getAll())); 
+
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
         $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
@@ -50,7 +44,7 @@ class Admin_UsersController extends Zend_Controller_Action
     public function createAction()
     {
         $form = new Admin_Form_User(array(
-//            'rolesOpts' => $this->_model->getRoleOpts(),
+            'rolesOpts' => $this->_model->getRoleOpts(),
             ));
 
 
@@ -81,7 +75,7 @@ class Admin_UsersController extends Zend_Controller_Action
             throw new InvalidArgumentException('Invalid request parameter: $id');
         }
         $form = new Admin_Form_User(array(
-//            'rolesOpts' => $this->_model->getRoleOpts(),
+           'rolesOpts' => $this->_model->getRoleOpts(),
             ));
 
         $userItem = $this->_model->get($id);
@@ -89,10 +83,10 @@ class Admin_UsersController extends Zend_Controller_Action
 
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
-            
+          
             if ($form->isValid($post)) {
                 $userItem = $this->_model->update($form->getValues(), $id);
-
+                
                 if ($userItem) {
                     $this->_helper->redirector('index');
                 }
