@@ -51,7 +51,7 @@ class Default_AuthController extends Zend_Controller_Action
     {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        Zend_Debug::dump('here'); exit;
+       
         $token = $this->getRequest()->getParam('token', false);
         if ($token == false) {
             throw new InvalidArgumentException('Missing token parameter');
