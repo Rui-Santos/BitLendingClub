@@ -102,6 +102,18 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getFirstname();
     }
 
+    public function setRating($rating)
+    {
+        $this->__load();
+        return parent::setRating($rating);
+    }
+
+    public function getRating()
+    {
+        $this->__load();
+        return parent::getRating();
+    }
+
     public function setLastname($lastname)
     {
         $this->__load();
@@ -171,7 +183,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'firstname', 'lastname', 'createdAt', 'role', 'address');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address');
     }
 
     public function __clone()
