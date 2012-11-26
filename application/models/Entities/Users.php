@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @Table(name="users")
  * @Entity(repositoryClass="Repository_Users")
  */
-class Entity_Users
-{
+class Entity_Users {
 
     /**
      * @var integer $id
@@ -49,6 +48,13 @@ class Entity_Users
     private $isActive;
 
     /**
+     * @var integer $fbUserId
+     *
+     * @Column(name="fb_user_id", type="bigint", precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $fbUserId;
+
+    /**
      * @var string $firstname
      *
      * @Column(name="firstName", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
@@ -77,7 +83,6 @@ class Entity_Users
      */
     private $rating;
 
-   
     /**
      * @var Roles
      *
@@ -95,10 +100,8 @@ class Entity_Users
      */
     private $address;
 
-    public function __construct()
-    {
- //       $this->isActive = 1;
-        
+    public function __construct() {
+        //       $this->isActive = 1;
     }
 
     /**
@@ -106,8 +109,7 @@ class Entity_Users
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -116,8 +118,7 @@ class Entity_Users
      *
      * @param string $username
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
     }
 
@@ -126,8 +127,7 @@ class Entity_Users
      *
      * @return string 
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -136,8 +136,7 @@ class Entity_Users
      *
      * @param string $email
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
@@ -146,8 +145,7 @@ class Entity_Users
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -156,8 +154,7 @@ class Entity_Users
      *
      * @param string $password
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
     }
 
@@ -166,8 +163,7 @@ class Entity_Users
      *
      * @return string 
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -176,8 +172,7 @@ class Entity_Users
      *
      * @param boolean $isActive
      */
-    public function setIsActive($isActive)
-    {
+    public function setIsActive($isActive) {
         $this->isActive = $isActive;
     }
 
@@ -186,8 +181,7 @@ class Entity_Users
      *
      * @return boolean 
      */
-    public function getIsActive()
-    {
+    public function getIsActive() {
         return $this->isActive;
     }
 
@@ -196,8 +190,7 @@ class Entity_Users
      *
      * @param string $firstname
      */
-    public function setFirstname($firstname)
-    {
+    public function setFirstname($firstname) {
         $this->firstname = $firstname;
     }
 
@@ -206,8 +199,7 @@ class Entity_Users
      *
      * @return string 
      */
-    public function getFirstname()
-    {
+    public function getFirstname() {
         return $this->firstname;
     }
     
@@ -236,8 +228,7 @@ class Entity_Users
      *
      * @param string $lastname
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
     }
 
@@ -246,8 +237,7 @@ class Entity_Users
      *
      * @return string 
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
@@ -256,8 +246,7 @@ class Entity_Users
      *
      * @param datetime $createdAt
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
     }
 
@@ -266,8 +255,7 @@ class Entity_Users
      *
      * @return datetime 
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
 
@@ -275,8 +263,7 @@ class Entity_Users
      *
      * @return type 
      */
-    public function getFullname()
-    {
+    public function getFullname() {
         return $this->getFirstname() . ' ' . $this->getLastname();
     }
 
@@ -285,8 +272,7 @@ class Entity_Users
      *
      * @param text $address
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
     }
 
@@ -295,18 +281,16 @@ class Entity_Users
      *
      * @return text 
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
-    
+
     /**
      * Set role
      *
      * @param Entity_Roles $roles
      */
-    public function setRole(Entity_Roles $role)
-    {
+    public function setRole(Entity_Roles $role) {
         $this->role = $role;
     }
 
@@ -315,30 +299,43 @@ class Entity_Users
      *
      * @return Entity_Roles 
      */
-    public function getRole()
-    {
+    public function getRole() {
         return $this->role;
     }
-    
+
     /**
      * Get role
      *
      * @return Entity_Roles 
      */
-    public function getIsAdmin()
-    {
-        if($this->getRole()->getName()=='admin')
+    public function getIsAdmin() {
+        if ($this->getRole()->getName() == 'admin')
             return true;
-        else 
+        else
             return false;
+    }
+
+    /**
+     *
+     * @param type $userId 
+     */
+    public function setFbUserId($userId) {
+        $this->fbUserId = $userId;
     }
 
     /**
      *
      * @return type 
      */
-    public function toArray()
-    {
+    public function getFbUserId() {
+        return $this->fbUserId;
+    }
+
+    /**
+     *
+     * @return type 
+     */
+    public function toArray() {
         $result = array(
             'email' => $this->getEmail(),
             'firstname' => $this->getFirstname(),
@@ -348,7 +345,9 @@ class Entity_Users
             'username' => $this->getUsername(),
             'is_active' => $this->getIsActive(),
             'password' => $this->getPassword(),
-            'rating' => $this->getRating()
+            'rating' => $this->getRating(),
+            'fbUserId' => $this->getFbUserId()
+
         );
 
         return $result;

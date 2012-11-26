@@ -16,7 +16,7 @@ class Default_AuthController extends Zend_Controller_Action
 
     public function loginAction()
     {
-        $this->_helper->layout->disableLayout();
+//        $this->_helper->layout->disableLayout();
 
         $loginForm = new Default_Form_Login();
 

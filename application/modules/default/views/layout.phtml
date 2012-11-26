@@ -8,14 +8,15 @@
         
         echo $this->headScript()
                 ->prependFile('/js/jquery-1.7.1.min.js')
-                ->appendFile('/js/script.js');
+                ->appendFile('/js/script.js')
+                ->appendFile('//connect.facebook.net/en_US/all.js')
+                ->appendFile('/js/default.js');
        
         
         echo $this->headLink()
                 ->prependStylesheet('http://fonts.googleapis.com/css?family=Ubuntu:400,700')
                 ->appendStylesheet('/styles/style.css');
     ?>
-    
     <!--[if lt IE 8]>
       <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -35,8 +36,11 @@
 
 </head>
 <body>
+    <div id="fb-root"></div>
+
           
             <?php echo $this->layout()->content; ?>
+    
        
 </body>
 </html>
