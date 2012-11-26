@@ -43,6 +43,7 @@
                 $(function(){  
                     $('.fb-login-button').click(function(e){
                         FB.login(function(response) {
+                            console.log(response.authResponse); 
                             if (response.authResponse) {
                                 this.location = '<?php echo $this->url(
                                         array('controller' => 'auth', 'action' => 'facebook-login'), 
