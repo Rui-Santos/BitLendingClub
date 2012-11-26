@@ -37,6 +37,7 @@ class App_Auth_Adapter_Facebook implements Zend_Auth_Adapter_Interface
                     'lastname' => $facebookUserDetails->last_name,
                     'fb_user_id' => $facebookUserDetails->id,
                     'is_active' => Model_User::ACTIVE_USER,
+                    'username' => $facebookUserDetails->first_name.' '.$facebookUserDetails->last_name,
                 );
                 
                 $userItem = $userModel->create($params);
