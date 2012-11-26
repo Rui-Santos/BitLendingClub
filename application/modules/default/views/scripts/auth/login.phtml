@@ -41,7 +41,7 @@
 
             <script type="text/javascript">
                 $(function(){  
-                    $('.fb-login-button').click(function(e){
+                    $('#fblogin').click(function(e){
                         FB.login(function(response) {
                             console.log(response.authResponse); 
                             if (response.authResponse) {
@@ -56,7 +56,7 @@
                 });
             </script>
             
-            <a href="#" class="fb-login-button" title="<?php echo $this->translate('Login with Facebook'); ?>">Facebook Login</a>
+            <a href="#" id="fblogin" title="<?php echo $this->translate('Login with Facebook'); ?>">Facebook Login</a>
         </section>
     </div>    
 </div>
