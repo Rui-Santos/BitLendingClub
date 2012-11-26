@@ -99,6 +99,10 @@ class Repository_Users extends EntityRepository
         if (isset($params['lastname'])) {
             $entity->setLastname($params['lastname']);
         }
+        
+        if (isset($params['fb_user_id'])) {
+            $entity->setFbUserId($params['fb_user_id']);
+        }
 
         if (isset($params['address'])) {
             if (empty($params['address'])) {
