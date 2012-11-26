@@ -5,9 +5,7 @@ class Entity_Proxy_Users {
     protected $_firstname;
     protected $_lastname;
     protected $_roleName;
-    protected $_debitAmount;
-    protected $_socialAccountType;
-    protected $_twitterAccessToken;    
+        
     
     public function __construct(Entity_Users $obj)
     {
@@ -63,34 +61,5 @@ class Entity_Proxy_Users {
     {
         return $this->_roleName;
     }
-    
-    public function setDebitAmount($amount)
-    {
-        $this->_debitAmount = $amount;
-    }
-    
-    public function getDebitAmount()
-    {
-        return $this->_debitAmount;
-    }
-    
-    public function setSocialAccountType($type)
-    {
-        $this->_socialAccountType = $type;
-    }
-    
-    public function getSocialAccountType()
-    {
-        $this->_socialAccountType;
-    }
-    
-    public function setTwitterAccessToken($token)
-    {
-        $this->_twitterAccessToken;
-    }
-    
-    public function getTwitterAccessToken()
-    {
-        return $this->_twitterAccessToken;
-    }
+
 }
