@@ -193,7 +193,7 @@ class Repository_Users extends EntityRepository
             $this->getEntityManager()->persist($entity);
             $this->getEntityManager()->flush();
         }
-
+        App_DoctrineDebug::dump($entity);exit();
         return (bool) $entity;
     }
 
