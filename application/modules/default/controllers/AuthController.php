@@ -36,8 +36,7 @@ class Default_AuthController extends Zend_Controller_Action
                      $user = new Model_User();
                      $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
                     
-                    $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
-                    $this->getResponse()->setBody(App_DoctrineDebug::dump($user));
+                    $this->_helper->redirector('index', 'profile');
                 } else {
                     $this->view->errorLoginCredentials = true;
                 }

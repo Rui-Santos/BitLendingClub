@@ -99,7 +99,8 @@ class Admin_DocumentsController extends Zend_Controller_Action {
     public function denyAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
-        Zend_Debug::dump($this->_request->getParams());
+        
+        Zend_Debug::dump($this->_request->getPost());
     }
 
 }

@@ -36,6 +36,17 @@
             </tfoot>
 
             <tbody>
+                
+                <div id="dialog-form" title="Deny document" style="display:none;">
+                    <p class="validateTips">Enter comment:</p>
+
+                    <form>
+                        <fieldset>
+                            <label for="name">Comment</label>
+                            <input type="text" name="comment" id="comment" class="text ui-widget-content ui-corner-all" />
+                        </fieldset>
+                    </form>
+                </div>
                 <?php if ($this->docsList->getTotalItemCount() > 0): ?>
                     <?php foreach ($this->docsList as $doc): ?>
                         <tr>
@@ -47,10 +58,10 @@
                             <td><?php if($doc->getIsReviewed()) {echo $this->translate('Yes');} else {echo $this->translate('No');}?></td>
                              <td><?php if($doc->getReviewer()) echo $doc->getReviewer()->getFullName();?></td>
                             <td class="center">                          
-                                <!--a class="link-button-update" href="<?php echo $this->url(array('action' => 'update', 'id' => $doc->getId())); ?>" title="<?php echo $this->translate('Update'); ?>">
+                                <a class="link-button-approve" onclick="approveDocument('<?php echo $this->url(array('action' => 'approve', 'id' => $doc->getId())); ?>');return false;"  href="#" title="<?php echo $this->translate('Approve'); ?>">
                                     <img src="/images/update.png" alt="" />
-                                </a-->
-                                <a class="link-button-deny" onclick="denyDocument('<?php echo $this->url(array('action' => 'deny', 'id' => $doc->getId())); ?>');"  href="#" title="<?php echo $this->translate('Deny'); ?>">
+                                </a>
+                                <a class="link-button-deny" onclick="denyDocument('<?php echo $this->url(array('action' => 'deny', 'id' => $doc->getId())); ?>');return false;"  href="#" title="<?php echo $this->translate('Deny'); ?>">
                                     <img src="/images/update.png" alt="" />
                                 </a>
                             </td>
