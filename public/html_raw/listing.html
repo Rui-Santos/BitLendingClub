@@ -22,7 +22,7 @@
 			</ul>
 			<ul class="account-wrapper">
 				<li><a href="#" class="register-btn"><span>Join now</span></a></li>
-				<li class="last"><a href="#" class="login"><span>Login</span></a></li>
+				<li class="last"><a href="#" class="login" onclick="showDiv()"><span>Login</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -183,6 +183,59 @@
 		</ul>
 	</div>
 </div>
+
+<!-- LOGIN -->
+<div id="overlay-block">
+	<div class="login-wrapper">
+		<div class="login-holder">
+			<div id="show-login-holder">
+				<div class="title">Log in to BitLendingClub</div>
+				<form>
+					<input name="Email" type="text" placeholder="Email" />
+					<input name="Password" placeholder="Password" type="password" />
+					<div class="field-box">
+						<input id="remember-me" type="checkbox" class="checkbox" />
+						<label for="remember-me">Remember me</label>
+						<a href="#" class="f-right" onclick="fpshowDiv()">Forgot your password?</a>
+					</div>
+					<a href="#" class="green-btn"><span>Log in</span></a>
+				</form>
+			</div>
+			<div id="show-fp-holder">
+				<div class="title">Forgot your password?</div>
+				<span class="text">Enter the e-mail address you used to create your account. You will recieve further instructions on your email.</span>
+				<form>
+					<input name="Email" type="text" placeholder="Email" />
+					<div class="field-box">
+						<a href="#" class="green-btn"><span>Send</span></a>
+						<a href="#" class="f-right" onclick="fphideDiv()">Back to login</a>
+					</div>
+				</form>
+			</div>
+			<div class="login-register-holder">
+				<div>Still not a member!</div>
+				<a href="#" class="register-small"><span>Join now</span></a>
+			</div>
+		</div>
+		<a href="#" class="close-overlay-block" onclick="hideDiv()"></a>
+	</div>
+</div>
+<script>
+function showDiv() {
+   document.getElementById('overlay-block').style.display = "block"; 
+}
+function hideDiv() {
+   document.getElementById('overlay-block').style.display = "none";
+}
+function fpshowDiv() {
+	document.getElementById('show-login-holder').style.display = "none";
+	document.getElementById('show-fp-holder').style.display = "block";
+}
+function fphideDiv() {
+	document.getElementById('show-login-holder').style.display = "block";
+	document.getElementById('show-fp-holder').style.display = "none";
+}
+</script>
 
 
 </body>

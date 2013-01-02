@@ -174,6 +174,18 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getIsAdmin();
     }
 
+    public function setFbUserId($userId)
+    {
+        $this->__load();
+        return parent::setFbUserId($userId);
+    }
+
+    public function getFbUserId()
+    {
+        $this->__load();
+        return parent::getFbUserId();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -183,7 +195,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address');
     }
 
     public function __clone()
