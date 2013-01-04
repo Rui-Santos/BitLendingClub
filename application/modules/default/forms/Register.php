@@ -11,6 +11,7 @@ class Default_Form_Register extends Default_Form_Abstract
         
         $this->addElement('text', 'email', array(
             'label' => 'E-mail',
+            'placeholder' => 'Email',
             'class' => 'medium',
             'filters' => array('StringTrim'),
             'validators' => array(
@@ -22,6 +23,7 @@ class Default_Form_Register extends Default_Form_Abstract
        
         $this->addElement('password', 'password', array(
             'label' => 'Password',
+            'placeholder' => 'Password',
             'class' => 'medium',
             'required' => true,
             'validators' => array(
@@ -35,6 +37,7 @@ class Default_Form_Register extends Default_Form_Abstract
         
         $this->addElement('password', 'password_confirm', array(
             'label' => 'Confirm Password',
+            'placeholder' => 'Confirm Password',
             'class' => 'medium',
             'required' => true,
             'validators' => array(
@@ -44,6 +47,7 @@ class Default_Form_Register extends Default_Form_Abstract
 
         $this->addElement('text', 'firstname', array(
             'label' => 'First name',
+            'placeholder' => 'First name',
             'class' => 'medium',
             'filters' => array('StringTrim'),
             'required' => true,
@@ -51,6 +55,7 @@ class Default_Form_Register extends Default_Form_Abstract
 
         $this->addElement('text', 'lastname', array(
             'label' => 'Last name',
+            'placeholder' => 'Last name',
             'class' => 'medium',
             'filters' => array('StringTrim'),            
             'required' => true,
@@ -58,12 +63,14 @@ class Default_Form_Register extends Default_Form_Abstract
         
         $this->addElement('text', 'address', array(
             'label' => 'Address',
+            'placeholder' => 'Address',
             'class' => 'large',    
             'required' => true,
         ));        
         
         $this->addElement('text', 'username', array(
             'label' => 'Username',
+            'placeholder' => 'Username',
             'class' => 'medium',
             'required' => true,
         ));        
@@ -92,9 +99,10 @@ class Default_Form_Register extends Default_Form_Abstract
         $this->addElement('button', 'register', array(
             'label' => 'Register',
             'type' => 'submit',
-            'class' => 'button',
+            'class' => 'button green-btn',
             'decorators' => array('ViewHelper'),
-        ));        
+        ));   
+        
         
         $this->_applyDecorators();
     }
@@ -104,8 +112,6 @@ class Default_Form_Register extends Default_Form_Abstract
         $element->setDecorators(array(
             'ViewHelper',
             'Errors',
-            array('HtmlTag', array('tag' => 'dd')),
-            array('Label', array('tag' => 'dt', 'requiredSuffix' => '<span class="required">*</span>', 'escape' => false)),
         ));
 
         return $element;

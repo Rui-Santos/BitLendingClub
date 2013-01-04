@@ -69,7 +69,7 @@ class Default_AuthController extends Zend_Controller_Action
     {
        // $this->_helper->layout->disableLayout();
 
-        $registerForm = new Default_Form_Register();
+        $registerForm = new Default_Form_Register(array('disableLoadDefaultDecorators' => true));
 
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
@@ -90,75 +90,7 @@ class Default_AuthController extends Zend_Controller_Action
 
         $this->view->form = $registerForm;
     }
-    
-//    public function confirmRegistrationAction()
-//    {
-//        $this->_helper->layout->disableLayout();
-//        $this->_helper->viewRenderer->setNoRender(true);
-//        
-//        $key = $this->getRequest()->getParam('key');
-//        
-//        if (empty($key)) {
-//            throw new ItemNotFoundException('Your confirmation key is wrong or expired! Please contact with the administrator.');
-//        }
-//        
-//        $result = $this->_model->setMailConfirmed($key);                
-//        if (!$result) {
-//            throw new ItemNotFoundException('Your confirmation key is wrong or expired! Please contact with the administrator.');
-//        }
-//
-//        $this->_helper->redirector('index', 'index');
-//    }    
-//    
-//    public function forgottenPasswordAction()
-//    {
-//        $this->_helper->layout->disableLayout();
-//        
-//        $forgottenPasswordForm = new Default_Form_ForgottenPassword();
-//
-//        if ($this->_request->isPost()) {
-//            $post = $this->_request->getPost();
-//
-//            if ($forgottenPasswordForm->isValid($post)) {
-//                $dataValues = $forgottenPasswordForm->getValues();
-//                
-//                $userModel = new Model_User();
-//                $userItem = $userModel->getUserByEmail($dataValues['email']);
-//                
-//                if ($userItem->getIsEmailConfirmed() == Model_User::NOT_CONFIRMED) {
-//                    $forgottenPasswordForm->getElement('email')->addError('You must first confirm your registration!');
-//                } else {                
-//                    if ($userItem) {
-//                        $this->render('forgotten-password-final');
-//
-//                        $this->_model->confirmForgottenPassword($userItem->getId());
-//                    }
-//                }
-//                
-//            }
-//        }
-//
-//        $this->view->form = $forgottenPasswordForm;        
-//    }
-//    
-//    public function confirmForgottenPasswordAction()
-//    {
-//        $this->_helper->layout->disableLayout();
-//        $this->_helper->viewRenderer->setNoRender(true);
-//        
-//        $key = $this->getRequest()->getParam('key');
-//        
-//        if (empty($key)) {
-//            throw new ItemNotFoundException('Your confirmation key is wrong or expired! Please contact with the administrator.');
-//        }
-//        
-//        $result = $this->_model->resetForgottenPassword($key);   
-//        if (!$result) {
-//            throw new ItemNotFoundException('Your confirmation key is wrong or expired! Please contact with the administrator.');
-//        }        
-//        
-//        $this->_helper->redirector('index', 'index');        
-//    }
+   
     
     public function logoutAction()
     {
