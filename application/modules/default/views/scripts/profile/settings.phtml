@@ -1,42 +1,47 @@
-<div id="register-section">
-    
-    <header>
-        <h2><?php echo $this->translate('User Settings'); ?></h2>
-        
-            
-      
-    </header>    
-    <div id="register-container">
-        <section class="register-details">
-
-            <form action="<?php echo $this->url(array('module' => 'default', 
-                'controller' => 'profile', 'action' => 'settings'), null, true); ?>" method="post" onsubmit="return doUpdate(this);">
-            <dl>
-                
-
+<div id="main-wrapper">
+	<ul id="tabs-nav">
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+		<li><a href="#"><span class="crating-icon">Credit rating</span></a></li>
+		<li><a href="#"><span class="rep-icon">Reputation</span></a></li>
+		<li><a href="#"><span class="overview-icon">Investments</span></a></li>
+		<li><a href="#"><span class="loan-icon">Loans</span></a></li>
+		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+	</ul>
+	<div class="profile-content-wrapper">
+		<div class="full-width">
+			<h1>Basic settings</h1>
+			<form action="<?php echo $this->url(array('module' => 'default', 
+                'controller' => 'profile', 'action' => 'settings'), null, true); ?>" method="post" onsubmit="return doUpdate(this);">                
+<div class="field-box">
                 <?php echo $this->form->getElement('password'); ?>
-                
+                </div>
+    <div class="field-box">
                 <?php echo $this->form->getElement('password_confirm'); ?>                
-                
+                </div>
+    <div class="field-box">
                 <?php echo $this->form->getElement('firstname'); ?>
-                
+                </div>
+    <div class="field-box">
                 <?php echo $this->form->getElement('lastname'); ?>
-                
+                </div>
+    <div class="field-box">
                 <?php echo $this->form->getElement('username'); ?>
-                
+                </div>
+    <div class="field-box">
                 <?php echo $this->form->getElement('address'); ?>
-                
-               
-            </dl>
+                </div>
+          <div class="buttons-set">     
+           <?php echo $this->form->getElement('save'); ?>
+		</div>		
+					
+				
+			</form>
+		</div>
+	</div>
+</div>
+
+            
             
            
             
-            <p id="register-button-section">
-              <?php echo $this->form->getElement('save'); ?>
-               
-            </p>
-            
-            </form>
-        </section> 
-    </div>    
-</div>
+        

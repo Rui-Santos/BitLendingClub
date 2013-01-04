@@ -90,6 +90,17 @@ class Default_Form_Settings extends Admin_Form_Abstract
         
         $this->_applyDecorators();
     }
+    
+     protected function _applyTextDecorators($element)
+    {
+        $element->setDecorators(array(
+            'ViewHelper',
+            'Errors',
+            'Label'
+        ));
+
+        return $element;
+    }
 
     public function populate(array $values)
     {
