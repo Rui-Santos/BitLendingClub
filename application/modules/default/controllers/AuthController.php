@@ -67,7 +67,7 @@ class Default_AuthController extends Zend_Controller_Action
 
     public function registerAction()
     {
-        $this->_helper->layout->disableLayout();
+       // $this->_helper->layout->disableLayout();
 
         $registerForm = new Default_Form_Register();
 
