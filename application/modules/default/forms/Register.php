@@ -99,7 +99,7 @@ class Default_Form_Register extends Default_Form_Abstract
         $this->addElement('button', 'register', array(
             'label' => 'Register',
             'type' => 'submit',
-            'class' => 'button green-btn',
+            'class' => 'button',
             'decorators' => array('ViewHelper'),
         ));   
         

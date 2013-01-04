@@ -20,8 +20,16 @@ class Default_RatingController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $user = new Model_User();
+        $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
         
-        //Zend_Debug::dump(Zend_Auth::getInstance()->getIdentity());
+        $paginator = new Zend_Paginator(
+                        new App_Paginator_Adapter_Doctrine($this->_model->getAll(array('user' => $user))));
+
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+
+        $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
+        $this->view->documents = $paginator;
        
     }  
     

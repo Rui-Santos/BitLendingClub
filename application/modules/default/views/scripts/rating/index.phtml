@@ -1,6 +1,62 @@
-Credit rating 
+<?php $documents = $this->documents; ?>
 
-
-
-<a href="<?php echo $this->url(array('module' => "default", 'controller' => 'rating', 'action' => 'upload-id'));?>">ID Card Validation</a>
-<a href="<?php echo $this->url(array('module' => "default", 'controller' => 'rating', 'action' => 'upload-address'));?>">Address Validation</a>
+<div id="main-wrapper">
+	<ul id="tabs-nav">
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
+		<li><a href="#"><span class="rep-icon">Reputation</span></a></li>
+		<li><a href="#"><span class="overview-icon">Investments</span></a></li>
+		<li><a href="#"><span class="loan-icon">Loans</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+	</ul>
+	<div class="profile-content-wrapper">
+		<div class="sidebar-left profile-sidebar">
+			<ul id="sidebar-nav">
+				<li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
+				<li><a href="#">Social Network Connections</a></li>
+			</ul>
+			<div class="sidebar-infoboard">
+				<div class="title">Credit rating</div>
+				<ul>
+					<li>Identity verified: <span class="red">No</span></li>
+					<li>Facebook: <span class="red">No</span></li>
+					<li>LinkedIn: <span class="red">No</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="profile-content-right">
+			<h1>Identity Verification Request</h1>
+                        
+                       
+			<p>Please ensure that your identity information is accurate and upload a viewable, scanned copy of the government-issued photo identification document specified.</p>
+			<div class="buttons-set mb-twenty">
+				<a href="#" class="green-btn"><span>Add new</span></a>
+			</div>
+                        <?php if(!empty($documents)): ?>
+			<table cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>ID Type</th>
+						<th>Image</th>
+                                                <th>Uploaded on</th>
+						<th>Is Reviewed</th>
+						<th>Message</th>
+					</tr>
+				</thead>
+				<tbody>
+                                    <?php foreach ($documents as $doc): ?>
+					<tr>
+						<td><?php echo $doc->getDocumentType()->getName();?></td>
+                                                <?php $filename = explode('/', $doc->getDocumentPath()); ?>
+						<td><a href="<?php echo $doc->getDocumentPath();?>"><?php echo end($filename); ?></a></td>
+                                                <td><?php echo $doc->getCreatedAt()->format('Y-m-d H:i:s');?></td>
+						<td class="status"><?php if($doc->getIsReviewed()) {echo $this->translate('Yes');} else {echo $this->translate('No');}?></td>
+						<td><?php echo $doc->getReviewComment();?></td>
+					</tr>
+                                    <?php endforeach; ?>
+				</tbody>
+			</table>
+                        <?php endif; ?>
+		</div>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 <div id="main-wrapper">
     <div class="social-reg-wrapper">
         <ul>
-            <li><span><?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span></li>
+            <li><span><?php echo $this->translate('Create a BitLendingClub account:'); ?></span></li>
             <li>
                 <a href="#" id="fblogin" class="fb-reg" title="<?php echo $this->translate('Login with Facebook'); ?>"><?php echo $this->translate('Facebook Login'); ?></a>
 
@@ -12,9 +12,9 @@
     </div>
     <div class="reg-divider"><span><?php echo $this->translate("Don't have any of the above? Sing up with email."); ?></span></div>
     <?php if (count($this->form->getMessages()) > 0): ?>
-        <div class="reg-divider">
+    <div class="reg-divider"><span>
             <img src="/images/error_x.png" alt="" />
-            <?php echo $this->translate('Registration is incomplete. Please, retry'); ?>
+            <?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span>
         </div>
     <?php endif; ?>
     <form class="reg-form" action="<?php echo $this->url(array('module' => 'default',

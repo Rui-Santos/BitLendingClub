@@ -26,6 +26,14 @@ class Entity_Documents
      * @Column(name="documentPath", type="string", length=256, precision=0, scale=0, nullable=true, unique=false)
      */
     private $documentPath;
+    
+    
+    /**
+     * @var string $reviewComment
+     *
+     * @Column(name="reviewComment", type="string", length=256, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $reviewComment;
 
     /**
      * @var boolean $isReviewed
@@ -108,6 +116,26 @@ class Entity_Documents
         return $this->documentPath;
     }
 
+     /**
+     * Set reviewComment
+     *
+     * @param string $reviewComment
+     */
+    public function setReviewComment($reviewComment)
+    {
+        $this->reviewComment = $reviewComment;
+    }
+
+    /**
+     * Get reviewComment
+     *
+     * @return string 
+     */
+    public function getReviewComment()
+    {
+        return $this->reviewComment;
+    }
+    
     /**
      * Set isReviewed
      *
