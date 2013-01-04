@@ -96,7 +96,7 @@ class Default_Form_Register extends Default_Form_Abstract
 //        $this->addElement($captcha);
         
        
-        $this->addElement('anchor', 'register', array(
+        $this->addElement('button', 'register', array(
             'label' => 'Register',
             'type' => 'submit',
             'class' => 'button green-btn',
