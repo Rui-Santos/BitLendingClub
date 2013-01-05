@@ -12,13 +12,13 @@
                 <p class="errors"><?php echo $this->translate('The e-mail or password you entered is incorrect.'); ?></p>
             <?php endif; ?>
                 
-            <?php echo $this->form->getElement('login'); ?>
+            
 					<div class="field-box">
 						<?php echo $this->form->getElement('remember_me'); ?>
-						<label for="remember-me">Remember me</label>
+						
 						<a href="#" class="f-right" onclick="fpshowDiv()">Forgot your password?</a>
 					</div>
-					<a href="#" class="green-btn"><span>Log in</span></a>
+					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Log in</span></a>
 				</form>
 			</div>
 			<!--div id="show-fp-holder">

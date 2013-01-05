@@ -19,6 +19,7 @@ class Default_Form_Login extends Default_Form_Abstract
         
         $this->addElement('checkbox', 'remember_me', array(
             'label' => 'Remember me',
+            'class' => 'checkbox',
         ));      
 
         $this->addElement('button', 'login', array(
@@ -36,8 +37,6 @@ class Default_Form_Login extends Default_Form_Abstract
         $element->setDecorators(array(
             'ViewHelper',
             'Errors',
-            array('HtmlTag', array('tag' => 'dd')),
-            array('Label', array('tag' => 'dt')),
         ));
 
         return $element;
