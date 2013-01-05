@@ -17,9 +17,9 @@
             <?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span>
         </div>
     <?php endif; ?>
-    <form class="reg-form" action="<?php echo $this->url(array('module' => 'default',
+    <form class="reg-form" name="reg-form" action="<?php echo $this->url(array('module' => 'default',
         'controller' => 'auth', 'action' => 'register'), null, true);
-    ?>" method="post" onsubmit="return doRegister(this);">
+    ?>" method="post">
         <?php echo $this->form->getElement('email'); ?>
 
         <?php echo $this->form->getElement('password'); ?>
@@ -36,6 +36,6 @@
     
         <span><?php echo $this->translate('By signing up, I agree to BitLendingClub\'s <a href="#">Terms of Service.</a>');?></span>
         
-        <?php echo $this->form->getElement('register'); ?>
+        <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
     </form>
 </div>

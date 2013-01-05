@@ -1,1 +1,40 @@
-welcome to blc! 
+<div id="main-wrapper">
+	<ul id="tabs-nav">
+		<li class="selected"><a href="#"><span class="how-it-works-icon">So, how it works?</span></a></li>
+		<li><a href="#"><span class="bitcoin-icon">What is Bitcoin?</span></a></li>
+	</ul>
+	<div class="custom-block">
+		<h2 class="peer-to-peer">A Peer <span>to</span> Peer<br/>Bitcoin Lending Network.</h2>
+	</div>
+	<div class="hiw-go-down"></div>
+	<div class="custom-block">
+		<h1 class="how-it-works-title">So, how it <span>WORKS</span>. It’s very simple.</h1>
+		<div class="how-it-works-text">
+			<span><strong>The Borrower</strong> creates a loan listing. Then he makes periodic payments to the investors.</span>
+			<span class="zero-m"><strong>The Lenders</strong> invest directly or are automatically selected accordingly to their automated plans. After the loan is funded, the bitcoins are sent to the borrower.</span>
+		</div>
+	</div>
+	<div class="hiw-go-down"></div>
+	<div class="custom-block">
+		<div class="hiw-pros">
+			<ul class="hiw-list-borrower">
+				Borrowers get <strong>GREAT</strong> rates
+				<li class="first">Borrower verification process handled by BLC</li>
+	      		<li>Browse listings that meet your criteria</li>
+	      		<li>Peer to peer reputation system</li>
+	      		<li>Diversify your investments in small chunks</li>
+			</ul>
+			<ul class="hiw-list-lender">
+				Investors get <strong>GREAT</strong> returns
+				<li class="first">YOU define the repayment parameters</li>
+	      		<li>YOU define the rate you are willing to pay</li>
+	      		<li>Peer to peer reputation system</li>
+	      		<li>Optional, soft credit check</li>
+			</ul>
+		</div>
+	</div>
+	<div class="join-in-wrapper">
+		<a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>"><span>Join now</span></a>
+		<span>Become a member and explore our full features.</span>
+	</div>
+</div>

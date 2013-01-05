@@ -2,6 +2,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<?php
+        echo $this->headScript()
+            ->prependFile('/js/jquery-1.7.1.min.js')
+            ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
+            ->appendFile('/js/jquery.lightbox-0.5.min.js')
+            ->appendFile('/js/jqModal.js')
+            ->appendFile('/js/default.js');
+        ?>
 <title>BitLendingClub</title>
 <link rel="stylesheet" type="text/css" href="/css/main-style.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>

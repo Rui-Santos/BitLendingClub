@@ -1,13 +1,13 @@
 $(function() { 
    
-    FB.init({
-        appId      : '468101889902680',
-        status     : true, 
-        cookie     : true,
-        xfbml      : true,
-        oauth      : true
-    });
-    
+//    FB.init({
+//        appId      : '468101889902680',
+//        status     : true, 
+//        cookie     : true,
+//        xfbml      : true,
+//        oauth      : true
+//    });
+//    
 //    initLoginDialog();
 //    
 //    initRegisterDialog();
@@ -26,12 +26,12 @@ $(function() {
 });
 
 
-var fbLogin = function() {
-    FB.login(function(response) {
-        if (response.authResponse) {
-        // connected
-        } else {
-        // cancelled
-        }
-    });
-}
+//var fbLogin = function() {
+//    FB.login(function(response) {
+//        if (response.authResponse) {
+//        // connected
+//        } else {
+//        // cancelled
+//        }
+//    });
+//}
