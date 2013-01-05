@@ -1,22 +1,20 @@
 <?php
 
-class Default_AuthController extends Zend_Controller_Action
-{
+class Default_AuthController extends Zend_Controller_Action {
+
     protected $_model;
 
-    public function init()
-    {
+    public function init() {
         $this->_model = new Model_User();
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         $this->_forward('login');
     }
 
-    public function loginAction()
-    {
-//        $this->_helper->layout->disableLayout();
+    public function loginAction() {
+        error_log("log in action");
+        $this->_helper->layout->disableLayout();
 
         $loginForm = new Default_Form_Login();
 
@@ -29,45 +27,44 @@ class Default_AuthController extends Zend_Controller_Action
                 $adapter = new App_Auth_Adapter($values['email'], $values['password']);
                 $auth = Zend_Auth::getInstance();
                 $result = $auth->authenticate($adapter);
-                
-                if ($result->isValid()) {                    
+
+                if ($result->isValid()) {
+
+                    ///just for testing
+                    //					$recLinks = new Model_RecommendLink();
+                    //					$recLinks->checkToken($this->getRequest()->getCookie(Default_AuthController::COOCKIE_NAME));
+
                     $this->_helper->viewRenderer->setNoRender(true);
-                    
-                     $user = new Model_User();
-                     $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
-                    
-                    $this->_helper->redirector('index', 'profile');
+                    $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
+                    $this->getResponse()->setBody(json_encode(array("success" => "true")));
                 } else {
                     $this->view->errorLoginCredentials = true;
                 }
             }
         }
-
         $this->view->form = $loginForm;
     }
-    
-    public function facebookLoginAction()
-    {
+
+    public function facebookLoginAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-       
+
         $token = $this->getRequest()->getParam('token', false);
         if ($token == false) {
             throw new InvalidArgumentException('Missing token parameter');
         }
- 
+
         $auth = Zend_Auth::getInstance();
         $adapter = new App_Auth_Adapter_Facebook($token);
         $result = $auth->authenticate($adapter);
-        
+
         if ($result->isValid()) {
             $this->_helper->redirector('index', 'index');
-        }        
+        }
     }
 
-    public function registerAction()
-    {
-       // $this->_helper->layout->disableLayout();
+    public function registerAction() {
+        // $this->_helper->layout->disableLayout();
 
         $registerForm = new Default_Form_Register(array('disableLoadDefaultDecorators' => true));
 
@@ -76,30 +73,29 @@ class Default_AuthController extends Zend_Controller_Action
 
             if ($registerForm->isValid($post)) {
                 $dataValues = $registerForm->getValues();
-                
+
                 $userModel = new Model_User();
                 $userItem = $userModel->create($dataValues);
-                
+
                 if ($userItem) {
                     $this->render('register-final');
-                    
+
                     //$this->_model->confirmRegistration($userItem->getId());
-                }                
+                }
             }
         }
 
         $this->view->form = $registerForm;
     }
-   
-    
-    public function logoutAction()
-    {
+
+    public function logoutAction() {
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-    
+
         Service_Auth::logoutUser();
-        
+
         $this->_helper->redirector('index', 'index');
     }
+
 }
 

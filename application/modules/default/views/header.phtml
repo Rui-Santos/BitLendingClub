@@ -1,76 +1,84 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<?php
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <?php
         echo $this->headScript()
-            ->prependFile('/js/jquery-1.7.1.min.js')
-            ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
-            ->appendFile('/js/jquery.lightbox-0.5.min.js')
-            ->appendFile('/js/jqModal.js')
-            ->appendFile('/js/default.js');
+                ->prependFile('/js/jquery-1.7.1.min.js')
+                ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
+                ->appendFile('/js/jquery.lightbox-0.5.min.js')
+                ->appendFile('/js/jqModal.js')
+                ->appendFile('/js/default.js');
         ?>
-<title>BitLendingClub</title>
-<link rel="stylesheet" type="text/css" href="/css/main-style.css" />
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-</head>
-<body>
+        <?php
+        echo $this->headLink()
+                ->prependStylesheet('/styles/reset.css')
+                ->appendStylesheet('/styles/main-style.css')
+                ->appendStylesheet('/styles/jqModal.css')
+                ->appendStylesheet('/styles/jquery.lightbox-0.5.css')
+                ->appendStylesheet('/styles/smoothness/jquery-ui-1.8.18.custom.css');
+        ?>
+        <title>BitLendingClub</title>
+        
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
 
-	
-<!-- HEADER -->
-<div class="header-wrapper">
-	<div class="header-glow">
-		<div class="header-holder">
-			<a href="/" class="logo"></a>
-			<ul id="main-nav">
-				<li><a href="#"><span><span class="blue-ring">How it works?</span></span></a></li>
-				<li><a href="#"><span><span class="green-ring">Investing</span></span></a></li>
-				<li><a href="#"><span><span class="yellow-ring">About us</span></span></a></li>
-				<li><a href="#"><span><span class="orange-ring">Help</span></span></a></li>
-			</ul>
-                        <?php if(Zend_Auth::getInstance()->getIdentity()): ?>
-                        
+
+        <!-- HEADER -->
+        <div class="header-wrapper">
+            <div class="header-glow">
+                <div class="header-holder">
+                    <a href="/" class="logo"></a>
+                    <ul id="main-nav">
+                        <li><a href="#"><span><span class="blue-ring">How it works?</span></span></a></li>
+                        <li><a href="#"><span><span class="green-ring">Investing</span></span></a></li>
+                        <li><a href="#"><span><span class="yellow-ring">About us</span></span></a></li>
+                        <li><a href="#"><span><span class="orange-ring">Help</span></span></a></li>
+                    </ul>
+                    <?php if (Zend_Auth::getInstance()->getIdentity()): ?>
+
                         <ul class="account-wrapper">
-				<li class="last selected">
-					<a href="#" class="login"><span><span>My Account</span></span></a>
-					<div class="dropdown-menu-wrapper">
-						<div class="dropdown-menu-holder">
-							<ul class="dropdown-menu">
-								<li>
-									<a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>">Dashboard</a>
-								</li>
-								<li>
-									<a href="#">Credit rating</a>
-								</li>
-								<li>
-									<a href="#">Reputation</a>
-								</li>
-								<li>
-									<a href="#">Investments</a>
-								</li>
-								<li>
-									<a href="#">Loans</a>
-								</li>
-								<li>
-									<a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>">Settings</a>
-								</li>
-								<li>
-									<a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout'), null, true); ?>">Sign out</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</li>
-			</ul>
-                        <?php else: ?>
-                        
+                            <li class="last selected">
+                                <a href="#" class="login"><span><span>My Account</span></span></a>
+                                <div class="dropdown-menu-wrapper">
+                                    <div class="dropdown-menu-holder">
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>">Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Credit rating</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Reputation</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Investments</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Loans</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>">Settings</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout'), null, true); ?>">Sign out</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    <?php else: ?>
+
                         <ul class="account-wrapper">
-				<li><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>" class="register-btn"><span>Join now</span></a></li>
-				<li class="last"><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'login'), null, true); ?>" class="login"><span>Login</span></a></li>
-			</ul>
-			
-                        <?php endif; ?>
-		</div>
-	</div>
-	<div class="after-header-line"></div>
-</div>
+                            <li><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>" class="register-btn"><span>Join now</span></a></li>
+                            <li class="last"><a href="#" class="login" id="login-button"><span>Login</span></a></li>
+                        </ul>
+
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="after-header-line"></div>
+        </div>

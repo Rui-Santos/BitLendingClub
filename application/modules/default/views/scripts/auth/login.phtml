@@ -1,39 +1,47 @@
-<div id="login-section">
-    <header>
-        <h2><?php echo $this->translate('Login'); ?></h2>
-        <?php echo $this->translate('or'); ?>        
-        <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>" id="register-dialog"><?php echo $this->translate('Register'); ?></a>
-        
-        
-    </header>    
-    <div id="login-container">
-        <section class="login-details">
-            <h3><?php echo $this->translate('Login'); ?></h3>
-
-            <form action="<?php echo $this->url(array('module' => 'default', 
+<div id="overlay-block">
+	<div class="login-wrapper">
+		<div class="login-holder">
+			<div id="show-login-holder">
+				<div class="title">Log in to BitLendingClub</div>
+				<form action="<?php echo $this->url(array('module' => 'default', 
                 'controller' => 'auth', 'action' => 'login'), null, true); ?>" method="post" onsubmit="return doLogin(this);">
-            <dl>
-                <?php echo $this->form->getElement('email'); ?>
-
+					<?php echo $this->form->getElement('email'); ?>
                 <?php echo $this->form->getElement('password'); ?>
-                
-            </dl>                            
-                
-            <p>
-                <?php echo $this->form->getElement('remember_me'); ?>                                            
-            </p>    
 
             <?php if ($this->errorLoginCredentials): ?>
                 <p class="errors"><?php echo $this->translate('The e-mail or password you entered is incorrect.'); ?></p>
             <?php endif; ?>
                 
             <?php echo $this->form->getElement('login'); ?>
-            </form>
-
-           
-
-            <p><a href="#" id="forgotten-password"><?php echo $this->translate('Forgot password?'); ?></a></p>        
-        </section> 
-        
-    </div>    
+					<div class="field-box">
+						<?php echo $this->form->getElement('remember_me'); ?>
+						<label for="remember-me">Remember me</label>
+						<a href="#" class="f-right" onclick="fpshowDiv()">Forgot your password?</a>
+					</div>
+					<a href="#" class="green-btn"><span>Log in</span></a>
+				</form>
+			</div>
+			<!--div id="show-fp-holder">
+				<div class="title">Forgot your password?</div>
+				<span class="text">Enter the e-mail address you used to create your account. You will recieve further instructions on your email.</span>
+				<form>
+					<input name="Email" type="text" placeholder="Email" />
+					<div class="field-box">
+						<a href="#" class="green-btn"><span>Send</span></a>
+						<a href="#" class="f-right" onclick="fphideDiv()">Back to login</a>
+					</div>
+				</form>
+			</div-->
+			<div class="login-register-holder">
+				<div>Still not a member!</div>
+				<a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register'), null, true); ?>" class="register-small"><span>Join now</span></a>
+			</div>
+		</div>
+		<a href="#" id="login-close" class="close-overlay-block"></a>
+	</div>
 </div>
+
+
+
+
+          
