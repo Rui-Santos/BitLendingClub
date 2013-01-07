@@ -1,0 +1,50 @@
+<?php $documents = $this->documents; ?>
+
+<div id="main-wrapper">
+    <ul id="tabs-nav">
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
+        <li><a href="#"><span class="rep-icon">Reputation</span></a></li>
+        <li><a href="#"><span class="overview-icon">Investments</span></a></li>
+        <li><a href="#"><span class="loan-icon">Loans</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+    </ul>
+    <div class="profile-content-wrapper">
+        <div class="sidebar-left profile-sidebar">
+            <ul id="sidebar-nav">
+                <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
+                <li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address'), null, true); ?>">Address verification</a></li>
+                <li><a href="#">Social Network Connections</a></li>
+            </ul>
+            <div class="sidebar-infoboard">
+                <div class="title">Credit rating</div>
+                <ul>
+                    <li>Identity verified: <span class="red">No</span></li>
+                    <li>Address verified: <span class="red">No</span></li>
+                    <li>Facebook: <span class="red">No</span></li>
+                    <li>LinkedIn: <span class="red">No</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-content-right">
+            <h1>Address Verification Request</h1>
+
+
+            <form action="<?php echo $this->url(array('module' => 'default',
+    'controller' => 'rating', 'action' => 'address-upload'), null, true);
+?>" method="post" onsubmit="return doUpdate(this);">                
+                <div class="field-box">
+                <?php echo $this->form->getElement('file'); ?>
+                </div>
+                <?php echo $this->form->getElement('user_id'); ?>
+                    <?php echo $this->form->getElement('doctype'); ?>
+                <div class="buttons-set">     
+<?php echo $this->form->getElement('save'); ?>
+                </div>		
+
+
+            </form>
+        </div>
+    </div>
+</div>
+

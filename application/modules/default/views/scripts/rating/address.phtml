@@ -12,8 +12,8 @@
 	<div class="profile-content-wrapper">
 		<div class="sidebar-left profile-sidebar">
 			<ul id="sidebar-nav">
-				<li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
-                                <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address'), null, true); ?>">Address verification</a></li>
+				<li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
+                                <li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address'), null, true); ?>">Address verification</a></li>
 				<li><a href="#">Social Network Connections</a></li>
 			</ul>
 			<div class="sidebar-infoboard">
@@ -27,13 +27,14 @@
 			</div>
 		</div>
 		<div class="profile-content-right">
-			<h1>Identity Verification Request</h1>
+			<h1>Address Verification Request</h1>
                         
                        
-			<p>Please ensure that your identity information is accurate and upload a viewable, scanned copy of the government-issued photo identification document specified.</p>
+			<p>Please ensure that your address information is accurate and upload a viewable, scanned copy of the government-issued photo identification document specified.</p>
 			<div class="buttons-set mb-twenty">
 				<a href="#" class="green-btn"><span>Add new</span></a>
 			</div>
+                        
                         <?php if(!empty($documents)): ?>
 			<table cellspacing="0" cellpadding="0">
 				<thead>

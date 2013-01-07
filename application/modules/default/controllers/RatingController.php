@@ -23,8 +23,11 @@ class Default_RatingController extends Zend_Controller_Action
         $user = new Model_User();
         $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
         
+        //document type id
+        $doctype = new Model_DocumentType();
+        $doctype = $doctype->get(1);
         $paginator = new Zend_Paginator(
-                        new App_Paginator_Adapter_Doctrine($this->_model->getAll(array('user' => $user))));
+                        new App_Paginator_Adapter_Doctrine($this->_model->getAll(array('user' => $user,'documentType'=>$doctype))));
 
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
@@ -33,23 +36,41 @@ class Default_RatingController extends Zend_Controller_Action
        
     }  
     
-    public function settingsAction() 
+    public function addressAction()
+    {
+        $user = new Model_User();
+        $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
+        
+        //document type address
+        $doctype = new Model_DocumentType();
+        $doctype = $doctype->get(2);
+        $paginator = new Zend_Paginator(
+                        new App_Paginator_Adapter_Doctrine($this->_model->getAll(array('user' => $user,'documentType'=>$doctype))));
+
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+
+        $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
+        $this->view->documents = $paginator;
+       
+    }
+    
+     public function addressUploadAction() 
     {
         $id = Service_Auth::getLoggedUser()->getId();
        
-        $form = new Default_Form_Settings();
+        $form = new Default_Form_Address();
         
-        $userItem = $this->_model->get($id);
+        $document = $this->_model->get($id);
        
-        $form->populate($userItem->toArray());
+       
 
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
-          
+            
             if ($form->isValid($post)) {
-                $userItem = $this->_model->update($form->getValues(), $id);
+                $document = $this->_model->create($form->getValues(), $id);
                 
-                if ($userItem) {
+                if ($document) {
                     $this->_helper->redirector('index');
                 }
             }

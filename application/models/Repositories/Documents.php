@@ -70,21 +70,37 @@ class Repository_Documents extends EntityRepository
 
         $em = $this->getEntityManager();
 
-        if (isset($params['document_path'])) {
-            if (empty($params['document_path'])) {
+        if (isset($params['file'])) {
+            if (empty($params['file'])) {
                 $entity->setDocumentPath(null);
             } else {
-                $entity->setDocumentPath($params['document_path']);
+                $entity->setDocumentPath($params['file']);
             }
         }
-
-//        if (isset($params['role_id'])) {
-//            $role = $em->getRepository('Entity_UserRoles')->find($params['role_id']);
-//            if ($role) {
-//                $entity->setRole($role);
-//            }
-//        }
-
+        
+        if (isset($params['user_id'])) {
+            $user = $em->getRepository('Entity_Users')->find($params['user_id']);
+            if ($user) {
+                $entity->setUser($user);
+            }
+        }
+        
+        if (isset($params['doctype'])) {
+            $doctype = $em->getRepository('Entity_DocumentTypes')->find($params['doctype']);
+            if ($doctype) {
+                $entity->setDocumentType($doctype);
+            }
+        }
+        
+        if (isset($params['reviewed'])) {
+            if (empty($params['reviewed'])) {
+                $entity->setIsReviewed(0);
+            } else {
+                $entity->setIsReviewed($params['reviewed']);
+            }
+        }
+        
+        
 
         
         $em->persist($entity);
