@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Settings extends Admin_Form_Abstract
+class Default_Form_Settings extends Default_Form_Abstract
 {
     
     public function __construct($options = null)

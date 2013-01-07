@@ -60,6 +60,7 @@ class Repository_Documents extends EntityRepository
      */
     public function createOrUpdate(array $params, $id = null)
     {
+        
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;

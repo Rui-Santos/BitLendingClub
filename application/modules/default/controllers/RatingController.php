@@ -65,6 +65,7 @@ class Default_RatingController extends Zend_Controller_Action
        
 
         if ($this->_request->isPost()) {
+            
             $post = $this->_request->getPost();
             
             if ($form->isValid($post)) {

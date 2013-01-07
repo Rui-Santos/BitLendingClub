@@ -32,7 +32,7 @@
                        
 			<p>Please ensure that your address information is accurate and upload a viewable, scanned copy of the government-issued photo identification document specified.</p>
 			<div class="buttons-set mb-twenty">
-				<a href="#" class="green-btn"><span>Add new</span></a>
+				<a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address-upload'), null, true); ?>" class="green-btn"><span>Add new</span></a>
 			</div>
                         
                         <?php if(!empty($documents)): ?>

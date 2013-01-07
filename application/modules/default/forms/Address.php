@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Address extends Admin_Form_Abstract {
+class Default_Form_Address extends Default_Form_Abstract {
 
     public function __construct($options = null) {
 
@@ -20,25 +20,17 @@ class Default_Form_Address extends Admin_Form_Abstract {
 
         $file = new Zend_Form_Element_File('file');
         $file->setLabel('Upload a file: ')
-                ->setRequired(true)
+                ->setRequired(false)
                 ->addValidator('Size', false, array('max' => '5242880'))
-                ->setDestination(realpath($config->paths->validate_files));
+                ->setDestination(realpath($config->paths->temp_dir));
         $this->addElement($file);
 
         $this->addElement('button', 'save', array(
-            'label' => 'Update',
+            'label' => 'Upload',
             'type' => 'submit',
             'class' => 'button',
         ));
 
-        $view = $this->getView();
-        $url = $view->url(array('module' => 'default', 'controller' => 'rating', 'action' => 'address'), null, true);
-
-        $this->addElement('button', 'cancel', array(
-            'label' => 'Cancel',
-            'onClick' => 'javascript:return window.location.href = \'' . $url . '\'; ',
-            'class' => 'button',
-        ));
 
         $this->_applyDecorators();
     }
