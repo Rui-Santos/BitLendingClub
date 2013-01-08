@@ -10,8 +10,8 @@
     <div class="profile-content-wrapper">
         <div class="sidebar-left profile-sidebar">
             <ul id="sidebar-nav">
-                <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
-                <li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address'), null, true); ?>">Address verification</a></li>
+                <li class="selected"><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Identity verification</a></li>
+                <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'address'), null, true); ?>">Address verification</a></li>
                 <li><a href="#">Social Network Connections</a></li>
             </ul>
             <div class="sidebar-infoboard">
@@ -29,7 +29,7 @@
 
 
             <form action="<?php echo $this->url(array('module' => 'default',
-    'controller' => 'rating', 'action' => 'address-upload'), null, true);
+    'controller' => 'rating', 'action' => 'id-upload'), null, true);
 ?>" method="post" enctype="multipart/form-data">                
                 <div class="field-box">
                 <?php echo $this->form->getElement('file'); ?>

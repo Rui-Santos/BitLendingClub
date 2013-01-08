@@ -1,6 +1,6 @@
 <?php
 
-class Default_Form_Address extends Default_Form_Abstract {
+class Default_Form_Id extends Default_Form_Abstract {
 
     public function __construct($options = null) {
 
@@ -14,7 +14,7 @@ class Default_Form_Address extends Default_Form_Abstract {
         ));
 
         $this->addElement('hidden', 'doctype', array(
-            'value' => '2',
+            'value' => '1',
         ));
 
 

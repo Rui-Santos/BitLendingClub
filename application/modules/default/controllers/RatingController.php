@@ -80,21 +80,24 @@ class Default_RatingController extends Zend_Controller_Action
         $this->view->assign(array('form' => $form, 'id' => $id));
     }
     
-    public function uploadIdAction(){
+    public function idUploadAction(){
         
         $id = Service_Auth::getLoggedUser()->getId();
        
         $form = new Default_Form_Id();
         
-        $userItem = $this->_model->get($id);
+        $document = $this->_model->get($id);
        
+       
+
         if ($this->_request->isPost()) {
+            
             $post = $this->_request->getPost();
-          
+            
             if ($form->isValid($post)) {
-                $userItem = $this->_model->uploadId($form->getValues(), $id);
+                $document = $this->_model->create($form->getValues(), $id);
                 
-                if ($userItem) {
+                if ($document) {
                     $this->_helper->redirector('index');
                 }
             }
