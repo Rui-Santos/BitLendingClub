@@ -1,7 +1,16 @@
 $(function() { 
-   
-  initLoginDialog();
+  if (typeof FB != 'undefined') {
+	    FB.init({
+	        appId      : '468101889902680',
+	        status     : true, 
+	        cookie     : true,
+	        xfbml      : true,
+	        oauth      : true
+	    });
+    }
 
+  initLoginDialog();
+  
     
 });
 
