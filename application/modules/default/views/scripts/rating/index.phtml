@@ -50,7 +50,7 @@
 					<tr>
 						<td><?php echo $doc->getDocumentType()->getName();?></td>
                                                 <?php $filename = explode('/', $doc->getDocumentPath()); ?>
-						<td><a href="<?php echo $doc->getDocumentPath();?>"><?php echo end($filename); ?></a></td>
+						<td><a href="<?php echo $this->imagePath.$doc->getDocumentPath();?>"><?php echo end($filename); ?></a></td>
                                                 <td><?php echo $doc->getCreatedAt()->format('Y-m-d H:i:s');?></td>
 						<td class="status"><?php if($doc->getIsReviewed()) {echo $this->translate('Yes');} else {echo $this->translate('No');}?></td>
 						<td><?php echo $doc->getReviewComment();?></td>
