@@ -1,17 +1,19 @@
 <?php
 
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Wallets
  *
- * @Table(name="roles")
- * @Entity(repositoryClass="Repository_Wallets")
+ * @Table(name="wallets")
+ * @Entity
  */
-class Entity_Wallets {
-
+class Wallets
+{
     /**
-     * @var integer $id
+     * @var integer
      *
      * @Column(name="id", type="integer", precision=0, scale=0, nullable=false, unique=false)
      * @Id
@@ -20,134 +22,133 @@ class Entity_Wallets {
     private $id;
 
     /**
-     * @var string $name
+     * @var string
      *
-     * @Column(name="walletPath", type="string", length=256, precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="walletPath", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
-    private $walletPath;
+    private $walletpath;
 
     /**
-     * @var boolean $isEncrypted
-     * 
+     * @var boolean
+     *
      * @Column(name="isEncrypted", type="boolean", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $isEncrypted;
+    private $isencrypted;
 
     /**
-     * @var decimal $balance
+     * @var float
      *
-     * @Column(name="balance", type="decimal", precision=0, scale=0, nullable=true, unique=false)
+     * @Column(name="balance", type="decimal", precision=0, scale=0, nullable=false, unique=false)
      */
     private $balance;
 
     /**
-     * @var Users
+     * @var integer
      *
-     * @ManyToOne(targetEntity="Entity_Users")
-     * @JoinColumns({
-     *   @JoinColumn(name="userId", referencedColumnName="id", nullable=true)
-     * })
+     * @Column(name="userId", type="integer", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $user;
+    private $userid;
 
-    public function __construct() {
-        
-    }
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * Set walletPath
+     * Set walletpath
      *
-     * @param string $walletPath
+     * @param string $walletpath
+     * @return Wallets
      */
-    public function setWalletPath($walletPath) {
-        $this->walletPath = $walletPath;
+    public function setWalletpath($walletpath)
+    {
+        $this->walletpath = $walletpath;
+
+        return $this;
     }
 
     /**
-     * Get walletPath
+     * Get walletpath
      *
      * @return string 
      */
-    public function getWalletPath() {
-        return $this->walletPath;
+    public function getWalletpath()
+    {
+        return $this->walletpath;
     }
 
     /**
-     * Set isEncrypted
+     * Set isencrypted
      *
-     * @param boolean $isEncrypted
+     * @param boolean $isencrypted
+     * @return Wallets
      */
-    public function setIsEncrypted($isEncrypted) {
-        $this->isEncrypted = $isEncrypted;
+    public function setIsencrypted($isencrypted)
+    {
+        $this->isencrypted = $isencrypted;
+
+        return $this;
     }
 
     /**
-     * Get isEncrypted
+     * Get isencrypted
      *
      * @return boolean 
      */
-    public function getIsEncrypted() {
-        return $this->isEncrypted;
-    }
-
-    /**
-     * Set user
-     *
-     * @param Entity_Users $user
-     */
-    public function setUser(Entity_Users $user) {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return Entity_Users
-     */
-    public function getUser() {
-        return $this->user;
+    public function getIsencrypted()
+    {
+        return $this->isencrypted;
     }
 
     /**
      * Set balance
      *
-     * @param decimal $balance
+     * @param float $balance
+     * @return Wallets
      */
-    public function setBalance($balance) {
+    public function setBalance($balance)
+    {
         $this->balance = $balance;
+
+        return $this;
     }
 
     /**
      * Get balance
      *
-     * @return decimal 
+     * @return float 
      */
-    public function getBalance() {
+    public function getBalance()
+    {
         return $this->balance;
     }
 
     /**
+     * Set userid
      *
-     * @return type 
+     * @param integer $userid
+     * @return Wallets
      */
-    public function toArray() {
-        $result = array(
-            'wallet_path' => $this->getWalletPath(),
-            'is_encrypted' => $this->getIsEncrypted(),
-            'user_id' => $this->getUser()->getId(),
-            'balance' => $this->getBalance()
-        );
+    public function setUserid($userid)
+    {
+        $this->userid = $userid;
 
-        return $result;
+        return $this;
     }
 
+    /**
+     * Get userid
+     *
+     * @return integer 
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
 }

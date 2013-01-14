@@ -2,11 +2,11 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Wallets extends EntityRepository
+class Repository_Loans extends EntityRepository
 {
 
     /**
-     * Get all Wallets
+     * Get all Loans
      * 
      * @param array $criteria
      * @return array 
@@ -34,10 +34,10 @@ class Repository_Wallets extends EntityRepository
     }
 
     /**
-     * Delete Wallet by id
+     * Delete Loans by id
      * 
      * @param integer $id
-     * @return Entity_Wallets
+     * @return Entity_Loans
      */
     public function delete($id)
     {
@@ -52,11 +52,11 @@ class Repository_Wallets extends EntityRepository
     }
 
     /**
-     * Create or update wallet record
+     * Create or update Loans record
      * 
      * @param array $params
      * @param integer $id
-     * @return Entity_Wallets
+     * @return Entity_Loans
      */
     public function createOrUpdate(array $params, $id = null)
     {
@@ -72,7 +72,7 @@ class Repository_Wallets extends EntityRepository
 
         $em = $this->getEntityManager();
 
-       //TODO: CREATE/UPDATE WALLET
+       //TODO: CREATE/UPDATE Loans
         
         $em->persist($entity);
         $em->flush();
