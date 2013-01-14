@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Investments
  *
  * @Table(name="investments")
- * @Entity
+ * @Entity(repositoryClass="Repository_Investments")
  */
-class Investments
+class Entity_Investments
 {
     /**
      * @var integer
@@ -22,11 +22,14 @@ class Investments
     private $id;
 
     /**
-     * @var integer
+     * @var Loan
      *
-     * @Column(name="loanId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Loans")
+     * @JoinColumns({
+     *   @JoinColumn(name="loanId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $loanid;
+    private $loan;
 
     /**
      * @var float
@@ -43,11 +46,14 @@ class Investments
     private $dateinvested;
 
     /**
-     * @var integer
+     * @var User
      *
-     * @Column(name="investorId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="investorId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $investorid;
+    private $investor;
 
     /**
      * @var string
@@ -68,26 +74,23 @@ class Investments
     }
 
     /**
-     * Set loanid
+     * Set loan
      *
-     * @param integer $loanid
-     * @return Investments
+     * @param Entity_Loans $loan
      */
-    public function setLoanid($loanid)
+    public function setLoan(Entity_Loans $loan)
     {
-        $this->loanid = $loanid;
-
-        return $this;
+        $this->loan = $loan;
     }
 
     /**
-     * Get loanid
+     * Get loan
      *
-     * @return integer 
+     * @return Entity_Loans 
      */
-    public function getLoanid()
+    public function getLoan()
     {
-        return $this->loanid;
+        return $this->loan;
     }
 
     /**
@@ -136,27 +139,24 @@ class Investments
         return $this->dateinvested;
     }
 
-    /**
-     * Set investorid
+     /**
+     * Set user
      *
-     * @param integer $investorid
-     * @return Investments
+     * @param Entity_Users $user
      */
-    public function setInvestorid($investorid)
+    public function setInvestor(Entity_Users $user)
     {
-        $this->investorid = $investorid;
-
-        return $this;
+        $this->investor = $user;
     }
 
     /**
-     * Get investorid
+     * Get user
      *
-     * @return integer 
+     * @return Entity_Users 
      */
-    public function getInvestorid()
+    public function getInvestor()
     {
-        return $this->investorid;
+        return $this->investor;
     }
 
     /**

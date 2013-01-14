@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Loans
  *
  * @Table(name="loans")
- * @Entity
+ * @Entity(repositoryClass="Repository_Loans")
  */
-class Loans
+class Entity_Loans
 {
     /**
      * @var integer
@@ -57,18 +57,25 @@ class Loans
     private $expirationdate;
 
     /**
-     * @var integer
+     * @var Status
      *
-     * @Column(name="statusId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Loanstatus")
+     * @JoinColumns({
+     *   @JoinColumn(name="statusId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $statusid;
+    private $status;
 
     /**
-     * @var integer
+     * @var User
      *
-     * @Column(name="borrowerId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="borrowerId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $borrowerid;
+    private $borrower;
+
 
 
     /**
@@ -196,49 +203,43 @@ class Loans
         return $this->expirationdate;
     }
 
-    /**
-     * Set statusid
+   /**
+     * Set status
      *
-     * @param integer $statusid
-     * @return Loans
+     * @param Entity_Loanstatus $status
      */
-    public function setStatusid($statusid)
+    public function setStatus(Entity_Loanstatus $status)
     {
-        $this->statusid = $statusid;
-
-        return $this;
+        $this->status = $status;
     }
 
     /**
-     * Get statusid
+     * Get status
      *
-     * @return integer 
+     * @return Entity_Loanstatus
      */
-    public function getStatusid()
+    public function getStatus()
     {
-        return $this->statusid;
+        return $this->status;
+    }
+
+     /**
+     * Set user
+     *
+     * @param Entity_Users $user
+     */
+    public function setBorrower(Entity_Users $user)
+    {
+        $this->borrower = $user;
     }
 
     /**
-     * Set borrowerid
+     * Get user
      *
-     * @param integer $borrowerid
-     * @return Loans
+     * @return Entity_Users 
      */
-    public function setBorrowerid($borrowerid)
+    public function getBorrower()
     {
-        $this->borrowerid = $borrowerid;
-
-        return $this;
-    }
-
-    /**
-     * Get borrowerid
-     *
-     * @return integer 
-     */
-    public function getBorrowerid()
-    {
-        return $this->borrowerid;
+        return $this->borrower;
     }
 }

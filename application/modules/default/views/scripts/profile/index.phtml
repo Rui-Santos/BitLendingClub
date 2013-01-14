@@ -2,9 +2,9 @@
 	<ul id="tabs-nav">
 		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
 		<li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
-		<li><a href="#"><span class="rep-icon">Reputation</span></a></li>
-		<li><a href="#"><span class="overview-icon">Investments</span></a></li>
-		<li><a href="#"><span class="loan-icon">Loans</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
 		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
 	</ul>
 	<div class="profile-content-wrapper">

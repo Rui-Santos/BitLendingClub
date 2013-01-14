@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Loanstatus
  *
  * @Table(name="loanStatus")
- * @Entity
+ * @Entity(repositoryClass="Repository_Loanstatus")
  */
-class Loanstatus
+class Entity_Loanstatus
 {
     /**
      * @var integer
