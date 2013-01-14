@@ -63,21 +63,41 @@ class Default_ProfileController extends Zend_Controller_Action
     
     public function reputationAction() 
     {
+        $id = Service_Auth::getLoggedUser()->getId();
+       
+        
+        
+        $userItem = $this->_model->get($id);
+        
+        $this->view->user = $userItem;
         
     }
     
     public function investmentsAction()
     {
+        $id = Service_Auth::getLoggedUser()->getId();
+       
         
+        
+        $userItem = $this->_model->get($id);
     }
     
     public function loansAction() 
     {
+        $id = Service_Auth::getLoggedUser()->getId();
+       
+        
+        
+        $userItem = $this->_model->get($id);
         
     }
     
     public function paymentsAction()
     {
+        $id = Service_Auth::getLoggedUser()->getId();
+       
         
+        
+        $userItem = $this->_model->get($id);
     }
 }
