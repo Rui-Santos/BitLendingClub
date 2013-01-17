@@ -20,6 +20,13 @@ class Entity_Loans
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @var string $title
+     *
+     * @Column(name="title", type="string", length=255, precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $title;
 
     /**
      * @var float
@@ -109,6 +116,26 @@ class Entity_Loans
     public function getAmount()
     {
         return $this->amount;
+    }
+    
+    /**
+     * Set title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**

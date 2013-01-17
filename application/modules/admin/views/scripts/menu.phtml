@@ -20,3 +20,9 @@
         Documents
     </a>
 </li>
+<li class="<?php echo ($selPage == "pages" ? "active main-nav-arrow" : ""); ?>">
+    <a class="main-menu-link" href="<?php echo $view->url(array('controller' => 'pages', 'action' => 'index', 'module' => 'admin'), null, true);?>">
+        <div class="main-nav-icon-big"><img src="/images/glyphicons/glyphicons_036_file.png"></div>
+        Pages
+    </a>
+</li>

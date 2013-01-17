@@ -11,7 +11,7 @@
 
 		<div class="profile-content-right pcr-padding full-width-table">
 			<div class="page-title">
-				<h1>Loans</h1>
+				<h1>Investments</h1>
 				<div class="table-toolbar">
 					<div class="toolbar-sorter">
 						<span>Show</span>
@@ -45,7 +45,7 @@
                                     <?php foreach($this->investments as $inv):?>
 					<tr>
 						<td><a href="#"><?php echo $inv->getLoan()->getBorrower()->getFullname();?></a></td>
-						<td><a href="#">-</a></td>
+						<td><a href="#"><?php echo $inv->getLoan()->getTitle();?></a></td>
 						<td><?php echo $inv->getLoan()->getAmount();?></td>
 						<td><?php echo $inv->getLoan()->getRate().'%';?></td>
 						<td><?php echo $inv->getLoan()->getTerm();?></td>

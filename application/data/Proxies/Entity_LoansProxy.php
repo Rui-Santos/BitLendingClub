@@ -54,6 +54,18 @@ class Entity_LoansProxy extends \Entity_Loans implements \Doctrine\ORM\Proxy\Pro
         return parent::getAmount();
     }
 
+    public function setTitle($title)
+    {
+        $this->__load();
+        return parent::setTitle($title);
+    }
+
+    public function getTitle()
+    {
+        $this->__load();
+        return parent::getTitle();
+    }
+
     public function setRate($rate)
     {
         $this->__load();
@@ -129,7 +141,7 @@ class Entity_LoansProxy extends \Entity_Loans implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'amount', 'rate', 'term', 'frequency', 'expirationdate', 'status', 'borrower');
+        return array('__isInitialized__', 'id', 'title', 'amount', 'rate', 'term', 'frequency', 'expirationdate', 'status', 'borrower');
     }
 
     public function __clone()

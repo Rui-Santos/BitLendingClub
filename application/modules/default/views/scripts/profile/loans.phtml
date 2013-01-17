@@ -46,7 +46,7 @@
                                     <?php foreach($this->loans as $loan):?>
 					<tr>
 						<td><a href="#"><?php echo $loan->getBorrower()->getFullname();?></a></td>
-						<td><a href="#">-</a></td>
+						<td><a href="#"><?php echo $loan->getTitle();?></a></td>
 						<td><?php echo $loan->getAmount();?></td>
 						<td><?php echo $loan->getRate().'%';?></td>
 						<td><?php echo $loan->getTerm();?></td>

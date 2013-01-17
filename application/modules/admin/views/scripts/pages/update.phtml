@@ -1,0 +1,8 @@
+<div id="page-section">
+    <div>
+        <h2><?php echo $this->translate('Редакция на страница "'.$this->pageItem->getTitle().'"'); ?></h2>
+    </div>    
+    <div>
+        <?php echo $this->partial('pages/form.phtml', array('form' => $this->form, 'pageItem' => $this->pageItem));?>
+    </div>
+</div>

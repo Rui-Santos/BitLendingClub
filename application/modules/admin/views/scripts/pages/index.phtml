@@ -1,0 +1,61 @@
+<div id="page-section">
+
+    <div>
+        <a class="link-button-create button" href="<?php echo $this->url(
+        array('action' => 'create'));
+?>"><?php echo $this->translate('Create new page'); ?></a>
+    </div>
+
+    <div>    
+        <div class="box">
+            <h4 class="box-header round-top"><i class="icon-list"></i><?php echo $this->translate('Static Pages'); ?></h4>
+            <div class="box-container-toggle">
+                <div class="box-content">
+                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered bootstrap-datatable" id="datatable">
+                        <thead>
+                            <tr>
+                                <th><?php echo $this->translate('Title'); ?></th>
+                                <th><?php echo $this->translate('Actions'); ?></th>
+                            </tr>
+                        </thead>
+
+
+
+                        <tbody>
+                            <?php if ($this->pageList->getTotalItemCount() > 0): ?>
+                                <?php $idArray = array(); ?>
+                                <?php
+                                foreach ($this->pageList as $page) {
+                                    $idArray[] = $page->getId();
+                                }
+                                $idCounter = 0;
+                                ?>
+
+    <?php foreach ($this->pageList as $page): ?>
+                                    <tr>
+                                        <td><?php echo $page->getTitle(); ?></td>
+                                        <td class="center">
+                                            <a class="btn btn-info" href="<?php echo $this->url(array('action' => 'update', 'id' => $page->getId())); ?>" title="<?php echo $this->translate('Edit'); ?>">
+                                                <i class="icon-edit icon-white"></i>&nbsp;Edit</a>
+       
+                                                <a class="btn btn-danger" href="<?php echo $this->url(array('action' => 'delete', 'id' => $page->getId())); ?>" title="<?php echo $this->translate('Delete'); ?>">
+                                                    <i class="icon-trash icon-white"></i>&nbsp;Delete</a>
+                                    
+                                        </td>
+                                    </tr>
+    <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4"><?php echo $this->translate('No pages found.'); ?></td>
+                                </tr>
+<?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>	 
+    </div>
+<?php echo $this->paginationControl(
+        $this->pageList, 'Sliding', 'partials/paginator.phtml', array('colspan' => 4));
+?> 
+</div>
