@@ -1,18 +1,35 @@
+<?php $page = $this->currentPage; ?>
+
 <?php 
-$this->headMeta()->appendName('keywords', $this->pageItem->getMetaKeywords());
-$this->headMeta()->appendName('description', $this->pageItem->getMetaDescription());
+$this->headMeta()->appendName('keywords', $page->getMetaKeywords());
+$this->headMeta()->appendName('description', $page->getMetaDescription());
 ?>
 
-<div id="page-wrapper" style="background: none;">    
-    <div id="static-container">                
-        <header id="page-header-static">
-            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'index', 'action' => 'index'), null, true); ?>" class="back-button"><?php echo $this->translate('Back'); ?></a>
-            <h1><?php echo $this->pageItem->getTitle(); ?></h1>
-        </header>  
-        
-        <section id="page-container-static">
-            
-            <?php echo $this->pageItem->getContent(); ?>            
-        </section>        
-    </div>
+    <h2></h2>
+    
+<div id="main-wrapper">
+	<!--div class="sidebar-left">
+		<span class="sidebar-nav-title">About us</span>
+		<ul id="sidebar-nav">
+			<li>
+				<a href="#">Our Company</a>
+			</li>
+			<li class="selected">
+				<a href="#">History</a>
+			</li>
+			<li>
+				<a href="#">Press</a>
+			</li>
+			<li>
+				<a href="#">Blog</a>
+			</li>
+		</ul>
+		<div class="sidebar-banner-wrapper">
+			<a href="#"><img src="images/sample-images/sidebar-banner.png" /></a>
+		</div>
+	</div-->
+	<div class="content-right">
+		<h1><?php echo $page->getTitle();?></h1>
+		<?php echo $page->getContent();?>
+	</div>
 </div>
