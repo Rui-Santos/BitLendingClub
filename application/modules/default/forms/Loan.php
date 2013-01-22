@@ -16,7 +16,7 @@ class Default_Form_Loan extends Default_Form_Abstract
             'value' => Service_Auth::getLoggedUser()->getId(),
         ));
 
-        $this->addElement('text', 'name', array(
+        $this->addElement('text', 'title', array(
             'placeholder' => 'Title',
             'class' => 'medium',
             'required' => true,

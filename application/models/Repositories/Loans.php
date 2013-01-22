@@ -73,6 +73,15 @@ class Repository_Loans extends EntityRepository {
         $entity->setTerm($params['term']);
         $entity->setDescription($params['description']);
         $entity->setFrequency($params['frequency']);
+        
+        $expiration = date_create_from_format('d/m/Y', $params['expirationDate']);
+       
+        $entity->setExpirationDate($expiration);
+        
+        $status = $em->getRepository('Entity_Loanstatus')->find(1);
+        if ($status) {
+            $entity->setStatus($status);
+        }
 
         $borrower = $em->getRepository('Entity_Users')->find($params['user_id']);
         if ($borrower) {

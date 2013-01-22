@@ -11,6 +11,7 @@ $(function() {
 
   initLoginDialog();
   
+  initDatepicker();
     
 });
 
@@ -48,4 +49,13 @@ var doLogin = function(form) {
     });
     
     return false;
+}
+
+var initDatepicker = function()
+{
+    $(".datepicker").datepicker({
+        showOn: 'button',
+        dateFormat: "dd/mm/yy",
+        buttonImage: '/images/datepicker.gif'
+    });    
 }
