@@ -1,40 +1,27 @@
 <div id="main-wrapper">
-	
-	<div class="profile-content-wrapper">
-		<div class="full-width">
-			<h1>Basic settings</h1>
-			<form action="<?php echo $this->url(array('module' => 'default', 
-                'controller' => 'loan', 'action' => 'create'), null, true); ?>" method="post">                
-<div class="field-box">
-                <?php echo $this->form->getElement('password'); ?>
-                </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('password_confirm'); ?>                
-                </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('firstname'); ?>
-                </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('lastname'); ?>
-                </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('username'); ?>
-                </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('address'); ?>
-                </div>
-          <div class="buttons-set">     
-           <?php echo $this->form->getElement('save'); ?>
-		</div>		
-					
-				
-			</form>
-		</div>
-	</div>
-</div>
+    <?php if (count($this->form->getMessages()) > 0): ?>
+    <div class="reg-divider"><span>
+            <img src="/images/error_x.png" alt="" />
+            <?php echo $this->translate('Saving failed. Please, retry'); ?></span>
+        </div>
+    <?php endif; ?>
+    <form class="loan-form" name="loan-form" action="<?php echo $this->url(array('module' => 'default',
+        'controller' => 'loan', 'action' => 'create'), null, true);
+    ?>" method="post">
+        <?php echo $this->form->getElement('name'); ?>
 
-            
-            
-           
-            
+        <?php echo $this->form->getElement('term'); ?>
+
+        <?php echo $this->form->getElement('amount'); ?>                
+
+        <?php echo $this->form->getElement('frequency'); ?>
+
+        <?php echo $this->form->getElement('expirationDate'); ?>
+
+        <?php echo $this->form->getElement('description'); ?>
+
+        <?php echo $this->form->getElement('user_id'); ?>
         
+        <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
+    </form>
+</div>

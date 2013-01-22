@@ -25,19 +25,19 @@ class Model_Loan extends Model_Abstract
     }
 
     /**
-     * Update wallet by specific params
+     * Update loan by specific params
      *
      * @param array $params
      * @param integer $walletId
      * @return Entity_Wallets
      */
-    public function update(array $params, $walletId)
+    public function update(array $params, $loanId)
     {
-        if (empty($params) || intval($walletId) == 0) {
+        if (empty($params) || intval($loanId) == 0) {
             throw new InvalidArgumentException('Invalid arguments');
         }
         
-        return $this->getRepository()->createOrUpdate($params, $walletId);
+        return $this->getRepository()->createOrUpdate($params, $loanId);
     }
     
     /**

@@ -2,8 +2,7 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Loans extends EntityRepository
-{
+class Repository_Loans extends EntityRepository {
 
     /**
      * Get all Loans
@@ -11,8 +10,7 @@ class Repository_Loans extends EntityRepository
      * @param array $criteria
      * @return array 
      */
-    public function getAll(array $criteria = array())
-    {
+    public function getAll(array $criteria = array()) {
         $query = $this->createQueryBuilder('deals');
 
         if (!empty($criteria)) {
@@ -39,8 +37,7 @@ class Repository_Loans extends EntityRepository
      * @param integer $id
      * @return Entity_Loans
      */
-    public function delete($id)
-    {
+    public function delete($id) {
         $entity = $this->find($id);
 
         if ($entity) {
@@ -58,28 +55,36 @@ class Repository_Loans extends EntityRepository
      * @param integer $id
      * @return Entity_Loans
      */
-    public function createOrUpdate(array $params, $id = null)
-    {
+    public function createOrUpdate(array $params, $id = null) {
         date_default_timezone_set('America/Chicago');
-        
+
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
-            $entity->setCreatedAt(new DateTime());
         } else {
             $entity = $this->find($id);
         }
 
         $em = $this->getEntityManager();
 
-       //TODO: CREATE/UPDATE Loans
-        
+
+        $entity->setTitle($params['title']);
+        $entity->setAmount($params['amount']);
+        $entity->setTerm($params['term']);
+        $entity->setDescription($params['description']);
+        $entity->setFrequency($params['frequency']);
+
+        $borrower = $em->getRepository('Entity_Users')->find($params['user_id']);
+        if ($borrower) {
+            $entity->setBorrower($borrower);
+        }
+
+
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);
 
         return $entity;
-       
     }
 
 }

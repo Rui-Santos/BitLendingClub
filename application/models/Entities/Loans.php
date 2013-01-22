@@ -61,7 +61,7 @@ class Entity_Loans
      *
      * @Column(name="expirationDate", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $expirationdate;
+    private $expirationDate;
 
     /**
      * @var Status
@@ -222,7 +222,7 @@ class Entity_Loans
      */
     public function setExpirationdate($expirationdate)
     {
-        $this->expirationdate = $expirationdate;
+        $this->expirationDate = $expirationdate;
 
         return $this;
     }
@@ -234,7 +234,7 @@ class Entity_Loans
      */
     public function getExpirationdate()
     {
-        return $this->expirationdate;
+        return $this->expirationDate;
     }
 
    /**
