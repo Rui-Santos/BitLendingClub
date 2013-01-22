@@ -72,6 +72,13 @@ class Entity_Loans
      * })
      */
     private $status;
+    
+    /**
+     * @var text $description
+     *
+     * @Column(name="description", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $description;
 
     /**
      * @var User
@@ -269,4 +276,24 @@ class Entity_Loans
     {
         return $this->borrower;
     }
+    
+    /**
+     * Set description
+     *
+     * @param text $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return text 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }   
 }
