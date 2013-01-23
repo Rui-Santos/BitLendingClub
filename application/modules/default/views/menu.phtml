@@ -1,2 +1,7 @@
-<ul class="sf-menu">
+<ul id="main-nav">
+    <?php foreach ($this->container as $page) : ?>    
+        <li class="">
+            <a href="<?= $page->getHref(); ?>"><?= $page->getLabel() ?></a>
+        </li>
+    <?php endforeach; ?>
 </ul>

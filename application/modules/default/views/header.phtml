@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-    
+
     <head>
         <?php echo $this->headMeta(); ?>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -21,7 +21,7 @@
                 ->appendStylesheet('/styles/smoothness/jquery-ui-1.8.18.custom.css');
         ?>
         <title>BitLendingClub</title>
-        
+
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -32,12 +32,17 @@
             <div class="header-glow">
                 <div class="header-holder">
                     <a href="/" class="logo"></a>
-                    <ul id="main-nav">
+                    <?php
+                            $partial = array('menu.phtml', 'default');
+                            $this->navigation()->menu($this->navigation)->setPartial($partial);
+                            echo $this->navigation()->menu($this->navigation)->render();
+                        ?>
+<!--                    <ul id="main-nav">
                         <li><a href="#"><span><span class="blue-ring">How it works?</span></span></a></li>
                         <li><a href="#"><span><span class="green-ring">Investing</span></span></a></li>
                         <li><a href="#"><span><span class="yellow-ring">About us</span></span></a></li>
                         <li><a href="#"><span><span class="orange-ring">Help</span></span></a></li>
-                    </ul>
+                    </ul>-->
                     <?php if (Zend_Auth::getInstance()->getIdentity()): ?>
 
                         <ul class="account-wrapper">

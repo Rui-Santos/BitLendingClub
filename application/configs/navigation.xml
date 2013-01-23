@@ -1,17 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <nav>
-        <users>
-            <label>Users</label>
-            <module>admin</module>
-            <controller>users</controller>
+        <home>
+            <label>Home</label>
+            <module>default</module>
+            <controller>index</controller>
             <action>index</action>
-        </users>
-        <documents>
-            <label>Documents</label>
-            <module>admin</module>
-            <controller>documents</controller>
+            <route>default</route>
+        </home>
+        <aboutus>
+            <label>About Us</label>
+            <module>default</module>
+            <controller>content</controller>
             <action>index</action>
-        </documents>
+            <route>content</route>
+            <params>
+                <class>blue</class>
+                <slug>About-us</slug>
+                <id>1</id>
+            </params>
+        </aboutus>
+<!--        <ittrainers>
+            <route>categories</route>
+            <label>IT Trainers</label>
+            <module>default</module>
+            <controller>category</controller>
+            <action>index</action>
+        </ittrainers>
+        <maproute>
+            <route>default</route>
+            <label>Map</label>
+            <module>default</module>
+            <controller>map</controller>
+            <action>index</action>
+        </maproute>
+        
+        <testimonials>
+            <label>Testimonials</label>
+            <module>default</module>
+            <controller>content</controller>
+            <action>index</action>
+            <route>content</route>
+            <params>
+                <id>4</id>
+                <slug>Testimonials</slug>
+            </params>            
+        </testimonials>
+        <faq>
+            <label>FAQ</label>
+            <module>default</module>
+            <controller>content</controller>
+            <action>index</action>
+            <route>content</route>
+            <params>
+                <id>5</id>
+                <slug>Frequently-asked-questions</slug>
+            </params>
+        </faq>
+        <careers>
+            <label>Careers</label>
+            <module>default</module>
+            <controller>content</controller>
+            <action>index</action>
+            <route>content</route>
+            <params>
+                <id>6</id>
+                <slug>Careers</slug>
+            </params>
+        </careers>-->
+        <contactus>
+            <label>Contact Us</label>
+            <module>default</module>
+            <controller>contact</controller>
+            <action>index</action>
+            <route>contact_us</route>
+        </contactus>
+        <blog>
+            <label>Blog</label>
+            <module>default</module>
+                <controller>Blog</controller>
+            <action>index</action>
+            <route>default</route>
+            <slug>Careers</slug>
+            
+        </blog>
     </nav>
 </config>
