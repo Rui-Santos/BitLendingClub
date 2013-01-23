@@ -35,7 +35,7 @@
                     <?php
                             $partial = array('menu.phtml', 'default');
                             $this->navigation()->menu($this->navigation)->setPartial($partial);
-                            echo $this->navigation()->menu($this->navigation)->render();
+                            echo $this->navigation()->menu($this->navigation)->setMaxDepth(1)->render();
                         ?>
 <!--                    <ul id="main-nav">
                         <li><a href="#"><span><span class="blue-ring">How it works?</span></span></a></li>

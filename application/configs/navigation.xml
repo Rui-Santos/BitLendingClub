@@ -19,6 +19,20 @@
                 <slug>About-us</slug>
                 <id>123</id>
             </params>
+            <pages>
+                <submenu>
+                    <label>Submenu</label>
+                    <module>default</module>
+                    <controller>pages</controller>
+                    <action>index</action>
+                    <route>content</route>
+                    <params>
+                        <class>blue</class>
+                        <slug>submenu</slug>
+                        <id>123</id>
+                    </params>
+                </submenu>
+            </pages>
         </aboutus>
 <!--        <ittrainers>
             <route>categories</route>
