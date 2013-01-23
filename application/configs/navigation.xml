@@ -17,7 +17,7 @@
             <params>
                 <class>blue</class>
                 <slug>About-us</slug>
-                <id>1</id>
+                <id>123</id>
             </params>
         </aboutus>
 <!--        <ittrainers>
@@ -73,15 +73,24 @@
             <module>default</module>
             <controller>contact</controller>
             <action>index</action>
-            <route>contact_us</route>
+            <route>content</route>
+            <params>
+                <slug>contact-us</slug> 
+                <class>blue</class>
+                <id>123</id>
+            </params>
         </contactus>
         <blog>
             <label>Blog</label>
             <module>default</module>
-                <controller>Blog</controller>
+            <controller>Blog</controller>
             <action>index</action>
-            <route>default</route>
-            <slug>Careers</slug>
+            <route>content</route>
+            <params>
+                <slug>blog</slug> 
+                <class>blue</class>
+                <id>123</id>
+            </params>            
             
         </blog>
     </nav>

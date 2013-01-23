@@ -224,7 +224,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute(
                 'content', new Zend_Controller_Router_Route('content/:slug',
                         array( 'module' => 'default', 
-                            'controller' => 'content',
+                            'controller' => 'pages',
                             'action' => 'index'))
         );
         $router->addRoute(
