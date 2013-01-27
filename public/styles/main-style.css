@@ -35,6 +35,17 @@ h6{  }
 .back-link{ float:right; margin:10px 0px 0px; font-size:12px; color:#3BA9F4; text-decoration:underline; }
 .back-link:hover{ text-decoration:none; }
 
+
+.green-small-btn{ background:url(../images/middle-btns.png) no-repeat 0 0; float:left; display:inline-block; height:30px; padding-left:15px; text-decoration:none; }
+.green-small-btn span{ background:url(../images/middle-btns.png) no-repeat 100% 0; display:block; color:#fff; text-shadow:0px -1px 0px #1B8E07; text-transform:uppercase; font-size:10px; font-weight:700; line-height:28px; height:30px; padding-right:15px; }
+.green-small-btn:hover{ background:url(../images/middle-btns.png) no-repeat 0 -30px; }
+.green-small-btn:hover span{ background:url(../images/middle-btns.png) no-repeat 100% -30px; }
+
+.grey-small-btn{ background:url(../images/middle-btns.png) no-repeat 0 -60px; float:left; display:inline-block; height:30px; padding-left:15px; text-decoration:none; }
+.grey-small-btn span{ background:url(../images/middle-btns.png) no-repeat 100% -60px; display:block; color:#4D4D4D; text-shadow:0px 1px 0px #f9f9f9; text-transform:uppercase; font-size:10px; font-weight:700; line-height:28px; height:30px; padding-right:15px; }
+.grey-small-btn:hover{ background:url(../images/middle-btns.png) no-repeat 0 -90px; }
+.grey-small-btn:hover span{ background:url(../images/middle-btns.png) no-repeat 100% -90px; }
+
 /* HEADER */
 .header-wrapper{ background:url(../images/header-bg.jpg) repeat-x 0 0; width:100%; height:88px; display:inline-block; border-bottom:1px solid #eee; }
 .header-glow{ background:transparent url(../images/header-glow.png) no-repeat 10% 0; width:100%; display:inline-block; height:85px; }
@@ -311,9 +322,29 @@ h1.how-it-works-title span{ font-weight:bold; text-transform:uppercase; color:#3
 
 .full-width h1{ font-size:24px; font-weight:300; margin:0px 0px 20px; }
 
+.profile-content-wrapper .row{ display:inline-block; width:100%; margin-top:20px; }
+.profile-content-wrapper .row:first-child{ margin-top:0px; }
+.profile-content-wrapper .row .box{ float:left; margin-left:20px; background: #fff; border: 1px solid #CCCCCC; overflow:hidden; min-height:160px; box-shadow:0px 2px 6px #ddd; position:relative; }
+.profile-content-wrapper .row .box .contnet{ padding:10px 19px 20px; overflow:hidden; }
+.profile-content-wrapper .row .box .title{ background:#fff url(../images/gradient-title-bg.png) repeat-x 0 100%; font-size:16px; color:#333; font-weight:bold; padding:10px 19px; }
+.profile-content-wrapper .row .box .title .divider{ font-weight:300; color:#ccc; padding:0px 2px; }
+.profile-content-wrapper .row .box1{ width:298px; }
+.profile-content-wrapper .row .box2{ width:618px; }
+.profile-content-wrapper .row .box3{ width:938px; }
+.profile-content-wrapper .row .first{ margin-left:0px; }
+.profile-content-wrapper .row .box .contnet ul{  }
+.profile-content-wrapper .row .box .contnet ul li, .profile-content-wrapper .row .box .contnet ol li{ color:#999; display:block; margin-bottom:4px; font-size:12px; }
+.profile-content-wrapper .row .box .contnet ul li span, .profile-content-wrapper .row .box .contnet ol li span{ font-size:13px; margin-left:4px; color:#333; font-weight:bold; }
+.profile-content-wrapper .row .box .contnet ul li span.green, .profile-content-wrapper .row .box .contnet ol li span.green{ color:#38B249; }
+.profile-content-wrapper .row .box .contnet ul li span.red, .profile-content-wrapper .row .box .contnet ol li span.red{ color:#ED1C24; }
+.profile-content-wrapper .row .box .contnet ol li{ width:190px; float:left; }
+.profile-content-wrapper .row .box .btns-set{ overflow:hidden; position:absolute; bottom:20px; }
+.profile-content-wrapper .row .box .btns-set a{ float:left; margin-right:8px; }
+.profile-content-wrapper .row .box .btns-set a:first-child{  }
+
 
 /* LOGIN */
-#overlay-block{ background:url(../images/overlay-block-bg.png) repeat 0 0; width:100%; height:100%; overflow:hidden; position:fixed; top:0px; left:0px; z-index:3000; }
+#overlay-block{ background:url(../images/overlay-block-bg.png) repeat 0 0; width:100%; height:100%; display:none; overflow:hidden; position:fixed; top:0px; left:0px; z-index:999; }
 .login-wrapper{ background:url(../images/overlay-block-bg.png) repeat 0 0; width:470px; height:370px; position:fixed; margin-top:-185px; margin-left:-235px; top:50%; left:50%; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; }
 .login-holder{ background:#f5f5f5; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; margin:6px 0px 0px 6px; width:458px; height:358px; overflow:hidden; position:relative; }
 #show-login-holder{ overflow:hidden; display:block; }
