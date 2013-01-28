@@ -69,19 +69,19 @@
                     </ul>
                     <div class="btns-set">
                         <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>" class="grey-small-btn"><span>My investments</span></a>
-                        <a href="#" class="green-small-btn"><span>Browse listings</span></a>
+                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>" class="green-small-btn"><span>Browse listings</span></a>
                     </div>
                 </div>
             </div>
             <div class="box box2">
-                <div class="title">Credit Rating <span class="red">2</span><span class="divider">/</span><span class="green">10</span></div>
+                <div class="title">Credit Rating <?php if($this->validated==4): echo '<span class="green">'.$this->validated.'</span>'; else:  echo '<span class="red">'.$this->validated.'</span>'; endif; ?><span class="divider">/</span><span class="green">4</span></div>
                 <div class="contnet">
                     <ol>
-                        <li>Identity veriﬁed: <span class="red">No</span></li>
+                        <li>Identity verified: <?php if($this->valId): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></li>
 
-                        <li>Address veriﬁed: <span class="red">No</span></li>
+                        <li>Address verified: <?php if($this->valAddress): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></li>
 
-                        <li>Facebook: <span class="red"><?php if($this->user->getFbUserId()): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></span></li>
+                        <li>Facebook: <?php if($this->user->getFbUserId()): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></li>
                         <li>Gmail: <span class="red">No</span></li>
                     </ol>
                     <div class="btns-set">
