@@ -17,7 +17,23 @@ class Default_ProfileController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-
+        $id = Service_Auth::getLoggedUser()->getId();
+        $user = $this->_model->get($id);
+        $this->view->user = $user;
+        
+        $wallet = new Model_Wallet();
+        $wallets = $wallet->findBy(array('user' => $user->getId()));
+        $this->view->wallets = $wallets;
+        
+        $loans = new Model_Loan();
+        $loans = $loans->findBy(array('borrower' => $user->getId()));
+        $this->view->loans = $loans;
+        
+        $investments = new Model_Investment();
+        $investments = $investments->findBy(array('investor' => $user->getId()));
+        $this->view->investments = $investments;
+        
+        
         //Zend_Debug::dump(Zend_Auth::getInstance()->getIdentity());
     }
 

@@ -1,7 +1,7 @@
 <ul id="main-nav">
     <?php foreach ($this->container as $page) : ?>    
         <li class="">
-            <a href="<?= $page->getHref(); ?>"><?= $page->getLabel() ?></a>
+            <a href="<?= $page->getHref(); ?>"><span><span class="<?= $page->getClass(); ?>"><?= $page->getLabel() ?></span></span></a>
         </li>
     <?php endforeach; ?>
 </ul>

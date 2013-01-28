@@ -1,90 +1,99 @@
 <div id="main-wrapper">
-	<ul id="tabs-nav">
-		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
-	</ul>
-	<div class="profile-content-wrapper">
-		<div class="row">
-			<div class="box box1 first">
-				<div class="title">Account Balance</div>
-				<div class="contnet">
-					<ul>
-						<li>BTC: <span>0.00000000</span></li>
-						<li>Unconfirmed: <span>0.00000000</span></li>
-					</ul>
-					<div class="btns-set">
-						<a href="#" class="grey-small-btn"><span>Add funds</span></a>
-						<a href="#" class="grey-small-btn"><span>Withdraw</span></a>
-					</div>
-				</div>
-			</div>
-			<div class="box box1">
-				<div class="title">Reputation <span class="red">-35%</span></div>
-				<div class="contnet">
-					<ul>
-						<li>Positive: <span class="green">12</span></li>
-						<li>Negative: <span class="red">27</span></li>
-					</ul>
-					<div class="btns-set">
-						<a href="#" class="grey-small-btn"><span>Bitcoin OTC</span></a>
-						<a href="#" class="green-small-btn"><span>Rate user</span></a>
-					</div>
-				</div>
-			</div>
-			<div class="box box1">
-				<div class="title">Loans</div>
-				<div class="contnet">
-					<ul>
-						<li>Funding in progress: <span>0</span></li>
-						<li>Active: <span>0</span></li>
-					</ul>
-					<div class="btns-set">
-						<a href="#" class="grey-small-btn"><span>My Loans</span></a>
-						<a href="#" class="green-small-btn"><span>Get a loan</span></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="box box1 first">
-				<div class="title">Investments</div>
-				<div class="contnet">
-					<ul>
-						<li>Pending: <span>0</span></li>
-						<li>Active: <span>0</span></li>
-					</ul>
-					<div class="btns-set">
-						<a href="#" class="grey-small-btn"><span>My investments</span></a>
-						<a href="#" class="green-small-btn"><span>Browse listings</span></a>
-					</div>
-				</div>
-			</div>
-			<div class="box box2">
-				<div class="title">Credit Rating <span class="red">2</span><span class="divider">/</span><span class="green">10</span></div>
-				<div class="contnet">
-					<ol>
-						<li>Identity veriﬁed: <span class="green">Yes</span></li>
-						<li>Phone veriﬁed: <span class="red">No</span></li>
-						<li>Address veriﬁed: <span class="red">No</span></li>
-						<li>Credit score veriﬁed: <span class="red">No</span></li>
-						<li>Facebook: <span class="red">No</span></li>
-						<li>LinkedIn: <span class="red">No</span></li>
-					</ol>
-					<div class="btns-set">
-						<a href="#" class="green-small-btn"><span>Improve it</span></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <ul id="tabs-nav">
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+    </ul>
+    <div class="profile-content-wrapper">
+        <div class="row">
+            <div class="box box1 first">
+                <div class="title">Account Balance</div>
+                <div class="contnet">
+                    <?php if (count($this->wallets) > 0): ?>
+                        <?php foreach ($this->wallets as $wallet): ?>
+                            <ul>
+                                <li>BTC: <span><?php echo $wallet->getBalance(); ?></span></li>
+                                <li>Unconfirmed: <span><?php echo $wallet->getBalance(); ?></span></li>
+                            </ul>
+                            <?php break; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <ul>
+                            <li>BTC: <span>0</span></li>
+                            <li>Unconfirmed: <span>0</span></li>
+                        </ul>
+                    <?php endif; ?>
+                    <div class="btns-set">
+                        <a href="#" class="grey-small-btn"><span>Add funds</span></a>
+                        <a href="#" class="grey-small-btn"><span>Withdraw</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box box1">
+                <div class="title">Reputation <span class="red"><?php echo $this->user->getRating();?></span></div>
+                <div class="contnet">
+                    <ul>
+                        <li>Positive: <span class="green">12</span></li>
+                        <li>Negative: <span class="red">27</span></li>
+                    </ul>
+                    <div class="btns-set">
+                        <a href="#" class="grey-small-btn"><span>Bitcoin OTC</span></a>
+                        <a href="#" class="green-small-btn"><span>Rate user</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box box1">
+                <div class="title">Loans</div>
+                <div class="contnet">
+                    <ul>
+                        <li>Funding in progress: <span><?php echo count($this->loans); ?></span></li>
+                        <li>Active: <span><?php echo count($this->loans); ?></span></li>
+                    </ul>
+                    <div class="btns-set">
+                        <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>" class="grey-small-btn"><span>My Loans</span></a>
+                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>" class="green-small-btn"><span>Get a loan</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box box1 first">
+                <div class="title">Investments</div>
+                <div class="contnet">
+                    <ul>
+                        <li>Pending: <span><?php echo count($this->investments); ?></span></li>
+                        <li>Active: <span><?php echo count($this->investments); ?></span></li>
+                    </ul>
+                    <div class="btns-set">
+                        <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>" class="grey-small-btn"><span>My investments</span></a>
+                        <a href="#" class="green-small-btn"><span>Browse listings</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box box2">
+                <div class="title">Credit Rating <span class="red">2</span><span class="divider">/</span><span class="green">10</span></div>
+                <div class="contnet">
+                    <ol>
+                        <li>Identity veriﬁed: <span class="red">No</span></li>
+
+                        <li>Address veriﬁed: <span class="red">No</span></li>
+
+                        <li>Facebook: <span class="red">No</span></li>
+                        <li>Gmail: <span class="red">No</span></li>
+                    </ol>
+                    <div class="btns-set">
+                        <a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>" class="green-small-btn"><span>Improve it</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-            
-            
-           
-            
-        
+
+
+
+

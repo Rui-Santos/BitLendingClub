@@ -43,11 +43,14 @@ class Entity_Wallets
     private $balance;
 
     /**
-     * @var integer
+     * @var User
      *
-     * @Column(name="userId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="userId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $userid;
+    private $user;
 
 
     /**
@@ -130,25 +133,23 @@ class Entity_Wallets
     }
 
     /**
-     * Set userid
+     * Set user
      *
-     * @param integer $userid
-     * @return Wallets
+     * @param Entity_Users $user
      */
-    public function setUserid($userid)
+    public function setUser(Entity_Users $user)
     {
-        $this->userid = $userid;
-
-        return $this;
+        $this->user = $user;
     }
 
     /**
-     * Get userid
+     * Get user
      *
-     * @return integer 
+     * @return Entity_Users 
      */
-    public function getUserid()
+    public function getUser()
     {
-        return $this->userid;
+        return $this->user;
     }
+    
 }

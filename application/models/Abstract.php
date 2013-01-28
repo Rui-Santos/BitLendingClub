@@ -82,6 +82,18 @@ abstract class Model_Abstract
     }
     
     /**
+     * Get all objects
+     * 
+     * @param array $criteria
+     * @return QueryBuilder
+     */
+    public function findBy(array $criteria = array())
+    {
+        return $this->getRepository()->findBy($criteria);
+    }
+
+    
+    /**
      *
      * @return type 
      */
