@@ -33,7 +33,11 @@ class Default_ProfileController extends Zend_Controller_Action {
         $investments = $investments->findBy(array('investor' => $user->getId()));
         $this->view->investments = $investments;
         
-        
+        $documents = new Model_Document();
+        $doctype = new Model_DocumentType();
+        $doctypeId = $doctype->get(1);
+        $docId = $documents->findBy(array('user'=>$id,'isReviewed'=>1));
+        App_DoctrineDebug::dump($docId);exit;
         //Zend_Debug::dump(Zend_Auth::getInstance()->getIdentity());
     }
 

@@ -18,7 +18,7 @@
             <class>green-ring</class>
             <params>
                 <slug>investing</slug>
-                <id>1</id>
+                <id>2</id>
             </params>
             <!--pages>
                 <submenu>
@@ -35,54 +35,6 @@
                 </submenu>
             </pages-->
         </investing>
-<!--        <ittrainers>
-            <route>categories</route>
-            <label>IT Trainers</label>
-            <module>default</module>
-            <controller>category</controller>
-            <action>index</action>
-        </ittrainers>
-        <maproute>
-            <route>default</route>
-            <label>Map</label>
-            <module>default</module>
-            <controller>map</controller>
-            <action>index</action>
-        </maproute>
-        
-        <testimonials>
-            <label>Testimonials</label>
-            <module>default</module>
-            <controller>content</controller>
-            <action>index</action>
-            <route>content</route>
-            <params>
-                <id>4</id>
-                <slug>Testimonials</slug>
-            </params>            
-        </testimonials>
-        <faq>
-            <label>FAQ</label>
-            <module>default</module>
-            <controller>content</controller>
-            <action>index</action>
-            <route>content</route>
-            <params>
-                <id>5</id>
-                <slug>Frequently-asked-questions</slug>
-            </params>
-        </faq>
-        <careers>
-            <label>Careers</label>
-            <module>default</module>
-            <controller>content</controller>
-            <action>index</action>
-            <route>content</route>
-            <params>
-                <id>6</id>
-                <slug>Careers</slug>
-            </params>
-        </careers>-->
         <aboutus>
             <label>About Us</label>
             <module>default</module>
@@ -92,7 +44,7 @@
             <class>yellow-ring</class>
             <params>
                 <slug>about-us</slug> 
-                <id>2</id>
+                <id>3</id>
             </params>
         </aboutus>
         <help>
@@ -104,7 +56,7 @@
             <class>orange-ring</class>
             <params>
                 <slug>help</slug>  
-                <id>3</id>
+                <id>4</id>
             </params>            
             
         </help>

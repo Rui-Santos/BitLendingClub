@@ -81,7 +81,7 @@
 
                         <li>Address veriﬁed: <span class="red">No</span></li>
 
-                        <li>Facebook: <span class="red">No</span></li>
+                        <li>Facebook: <span class="red"><?php if($this->user->getFbUserId()): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></span></li>
                         <li>Gmail: <span class="red">No</span></li>
                     </ol>
                     <div class="btns-set">

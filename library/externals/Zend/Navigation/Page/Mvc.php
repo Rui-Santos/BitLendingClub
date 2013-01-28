@@ -223,7 +223,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
         if ($param = $this->getAction()) {
             $params['action'] = $param;
         }
-
+        
         $url = self::$_urlHelper->url($params,
                                       $this->getRoute(),
                                       $this->getResetParams(),

@@ -21,8 +21,8 @@
 				<ul>
 					<li>Identity verified: <span class="red">No</span></li>
                                         <li>Address verified: <span class="red">No</span></li>
-					<li>Facebook: <span class="red">No</span></li>
-					<li>LinkedIn: <span class="red">No</span></li>
+					<li>Facebook: <?php if($user->getFbUserId()): echo '<span class="green">Yes</span>'; else: echo '<span class="red">No</span>'; endif;?></li>
+					<li>Gmail: <span class="red">No</span></li>
 				</ul>
 			</div>
 		</div>
