@@ -17,25 +17,29 @@ class Default_Form_Loan extends Default_Form_Abstract
         ));
 
         $this->addElement('text', 'title', array(
-            'placeholder' => 'Title',
+            //'placeholder' => 'Title',
+            'label' => 'Title',
             'class' => 'medium',
             'required' => true,
         ));
         
         $this->addElement('text', 'term', array(
-            'placeholder' => 'Term (days)',
+            //'placeholder' => 'Term (days)',
+            'label' => 'Term (days)',
             'class' => 'medium',
             'required' => true,
         ));
         
         $this->addElement('text', 'amount', array(
-            'placeholder' => 'Amount',
+            //'placeholder' => 'Amount',
+            'label' => 'Amount',
             'class' => 'medium',
             'required' => true,
         ));
         
         $this->addElement('text', 'frequency', array(
-            'placeholder' => 'Payment Frequency',
+            //'placeholder' => 'Payment Frequency',
+            'label' => 'Payment Frequency',
             'class' => 'medium',
             'required' => true,
         ));
@@ -51,7 +55,8 @@ class Default_Form_Loan extends Default_Form_Abstract
             'class' => 'large ckeditor html_editor_on_simple',
             'cols' => 70,
             'rows' => 15,
-            'placeholder' => 'Description',
+            //'placeholder' => 'Description',
+            'label' => 'Description',
             'required' => true,
         ));
         

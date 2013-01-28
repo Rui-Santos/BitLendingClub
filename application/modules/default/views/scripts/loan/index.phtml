@@ -1,8 +1,8 @@
 <div id="main-wrapper">
 	<ul id="tabs-nav">
-		<li><a href="#"><span class="overview-icon">Overview</span></a></li>
-		<li class="selected"><a href="#"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
-		<li><a href="#"><span class="automated-plan-icon">Create automated plan</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
+		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
+		<li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Create automated plan</span></a></li>
 	</ul>
 	<div class="page-title">
 		<h1>Bitcoin Loan Listings</h1>

@@ -1,27 +1,45 @@
 <div id="main-wrapper">
-    <?php if (count($this->form->getMessages()) > 0): ?>
-    <div class="reg-divider"><span>
-            <img src="/images/error_x.png" alt="" />
-            <?php echo $this->translate('Saving failed. Please, retry'); ?></span>
+    <ul id="tabs-nav">
+        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Create automated plan</span></a></li>
+    </ul>
+    <div class="profile-content-wrapper">
+        <div class="full-width">
+            <h1>Create a loan listing</h1>
+            <?php if (count($this->form->getMessages()) > 0): ?>
+                <div class="reg-divider"><span>
+                        <img src="/images/error_x.png" alt="" />
+                        <?php echo $this->translate('Saving failed. Please, retry'); ?></span>
+                </div>
+            <?php endif; ?>
+            <form class="loan-form" name="loan-form" action="<?php
+            echo $this->url(array('module' => 'default',
+                'controller' => 'loan', 'action' => 'create'), null, true);
+            ?>" method="post">
+                <div class="field-box">
+                    <?php echo $this->form->getElement('title'); ?>
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('term'); ?>
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('amount'); ?>                
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('frequency'); ?>
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('expirationDate'); ?>
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('description'); ?>
+                </div>
+                <div class="field-box">
+                    <?php echo $this->form->getElement('user_id'); ?>
+                </div>
+                <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
+            </form>
         </div>
-    <?php endif; ?>
-    <form class="loan-form" name="loan-form" action="<?php echo $this->url(array('module' => 'default',
-        'controller' => 'loan', 'action' => 'create'), null, true);
-    ?>" method="post">
-        <?php echo $this->form->getElement('title'); ?>
-
-        <?php echo $this->form->getElement('term'); ?>
-
-        <?php echo $this->form->getElement('amount'); ?>                
-
-        <?php echo $this->form->getElement('frequency'); ?>
-
-        <?php echo $this->form->getElement('expirationDate'); ?>
-
-        <?php echo $this->form->getElement('description'); ?>
-
-        <?php echo $this->form->getElement('user_id'); ?>
-        
-        <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
-    </form>
+    </div>
 </div>
