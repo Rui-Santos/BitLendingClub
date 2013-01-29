@@ -1,101 +1,74 @@
 <div id="main-wrapper">
-	<ul id="tabs-nav">
-		<li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
-		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Create automated plan</span></a></li>
-	</ul>
-	<div class="page-title">
-		<h1>Bitcoin Loan Listings</h1>
-		<div class="table-toolbar">
-			<div class="toolbar-sorter">
-				<span>Show</span>
-				<select>
-					<option>10</option>
-					<option>25</option>
-					<option>50</option>
-					<option>100</option>
-				</select>
-				<span>results.</span>
-			</div>
-			<div class="toolbar-search">
-				<input type="text" />
-				<a href="#"></a>
-			</div>
-		</div>
-	</div>
-	<table id="listing-table" cellspacing="0" cellpadding="0">
-		<thead>
-			<tr>
-				<th>Title / Purpose, Term</th>
-				<th>Amount @ Interest Payment Type</th>
-				<th>% Funded</th>
-				<th>Time Left</th>
-				<th>Time Left</th>
-				<th>BLC Rating</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>80%</strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
-				<td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">Taxicab Company looking for funding!! Great investment (Added pictures and additional info per your request) Revised Loan Request</a><strong>Business</strong>, 360 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>15%</strong> funded<div class="funding-bg"><span style="width:15px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>60%</strong> positive <div class="reputation-makrs"><span>+17</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="green-star">8</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>72%</strong> funded<div class="funding-bg"><span style="width:72px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>24%</strong> positive <div class="reputation-makrs"><span>+12</span>, <span>-4</span></div></td>
-				<td class="rating"><strong class="green-star">8</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>100%</strong> funded<div class="funding-bg"><span style="width:100px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>100%</strong> positive <div class="reputation-makrs"><span>+12</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="yellow-star">6</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">Taxicab Company looking for funding!! Great investment (Added pictures and additional info per your request) Revised Loan Request</a><strong>Business</strong>, 360 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>15%</strong> funded<div class="funding-bg"><span style="width:15px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>60%</strong> positive <div class="reputation-makrs"><span>+17</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="red-star">2</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="6" class="paging">
-					<div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
-					<ul>
-						<!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
-						<li><a href="#" class="arr no-prev"></a></li>
-						<li class="current">1</li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#" class="arr next"></a></li>
-					</ul>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+    <ul id="tabs-nav">
+        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Create automated plan</span></a></li>
+    </ul>
+    <div class="page-title">
+        <h1>Bitcoin Loan Listings</h1>
+        <div class="table-toolbar">
+            <div class="toolbar-sorter">
+                <span>Show</span>
+                <select>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span>results.</span>
+            </div>
+            <div class="toolbar-search">
+                <input type="text" />
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+    <?php if (count($this->loans)): ?>
+
+
+        <table id="listing-table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>Title / Purpose, Term</th>
+                    <th>Amount / Payment Type</th>
+                    <th>% Funded</th>
+                    <th>Time Left</th>
+                    <th>Reputation</th>
+                    <th>BLC Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->loans as $loan): ?>
+                    <tr>
+                        <td class="listing-title"><a href="#"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
+                        <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
+                        <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
+                        <td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
+                        <td><strong>8</strong> days</td>
+                        <td><strong><?php echo $loan->getBorrower()->getRating(); ?></strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
+                        <td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="paging">
+                        <div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
+                        <ul>
+                            <!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
+                            <li><a href="#" class="arr no-prev"></a></li>
+                            <li class="current">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#" class="arr next"></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    <?php else: ?>
+        <div>No loans found.</div>
+    <?php endif; ?>
 </div>

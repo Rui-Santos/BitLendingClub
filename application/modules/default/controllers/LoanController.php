@@ -20,7 +20,7 @@ class Default_LoanController extends Zend_Controller_Action {
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(Model_Page::PER_PAGE);
 
-        $this->view->loanList = $paginator;
+        $this->view->loans = $paginator;
     }
 
     public function createAction() {
