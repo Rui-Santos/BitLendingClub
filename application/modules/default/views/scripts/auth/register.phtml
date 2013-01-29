@@ -1,27 +1,9 @@
-<script type="text/javascript">
-                $(function(){  
-                    $('.fb-login-button').click(function(e){
-                        e.preventDefault();
-                        FB.login(function(response) {
-                            console.log(response.authResponse); 
-                            if (response.authResponse) {
-                                this.location = '<?php echo $this->url(
-                                        array('controller' => 'auth', 'action' => 'facebook-login'), 
-                                            null, true); ?>?token=' + response.authResponse.accessToken;
-                            }
-                        }, {scope: 'email,user_likes'});
-                    
-                        e.preventDefault();
-                    });                                        
-                });
-          </script>
-
 <div id="main-wrapper">
     <div class="social-reg-wrapper">
         <ul>
             <li><span><?php echo $this->translate('Create a BitLendingClub account:'); ?></span></li>
             <li>
-                <a href="#" id="fblogin" class="fb-login-button fb-reg" title="<?php echo $this->translate('Login with Facebook'); ?>"><?php echo $this->translate('Facebook Login'); ?></a>
+                <a href="#" id="fblogin" class="fb-reg" title="<?php echo $this->translate('Login with Facebook'); ?>"><?php echo $this->translate('Facebook Login'); ?></a>
 
             </li>
 
@@ -57,3 +39,20 @@
         <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
     </form>
 </div>
+<script type="text/javascript">
+                $(function(){  
+                    $('#fblogin').click(function(e){
+                        e.preventDefault();
+                        FB.login(function(response) {
+                            console.log(response.authResponse); 
+                            if (response.authResponse) {
+                                this.location = '<?php echo $this->url(
+                                        array('controller' => 'auth', 'action' => 'facebook-login'), 
+                                            null, true); ?>?token=' + response.authResponse.accessToken;
+                            }
+                        }, {scope: 'email,user_likes'});
+                    
+                        e.preventDefault();
+                    });                                        
+                });
+          </script>
