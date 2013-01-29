@@ -42,6 +42,7 @@
 <script type="text/javascript">
                 $(function(){  
                     $('#fblogin').click(function(e){
+                        console.log('here');
                         e.preventDefault();
                         FB.login(function(response) {
                             console.log(response.authResponse); 
