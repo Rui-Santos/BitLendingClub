@@ -120,7 +120,7 @@ class Default_RatingController extends Zend_Controller_Action {
         $adapter->validate();
 
         
-            $this->_helper->redirector('rating', 'index');
+            $this->_helper->redirector('index', 'rating');
       
     }
 }
