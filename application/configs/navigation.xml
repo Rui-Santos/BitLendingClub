@@ -18,7 +18,7 @@
             <class>green-ring</class>
             <params>
                 <slug>investing</slug>
-                <id>2</id>
+                <pid>2</pid>
             </params>
             <!--pages>
                 <submenu>
@@ -58,7 +58,6 @@
                 <slug>help</slug>  
                 <id>4</id>
             </params>            
-            
         </help>
     </nav>
 </config>

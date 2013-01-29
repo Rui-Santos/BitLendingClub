@@ -12,9 +12,9 @@ class Default_PagesController extends Zend_Controller_Action
     {
         $pageModel = new Model_Page();
         
-        $pageId = (int)$this->_request->getParam('pid', 0);
-        
-        $currentPage = $pageModel->getPage(array('id'=>$pageId));
+       // $pageId = (int)$this->_request->getParam('pid', 0);
+       // Zend_Debug::dump($this->_request->getParams());exit;
+        $currentPage = $pageModel->getPage(array('slug'=>$this->_request->getParam('slug', 0)));
         
         $this->view->currentPage = $currentPage;
         
