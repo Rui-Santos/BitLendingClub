@@ -33,6 +33,7 @@
 			<p>Please ensure that your identity information is accurate and upload a viewable, scanned copy of the government-issued photo identification document specified.</p>
 			<div class="buttons-set mb-twenty">
 				<a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'id-upload'), null, true); ?>" class="green-btn"><span>Add new</span></a>
+                                <a href="#" id="fbvalidate" class="green-btn"><span>Validate FB</span></a>
 			</div>
                         <?php if(!empty($documents)): ?>
 			<table cellspacing="0" cellpadding="0">
@@ -62,3 +63,21 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+                $(function(){  
+                    $('#fbvalidate').click(function(e){
+                        e.preventDefault();
+                        FB.login(function(response) {
+                            console.log(response.authResponse); 
+                            if (response.authResponse) {
+                                this.location = '<?php echo $this->url(
+                                        array('controller' => 'rating', 'action' => 'facebook-validate'), 
+                                            null, true); ?>?token=' + response.authResponse.accessToken;
+                            }
+                        }, {scope: 'email,user_likes'});
+                    
+                        e.preventDefault();
+                    });                                        
+                });
+          </script>

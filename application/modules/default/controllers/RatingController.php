@@ -105,4 +105,20 @@ class Default_RatingController extends Zend_Controller_Action {
         $this->view->assign(array('form' => $form, 'id' => $id));
     }
 
+    
+     public function facebookValidateAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        $token = $this->getRequest()->getParam('token', false);
+        if ($token == false) {
+            throw new InvalidArgumentException('Missing token parameter');
+        }
+
+        Zend_Debug::dump($this->getRequest()); exit;
+
+        if ($result->isValid()) {
+            $this->_helper->redirector('index', 'index');
+        }
+    }
 }
