@@ -1,8 +1,9 @@
 <script type="text/javascript">
                 $(function(){  
                     $('#fblogin').click(function(e){
+                         
                         FB.login(function(response) {
-                            console.log('here')
+                            console.log('here');
                             console.log(response.authResponse); 
                             if (response.authResponse) {
                                 this.location = '<?php echo $this->url(
@@ -20,7 +21,7 @@
         <ul>
             <li><span><?php echo $this->translate('Create a BitLendingClub account:'); ?></span></li>
             <li>
-                <a href="#" id="fblogin" class="fb-reg" title="<?php echo $this->translate('Login with Facebook'); ?>"><?php echo $this->translate('Facebook Login'); ?></a>
+                <a href="javascript:void(0);" id="fblogin" class="fb-reg" title="<?php echo $this->translate('Login with Facebook'); ?>"><?php echo $this->translate('Facebook Login'); ?></a>
 
             </li>
 
