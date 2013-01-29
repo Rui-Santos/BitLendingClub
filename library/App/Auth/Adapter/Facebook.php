@@ -52,5 +52,35 @@ class App_Auth_Adapter_Facebook implements Zend_Auth_Adapter_Interface
                     array('Invalid token passed as parameter'));            
         }
     }
+    
+    public function validate()
+    {
+        if ($this->_token == null) {
+            return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, false, 
+                    array('Token was not set'));
+        }
+
+        $userGraphUrl = self::FACEBOOK_GRAPH_URL . "me?access_token={$this->_token}";        
+        $facebookUserDetails = json_decode(file_get_contents($userGraphUrl));
+        
+        if ($facebookUserDetails) {
+            $userModel = new Model_User();
+            $userItem = $userModel->get(Service_Auth::getLoggedUser()->getId());
+
+            if ($userItem) {            
+               
+                // Update Facebook Facebook ID
+                $userModel->updateFacebookUserId($facebookUserDetails->id, $userItem->getId());
+            } 
+
+            $userItem = $userModel->get($userItem->getId());
+            $authResult = new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, new Entity_Proxy_Users($userItem));
+			
+            return $authResult;
+        } else {
+            return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, false, 
+                    array('Invalid token passed as parameter'));            
+        }
+    }
 
 }

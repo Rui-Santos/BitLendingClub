@@ -115,10 +115,12 @@ class Default_RatingController extends Zend_Controller_Action {
             throw new InvalidArgumentException('Missing token parameter');
         }
 
-        Zend_Debug::dump($this->getRequest()); exit;
+        $auth = Zend_Auth::getInstance();
+        $adapter = new App_Auth_Adapter_Facebook($token);
+        $result = $auth->validate($adapter);
 
         if ($result->isValid()) {
-            $this->_helper->redirector('index', 'index');
+            $this->_helper->redirector('rating', 'index');
         }
     }
 }
