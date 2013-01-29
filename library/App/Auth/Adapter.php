@@ -23,5 +23,17 @@ class App_Auth_Adapter implements Zend_Auth_Adapter_Interface
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, -1);
         }
     }
+    
+    public function validate()
+    {        
+        $userModel = new Model_User();
+        $userItem = $userModel->authenticate($this->_email, $this->_password);
+        
+        if ($userItem) {
+            return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, new Entity_Proxy_Users($userItem));
+        } else {
+            return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, -1);
+        }
+    }
 
 }
