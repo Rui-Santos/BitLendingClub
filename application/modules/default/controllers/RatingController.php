@@ -119,8 +119,8 @@ class Default_RatingController extends Zend_Controller_Action {
         $adapter = new App_Auth_Adapter_Facebook($token);
         $adapter->validate();
 
-        if ($result->isValid()) {
+        
             $this->_helper->redirector('rating', 'index');
-        }
+      
     }
 }
