@@ -41,5 +41,22 @@ class Default_LoanController extends Zend_Controller_Action {
 
         $this->view->form = $form;
     }
+    
+     public function overviewAction() {
+        $id = Service_Auth::getLoggedUser()->getId();
+        $userItem = new Model_User();
+        
+        $userItem = $userItem->get($id);
+        
+        $loanModel = new Model_Loan();
+
+        $paginator = new Zend_Paginator(
+                        new App_Paginator_Adapter_Doctrine($loanModel->getAll(array('borrower' => $userItem))));
+
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+
+        $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
+        $this->view->loans = $paginator;
+    }
 
 }
