@@ -1,3 +1,19 @@
+<script type="text/javascript">
+                $(function(){  
+                    $('#fblogin').click(function(e){
+                        FB.login(function(response) {
+                            console.log(response.authResponse); 
+                            if (response.authResponse) {
+                                this.location = '<?php echo $this->url(
+                                        array('controller' => 'auth', 'action' => 'facebook-login'), 
+                                            null, true); ?>?token=' + response.authResponse.accessToken;
+                            }
+                        }, {scope: 'email,user_likes'});
+                    
+                        e.preventDefault();
+                    });                                        
+                });
+            </script>
 <div id="main-wrapper">
     <div class="social-reg-wrapper">
         <ul>
@@ -39,13 +55,12 @@
         <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
     </form>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
                 $(function(){  
                     $('#fblogin').click(function(e){
-                        
                         e.preventDefault();
                         FB.login(function(response) {
-                            console.log(response); 
+                            console.log(response.authResponse); 
                             if (response.authResponse) {
                                 this.location = '<?php echo $this->url(
                                         array('controller' => 'auth', 'action' => 'facebook-login'), 
@@ -56,4 +71,4 @@
                         e.preventDefault();
                     });                                        
                 });
-          </script>
+          </script>-->
