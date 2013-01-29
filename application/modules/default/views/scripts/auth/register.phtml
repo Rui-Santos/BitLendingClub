@@ -42,10 +42,10 @@
 <script type="text/javascript">
                 $(function(){  
                     $('#fblogin').click(function(e){
-                        console.log('here');
+                        
                         e.preventDefault();
                         FB.login(function(response) {
-                            console.log(response.authResponse); 
+                            console.log(response); 
                             if (response.authResponse) {
                                 this.location = '<?php echo $this->url(
                                         array('controller' => 'auth', 'action' => 'facebook-login'), 
