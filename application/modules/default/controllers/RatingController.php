@@ -19,7 +19,7 @@ class Default_RatingController extends Zend_Controller_Action {
     public function indexAction() {
         $user = new Model_User();
         $user = $user->getUser(array('id' => Service_Auth::getLoggedUser()->getId()));
-
+        $this->view->user = $user;
         $config = Zend_Registry::get('config');
 
         //document type id
