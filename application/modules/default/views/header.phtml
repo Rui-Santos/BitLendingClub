@@ -9,9 +9,9 @@
                 ->prependFile('/js/jquery-1.7.1.min.js')
                 ->appendFile('/js/jquery-ui-1.8.18.custom.min.js')
                 ->appendFile('/js/jquery.lightbox-0.5.min.js')
-                ->appendFile('//connect.facebook.net/en_US/all.js')
                 ->appendFile('/js/jqModal.js')
-                ->appendFile('/js/default.js');
+                ->appendFile('/js/default.js')
+                ->appendFile('//connect.facebook.net/en_US/all.js');
         ?>
         <?php
         echo $this->headLink()
@@ -53,25 +53,25 @@
                                     <div class="dropdown-menu-holder">
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>">Dashboard</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), 'default', true); ?>">Dashboard</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>">Credit rating</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), 'default', true); ?>">Credit rating</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>">Reputation</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), 'default', true); ?>">Reputation</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>">Investments</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), 'default', true); ?>">Investments</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>">Loans</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), 'default', true); ?>">Loans</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>">Settings</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), 'default', true); ?>">Settings</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout'), null, true); ?>">Sign out</a>
+                                                <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout'), 'default', true); ?>">Sign out</a>
                                             </li>
                                         </ul>
                                     </div>

@@ -49,21 +49,17 @@
                         <td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
                     </tr>
                 <?php endforeach; ?>
- 
-           </tbody>
+
+            </tbody>
             <tfoot>
                 <tr>
                     <td colspan="6" class="paging">
-                        <div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
-                        <ul>
-                            <!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
-                            <li><a href="#" class="arr no-prev"></a></li>
-                            <li class="current">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#" class="arr next"></a></li>
-                        </ul>
+                        <?php
+                        echo $this->paginationControl(
+                                $this->loans, 'Sliding', 'partials/paginator.phtml');
+                        ?>
+                        <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
+                        
                     </td>
                 </tr>
             </tfoot>
