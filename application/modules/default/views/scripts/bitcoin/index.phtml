@@ -2,6 +2,18 @@
  
   $bitcoin = new jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
  
-  echo "<pre>\n";
-  print_r($bitcoin->getinfo());
-  echo "</pre>"; ?>
+  # now check for appropriate funds in user account
+    try {
+        $username = 'mnkmnkmnk';
+        if(isset($_SESSION['sendaddress']))
+            $sendaddress = $_SESSION['sendaddress'];
+        else {
+            $sendaddress = $bitcoin->getnewaddress($username);
+            $_SESSION['sendaddress'] = $sendaddress;
+        }
+        $balance = round($bitcoin->getbalance($username)* 1e8);
+        print_r($balance);
+    }
+    catch (Exception $e) {
+        die("<p>Server error! Please contact the admin.</p>");
+    } ?>
