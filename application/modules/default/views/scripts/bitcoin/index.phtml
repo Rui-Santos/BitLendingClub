@@ -1,6 +1,6 @@
-<?php require_once 'jsonRPCClient.php';
+<?php 
  
-  $bitcoin = new jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
+  $bitcoin = new App_jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
  
   # now check for appropriate funds in user account
   //
@@ -23,6 +23,6 @@
  //$account = $bitcoin->listreceivedbyaddress(0, true); lists all addresses in the current account/server
   
   //$bitcoin->walletpassphrase('2l33t4u2',1000); - must unlock before dumping
-  $account = $bitcoin->dumpprivkey('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
+  //$account = $bitcoin->dumpprivkey('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
   //L3Amz5LEEogXDRHjYZzemDhDbfJ9r9skX2Ytv5ZCbXJuvFmcjKjA
    Zend_Debug::dump($account);exit;?>
