@@ -3,17 +3,26 @@
   $bitcoin = new jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
  
   # now check for appropriate funds in user account
-    try {
-        $username = 'mnkmnkmnk';
-        if(isset($_SESSION['sendaddress']))
-            $sendaddress = $_SESSION['sendaddress'];
-        else {
-            $sendaddress = $bitcoin->getnewaddress($username);
-            $_SESSION['sendaddress'] = $sendaddress;
-        }
-        $balance = round($bitcoin->getbalance($username)* 1e8);
-        print_r($balance);
-    }
-    catch (Exception $e) {
-        die("<p>Server error! Please contact the admin.</p>");
-    } ?>
+  //
+  // $account = $bitcoin->getnewaddress(); //param ($account)
+  // 
+  // $account = $bitcoin->help();
+  // 
+  //$account = $bitcoin->validateaddress('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
+  //this returns array:
+//  array(7) {
+//  ["isvalid"] => bool(true)
+//  ["address"] => string(34) "1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx"
+//  ["ismine"] => bool(true)
+//  ["isscript"] => bool(false)
+//  ["pubkey"] => string(66) "0301b84d859b83c792d44f1f28535002c7f00094fe85d5e0cbd6ab3fcbf555d668"
+//  ["iscompressed"] => bool(true)
+//  ["account"] => string(0) ""
+//}
+  
+ //$account = $bitcoin->listreceivedbyaddress(0, true); lists all addresses in the current account/server
+  
+  //$bitcoin->walletpassphrase('2l33t4u2',1000); - must unlock before dumping
+  $account = $bitcoin->dumpprivkey('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
+  //L3Amz5LEEogXDRHjYZzemDhDbfJ9r9skX2Ytv5ZCbXJuvFmcjKjA
+   Zend_Debug::dump($account);exit;?>
