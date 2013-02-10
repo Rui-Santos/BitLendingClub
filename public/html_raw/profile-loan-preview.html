@@ -62,129 +62,70 @@
 <div id="main-wrapper">
 	<ul id="tabs-nav">
 		<li><a href="#"><span class="dashboard-icon">Dashboard</span></a></li>
-		<li class="selected"><a href="#"><span class="crating-icon">Credit rating</span></a></li>
+		<li><a href="#"><span class="crating-icon">Credit rating</span></a></li>
 		<li><a href="#"><span class="rep-icon">Reputation</span></a></li>
 		<li><a href="#"><span class="overview-icon">Investments</span></a></li>
 		<li><a href="#"><span class="loan-icon">Loans</span></a></li>
-		<li><a href="#"><span class="automated-plan-icon">Settings</span></a></li>
+		<li class="selected"><a href="#"><span class="automated-plan-icon">Settings</span></a></li>
 	</ul>
 	<div class="profile-content-wrapper">
-		<div class="sidebar-left profile-sidebar">
-			<div class="sidebar-infoboard mb-twenty">
-				<div class="sidebar-msg">
-					<span>Import your Bitcoin OTC Reputation</span>
-					<a href="#" class="green-btn"><span>Import</span></a>
+		<div class="full-width">
+			<h1>Create a new loan listing</h1>
+			<form>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Listing Title:</label>
+					<input type="text" class="preview" />
 				</div>
-			</div>
-			<div class="sidebar-infoboard">
-				<div class="title">Reputation <span class="red">-35%</span></div>
-				<ul>
-					<li>Positive: <span class="green">4</span></li>
-					<li>Negative: <span class="red">17</span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="profile-content-right pcr-padding">
-			<div class="page-title">
-				<h1>Ratings</h1>
-				<div class="table-toolbar">
-					<div class="toolbar-sorter">
-						<span>Show</span>
-						<select>
-							<option>10</option>
-							<option>25</option>
-							<option>50</option>
-							<option>100</option>
-						</select>
-						<span>results.</span>
-					</div>
-					<div class="toolbar-search">
-						<input type="text" />
-						<a href="#"></a>
-					</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Loan purpose:</label>
+					<select class="preview">
+						<option selected="selected">Select loan purpose</option>
+						<option value="">Home improvement</option>
+						<option value="">Debt consolidation</option>
+						<option value="">Business</option>
+						<option value="">Medical expenses</option>
+						<option value="">Other</option>
+					</select>
 				</div>
-			</div>
-			<table cellspacing="0" cellpadding="0">
-				<thead>
-					<tr>
-						<th>From</th>
-						<th>To</th>
-						<th>Last update</th>
-						<th>Rating</th>
-						<th>Comment</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>10</td>
-						<td>21.12.2012</td>
-						<td>10</td>
-						<td class="comment">Lorem ipsum dolor sit amet, is a type printing era...</td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="6" class="paging">
-							<div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
-							<ul>
-								<!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
-								<li><a href="#" class="arr no-prev"></a></li>
-								<li class="current">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#" class="arr next"></a></li>
-							</ul>
-						</td>
-					</tr>
-				</tfoot>
-			</table>
-			<div class="buttons-set m-twenty">
-				<a href="#" class="green-btn"><span>Rate a user</span></a>
-			</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Amount (BTC):</label>
+					<input type="number" class="input-short preview" />
+					<span class="info c-both mt-five">The loan will fund at 70% of this value.</span>
+				</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Term (days):</label>
+					<input type="text" class="input-short preview" />
+				</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Payment Cycle:</label>
+					<select class="preview">
+						<option selected="selected">Select payment cycle</option>
+						<option value="">Daily</option>
+						<option value="">Every 3 days</option>
+						<option value="">Weekly</option>
+						<option value="">1st of the month</option>
+						<option value="">5th of the month</option>
+						<option value="">10th of the month</option>
+					</select>
+					<span class="info c-both mt-five">The loan term will be adjusted to be a multiple of the payment cycle</span>
+				</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Description:</label>
+					<textarea type="text" class="preview"></textarea>
+				</div>
+				<div class="field-box">
+					<label class="preview"><span class="red">*</span> Listing expiration date:</label>
+					<input type="text" class="input-short input-cal-icon preview" />
+				</div>
+				<div class="loan-terms">
+					<span>The service fee will be charged only if the loan gets successfully funded.</span>
+					<span>By posting your listing you are agreeing with our <a href="#">Terms & Conditions.</a></span>
+				</div>			
+				<div class="buttons-set">
+					<a href="#" class="grey-btn mr-ten"><span>Back</span></a>
+					<a href="#" class="green-btn"><span>Create loan</span></a>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

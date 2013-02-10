@@ -24,12 +24,18 @@ h6{  }
 .zero-p{ padding:0px !important; }
 .m-twenty{ margin:20px !important; }
 .mb-twenty{ margin-bottom:20px !important; }
+.mr-ten{ margin-right:10px; }
 
 .buttons-set{ display:block; width:100%; overflow:hidden; margin:20px 0 0; }
 .green-btn{ background:url(../images/green-big-btn.png) no-repeat 0 0; float:left; display:inline-block; height:36px; padding-left:20px; text-decoration:none; }
 .green-btn span{ background:url(../images/green-big-btn.png) no-repeat 100% 0; display:block; color:#fff; text-shadow:0px -1px 0px #1B8E07; text-transform:uppercase; font-size:12px; font-weight:700; line-height:34px; height:36px; padding-right:20px; }
 .green-btn:hover{ background:url(../images/green-big-btn.png) no-repeat 0 100%; }
 .green-btn:hover span{ background:url(../images/green-big-btn.png) no-repeat 100% 100%; }
+
+.grey-btn{ background:url(../images/grey-big-btn.png) no-repeat 0 0; float:left; display:inline-block; height:36px; padding-left:20px; text-decoration:none; }
+.grey-btn span{ background:url(../images/grey-big-btn.png) no-repeat 100% 0; display:block; color:#4D4D4D; text-shadow:0px 1px 0px #fff; text-transform:uppercase; font-size:12px; font-weight:700; line-height:34px; height:36px; padding-right:20px; }
+.grey-btn:hover{ background:url(../images/grey-big-btn.png) no-repeat 0 100%; }
+.grey-btn:hover span{ background:url(../images/grey-big-btn.png) no-repeat 100% 100%; }
 
 .required{ float:left; margin:10px 20px 0px; color:#333; font-size:12px; }
 .back-link{ float:right; margin:10px 0px 0px; font-size:12px; color:#3BA9F4; text-decoration:underline; }
@@ -87,7 +93,7 @@ h6{  }
 .account-wrapper li.selected a.login span span{ background:transparent url(../images/header-account-icon.png) no-repeat 0 10px; }
 
 /* dropdown menu */
-.dropdown-menu-wrapper{ display:none; background:url(../images/account-dd-top.png) no-repeat 0 0; padding-top:25px; position:absolute; width:184px; top:24px; right:-12px; }
+.dropdown-menu-wrapper{ display:none; background:url(../images/account-dd-top.png) no-repeat 0 0; padding-top:25px; position:absolute; width:184px; top:24px; right:-12px; z-index:999; }
 .account-wrapper li.last:hover .dropdown-menu-wrapper{ display:inline-block; }
 .dropdown-menu-holder{ background:url(../images/account-dd-bottom.png) no-repeat 0 100%; padding-bottom:15px; display:inline-block; width:184px; }
 .dropdown-menu{ background:url(../images/account-dd-middle.png) repeat-y 0 0; padding:0 12px 6px 12px; display:inline-block; width:160px; }
@@ -216,6 +222,53 @@ a.register-btn:hover span{ background:transparent url(../images/register-btn-bg.
 #listing-table tbody tr td.rating strong.red-star{ background-position:0 -64px; text-shadow:0px 1px #d85226; }
 #listing-table tbody tr td.rating a{ background:url(../images/blue-arr-down.png) no-repeat 50% 100%; line-height:11px; float:left; font-size:10px; color:#3CAAF5; text-decoration:none; padding-bottom:8px; margin: 4px 0px 0px 10px; }
 #listing-table tbody tr td.rating a:hover{ text-decoration:underline; }
+
+/* single listing */
+.ll-title h1{ font-size:24px; line-height:24px; width:850px; font-weight:300; margin:10px 0px 30px 10px; float:left; }
+.ll-title > a{ float:right; margin-top:8px; }
+.ll-second-title{ font-size:16px; color:#333; margin:15px 0px 0px 0px; padding-left:20px; display:inline-block; float:left; font-weight:bold; }
+.profile-content-wrapper p{ color:#333333; }
+.ls-row{ border-top:1px solid #CCCCCC; display:block; overflow:hidden; }
+.ls-row.first{ border-top:0px; }
+.ls-row2{ padding:20px; border-bottom:1px solid #CCCCCC; display:block; overflow:hidden; }
+.ls-span{ padding:30px 20px; float:left; border-left:1px solid #E6E6E6; }
+.ls-span1{ width:260px; }
+.ls-span2{ width:180px; }
+.ls-span3{ width:376px; }
+.ls-span4{ width:195px; }
+.ls-span5{ width:140px; }
+.ls-span:first-child{ border-left:0px; }
+.ls-span .title{ font-size:12px; color:#111; font-weight:bold; }
+.ls-span > div{ font-size:15px; color:#333; }
+.ls-span > div > a, .ls-row2 .name-date a, .loan-terms span a{ color:#3BA9F4; text-decoration:none; }
+.ls-span > div > a:hover, .ls-row2 .name-date a:hover, .loan-terms span a:hover{ text-decoration:underline; }
+.ls-span .description .grey2, .ls-row2 .name-date .grey2{ color:#ddd; font-weight:300; padding:0px 10px; }
+.ls-span .description .grey{ color:#999; padding:0px 10px; }
+.ls-span .description .green{ color:#38B249; }
+.ls-span .description .red{ color:#ED1C24; }
+.ls-span .description .funding-bg{ background:url(../images/funding-bg.png) no-repeat 0 0; width:100px; height:10px; margin:5px 0px 0px 10px; display:block; }
+.ls-span .description .funding-bg span{ background:url(../images/funding-bg.png) no-repeat 0 100%; height:10px; display:inline-block; }
+.ls-row2 textarea{ width:400px; height:100px; padding:4px 10px; }
+.ls-row2 .name-date{ display:block; overflow:hidden; margin-bottom:8px; }
+.ls-row2 .comment{ display:block; overflow:hidden; color:#333; }
+.ls-title{ display:block; text-align:center; padding:40px 0px 0px; margin-top:50px !important; margin-bottom:15px !important; color:#38B249; background:url(../images/success-check-icon.png) no-repeat 50% 0; }
+.ls-description{ display:block; text-align:center; font-size:14px; color:#4D4D4D; margin-bottom:20px; }
+.ls-btn{ margin-left: 370px; }
+.input-short{ width:120px !important; }
+.mt-five{ margin-top:5px; }
+.field-box textarea{ clear:left; float:left; width:400px; height:100px; padding:4px 10px; }
+.input-cal-icon{ background:url(../images/input-cal-icon.png) no-repeat 130px 5px !important; width:150px !important; }
+.loan-terms{ display:block; overflow:hidden; margin-top:20px; }
+.loan-terms span{ padding-left:20px; background:url(../images/content-list-icon.png) no-repeat 0 5px; margin-bottom:4px; display:block; font-size:12px; color:#333333; }
+input.preview, textarea.preview, select.preview{ border:1px solid #B3B3B3 !important; background:#DCDCDC !important; color:#000  !important; }
+.input-cal-icon.preview{ background:#DCDCDC url(../images/input-cal-icon.png) no-repeat 130px 5px !important; }
+label.preview{ opacity:0.4; filter:alpha(opacity=40); }
+.pl-buttons-set{ display:block; overflow:hidden; border-top:1px solid #ccc; padding:20px 0px; }
+.pl-buttons-set a{ float:left; margin:0px 20px 0px 180px; }
+.pl-buttons-set > span{ float:left; font-size:16px; color:#666666; font-weight:300; margin-top:6px; }
+
+
+
 
 /* listing pagination */
 #listing-table tfoot tr td.paging{ background:url(../images/gradient-title-r-bg.png) repeat-x 0 0; height:40px; }

@@ -163,41 +163,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
 
-//        $config_front = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation_front.xml', 'nav');
-//        $view->navigation_front = new Zend_Navigation($config_front);
-
-        /*
-          $view->navigation_front = new Zend_Navigation(array(
-          array (
-          'label' => 'Home',
-          'module' => 'default',
-          'action' => 'index',
-          'controller' => 'index',
-          'params' => array (
-          'id' => '5-Fake-news-story--5'
-          )
-          ),
-          array(
-          'label' => 'Page 1',
-          'uri'   => '#'
-          ),
-          array(
-          'label' => 'Page 2',
-          'uri'   => '#',
-          'pages' => array(
-          array(
-          'label' => 'Page 2.1',
-          'uri'   => '#'
-          ),
-          array(
-          'label' => 'Page 2.2',
-          'uri'   => '#'
-          )
-          )
-          )
-          ));
-
-         */
 
         //$frontController = Zend_Controller_Front::getInstance();
         //$view->page = $frontController->getParam('page');
