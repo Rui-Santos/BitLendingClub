@@ -24,6 +24,11 @@ class Default_LoanController extends Zend_Controller_Action {
     }
 
     public function createAction() {
+        
+        
+        if(!Service_Auth::getLoggedUser()){
+            $this->_helper->redirector('index');
+        }
         $form = new Default_Form_Loan();
 
         if ($this->_request->isPost()) {

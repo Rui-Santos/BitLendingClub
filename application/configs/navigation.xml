@@ -10,31 +10,22 @@
             <class>blue-ring</class>
         </home>
         <investing>
-            <label>Investing</label>
+            <label>Invest</label>
             <module>default</module>
-            <controller>content</controller>
+            <controller>loan</controller>
             <action>index</action>
-            <route>content</route>
+            <route>default</route>
             <class>green-ring</class>
-            <params>
-                <slug>investing</slug>
-                <pid>2</pid>
-            </params>
-            <!--pages>
-                <submenu>
-                    <label>Submenu</label>
-                    <module>default</module>
-                    <controller>pages</controller>
-                    <action>index</action>
-                    <route>content</route>
-                    <params>
-                        <class>blue</class>
-                        <slug>submenu</slug>
-                        <id>123</id>
-                    </params>
-                </submenu>
-            </pages-->
         </investing>
+        <borrow>
+            <label>Borrow</label>
+            <module>default</module>
+            <controller>loan</controller>
+            <action>create</action>
+            <route>default</route>
+            <class>green-ring</class>
+            
+        </borrow>
         <aboutus>
             <label>About Us</label>
             <module>default</module>
