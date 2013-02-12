@@ -11,6 +11,11 @@ $(function() {
 
   initLoginDialog();
   
+  initWithdrawDialog();
+  
+  initFundDialog();
+  
+  
   initDatepicker();
     
 });
@@ -22,6 +27,42 @@ var initLoginDialog = function() {
     $('#login-button').click(function(e){
         modalDialog.jqm({
             ajax: '/auth/login'
+        });                
+        modalDialog.jqmShow();
+    
+        e.preventDefault();
+    });
+
+    $('#login-close').live('click', function(e){
+        modalDialog.jqmHide();
+        e.preventDefault();
+    });
+}
+
+var initWithdrawDialog = function() {
+    var modalDialog = $('#main-modal-dialog');
+    
+    $('#dash-withdraw').click(function(e){
+        modalDialog.jqm({
+            ajax: '/profile/withdraw'
+        });                
+        modalDialog.jqmShow();
+    
+        e.preventDefault();
+    });
+
+    $('#login-close').live('click', function(e){
+        modalDialog.jqmHide();
+        e.preventDefault();
+    });
+}
+
+var initFundDialog = function() {
+    var modalDialog = $('#main-modal-dialog');
+    
+    $('#dash-add-funds').click(function(e){
+        modalDialog.jqm({
+            ajax: '/profile/fund'
         });                
         modalDialog.jqmShow();
     

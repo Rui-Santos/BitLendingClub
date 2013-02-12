@@ -138,5 +138,37 @@ class Default_ProfileController extends Zend_Controller_Action {
 
         $userItem = $this->_model->get($id);
     }
+    
+    public function fundAction() {
+        $id = Service_Auth::getLoggedUser()->getId();
+
+        $this->_helper->layout->disableLayout();
+        
+        $walletModel = new Model_Wallet();
+        
+        $wallet = $walletModel->get(array('userId'=>$id));
+        $this->view->wallet = $wallet;
+    }
+    
+    public function withdrawAction(){
+        $this->_helper->layout->disableLayout();
+
+        $withdrawForm = new Default_Form_Withdraw();
+
+        if ($this->_request->isPost()) {
+            $post = $this->_request->getPost();
+            if ($withdrawForm->isValid($post)) {
+
+                $values = $withdrawForm->getValues();
+
+                //TODO
+                
+                } else {
+                    $this->view->errorWithdraw = true;
+                }
+            }
+        
+        $this->view->form = $withdrawForm;
+    }
 
 }
