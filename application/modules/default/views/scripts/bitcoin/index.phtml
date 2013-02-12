@@ -3,9 +3,9 @@
  
   # now check for appropriate funds in user account
   //
-  // $account = $bitcoin->getnewaddress(); //param ($account)
+  //$account = $bitcoin->getnewaddress(); //param ($account)
   // 
-  // $account = $bitcoin->help();
+  //$account = $bitcoin->help();
   // 
   //$account = $bitcoin->validateaddress('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
   //this returns array:
@@ -19,7 +19,7 @@
 //  ["account"] => string(0) ""
 //}
   
- //$account = $bitcoin->listreceivedbyaddress(0, true); lists all addresses in the current account/server
+ $account = $bitcoin->listreceivedbyaddress(0, true); //lists all addresses in the current account/server
   
   //$bitcoin->walletpassphrase('2l33t4u2',1000); - must unlock before dumping
   //$account = $bitcoin->dumpprivkey('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');

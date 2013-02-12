@@ -28,13 +28,7 @@ class Entity_Wallets
      */
     private $walletpath;
 
-    /**
-     * @var boolean
-     *
-     * @Column(name="isEncrypted", type="boolean", precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $isencrypted;
-
+   
     /**
      * @var float
      *
@@ -86,29 +80,7 @@ class Entity_Wallets
         return $this->walletpath;
     }
 
-    /**
-     * Set isencrypted
-     *
-     * @param boolean $isencrypted
-     * @return Wallets
-     */
-    public function setIsencrypted($isencrypted)
-    {
-        $this->isencrypted = $isencrypted;
-
-        return $this;
-    }
-
-    /**
-     * Get isencrypted
-     *
-     * @return boolean 
-     */
-    public function getIsencrypted()
-    {
-        return $this->isencrypted;
-    }
-
+   
     /**
      * Set balance
      *

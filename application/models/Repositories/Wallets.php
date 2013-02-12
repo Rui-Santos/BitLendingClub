@@ -65,14 +65,25 @@ class Repository_Wallets extends EntityRepository
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
-            $entity->setCreatedAt(new DateTime());
         } else {
             $entity = $this->find($id);
         }
 
         $em = $this->getEntityManager();
 
-       //TODO: CREATE/UPDATE WALLET
+       $bitcoin = new App_jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
+       
+       if (isset($params['user_id'])) {
+            $user = $em->getRepository('Entity_Users')->find($params['user_id']);
+            if ($user) {
+                $entity->setUser($user);
+            }
+        }
+        
+        $address = $bitcoin->getnewaddress();
+        $entity->setWalletPath($address);
+        
+        $entity->setBalance();
         
         $em->persist($entity);
         $em->flush();
