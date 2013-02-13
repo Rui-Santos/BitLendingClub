@@ -1,10 +1,18 @@
 	<div class="homepage-login-wrapper">
-		<form>
+            <?php if (count($this->form->getMessages()) > 0): ?>
+    <div class="reg-divider"><span>
+            <img src="/images/error_x.png" alt="" />
+            <?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span>
+        </div>
+    <?php endif; ?>
+		<form name="reg-form" action="<?php echo $this->url(array('module' => 'default',
+        'controller' => 'index', 'action' => 'index'), null, true);
+    ?>" method="post">
 			<h2>Become a member <span>&amp;</span><br/>explore our full features.</h2>
-			<div class="input"><input type="text" placeholder="Email address" name="Email" /></div>
-			<div class="input input2 mr-ten"><input type="password" placeholder="Password" /></div>
-			<div class="input input2"><input type="password" placeholder="Repeat password" /></div>
-			<a href="#"><span>JOIN NOW</span></a>
+			<div class="input"><?php echo $this->form->getElement('email'); ?></div>
+			<div class="input input2 mr-ten"><?php echo $this->form->getElement('password'); ?></div>
+			<div class="input input2"><?php echo $this->form->getElement('password_confirm'); ?></div>
+			<a href="#" onclick="$(this).parents('form').submit();"><span>JOIN NOW</span></a>
 		</form>
 	</div>
 </div>
@@ -24,69 +32,57 @@
 
 <!-- MAIN -->
 <div id="main-wrapper">
+		
+	
 	<div class="page-title">
-		<h2 class="hp-listing-title">Featured Listings</h2>
+        <h2 class="hp-listing-title">Featured Listings</h2>
 		<div class="table-toolbar">
 			<a href="#" class="view-all">View all</a>
 		</div>
-	</div>
-	<table id="listing-table" cellspacing="0" cellpadding="0">
-		<thead>
-			<tr>
-				<th>Title / Purpose, Term</th>
-				<th>Amount @ Interest Payment Type</th>
-				<th>% Funded</th>
-				<th>Time Left</th>
-				<th>Time Left</th>
-				<th>BLC Rating</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>80%</strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
-				<td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">Taxicab Company looking for funding!! Great investment (Added pictures and additional info per your request) Revised Loan Request</a><strong>Business</strong>, 360 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>15%</strong> funded<div class="funding-bg"><span style="width:15px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>60%</strong> positive <div class="reputation-makrs"><span>+17</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="green-star">8</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>72%</strong> funded<div class="funding-bg"><span style="width:72px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>24%</strong> positive <div class="reputation-makrs"><span>+12</span>, <span>-4</span></div></td>
-				<td class="rating"><strong class="green-star">8</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr>
-				<td class="listing-title"><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a><strong>Business</strong>, 365 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>100%</strong> funded<div class="funding-bg"><span style="width:100px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>100%</strong> positive <div class="reputation-makrs"><span>+12</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="yellow-star">6</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-			<tr class="last">
-				<td class="listing-title"><a href="#">Taxicab Company looking for funding!! Great investment (Added pictures and additional info per your request) Revised Loan Request</a><strong>Business</strong>, 360 days</td>
-				<td class="interest"><span>1820.0000 @ 7.0%</span>every 1st of the month</td>
-				<!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-				<td><strong>15%</strong> funded<div class="funding-bg"><span style="width:15px;"></span></div></td>
-				<td><strong>8</strong> days</td>
-				<td><strong>60%</strong> positive <div class="reputation-makrs"><span>+17</span>, <span>-0</span></div></td>
-				<td class="rating"><strong class="red-star">2</strong> <a href="#">Full<br/>rating</a></td>
-			</tr>
-		</tbody>
-	</table>
+        
+    </div>
+    <?php if (count($this->loans)): ?>
+
+
+        <table id="listing-table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>Title / Purpose, Term</th>
+                    <th>Amount / Payment Type</th>
+                    <th>% Funded</th>
+                    <th>Time Left</th>
+                    <th>Reputation</th>
+                    <th>BLC Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->loans as $loan): ?>
+                    <tr>
+                        <td class="listing-title"><a href="#"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
+                        <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
+                        <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
+                        <td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
+                        <td><strong>8</strong> days</td>
+                        <td><strong><?php echo $loan->getBorrower()->getRating(); ?></strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
+                        <td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="paging">
+                        <?php
+                        echo $this->paginationControl(
+                                $this->loans, 'Sliding', 'partials/paginator.phtml');
+                        ?>
+                        <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
+                        
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    <?php else: ?>
+        <div>No loans found.</div>
+    <?php endif; ?>
 </div>

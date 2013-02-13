@@ -50,7 +50,7 @@ class Default_Form_Register extends Default_Form_Abstract
             'placeholder' => 'First name',
             'class' => 'medium',
             'filters' => array('StringTrim'),
-            'required' => true,
+            
         ));        
 
         $this->addElement('text', 'lastname', array(
@@ -58,21 +58,21 @@ class Default_Form_Register extends Default_Form_Abstract
             'placeholder' => 'Last name',
             'class' => 'medium',
             'filters' => array('StringTrim'),            
-            'required' => true,
+            
         )); 
         
         $this->addElement('text', 'address', array(
             'label' => 'Address',
             'placeholder' => 'Address',
             'class' => 'large',    
-            'required' => true,
+            
         ));        
         
         $this->addElement('text', 'username', array(
             'label' => 'Username',
             'placeholder' => 'Username',
             'class' => 'medium',
-            'required' => true,
+            
         ));        
         
         
