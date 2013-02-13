@@ -1,12 +1,18 @@
 <?php
-  $bitcoin = new App_jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
+
+    $btcuser = Zend_Registry::get('config')->btc->conn->user;
+    $btcpass = Zend_Registry::get('config')->btc->conn->pass;
+    $btcurl = Zend_Registry::get('config')->btc->conn->host;
+  $bitcoin = new App_jsonRPCClient('http://'.$btcuser.':'.$btcpass.'@'.$btcurl.'/');
  
   # now check for appropriate funds in user account
   //
   //$account = $bitcoin->getnewaddress(); //param ($account)
   // 
-  $account = $bitcoin->help();
-  // 
+ $account = $bitcoin->help();
+ //$account = $bitcoin->getaccountaddress('account_111asd');
+ // 
+ // $account = $bitcoin->getaccountaddress('account_asd');
   //$account = $bitcoin->getaddressbalance('1GXcc2sxZ4j28DF4iSeKjamcjNtzSw9Bqx');
   //this returns array:
 //  array(7) {

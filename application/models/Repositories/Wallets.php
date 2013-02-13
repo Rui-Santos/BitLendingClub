@@ -2,8 +2,7 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Wallets extends EntityRepository
-{
+class Repository_Wallets extends EntityRepository {
 
     /**
      * Get all Wallets
@@ -11,8 +10,7 @@ class Repository_Wallets extends EntityRepository
      * @param array $criteria
      * @return array 
      */
-    public function getAll(array $criteria = array())
-    {
+    public function getAll(array $criteria = array()) {
         $query = $this->createQueryBuilder('deals');
 
         if (!empty($criteria)) {
@@ -39,8 +37,7 @@ class Repository_Wallets extends EntityRepository
      * @param integer $id
      * @return Entity_Wallets
      */
-    public function delete($id)
-    {
+    public function delete($id) {
         $entity = $this->find($id);
 
         if ($entity) {
@@ -58,10 +55,9 @@ class Repository_Wallets extends EntityRepository
      * @param integer $id
      * @return Entity_Wallets
      */
-    public function createOrUpdate(array $params, $id = null)
-    {
+    public function createOrUpdate(array $params, $id = null) {
         date_default_timezone_set('America/Chicago');
-        
+
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
@@ -71,26 +67,28 @@ class Repository_Wallets extends EntityRepository
 
         $em = $this->getEntityManager();
 
-       $bitcoin = new App_jsonRPCClient('http://mnkmnkmnk:2l33t4u2@127.0.0.1:8332/');
-       
-       if (isset($params['user_id'])) {
+        $btcuser = Zend_Registry::get('config')->btc->conn->user;
+        $btcpass = Zend_Registry::get('config')->btc->conn->pass;
+        $btcurl = Zend_Registry::get('config')->btc->conn->host;
+        $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
+
+        if (isset($params['user_id'])) {
             $user = $em->getRepository('Entity_Users')->find($params['user_id']);
             if ($user) {
                 $entity->setUser($user);
             }
         }
-        
-        $address = $bitcoin->getnewaddress();
+
+        $address = $bitcoin->getaccountaddress('account_' . $params['user_id']);
         $entity->setWalletPath($address);
-        
-        $entity->setBalance();
-        
+        $balance = $bitcoin->getbalance('account_' . $params['user_id']);
+        $entity->setBalance($balance);
+
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);
 
         return $entity;
-       
     }
 
 }
