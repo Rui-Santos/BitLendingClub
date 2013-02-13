@@ -4,10 +4,14 @@
         <home>
             <label>How it works?</label>
             <module>default</module>
-            <controller>index</controller>
+            <controller>content</controller>
             <action>index</action>
-            <route>default</route>
+            <route>content</route>
             <class>blue-ring</class>
+            <params>
+                <slug>how-it-works</slug> 
+                <id>5</id>
+            </params>
         </home>
         <investing>
             <label>Invest</label>

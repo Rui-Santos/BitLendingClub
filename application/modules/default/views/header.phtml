@@ -29,7 +29,7 @@
 
 
         <!-- HEADER -->
-        <div class="header-wrapper">
+        <div class="header-wrapper <?php if((Zend_Controller_Front::getInstance()->getRequest()->getControllerName()=='index')&&(Zend_Controller_Front::getInstance()->getRequest()->getActionName()=='index')){echo 'header-wrapper2';}?>">
             <div class="header-glow">
                 <div class="header-holder">
                     <a href="/" class="logo"></a>
@@ -88,5 +88,7 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <?php if((Zend_Controller_Front::getInstance()->getRequest()->getControllerName()!='index')&&(Zend_Controller_Front::getInstance()->getRequest()->getActionName()!='index')):?>
             <div class="after-header-line"></div>
         </div>
+        <?php endif;?>
