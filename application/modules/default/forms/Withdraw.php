@@ -12,7 +12,7 @@ class Default_Form_Withdraw extends Default_Form_Abstract
             'placeholder' => 'Amount of bitcoins',
             'class' => 'medium',
             'filters' => array('StringTrim'),
-            'required' => false,
+            'required' => true,
         ));        
 
         $this->addElement('text', 'address', array(
@@ -20,7 +20,7 @@ class Default_Form_Withdraw extends Default_Form_Abstract
             'placeholder' => 'BTC Address',
             'class' => 'medium',
             'filters' => array('StringTrim'),            
-            'required' => false,
+            'required' => true,
             'value' => $user->getAddress(),
         ));       
 

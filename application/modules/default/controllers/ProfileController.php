@@ -167,12 +167,17 @@ class Default_ProfileController extends Zend_Controller_Action {
                 $btcpass = Zend_Registry::get('config')->btc->conn->pass;
                 $btcurl = Zend_Registry::get('config')->btc->conn->host;
                 $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
+                $isValid = $bitcoin->validateaddress($values['amount']);
 
-                $transfer = $bitcoin->sendfrom('account_' . $id, $values['address'], floatval($values['amount']));
-                
-                //TODO: CHECKS
-                if($transfer){
-                    $this->_helper->redirector('index', 'index');
+                if ($isValid['isvalid']) {
+                    $transfer = $bitcoin->sendfrom('account_' . $id, $values['address'], $values['amount']);
+                    Zend_Debug::dump($transfer);
+                    exit;
+                    if ($transfer) {
+                        $this->_helper->redirector('index', 'index');
+                    } else {
+                        $this->view->errorWithdrawAddress = true;
+                    }
                 } else {
                     $this->view->errorWithdraw = true;
                 }

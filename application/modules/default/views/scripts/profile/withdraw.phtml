@@ -4,12 +4,12 @@
 			<div id="show-login-holder">
 				<div class="title">Withdraw Funds</div>
 				<form id="withdraw-form" action="<?php echo $this->url(array('module' => 'default', 
-                'controller' => 'profile', 'action' => 'withdraw'), null, true); ?>" method="post" >
+                'controller' => 'profile', 'action' => 'withdraw'), null, true); ?>" method="post" onsubmit="return doWithdraw(this);">
 					<?php echo $this->form->getElement('amount'); ?>
                 <?php echo $this->form->getElement('address'); ?>
 
-            <?php if ($this->errorWithdrawCredentials): ?>
-                <p class="errors"><?php echo $this->translate('Invalid form data.'); ?></p>
+            <?php if ($this->errorWithdrawAddress): ?>
+                <p class="errors"><?php echo $this->translate('Invalid withdraw address.'); ?></p>
             <?php endif; ?>
 
 					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Withdraw</span></a>

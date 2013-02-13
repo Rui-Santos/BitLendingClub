@@ -92,6 +92,23 @@ var doLogin = function(form) {
     return false;
 }
 
+var doWithdraw = function(form) {
+    var action = $(form).attr('action');
+    var params = $(form).serialize();
+    var loginSection = $('#show-login-holder');
+    
+    $.post(action, params, function(response) {
+        if (typeof response == "object" && response.success == "true") {
+            $('#main-modal-dialog').jqmHide();
+            window.location.reload();
+        }
+        
+        loginSection.html($(response).children());
+    });
+    
+    return false;
+}
+
 var initDatepicker = function()
 {
     $(".datepicker").datepicker({
