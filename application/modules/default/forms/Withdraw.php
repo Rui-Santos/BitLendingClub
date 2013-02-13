@@ -5,6 +5,8 @@ class Default_Form_Withdraw extends Default_Form_Abstract
 
     public function init()
     {
+        $user = new Model_User();
+        $user = $user->get(Service_Auth::getLoggedUser()->getId());
         $this->addElement('text', 'amount', array(
             'label' => 'Amount of bitcoins',
             'placeholder' => 'Amount of bitcoins',
@@ -19,6 +21,7 @@ class Default_Form_Withdraw extends Default_Form_Abstract
             'class' => 'medium',
             'filters' => array('StringTrim'),            
             'required' => false,
+            'value' => $user->getAddress(),
         ));       
 
         $this->addElement('button', 'withdraw', array(

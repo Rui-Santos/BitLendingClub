@@ -146,15 +146,15 @@ class Default_ProfileController extends Zend_Controller_Action {
 
         $walletModel = new Model_Wallet();
 
-        $wallet = $walletModel->get(array('userId' => $id));
+        $wallet = $walletModel->getWallet(array('user' => $id));
 
-        
-            $this->view->wallet = $wallet;
+
+        $this->view->wallet = $wallet;
     }
 
     public function withdrawAction() {
         $this->_helper->layout->disableLayout();
-
+        $id = Service_Auth::getLoggedUser()->getId();
         $withdrawForm = new Default_Form_Withdraw();
 
         if ($this->_request->isPost()) {
@@ -163,7 +163,19 @@ class Default_ProfileController extends Zend_Controller_Action {
 
                 $values = $withdrawForm->getValues();
 
-                //TODO
+                $btcuser = Zend_Registry::get('config')->btc->conn->user;
+                $btcpass = Zend_Registry::get('config')->btc->conn->pass;
+                $btcurl = Zend_Registry::get('config')->btc->conn->host;
+                $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
+
+                $transfer = $bitcoin->sendfrom('account_' . $id, $values['address'], floatval($values['amount']));
+                
+                //TODO: CHECKS
+                if($transfer){
+                    $this->_helper->redirector('index', 'index');
+                } else {
+                    $this->view->errorWithdraw = true;
+                }
             } else {
                 $this->view->errorWithdraw = true;
             }
