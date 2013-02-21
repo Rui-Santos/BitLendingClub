@@ -43,7 +43,7 @@
                                     <?php foreach($this->loans as $loan):?>
 					<tr>
 						<td><a href="#"><?php echo $loan->getBorrower()->getFullname();?></a></td>
-						<td><a href="#"><?php echo $loan->getTitle();?></a></td>
+						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle();?></a></td>
 						<td><?php echo $loan->getAmount();?></td>
 						<td><?php echo $loan->getRate().'%';?></td>
 						<td><?php echo $loan->getTerm();?></td>

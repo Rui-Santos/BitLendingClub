@@ -47,7 +47,7 @@
 						<td><a href="#"><?php echo $inv->getLoan()->getBorrower()->getFullname();?></a></td>
 						<td><a href="#"><?php echo $inv->getLoan()->getTitle();?></a></td>
 						<td><?php echo $inv->getLoan()->getAmount();?></td>
-						<td><?php echo $inv->getLoan()->getRate().'%';?></td>
+						<td><?php echo $inv->getRate().'%';?></td>
 						<td><?php echo $inv->getLoan()->getTerm();?></td>
 						<td><?php echo $inv->getLoan()->getStatus()->getName();?></td>
 					</tr>

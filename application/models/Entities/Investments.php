@@ -56,6 +56,36 @@ class Entity_Investments
     private $investor;
 
     /**
+     * @var float
+     *
+     * @Column(name="rate", type="decimal", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $rate;
+    
+    /**
+     * Set rate
+     *
+     * @param float $rate
+     * @return Loans
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return float 
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+    
+    /**
      * @var string
      *
      * @Column(name="investmentAddress", type="string", length=34, precision=0, scale=0, nullable=false, unique=false)

@@ -40,7 +40,7 @@
             <tbody>
                 <?php foreach ($this->loans as $loan): ?>
                     <tr>
-                        <td class="listing-title"><a href="#"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
+                        <td class="listing-title"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
                         <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
                         <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
                         <td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>

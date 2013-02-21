@@ -71,6 +71,18 @@ class Default_LoanController extends Zend_Controller_Action {
         $loan = $this->_model->getLoan(array('id'=>$loanId));
         $this->view->loan = $loan;
         
+        $investments = new Model_Investment();
+        $investments = $investments->findBy(array('loan' => $loanId));
+        
+        
+        $comments = new Model_LoanComment();
+        $paginator = new Zend_Paginator(
+                        new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan'=>$loanId))));
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $paginator->setItemCountPerPage(5);
+
+        $this->view->comments = $paginator;
+        $this->view->investments = $investments;
     }
 
 }
