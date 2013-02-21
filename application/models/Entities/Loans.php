@@ -57,7 +57,13 @@ class Entity_Loans
      * @Column(name="expirationDate", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $expirationDate;
-
+     /**
+     * @var integer
+     *
+     * @Column(name="purpose", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $purpose;
+    
     /**
      * @var Status
      *
@@ -269,5 +275,25 @@ class Entity_Loans
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    /**
+     * Set purpose
+     *
+     * @param text $purpose
+     */
+    public function setPurpose($purpose)
+    {
+        $this->purpose = $purpose;
+    }
+
+    /**
+     * Get purpose
+     *
+     * @return text 
+     */
+    public function getPurpose()
+    {
+        return $this->purpose;
     }   
 }

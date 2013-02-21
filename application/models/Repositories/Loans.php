@@ -73,7 +73,7 @@ class Repository_Loans extends EntityRepository {
         $entity->setTerm($params['term']);
         $entity->setDescription($params['description']);
         $entity->setFrequency($params['frequency']);
-        
+        $entity->setPurpose($params['purpose']);
         $expiration = date_create_from_format('d/m/Y', $params['expirationDate']);
        
         $entity->setExpirationDate($expiration);
