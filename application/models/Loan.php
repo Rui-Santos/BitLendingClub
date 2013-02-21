@@ -3,6 +3,24 @@
 class Model_Loan extends Model_Abstract
 {
 
+    const HOME_IMPROVEMENT = "Home improvement";
+    const DEBT_CONSOLIDATION = "Debt consolidation";
+    const BUSINESS = "Business";
+    const MEDICAL_EXPENSES = "Medical expenses";
+    const OTHER = "other";
+
+    /**
+     *
+     * @var type 
+     */
+    public static $_purposesOpts = array(
+        1 => self::HOME_IMPROVEMENT,
+        2 => self::DEBT_CONSOLIDATION,
+        3 => self::BUSINESS,
+        4 => self::MEDICAL_EXPENSES,
+        5 => self::OTHER
+    );
+
     /**
      * Define entityName based on model
      * @var string
@@ -36,16 +54,17 @@ class Model_Loan extends Model_Abstract
         if (empty($params) || intval($loanId) == 0) {
             throw new InvalidArgumentException('Invalid arguments');
         }
-        
+
         return $this->getRepository()->createOrUpdate($params, $loanId);
     }
-    
+
     /**
      *
      * @param array $criteria
      * @return \Entity_Loans|boolean 
      */
-    public function getLoan(array $criteria = array()) {
+    public function getLoan(array $criteria = array())
+    {
         $entity = $this->getRepository()->findOneBy($criteria);
         if ($entity && $entity instanceof Entity_Loans) {
             return $entity;
@@ -53,6 +72,5 @@ class Model_Loan extends Model_Abstract
             return false;
         }
     }
-
 
 }

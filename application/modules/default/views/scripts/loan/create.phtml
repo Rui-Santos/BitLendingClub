@@ -18,28 +18,44 @@
                 'controller' => 'loan', 'action' => 'create'), null, true);
             ?>" method="post">
                 <div class="field-box">
+                    <label><span class="red">*</span> Listing Title:</label>
                     <?php echo $this->form->getElement('title'); ?>
                 </div>
                 <div class="field-box">
+                    <label><span class="red">*</span> Loan purpose:</label>
+                    <?php echo $this->form->getElement('purpose') ?>
+                </div>
+                <div class="field-box">
+                    <label><span class="red">*</span> Amount (BTC):</label>
+                    <input name="amount" type="number" class="input-short" />
+                    <?php // echo $this->form->getElement('amount'); ?>
+                    <span class="info c-both mt-five">The loan will fund at 70% of this value.</span>
+                </div>
+                <div class="field-box">
+                    <label><span class="red">*</span> Term (days):</label>
                     <?php echo $this->form->getElement('term'); ?>
                 </div>
+
                 <div class="field-box">
-                    <?php echo $this->form->getElement('amount'); ?>                
-                </div>
-                <div class="field-box">
+                    <label><span class="red">*</span> Payment Cycle:</label>
                     <?php echo $this->form->getElement('frequency'); ?>
                 </div>
                 <div class="field-box">
+                    <label><span class="red">*</span> Listing expiration date:</label>
                     <?php echo $this->form->getElement('expirationDate'); ?>
                 </div>
                 <div class="field-box">
+                    <label><span class="red">*</span> Description:</label>
                     <?php echo $this->form->getElement('description'); ?>
                 </div>
                 <div class="field-box">
                     <?php echo $this->form->getElement('user_id'); ?>
                 </div>
-                <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Get started</span></a>
+
+                <div class="buttons-set">
+                    <a href="#" onclick="$(this).parents('form').submit();" class="grey-btn"><span>Update</span></a>
+                </div>
             </form>
         </div>
-    </div>
+    </div> 
 </div>

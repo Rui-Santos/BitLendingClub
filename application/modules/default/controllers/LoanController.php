@@ -29,7 +29,7 @@ class Default_LoanController extends Zend_Controller_Action {
         if(!Service_Auth::getLoggedUser()){
             $this->_helper->redirector('index');
         }
-        $form = new Default_Form_Loan();
+        $form = new Default_Form_Loan(array('purposesOpts' => Model_Loan::$_purposesOpts));
 
         if ($this->_request->isPost()) {
             # adding the new entity after validating the input data
