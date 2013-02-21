@@ -63,5 +63,14 @@ class Default_LoanController extends Zend_Controller_Action {
         $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
         $this->view->loans = $paginator;
     }
+    
+    public function browseAction() {
+        
+       $loanId = (int)$this->_request->getParam('lid', 0);
+       
+        $loan = $this->_model->getLoan(array('id'=>$loanId));
+        $this->view->loan = $loan;
+        
+    }
 
 }
