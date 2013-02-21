@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Entity_Payments
 {
+
     /**
      * @var integer
      *
@@ -50,11 +49,14 @@ class Entity_Payments
     private $dateposted;
 
     /**
-     * @var integer
+     * @var User
      *
-     * @Column(name="dorrowerId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Users")
+     * @JoinColumns({
+     *   @JoinColumn(name="borrowerId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $dorrowerid;
+    private $borrower;
 
     /**
      * @var string
@@ -62,7 +64,6 @@ class Entity_Payments
      * @Column(name="paymentAddress", type="string", length=34, precision=0, scale=0, nullable=false, unique=false)
      */
     private $paymentaddress;
-
 
     /**
      * Get id
@@ -167,26 +168,26 @@ class Entity_Payments
     }
 
     /**
-     * Set dorrowerid
+     * Set borrower
      *
      * @param integer $dorrowerid
-     * @return Payments
+     * @return Entity_Borrower
      */
-    public function setDorrowerid($dorrowerid)
+    public function setBorrower($borrower)
     {
-        $this->dorrowerid = $dorrowerid;
+        $this->borrower = $borrower;
 
         return $this;
     }
 
     /**
-     * Get dorrowerid
+     * Get borrower
      *
      * @return integer 
      */
-    public function getDorrowerid()
+    public function getBorrower()
     {
-        return $this->dorrowerid;
+        return $this->borrower;
     }
 
     /**
@@ -211,4 +212,5 @@ class Entity_Payments
     {
         return $this->paymentaddress;
     }
+
 }

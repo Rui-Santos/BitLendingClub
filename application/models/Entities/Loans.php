@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Entity_Loans
 {
+
     /**
      * @var integer
      *
@@ -20,7 +19,7 @@ class Entity_Loans
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
+
     /**
      * @var string $title
      *
@@ -34,8 +33,6 @@ class Entity_Loans
      * @Column(name="amount", type="decimal", precision=0, scale=0, nullable=false, unique=false)
      */
     private $amount;
-
-    
 
     /**
      * @var integer
@@ -57,13 +54,14 @@ class Entity_Loans
      * @Column(name="expirationDate", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $expirationDate;
-     /**
+
+    /**
      * @var integer
      *
      * @Column(name="purpose", type="integer", precision=0, scale=0, nullable=false, unique=false)
      */
     private $purpose;
-    
+
     /**
      * @var Status
      *
@@ -73,7 +71,7 @@ class Entity_Loans
      * })
      */
     private $status;
-    
+
     /**
      * @var text $description
      *
@@ -90,8 +88,6 @@ class Entity_Loans
      * })
      */
     private $borrower;
-
-
 
     /**
      * Get id
@@ -125,7 +121,7 @@ class Entity_Loans
     {
         return $this->amount;
     }
-    
+
     /**
      * Set title
      *
@@ -145,8 +141,6 @@ class Entity_Loans
     {
         return $this->title;
     }
-
-    
 
     /**
      * Set term
@@ -217,7 +211,7 @@ class Entity_Loans
         return $this->expirationDate;
     }
 
-   /**
+    /**
      * Set status
      *
      * @param Entity_Loanstatus $status
@@ -237,7 +231,7 @@ class Entity_Loans
         return $this->status;
     }
 
-     /**
+    /**
      * Set user
      *
      * @param Entity_Users $user
@@ -256,7 +250,7 @@ class Entity_Loans
     {
         return $this->borrower;
     }
-    
+
     /**
      * Set description
      *
@@ -276,7 +270,7 @@ class Entity_Loans
     {
         return $this->description;
     }
-    
+
     /**
      * Set purpose
      *
@@ -295,5 +289,6 @@ class Entity_Loans
     public function getPurpose()
     {
         return $this->purpose;
-    }   
+    }
+
 }
