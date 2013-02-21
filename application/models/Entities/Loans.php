@@ -90,6 +90,13 @@ class Entity_Loans
     private $borrower;
 
     /**
+     * @var ArrayCollection $payments
+     * 
+     * @OneToMany(targetEntity="Entity_Payments", mappedBy="loan", cascade={"persist"})
+     */
+    private $payments;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -289,6 +296,24 @@ class Entity_Loans
     public function getPurpose()
     {
         return $this->purpose;
+    }
+
+    /**
+     *
+     * @param type $payments 
+     */
+    public function addPayment($payment)
+    {
+        $this->payments[] = $payment;
+    }
+
+    /**
+     *
+     * @return type 
+     */
+    public function getPayments()
+    {
+        return $this->payments;
     }
 
 }

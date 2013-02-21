@@ -21,11 +21,14 @@ class Entity_Payments
     private $id;
 
     /**
-     * @var integer
+     * @var User
      *
-     * @Column(name="loanId", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ManyToOne(targetEntity="Entity_Loans")
+     * @JoinColumns({
+     *   @JoinColumn(name="loanId", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $loanid;
+    private $loan;
 
     /**
      * @var float
@@ -81,10 +84,9 @@ class Entity_Payments
      * @param integer $loanid
      * @return Payments
      */
-    public function setLoanid($loanid)
+    public function setLoan($loan)
     {
-        $this->loanid = $loanid;
-
+        $this->loan = $loan;
         return $this;
     }
 
@@ -93,9 +95,9 @@ class Entity_Payments
      *
      * @return integer 
      */
-    public function getLoanid()
+    public function getLoan()
     {
-        return $this->loanid;
+        return $this->loan;
     }
 
     /**
