@@ -39,7 +39,7 @@ class Default_Form_Loan extends Default_Form_Abstract
         
         $this->addElement('text', 'frequency', array(
             //'placeholder' => 'Payment Frequency',
-            'label' => 'Payment Frequency',
+            'label' => 'Payment Frequency (Every [ ] days)',
             'class' => 'medium',
             'required' => true,
         ));
