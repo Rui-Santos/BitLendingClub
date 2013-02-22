@@ -186,6 +186,30 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getFbUserId();
     }
 
+    public function addLoan($loan)
+    {
+        $this->__load();
+        return parent::addLoan($loan);
+    }
+
+    public function getLoans()
+    {
+        $this->__load();
+        return parent::getLoans();
+    }
+
+    public function addPayment($payment)
+    {
+        $this->__load();
+        return parent::addPayment($payment);
+    }
+
+    public function getPayments()
+    {
+        $this->__load();
+        return parent::getPayments();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -195,7 +219,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address', 'loans', 'payments');
     }
 
     public function __clone()

@@ -23,7 +23,14 @@ class Default_UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+        $id = $this->_request->getParam('id', 0);
+        if ($id == 0) {
+            throw new HttpException('Invalid http get parameter');
+        }
+        $this->view->user = $this->_model->get($id);
+        if (!$this->view->user) {
+            $this->_helper->redirector('index', 'index');
+        }
     }
 
 }
