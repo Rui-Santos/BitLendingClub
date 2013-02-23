@@ -31,6 +31,8 @@ class Default_UserController extends Zend_Controller_Action
         if (!$this->view->user) {
             $this->_helper->redirector('index', 'index');
         }
+        
+//        App_DoctrineDebug::dump($this->view->user->getLoans()); exit;
     }
 
 }
