@@ -2,15 +2,15 @@
 
 class Model_User extends Model_Abstract
 {
-
     /**
      * Role types
      */
+
     const ADMIN_ROLE = 'admin';
     const REGULAR_ROLE = 'regular';
     const COMPANY_ROLE = 'company';
     const RESELLER_ROLE = 'reseller';
-    
+
     /**
      * User types
      */
@@ -197,9 +197,9 @@ class Model_User extends Model_Abstract
         if (empty($email) || empty($password)) {
             throw new InvalidArgumentException('Invalid username or password');
         }
-        
+
         $entity = $this->getRepository()->findOneBy(array('email' => $email, 'password' => $password));
-        
+
         if ($entity) {
             return $entity;
         }
@@ -428,8 +428,6 @@ class Model_User extends Model_Abstract
         return $this->getRepository()->createOrUpdate($params, $user_id);
     }
 
-   
-
     /**
      *
      * @param type $userNodes
@@ -461,8 +459,6 @@ class Model_User extends Model_Abstract
         return $opts;
     }
 
-    
-    
     public function deactivateUser($id)
     {
         $userItem = $this->get($id);
@@ -473,7 +469,7 @@ class Model_User extends Model_Abstract
 
         return false;
     }
-    
+
     public function activateUser($id)
     {
         $userItem = $this->get($id);
@@ -484,13 +480,14 @@ class Model_User extends Model_Abstract
 
         return false;
     }
-    
+
     /**
      *
      * @param array $criteria
      * @return \Entity_User|boolean 
      */
-    public function getUser(array $criteria = array()) {
+    public function getUser(array $criteria = array())
+    {
         $entity = $this->getRepository()->findOneBy($criteria);
         if ($entity && $entity instanceof Entity_Users) {
             return $entity;
@@ -499,5 +496,19 @@ class Model_User extends Model_Abstract
         }
     }
 
+    /**
+     *
+     * @param type $options
+     * @return boolean 
+     */
+    public function rateForUser($params = array())
+    {
+        if (empty($params)) {
+            throw new InvalidArgumentException('invalid parameter $options');
+        }
+
+        return $this->_em->getRepository('Entity_UserRatings')->createOrUpdate($params + array('commenter_id' => Service_Auth::getId()));
+        return true;
+    }
 
 }

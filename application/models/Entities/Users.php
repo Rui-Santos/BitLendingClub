@@ -107,6 +107,20 @@ class Entity_Users
      * @OneToMany(targetEntity="Entity_Loans", mappedBy="borrower", cascade={"persist"})
      */
     private $loans;
+    
+    /**
+     * @var ArrayCollection $ratings
+     * 
+     * @OneToMany(targetEntity="Entity_Ratings", mappedBy="user_id", cascade={"persist"})
+     */
+    private $ratings;
+    
+    /**
+     * @var ArrayCollection $ratedList
+     * 
+     * @OneToMany(targetEntity="Entity_Ratings", mappedBy="commenter_id", cascade={"persist"})
+     */
+    private $ratedList;
 
     /**
      * @var ArrayCollection $payments
@@ -120,6 +134,8 @@ class Entity_Users
         //       $this->isActive = 1;
         $this->loans = new ArrayCollection();
         $this->payments = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+        $this->ratedList = new ArrayCollection();
     }
 
     /**
@@ -407,7 +423,43 @@ class Entity_Users
     {
         return $this->payments;
     }
+    
+    /**
+     *
+     * @param type $ratings 
+     */
+    public function addRating($rating)
+    {
+        $this->ratings[] = $rating;
+    }
 
+    /**
+     *
+     * @return type 
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
+    }
+    
+    /**
+     *
+     * @param type $ratings 
+     */
+    public function addRate($rate)
+    {
+        $this->ratedList[] = $rate;
+    }
+
+    /**
+     *
+     * @return type 
+     */
+    public function getRatedList()
+    {
+        return $this->ratedList;
+    }
+    
     /**
      *
      * @return type 
