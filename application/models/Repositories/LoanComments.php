@@ -69,7 +69,7 @@ class Repository_LoanComments extends EntityRepository
         } else {
             $entity = $this->find($id);
         }
-
+        
         $em = $this->getEntityManager();
 
         $entity->setComment($params['comment']);

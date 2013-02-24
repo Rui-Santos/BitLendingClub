@@ -116,14 +116,14 @@
                         <?php foreach ($this->investments as $investment): ?>
                             <tr>
                                 <td><a href="#"><?php echo $investment->getInvestor()->getFullname(); ?></a></td>
-                                <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle();?></a></td>
+                                <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a></td>
                                 <td><?php echo $investment->getAmount(); ?></td>
                                 <td><?php echo $investment->getRate(); ?>%</td>
 
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
-                    
+
                 </table>
             </div>
 
@@ -138,38 +138,45 @@
             </div>
         <?php endif; ?>
 
-
-
         <div class="profile-content-right pcr-padding full-width-table">
             <div class="page-title">
                 <h2 class="ll-second-title">Comment</h2>
             </div>
             <div class="ls-row2">
-                <textarea name="Comment" type="text" placeholder="Comment"></textarea>
-                <div class="buttons-set">
-                    <a href="#" class="green-btn"><span>Post comment</span></a>
+                <form name="comment-form" action="<?php
+        echo $this->url(array('module' => 'default',
+            'controller' => 'loan', 'action' => 'comment'), null, true);
+        ?>" method="post">
+                          <?php echo $this->form->getElement('comment'); ?>
+<?php echo $this->form->getElement('user_id'); ?>
+                    <input type="hidden" name="loan_id" value="<?php echo $loan->getId(); ?>" id="loan_id"/>
+                    <div class="buttons-set">
+                        <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Post comment</span></a>
+                    </div>
+            </div>
+            <?php if (count($this->comments) > 0): ?>
+    <?php foreach ($this->comments as $comment): ?>
+                    <div class="ls-row2">
+                        <span class="name-date"><a href="#"><?php echo $comment->getUser()->getFullname(); ?></a><span class="grey2">/</span><?php echo $comment->getPostedOn()->format('Y-m-d'); ?></span>
+                        <span class="comment"><?php echo $comment->getComment(); ?></span>
+                    </div>
+    <?php endforeach; ?>
+                <div class="paging">
+                    <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
+
+                    <?php
+                    echo $this->paginationControl(
+                            $this->comments, 'Sliding', 'partials/paginator.phtml');
+                    ?>
+
                 </div>
-            </div>
-            <div class="ls-row2">
-                <span class="name-date"><a href="#">Jimmy</a><span class="grey2">/</span>21 January 2013</span>
-                <span class="comment">Hi guys, I'm new here. Can anyone tell me exactly how interest is calculated? How often is it compounded?</span>
-            </div>
-            <div class="ls-row2">
-                <span class="name-date"><a href="#">James Dean</a><span class="grey2">/</span>17 January 2013</span>
-                <span class="comment">It is based the same as fixed rate mortgaging - read here http://en.wikipedia.org/wiki/Fixed-rate_mortgage#Pricing</span>
-            </div>
-            <div class="paging">
-                <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
-                
-                                <?php
-                                echo $this->paginationControl(
-                                        $this->comments, 'Sliding', 'partials/paginator.phtml');
-                                ?>
-                           
-            </div>
+
+<?php else: ?>
+
+                No comments added.
+
+<?php endif; ?>
         </div>
-
-
 
     </div>
 

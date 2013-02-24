@@ -73,16 +73,38 @@ class Default_LoanController extends Zend_Controller_Action {
         
         $investments = new Model_Investment();
         $investments = $investments->findBy(array('loan' => $loanId));
+        $this->view->investments = $investments;
         
+        $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
+        $this->view->form = $commentForm;
         
         $comments = new Model_LoanComment();
         $paginator = new Zend_Paginator(
                         new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan'=>$loanId))));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(5);
-
         $this->view->comments = $paginator;
-        $this->view->investments = $investments;
+        
     }
+    
+    public function commentAction() {
+        $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
+        if ($this->_request->isPost()) {
+            $post = $this->_request->getPost();
+            
+            if ($commentForm->isValid($post)) {
+               
+                $dataValues = $commentForm->getValues();
+                
+                $commentModel = new Model_LoanComment();
+                $commentItem = $commentModel->create($dataValues);
 
+                if ($commentItem) {
+                    $this->_helper->redirector('browse', 'loan', null, array('lid' => $post['loan_id']));
+
+                    //$this->_model->confirmRegistration($userItem->getId());
+                }
+            }
+        }
+    }
 }

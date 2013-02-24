@@ -3,7 +3,7 @@
 class Default_Form_Comment extends Default_Form_Abstract {
 
     public function __construct($options = null) {
-
+        
         parent::__construct($options);
     }
 
@@ -12,9 +12,8 @@ class Default_Form_Comment extends Default_Form_Abstract {
         $this->addElement('hidden', 'user_id', array(
             'value' => Service_Auth::getLoggedUser()->getId(),
         ));
-
         $this->addElement('hidden', 'loan_id', array(
-            'value' => (int)$this->_request->getParam('lid', 0),
+            
         ));
         
         $this->addElement('textarea', 'comment', array(
