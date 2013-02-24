@@ -59,9 +59,7 @@ class Repository_Users extends EntityRepository
      * @return Entity_Users 
      */
     public function createOrUpdate(array $params, $id = null)
-    {
-        date_default_timezone_set('America/Chicago');
-        
+    {        
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
