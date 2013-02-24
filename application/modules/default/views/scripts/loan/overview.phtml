@@ -34,7 +34,7 @@
 						<th>By</th>
 						<th>Listing title</th>
 						<th>Amount</th>
-						<th>Rate</th>
+						
 						<th>Term</th>
 						<th>Loan status</th>
 					</tr>
@@ -45,7 +45,7 @@
 						<td><a href="#"><?php echo $loan->getBorrower()->getFullname();?></a></td>
 						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle();?></a></td>
 						<td><?php echo $loan->getAmount();?></td>
-						<td><?php echo $loan->getRate().'%';?></td>
+						
 						<td><?php echo $loan->getTerm();?></td>
 						<td><?php echo $loan->getStatus()->getName();?></td>
 					</tr>

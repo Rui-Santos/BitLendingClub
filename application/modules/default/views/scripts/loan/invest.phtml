@@ -2,17 +2,17 @@
 	<div class="login-wrapper">
 		<div class="login-holder">
 			<div id="show-login-holder">
-				<div class="title">Withdraw Funds</div>
-				<form id="withdraw-form" action="<?php echo $this->url(array('module' => 'default', 
-                'controller' => 'profile', 'action' => 'withdraw'), null, true); ?>" method="post" onsubmit="return doWithdraw(this);">
+				<div class="title">Invest</div>
+				<form id="invest-form" action="<?php echo $this->url(array('module' => 'default', 
+                'controller' => 'loan', 'action' => 'invest'), null, true); ?>" method="post" onsubmit="return doInvest(this);">
 					<?php echo $this->form->getElement('amount'); ?>
-                <?php echo $this->form->getElement('address'); ?>
+                <?php echo $this->form->getElement('rate'); ?>
 
             <?php if ($this->errorWithdrawAddress): ?>
                 <p class="errors"><?php echo $this->translate('Invalid withdraw address.'); ?></p>
             <?php endif; ?>
 
-					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Withdraw</span></a>
+					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Invest</span></a>
 				</form>
 			</div>
 			
@@ -23,9 +23,9 @@
 
 <script type="text/javascript">
     
-$('#withdraw-form input').keydown(function(e) {
+$('#invest-form input').keydown(function(e) {
     if (e.keyCode == 13) {
-        $('#withdraw-form').submit();
+        $('#invest-form').submit();
     }
 });
 

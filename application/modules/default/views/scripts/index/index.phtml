@@ -58,13 +58,13 @@
             <tbody>
                 <?php foreach ($this->loans as $loan): ?>
                     <tr>
-                        <td class="listing-title"><a href="#"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
+                        <td class="listing-title"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
                         <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
                         <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
                         <td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
                         <td><strong>8</strong> days</td>
                         <td><strong><?php echo $loan->getBorrower()->getRating(); ?></strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
-                        <td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
+                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRating();?></strong> <a href="#">Full<br/>rating</a></td>
                     </tr>
                 <?php endforeach; ?>
 

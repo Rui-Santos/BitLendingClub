@@ -45,7 +45,7 @@
                                     <?php foreach($this->investments as $inv):?>
 					<tr>
 						<td><a href="#"><?php echo $inv->getLoan()->getBorrower()->getFullname();?></a></td>
-						<td><a href="#"><?php echo $inv->getLoan()->getTitle();?></a></td>
+						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $inv->getLoan()->getTitle();?></a></td>
 						<td><?php echo $inv->getLoan()->getAmount();?></td>
 						<td><?php echo $inv->getRate().'%';?></td>
 						<td><?php echo $inv->getLoan()->getTerm();?></td>

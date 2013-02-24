@@ -138,10 +138,34 @@ class Entity_LoansProxy extends \Entity_Loans implements \Doctrine\ORM\Proxy\Pro
         return parent::getDescription();
     }
 
+    public function setPurpose($purpose)
+    {
+        $this->__load();
+        return parent::setPurpose($purpose);
+    }
+
+    public function getPurpose()
+    {
+        $this->__load();
+        return parent::getPurpose();
+    }
+
+    public function addPayment($payment)
+    {
+        $this->__load();
+        return parent::addPayment($payment);
+    }
+
+    public function getPayments()
+    {
+        $this->__load();
+        return parent::getPayments();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'title', 'amount', 'term', 'frequency', 'expirationDate', 'status', 'description', 'borrower');
+        return array('__isInitialized__', 'id', 'title', 'amount', 'term', 'frequency', 'expirationDate', 'purpose', 'status', 'description', 'borrower', 'payments');
     }
 
     public function __clone()

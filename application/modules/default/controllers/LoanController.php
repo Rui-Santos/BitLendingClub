@@ -107,4 +107,24 @@ class Default_LoanController extends Zend_Controller_Action {
             }
         }
     }
+    
+    public function investAction() {
+        $this->_helper->layout->disableLayout();
+        $id = Service_Auth::getLoggedUser()->getId();
+        $investForm = new Default_Form_Invest();
+
+        if ($this->_request->isPost()) {
+            $post = $this->_request->getPost();
+            if ($investForm->isValid($post)) {
+
+                $values = $investForm->getValues();
+
+                
+            } else {
+                $this->view->errorInvest = true;
+            }
+        }
+
+        $this->view->form = $investForm;
+    }
 }

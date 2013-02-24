@@ -210,6 +210,30 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getPayments();
     }
 
+    public function addRating($rating)
+    {
+        $this->__load();
+        return parent::addRating($rating);
+    }
+
+    public function getRatings()
+    {
+        $this->__load();
+        return parent::getRatings();
+    }
+
+    public function addRate($rate)
+    {
+        $this->__load();
+        return parent::addRate($rate);
+    }
+
+    public function getRatedList()
+    {
+        $this->__load();
+        return parent::getRatedList();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -219,7 +243,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address', 'loans', 'payments');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments');
     }
 
     public function __clone()
