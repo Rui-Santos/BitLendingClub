@@ -129,7 +129,9 @@ class Default_LoanController extends Zend_Controller_Action {
                 $invModel = new Model_Investment();
                 $invItem = $invModel->create($values);
                 if ($invItem) {
-                    $this->_helper->redirector('browse', 'loan', null, array('lid' => $post['loan_id']));
+                    $this->_helper->viewRenderer->setNoRender(true);
+                    $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
+                    $this->getResponse()->setBody(json_encode(array("success" => "true")));
                 }
             } else {
                 $this->view->errorInvest = true;

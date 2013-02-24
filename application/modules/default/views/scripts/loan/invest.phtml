@@ -6,9 +6,9 @@
 				<form id="invest-form" action="<?php echo $this->url(array('module' => 'default', 
                 'controller' => 'loan', 'action' => 'invest'), null, true); ?>" method="post" onsubmit="return doInvest(this);">
 					<?php // echo $this->form->getElement('amount'); ?>
-                    <input name="amount" type="number" min="0" max="" class="input-short" />
+                    <input placeholder="Amount" name="amount" type="number" min="0" max="" class="input-short" />
                 <?php // echo $this->form->getElement('rate'); ?>
-                    <input name="rate" type="number" min="0" class="input-short" />
+                    <input placeholder="Rate (%)" name="rate" type="number" min="0" class="input-short" />
                     <input name="user_id" type="hidden" value="<?php echo $this->loanId;?>"/>
                     <input name="loan_id" type="hidden" value="<?php echo $this->userId;?>"/>
             <?php if ($this->errorWithdrawAddress): ?>

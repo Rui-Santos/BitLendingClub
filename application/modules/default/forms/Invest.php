@@ -42,6 +42,7 @@ class Default_Form_Invest extends Default_Form_Abstract
         $element->setDecorators(array(
             'ViewHelper',
             'Errors',
+            
         ));
 
         return $element;
