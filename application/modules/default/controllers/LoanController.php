@@ -88,6 +88,7 @@ class Default_LoanController extends Zend_Controller_Action {
     }
     
     public function commentAction() {
+        $this->_helper->layout->disableLayout();
         $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
@@ -109,6 +110,10 @@ class Default_LoanController extends Zend_Controller_Action {
     }
     
     public function investAction() {
+        
+        $loanId = (int)$this->_request->getParam('lid', 0);
+        $this->view->loanId = $loanId;
+        
         $this->_helper->layout->disableLayout();
         $id = Service_Auth::getLoggedUser()->getId();
         $investForm = new Default_Form_Invest();
