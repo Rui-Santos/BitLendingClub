@@ -111,14 +111,14 @@ class Entity_Users
     /**
      * @var ArrayCollection $ratings
      * 
-     * @OneToMany(targetEntity="Entity_Ratings", mappedBy="user_id", cascade={"persist"})
+     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="user_id", cascade={"persist"})
      */
     private $ratings;
     
     /**
      * @var ArrayCollection $ratedList
      * 
-     * @OneToMany(targetEntity="Entity_Ratings", mappedBy="commenter_id", cascade={"persist"})
+     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="commenter_id", cascade={"persist"})
      */
     private $ratedList;
 
