@@ -63,14 +63,25 @@ class Repository_Investments extends EntityRepository
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
-            $entity->setCreatedAt(new DateTime());
+            $entity->setDateinvested(new DateTime());
         } else {
             $entity = $this->find($id);
         }
 
         $em = $this->getEntityManager();
-
-       //TODO: CREATE/UPDATE Investments
+        
+        $entity->setAmount($params['amount']);
+        $entity->setRate($params['rate']);
+        
+        $loan = $em->getRepository('Entity_Loans')->find($params['loan_id']);
+        if ($loan) {
+            $entity->setLoan($loan);
+        }
+        
+        $user = $em->getRepository('Entity_Users')->find($params['user_id']);
+        if ($user) {
+            $entity->setInvestor($user);
+        }
         
         $em->persist($entity);
         $em->flush();

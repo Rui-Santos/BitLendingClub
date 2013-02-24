@@ -15,7 +15,7 @@ $(function() {
   
   initFundDialog();
   
-  initInvestDialog();
+  
   
   initDatepicker();
     
@@ -76,18 +76,18 @@ var initFundDialog = function() {
     });
 }
 
-var initInvestDialog = function() {
+var initInvestDialog = function(loanId) {
     var modalDialog = $('#main-modal-dialog');
     
-    $('#dash-invest').click(function(e){
+   
         
         modalDialog.jqm({
-            ajax: '/loan/invest'
+            ajax: '/loan/invest/lid/'+loanId
         });                
         modalDialog.jqmShow();
     
         e.preventDefault();
-    });
+   
 
     $('#login-close').live('click', function(e){
         modalDialog.jqmHide();

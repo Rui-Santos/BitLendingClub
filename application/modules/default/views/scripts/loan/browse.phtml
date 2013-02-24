@@ -9,7 +9,7 @@
         <div class="ll-title">
             <h1><?php echo $loan->getTitle(); ?></h1>
             <a href="javascript:history.go(-1)" class="grey-small-btn"><span>Back</span></a>
-            <a href="#" id="dash-invest" class="green-btn"><span>Invest</span></a>
+            <a href="#" onclick="javascript:initInvestDialog(<?php echo $loan->getId();?>)" id="dash-invest" class="green-btn"><span>Invest</span></a>
         </div>
 
 
