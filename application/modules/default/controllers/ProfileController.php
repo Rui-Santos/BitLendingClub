@@ -171,8 +171,7 @@ class Default_ProfileController extends Zend_Controller_Action {
 
                 if ($isValid['isvalid']) {
                     $transfer = $bitcoin->sendfrom('account_' . $id, $values['address'], $values['amount']);
-                    Zend_Debug::dump($transfer);
-                    exit;
+                    
                     if ($transfer) {
                         $this->_helper->redirector('index', 'index');
                     } else {
