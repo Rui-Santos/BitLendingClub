@@ -138,6 +138,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         Zend_Registry::set('Zend_Translate', $translate);
     }
+    
+    protected function _initTimezone()
+    {
+        date_default_timezone_set('America/Chicago');
+    }
 
     /**
      * 

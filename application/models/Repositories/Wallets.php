@@ -56,7 +56,7 @@ class Repository_Wallets extends EntityRepository {
      * @return Entity_Wallets
      */
     public function createOrUpdate(array $params, $id = null) {
-        date_default_timezone_set('America/Chicago');
+        
 
         if (is_null($id)) {
             $entityName = $this->getEntityName();
