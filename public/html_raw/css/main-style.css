@@ -253,14 +253,15 @@ a.view-all:hover{ text-decoration:underline; }
 #listing-table tbody tr td.rating a:hover{ text-decoration:underline; }
 
 /* single listing */
-.ll-title h1{ font-size:24px; line-height:24px; width:850px; font-weight:300; margin:10px 0px 30px 10px; float:left; }
+.ll-title h1{ font-size:24px; line-height:24px; width:800px; font-weight:300; margin:10px 0px 30px 10px; float:left; }
 .ll-title > a{ float:right; margin-top:8px; }
 .ll-second-title{ font-size:16px; color:#333; margin:15px 0px 0px 0px; padding-left:20px; display:inline-block; float:left; font-weight:bold; }
+.page-title a{ float:right; margin-top:9px; margin-right:9px; }
 .profile-content-wrapper p{ color:#333333; }
 .ls-row{ border-top:1px solid #CCCCCC; display:block; overflow:hidden; }
 .ls-row.first{ border-top:0px; }
 .ls-row2{ padding:20px; border-bottom:1px solid #CCCCCC; display:block; overflow:hidden; }
-.ls-span{ padding:30px 20px; float:left; border-left:1px solid #E6E6E6; }
+.ls-span{ padding:20px; float:left; border-left:1px solid #E6E6E6; }
 .ls-span1{ width:260px; }
 .ls-span2{ width:180px; }
 .ls-span3{ width:376px; }
@@ -296,7 +297,9 @@ label.preview{ opacity:0.4; filter:alpha(opacity=40); }
 .pl-buttons-set a{ float:left; margin:0px 20px 0px 180px; }
 .pl-buttons-set > span{ float:left; font-size:16px; color:#666666; font-weight:300; margin-top:6px; }
 
-
+.button-row{ background: url(../images/gradient-title-r-bg.png) repeat-x 0 0; padding:15px 20px; overflow:hidden; }
+.button-row > span{ font-size:18px; float:left; font-style:italic; font-weight:300; margin:8px 10px 0px 220px; }
+.button-row a{ float:left; }
 
 
 /* listing pagination */
@@ -349,7 +352,7 @@ h1.how-it-works-title span{ font-weight:bold; text-transform:uppercase; color:#3
 .profile-content-wrapper{ overflow:hidden; display:block; padding:20px; }
 .profile-content-right{ float:right; overflow:hidden; display:block; width:699px; margin-left:-1px; border:1px solid #CCCCCC; min-height:200px; padding:20px; }
 .pcr-padding{ width:739px; padding:0px; min-height:auto; }
-.full-width-table{ width:938px; margin-left:0px; float:left; }
+.full-width-table{ width:938px; margin-left:0px; float:left; box-shadow: 0px 2px 6px #ddd; }
 .full-width{ width:900px; padding:10px 20px; overflow:hidden; } 
 
 .profile-content-wrapper .green{ color:#38B249; }
@@ -490,9 +493,14 @@ h1.how-it-works-title span{ font-weight:bold; text-transform:uppercase; color:#3
 .error-wrapper{ font-size:24px; font-weight:300; text-align:center; padding:80px 0px 320px; background:url(../images/error-graphic.png) no-repeat 50% 120px; }
 
 
-
-
-
-
-
-
+/* PROFILE PAGE */
+.profile-icon{ background:url(../images/profile-icon.png) no-repeat 0 5px; padding-left:25px; }
+.profile-icon .grey{ color:#c5c5c5; }
+.profile-view-table tbody tr td .funding-bg{ background:url(../images/funding-bg.png) no-repeat 0 0; width:100px; height:10px; margin-top:4px; display:block; }
+.profile-view-table tbody tr td .funding-bg span{ background:url(../images/funding-bg.png) no-repeat 0 100%; height:10px; display:inline-block; }
+.ls-row-bg{ background:url(../images/lsrow-bg.png) repeat-y 0 0; }
+.ls-span6{ width:192px; border:0px; }
+.ls-span6 .description > span{ color:#888; font-size:12px; display:block; } 
+.ls-span6 .description span span{ color:#333; font-size:14px; }
+.profile-view-wrapper .row{ margin:0px 0px 20px 0px; }
+.profile-view-wrapper .row .box{ min-height:110px; }

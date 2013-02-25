@@ -62,74 +62,54 @@
 <div id="main-wrapper">
 	<ul id="tabs-nav">
 		<li><a href="#"><span class="dashboard-icon">Dashboard</span></a></li>
-		<li class="selected"><a href="#"><span class="crating-icon">Credit rating</span></a></li>
-		<li><a href="#"><span class="rep-icon">Reputation</span></a></li>
+		<li><a href="#"><span class="crating-icon">Credit rating</span></a></li>
+		<li class="selected"><a href="#"><span class="rep-icon">Reputation</span></a></li>
 		<li><a href="#"><span class="overview-icon">Investments</span></a></li>
 		<li><a href="#"><span class="loan-icon">Loans</span></a></li>
 		<li><a href="#"><span class="automated-plan-icon">Settings</span></a></li>
 	</ul>
 	<div class="profile-content-wrapper">
 		<div class="sidebar-left profile-sidebar">
-			<ul id="sidebar-nav">
-				<li class="selected"><a href="#">Identity verification</a></li>
-				<li><a href="#">Address Check</a></li>
-				<li><a href="#">Phone Veriﬁcation</a></li>
-				<li><a href="#">Credit Score Veriﬁcation</a></li>
-				<li><a href="#">Social Network Connections</a></li>
-			</ul>
+			<div class="sidebar-infoboard mb-twenty">
+				<div class="sidebar-msg">
+					<span>Import your Bitcoin OTC Reputation</span>
+					<a href="#" class="green-btn"><span>Import</span></a>
+				</div>
+			</div>
 			<div class="sidebar-infoboard">
-				<div class="title">Credit rating  <span class="red">2</span><span class="divider">/</span><span class="green">10</span></div>
+				<div class="title">Reputation <span class="red">-35%</span></div>
 				<ul>
-					<li>Identity veriﬁed: <span class="green">Yes</span></li>
-					<li>Phone veriﬁed: <span class="red">No</span></li>
-					<li>Address veriﬁed: <span class="red">No</span></li>
-					<li>Credit score veriﬁed: <span class="red">No</span></li>
-					<li>Facebook: <span class="red">No</span></li>
-					<li>LinkedIn: <span class="red">No</span></li>
+					<li>Positive: <span class="green">4</span></li>
+					<li>Negative: <span class="red">17</span></li>
 				</ul>
 			</div>
 		</div>
 		<div class="profile-content-right">
-			<h1>New Address Verification Request</h1>
-			<p>The document will processed within <strong>one business day</strong>. Please ensure that your address information is accurate and upload a recent, viewable, scanned copy of a utility bill or a copy of another document that shows your address and has your name on it.</p>
+			<h1>Rate user</h1>
+			<p>Only users with a <strong>rating greater than 3</strong> can rate others.</p>
+			<p>You can only rate a user <strong>you had some interaction with</strong> (invested or borrowed from him).</p>
 			<form>
 				<div class="field-box">
-					<label><span class="red">*</span> Address line 1:</label>
-					<input type="text" />
-				</div>
-				<div class="field-box">
-					<label>Address line 2:</label>
-					<input type="text" />
-				</div>
-				<div class="field-box">
-					<label><span class="red">*</span> Zip / Postal code:</label>
-					<input type="text" />
-				</div>
-				<div class="field-box">
-					<label><span class="red">*</span> City:</label>
-					<input type="text" />
-				</div>
-				<div class="field-box">
-					<label><span class="red">*</span> State / Country:</label>
-					<input type="text" />
-				</div>
-				<div class="field-box">
-					<label><span class="red">*</span> Country:</label>
+					<label><span class="red">*</span> User Alias:</label>
 					<select>
-						<option selected="selected">USA</option>
 						<option selected="selected">Test</option>
-						<option selected="selected">Bulgaira</option>
-						<option selected="selected">Germany</option>
-						<option selected="selected">Great Britain</option>
+						<option selected="selected">Test2</option>
+						<option selected="selected">Test3</option>
+						<option selected="selected">Test4</option>
+						<option selected="selected">Test5</option>
 					</select>
 				</div>
 				<div class="field-box">
-					<label><span class="red">*</span> Document image:</label>
-					<input type="file" class="type-file" />
-					<span class="info">Only high-res jpeg or png up to 5mb images will be accepted</span>
+					<label><span class="red">*</span> Rating:</label>
+					<input type="number" class="input-short" />
+					<span class="info c-both mt-five">Value between -10 and 10.</span>
+				</div>
+				<div class="field-box">
+					<label><span class="red">*</span> Comment:</label>
+					<textarea type="text"></textarea>
 				</div>
 				<div class="buttons-set">
-					<a href="#" class="green-btn"><span>Add new</span></a>
+					<a href="#" class="green-btn"><span>Rate user</span></a>
 					<span class="required"><span class="red">*</span> Required fields</span>
 					<a href="#" class="back-link">Back</a>
 				</div>
@@ -191,5 +171,4 @@
 
 
 </body>
-</html>>
 </html>
