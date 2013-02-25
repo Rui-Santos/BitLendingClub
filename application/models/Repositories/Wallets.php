@@ -2,7 +2,8 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Wallets extends EntityRepository {
+class Repository_Wallets extends EntityRepository
+{
 
     /**
      * Get all Wallets
@@ -10,7 +11,8 @@ class Repository_Wallets extends EntityRepository {
      * @param array $criteria
      * @return array 
      */
-    public function getAll(array $criteria = array()) {
+    public function getAll(array $criteria = array())
+    {
         $query = $this->createQueryBuilder('deals');
 
         if (!empty($criteria)) {
@@ -37,7 +39,8 @@ class Repository_Wallets extends EntityRepository {
      * @param integer $id
      * @return Entity_Wallets
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         $entity = $this->find($id);
 
         if ($entity) {
@@ -55,8 +58,9 @@ class Repository_Wallets extends EntityRepository {
      * @param integer $id
      * @return Entity_Wallets
      */
-    public function createOrUpdate(array $params, $id = null) {
-        
+    public function createOrUpdate(array $params, $id = null)
+    {
+
 
         if (is_null($id)) {
             $entityName = $this->getEntityName();
@@ -88,6 +92,23 @@ class Repository_Wallets extends EntityRepository {
         $em->flush();
         $em->refresh($entity);
 
+        return $entity;
+    }
+
+    public function update($params = array())
+    {
+        $em = $this->getEntityManager();
+        $entity = $this->findOneBy(array('user' => $params['user_id']));
+        if (!$entity) {
+            throw new InvalidArgumentException('invalid user_id for wallet');
+        }
+        foreach ($params as $key => $value) {
+            $setter = join('', array("set", ucfirst($key)));
+            call_user_func_array(array($entity, $setter), array($value));
+        }
+        $em->persist($entity);
+        $em->flush();
+        $em->refresh($entity);
         return $entity;
     }
 

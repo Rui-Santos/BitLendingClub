@@ -60,24 +60,56 @@ class Service_Bitcoind extends Zend_Service_Abstract
         return $this->_jsonRpcClient;
     }
 
+    public function sync($options)
+    {
+        return $this->_configRcpClient()
+                        ->_syncBalance($options)
+                        ->_syncAddress($options);
+    }
+
+    protected function _configRcpClient()
+    {
+        // setting json rcp client with our bitcoind server
+        $config = Zend_Registry::get('config');
+        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $config->btc->conn->user . ':' . $config->btc->conn->password . '@' . $config->btc->conn->url . '/'));
+    }
+
     /**
      *
      * @param type $options
      * @throws InvalidArgumentException 
      */
-    public function sync($options)
+    protected function _syncAddress($options)
     {
+        if (!is_array($options)) {
+            throw new InvalidArgumentException('invalid parameter $options');
+        }
 
+
+        $address = $this->getJsonRcpClient()->getaccountaddress(self::getBitcoindAccount($options['user_id']));
+        $userModel = new Model_User();
+        $userModel->updateWallet(array('address' => $address), $options['user_id']);
+        return $this;
+    }
+
+    /**
+     *
+     * @param type $options
+     * @throws InvalidArgumentException 
+     */
+    protected function _syncBalance($options)
+    {
         if (!is_array($options)) {
             throw new InvalidArgumentException('invalid parameter $options');
         }
 
         // setting json rcp client with our bitcoind server
-        $config = Zend_Registry::get('config');
-        $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $config->bitcoind->user . ':' . $config->bitcoind->password . '@' . $config->bitcoind->url . '/'));
 
 
-        $balance = $this->getJsonRcpClient()->getBalance(self::getBitcoindAccount($options['user']));
+        $balance = $this->getJsonRcpClient()->getbalance(self::getBitcoindAccount($options['user_id']));
+        $userModel = new Model_User();
+        $userModel->updateWallet(array('balance' => $balance), $options['user_id']);
+        return $this;
     }
 
     /**
