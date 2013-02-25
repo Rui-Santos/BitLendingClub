@@ -12,7 +12,7 @@
 		<div class="profile-content-right pcr-padding full-width-table">
 			<div class="page-title">
 				<h1>Investments</h1>
-				<div class="table-toolbar">
+				<!--div class="table-toolbar">
 					<div class="toolbar-sorter">
 						<span>Show</span>
 						<select>
@@ -27,7 +27,7 @@
 						<input type="text" />
 						<a href="#"></a>
 					</div>
-				</div>
+				</div-->
 			</div>
                     <?php if(count($this->investments)): ?>
 			<table cellspacing="0" cellpadding="0">
@@ -45,7 +45,7 @@
                                     <?php foreach($this->investments as $inv):?>
 					<tr>
 						<td><a href="#"><?php echo $inv->getLoan()->getBorrower()->getFullname();?></a></td>
-						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $inv->getLoan()->getTitle();?></a></td>
+						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $inv->getLoan()->getId()), null, true); ?>"><?php echo $inv->getLoan()->getTitle();?></a></td>
 						<td><?php echo $inv->getLoan()->getAmount();?></td>
 						<td><?php echo $inv->getRate().'%';?></td>
 						<td><?php echo $inv->getLoan()->getTerm();?></td>
