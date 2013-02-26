@@ -78,13 +78,6 @@ class Entity_Users
     private $createdAt;
 
     /**
-     * @var datetime $rating
-     *
-     * @Column(name="rating", type="float", precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $rating;
-
-    /**
      * @var Roles
      *
      * @ManyToOne(targetEntity="Entity_Roles")
@@ -107,14 +100,14 @@ class Entity_Users
      * @OneToMany(targetEntity="Entity_Loans", mappedBy="borrower", cascade={"persist"})
      */
     private $loans;
-    
+
     /**
      * @var ArrayCollection $ratings
      * 
      * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="user_id", cascade={"persist"})
      */
     private $ratings;
-    
+
     /**
      * @var ArrayCollection $ratedList
      * 
@@ -246,26 +239,6 @@ class Entity_Users
     public function getFirstname()
     {
         return $this->firstname;
-    }
-
-    /**
-     * Set rating
-     *
-     * @param float $rating
-     */
-    public function setRating($rating)
-    {
-        $this->rating = $rating;
-    }
-
-    /**
-     * Get rating
-     *
-     * @return string 
-     */
-    public function getRating()
-    {
-        return $this->rating;
     }
 
     /**
@@ -423,7 +396,7 @@ class Entity_Users
     {
         return $this->payments;
     }
-    
+
     /**
      *
      * @param type $ratings 
@@ -441,7 +414,7 @@ class Entity_Users
     {
         return $this->ratings;
     }
-    
+
     /**
      *
      * @param type $ratings 
@@ -459,7 +432,34 @@ class Entity_Users
     {
         return $this->ratedList;
     }
-    
+
+    /**
+     *
+     * @return int 
+     */
+    public function getRatingPercentage()
+    {
+        return 100;
+    }
+
+    /**
+     *
+     * @return int 
+     */
+    public function getPositiveRating()
+    {
+        return 0;
+    }
+
+    /**
+     *
+     * @return int 
+     */
+    public function getNegativeRating()
+    {
+        return 0;
+    }
+
     /**
      *
      * @return type 

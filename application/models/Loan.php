@@ -8,6 +8,12 @@ class Model_Loan extends Model_Abstract
     const BUSINESS = "Business";
     const MEDICAL_EXPENSES = "Medical expenses";
     const OTHER = "other";
+    
+    const STATUS_INPROGRESS = 2;
+    const STATUS_ACTIVE = 1;
+    const STATUS_REPAIED = 3;
+    const STATUS_CANCELED = 4;
+    
 
     /**
      *
@@ -39,7 +45,8 @@ class Model_Loan extends Model_Abstract
             throw new InvalidArgumentException('Invalid argument: params');
         }
 
-        return $this->getRepository()->createOrUpdate($params, null);
+        
+        return $this->getRepository()->createOrUpdate($params + array('status' => self::STATUS_ACTIVE), null);
     }
 
     /**

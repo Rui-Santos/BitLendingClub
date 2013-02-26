@@ -1,7 +1,7 @@
 <div id="main-wrapper">
 	<div class="profile-content-wrapper profile-view-wrapper">
 		<div class="ll-title">
-			<h1 class="profile-icon">Aleksander Karaivanov<span class="grey">'s profile</span></h1>
+            <h1 class="profile-icon"><?php echo $this->user->getFullname(); ?><span class="grey">'s profile</span></h1>
 			<a href="#" class="grey-small-btn"><span>Back</span></a>
 		</div>
 
@@ -22,7 +22,7 @@
 				</div>
 				<div class="ls-span ls-span6">
 					<span class="title">Member Since</span>
-					<div class="description">12 days</div>
+                    <div class="description"><?php echo $this->user->getCreatedAt()->format('d M Y'); ?></div>
 				</div>
 				<div class="ls-span ls-span6">
 					<span class="title">Credentials</span>
@@ -59,11 +59,11 @@
 				<div class="contnet">
 					<ol>
 						<li>Identity veriﬁed: <span class="green">Yes</span></li>
-						<li>Phone veriﬁed: <span class="red">No</span></li>
+<!--						<li>Phone veriﬁed: <span class="red">No</span></li>-->
 						<li>Address veriﬁed: <span class="red">No</span></li>
-						<li>Credit score veriﬁed: <span class="red">No</span></li>
+<!--						<li>Credit score veriﬁed: <span class="red">No</span></li>-->
 						<li>Facebook: <span class="red">No</span></li>
-						<li>LinkedIn: <span class="red">No</span></li>
+<!--						<li>LinkedIn: <span class="red">No</span></li>-->
 					</ol>
 				</div>
 			</div>
@@ -94,10 +94,10 @@
 				<div class="title">Credentials</div>
 				<div class="contnet">
 					<ul>
-						<li>PayPal: <span>almost 12 years</span></li>
+<!--						<li>PayPal: <span>almost 12 years</span></li>-->
 						<li>eBay: <span>about 14 years</span></li>
 						<li>Facebook: <span>244 friends</span></li>
-						<li>Linkedin: <span>78 connections</span></li>
+<!--						<li>Linkedin: <span>78 connections</span></li>-->
 					</ul>
 				</div>
 			</div>

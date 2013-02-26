@@ -16,7 +16,7 @@ class Default_LoanController extends Zend_Controller_Action
     public function indexAction()
     {
 
-        $criteria = array();
+        $criteria = array('status' => 1);
 
         $paginator = new Zend_Paginator(
                         new App_Paginator_Adapter_Doctrine($this->_model->getAll($criteria)));

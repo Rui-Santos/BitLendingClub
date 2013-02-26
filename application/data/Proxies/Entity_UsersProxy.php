@@ -102,18 +102,6 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getFirstname();
     }
 
-    public function setRating($rating)
-    {
-        $this->__load();
-        return parent::setRating($rating);
-    }
-
-    public function getRating()
-    {
-        $this->__load();
-        return parent::getRating();
-    }
-
     public function setLastname($lastname)
     {
         $this->__load();
@@ -234,6 +222,24 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getRatedList();
     }
 
+    public function getRatingPercentage()
+    {
+        $this->__load();
+        return parent::getRatingPercentage();
+    }
+
+    public function getPositiveRating()
+    {
+        $this->__load();
+        return parent::getPositiveRating();
+    }
+
+    public function getNegativeRating()
+    {
+        $this->__load();
+        return parent::getNegativeRating();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -243,7 +249,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'rating', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments');
     }
 
     public function __clone()

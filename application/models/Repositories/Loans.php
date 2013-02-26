@@ -76,7 +76,8 @@ class Repository_Loans extends EntityRepository {
        
         $entity->setExpirationDate($expiration);
         
-        $status = $em->getRepository('Entity_Loanstatus')->find(1);
+        $status = $em->getRepository('Entity_Loanstatus')->find($params['status']); // active
+        
         if ($status) {
             $entity->setStatus($status);
         }
