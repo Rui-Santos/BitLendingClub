@@ -187,5 +187,7 @@ class Default_ProfileController extends Zend_Controller_Action {
 
         $this->view->form = $withdrawForm;
     }
+    
+    
 
 }

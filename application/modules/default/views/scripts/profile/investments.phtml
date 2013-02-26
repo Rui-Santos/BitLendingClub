@@ -37,8 +37,8 @@
 						<th>Listing title</th>
 						<th>Amount</th>
 						<th>Rate</th>
-						<th>Term</th>
 						<th>Loan status</th>
+						<th>Remove investment</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,10 +46,10 @@
 					<tr>
 						<td><a href="#"><?php echo $inv->getLoan()->getBorrower()->getFullname();?></a></td>
 						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $inv->getLoan()->getId()), null, true); ?>"><?php echo $inv->getLoan()->getTitle();?></a></td>
-						<td><?php echo $inv->getLoan()->getAmount();?></td>
+						<td><?php echo $inv->getAmount();?></td>
 						<td><?php echo $inv->getRate().'%';?></td>
-						<td><?php echo $inv->getLoan()->getTerm();?></td>
 						<td><?php echo $inv->getLoan()->getStatus()->getName();?></td>
+                        <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-investment', 'iid' => $inv->getId())); ?>">Remove</a></td>
 					</tr>
                                         <?php endforeach; ?>
 					

@@ -140,4 +140,22 @@ class Default_LoanController extends Zend_Controller_Action {
 
         $this->view->form = $investForm;
     }
+    
+    public function deleteInvestmentAction()
+    {
+        # fetching the id and checks 
+        $id = $this->_request->getParam('iid', 0);
+        if (intval($id) == 0) {
+            throw new InvalidArgumentException('Invalid request parameter: $id');
+        }
+        $invModel = new Model_Investment();
+        $invItem = $invModel->getInvestment(array('id'=>$id));
+        if($invItem->getInvestor()->getId() != Service_Auth::getLoggedUser()->getId()) {
+            throw new InvalidArgumentException('This is not your investment!');
+        }
+        $invItem = $invModel->delete($id);
+        if ($invItem) {
+            $this->_helper->redirector('investments','profile');
+        }
+    }   
 }
