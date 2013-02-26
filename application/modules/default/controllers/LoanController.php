@@ -85,6 +85,11 @@ class Default_LoanController extends Zend_Controller_Action {
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
         
+        if($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
+            $this->view->canEdit = true;
+        } else {
+            $this->view->canEdit = false;
+        }
     }
     
     public function commentAction() {
