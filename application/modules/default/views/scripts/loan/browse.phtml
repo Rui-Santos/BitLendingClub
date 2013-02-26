@@ -120,7 +120,7 @@
                                 <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a></td>
                                 <td><?php echo $investment->getAmount(); ?></td>
                                 <td><?php echo $investment->getRate(); ?>%</td>
-                                <?php if($this->canEdit):?><td><a href="#">Remove this investment</a></td><?php endif;?>
+                                <?php if($this->canEdit):?><td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-investment', 'iid' => $investment->getId(),'borrower'=>1)); ?>">Remove this investment</a></td><?php endif;?>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

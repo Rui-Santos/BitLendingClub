@@ -3,15 +3,18 @@
 /**
  * 
  */
-class Default_LoanController extends Zend_Controller_Action {
+class Default_LoanController extends Zend_Controller_Action
+{
 
     protected $_model;
 
-    public function init() {
+    public function init()
+    {
         $this->_model = new Model_Loan();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $criteria = array();
 
@@ -23,10 +26,11 @@ class Default_LoanController extends Zend_Controller_Action {
         $this->view->loans = $paginator;
     }
 
-    public function createAction() {
-        
-        
-        if(!Service_Auth::getLoggedUser()){
+    public function createAction()
+    {
+
+
+        if (!Service_Auth::getLoggedUser()) {
             $this->_helper->redirector('index');
         }
         $form = new Default_Form_Loan(array('purposesOpts' => Model_Loan::$_purposesOpts));
@@ -46,13 +50,14 @@ class Default_LoanController extends Zend_Controller_Action {
 
         $this->view->form = $form;
     }
-    
-     public function overviewAction() {
+
+    public function overviewAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
         $userItem = new Model_User();
-        
+
         $userItem = $userItem->get($id);
-        
+
         $loanModel = new Model_Loan();
 
         $paginator = new Zend_Paginator(
@@ -63,45 +68,47 @@ class Default_LoanController extends Zend_Controller_Action {
         $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
         $this->view->loans = $paginator;
     }
-    
-    public function browseAction() {
-        
-       $loanId = (int)$this->_request->getParam('lid', 0);
-       
-        $loan = $this->_model->getLoan(array('id'=>$loanId));
+
+    public function browseAction()
+    {
+
+        $loanId = (int) $this->_request->getParam('lid', 0);
+
+        $loan = $this->_model->getLoan(array('id' => $loanId));
         $this->view->loan = $loan;
-        
+
         $investments = new Model_Investment();
         $investments = $investments->findBy(array('loan' => $loanId));
         $this->view->investments = $investments;
-        
+
         $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
         $this->view->form = $commentForm;
-        
+
         $comments = new Model_LoanComment();
         $paginator = new Zend_Paginator(
-                        new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan'=>$loanId))));
+                        new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
-        
-        if($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
+
+        if ($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
             $this->view->canEdit = true;
         } else {
             $this->view->canEdit = false;
         }
     }
-    
-    public function commentAction() {
+
+    public function commentAction()
+    {
         $this->_helper->layout->disableLayout();
         $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
-            
+
             if ($commentForm->isValid($post)) {
-               
+
                 $dataValues = $commentForm->getValues();
-                
+
                 $commentModel = new Model_LoanComment();
                 $commentItem = $commentModel->create($dataValues);
 
@@ -113,15 +120,16 @@ class Default_LoanController extends Zend_Controller_Action {
             }
         }
     }
-    
-    public function investAction() {
+
+    public function investAction()
+    {
         $this->_helper->layout->disableLayout();
-        $loanId = (int)$this->_request->getParam('lid', 0);
+        $loanId = (int) $this->_request->getParam('lid', 0);
         $this->view->loanId = $loanId;
-        
+
         $id = Service_Auth::getLoggedUser()->getId();
         $this->view->userId = $id;
-        
+
         $this->_helper->layout->disableLayout();
         $id = Service_Auth::getLoggedUser()->getId();
         $investForm = new Default_Form_Invest();
@@ -145,7 +153,7 @@ class Default_LoanController extends Zend_Controller_Action {
 
         $this->view->form = $investForm;
     }
-    
+
     public function deleteInvestmentAction()
     {
         # fetching the id and checks 
@@ -154,13 +162,24 @@ class Default_LoanController extends Zend_Controller_Action {
             throw new InvalidArgumentException('Invalid request parameter: $id');
         }
         $invModel = new Model_Investment();
-        $invItem = $invModel->getInvestment(array('id'=>$id));
-        if($invItem->getInvestor()->getId() != Service_Auth::getLoggedUser()->getId()) {
-            throw new InvalidArgumentException('This is not your investment!');
+        $invItem = $invModel->getInvestment(array('id' => $id));
+        if ($this->_request->getParam('borrower', 0)) {
+            if ($invItem->getLoan()->getBorrower()->getId() != Service_Auth::getLoggedUser()->getId()) {
+                throw new InvalidArgumentException('This is not your loan!');
+            }
+        } else {
+            if ($invItem->getInvestor()->getId() != Service_Auth::getLoggedUser()->getId()) {
+                throw new InvalidArgumentException('This is not your investment!');
+            }
         }
         $invItem = $invModel->delete($id);
         if ($invItem) {
-            $this->_helper->redirector('investments','profile');
+            if ($this->_request->getParam('borrower', 0)) {
+                $this->_helper->redirector('browse', 'loan', null, array('lid' => $invItem->getLoan()->getId()));
+            } else {
+                $this->_helper->redirector('investments', 'profile');
+            }
         }
-    }   
+    }
+
 }
