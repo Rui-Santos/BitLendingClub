@@ -1,6 +1,7 @@
 <?php
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM,
+    Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 
 /**
  * Loans
@@ -65,7 +66,7 @@ class Entity_Loans
     /**
      * @var Status
      *
-     * @ManyToOne(targetEntity="Entity_Loanstatus")
+     * @OneToOne(targetEntity="Entity_Loanstatus")
      * @JoinColumns({
      *   @JoinColumn(name="statusId", referencedColumnName="id", nullable=true)
      * })
@@ -95,6 +96,22 @@ class Entity_Loans
      * @OneToMany(targetEntity="Entity_Payments", mappedBy="loan", cascade={"persist"})
      */
     private $payments;
+
+    /**
+     * @var ArrayCollection $investments
+     * 
+     * @OneToMany(targetEntity="Entity_Investments", mappedBy="loan", cascade={"persist"})
+     */
+    private $investments;
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->payments = new ArrayCollection();
+        $this->investments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -314,6 +331,24 @@ class Entity_Loans
     public function getPayments()
     {
         return $this->payments;
+    }
+
+    /**
+     *
+     * @param type $payments 
+     */
+    public function addInvestment($investment)
+    {
+        $this->investments[] = $investment;
+    }
+
+    /**
+     *
+     * @return type 
+     */
+    public function getInvestments()
+    {
+        return $this->investments;
     }
 
 }
