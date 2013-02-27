@@ -86,7 +86,7 @@ class Model_Loan extends Model_Abstract
         $entity = $this->getRepository()->findOneBy(array('id'=>$loanId));
         if ($entity && $entity instanceof Entity_Loans) {
             $invModel = new Model_Investment();
-            $investments = $invModel->findBy(array('loan'=>$entity));
+            $investments = $invModel->findBy(array('loan'=>$entity->getId()));
             if(count($investments)>0){
                 foreach($investments as $investment){
                     $amount+=$investment->getAmount();

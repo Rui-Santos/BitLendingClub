@@ -1,4 +1,5 @@
-<?php $loan = $this->loan; ?>
+<?php $loan = $this->loan;
+$investPercent = round(($this->investedAmount/$loan->getAmount())*100);?>
 <div id="main-wrapper">
     <ul id="tabs-nav">
         <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="ls-span ls-span3">
                     <span class="title">% Funded</span>
-                    <div class="description"><span class="f-left">35% funded</span><div class="funding-bg f-left"><span style="width:35px;"></span></div><span class="f-left grey">BTC 0.00000 left</span></div>
+                    <div class="description"><span class="f-left"><?php echo $investPercent; ?>% funded</span><div class="funding-bg f-left"><span style="width:<?php echo $investPercent; ?>px;"></span></div><span class="f-left grey">BTC <?php echo $loan->getAmount()-$this->investedAmount;?> left</span></div>
                 </div>
             </div>
             <div class="ls-row">
