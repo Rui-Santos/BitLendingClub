@@ -59,11 +59,11 @@ $investPercent = round(($this->investedAmount/$loan->getAmount())*100);?>
                 </div>
                 <div class="ls-span ls-span4">
                     <span class="title">User Reputation</span>
-                    <div class="description"><strong class="green">80%</strong> positive <span class="green">+10</span>, <span class="red">-2</span></div>
+                    <div class="description"><strong class="green"><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> positive <span class="green">+<?php echo $loan->getBorrower()->getPositiveRating(); ?></span>, <span class="red"><?php echo $loan->getBorrower()->getNegativeRating(); ?></span></div>
                 </div>
                 <div class="ls-span ls-span5">
                     <span class="title">BLC Rating</span>
-                    <div class="description"><strong class="green"><?php echo $loan->getBorrower()->getRating(); ?></strong></div>
+                    <div class="description"><strong class="green"><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong></div>
                 </div>
             </div>
         </div>

@@ -104,14 +104,14 @@ class Entity_Users
     /**
      * @var ArrayCollection $ratings
      * 
-     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="user_id", cascade={"persist"})
+     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="user", cascade={"persist"})
      */
     private $ratings;
 
     /**
      * @var ArrayCollection $ratedList
      * 
-     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="commenter_id", cascade={"persist"})
+     * @OneToMany(targetEntity="Entity_UserRatings", mappedBy="commenter", cascade={"persist"})
      */
     private $ratedList;
 
@@ -439,7 +439,13 @@ class Entity_Users
      */
     public function getRatingPercentage()
     {
-        return 100;
+//        return 0;
+        $all = count($this->getRatings()) * 10;
+        // 20 - 50  = -30/ 80  
+        if ($all == 0) {
+            return 0;
+        }
+        return (($this->getPositiveRating() - $this->getNegativeRating()) / $all) * 100;
     }
 
     /**
@@ -448,7 +454,14 @@ class Entity_Users
      */
     public function getPositiveRating()
     {
-        return 0;
+        $return = 0;
+        $ratings = $this->getRatings();
+        foreach ($ratings as $value) {
+            if ($value->getRating() > 0) {
+                $return += $value->getRating();
+            }
+        }
+        return $return;
     }
 
     /**
@@ -457,7 +470,14 @@ class Entity_Users
      */
     public function getNegativeRating()
     {
-        return 0;
+        $return = 0;
+        $ratings = $this->getRatings();
+        foreach ($ratings as $value) {
+            if ($value->getRating() < 0) {
+                $return += $value->getRating();
+            }
+        }
+        return $return;
     }
 
     /**

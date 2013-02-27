@@ -33,11 +33,11 @@
                 </div>
             </div>
             <div class="box box1">
-                <div class="title">Reputation <span class="red"><?php echo $this->user->getRating();?></span></div>
+                <div class="title">Reputation <span class="red"><?php echo $this->user->getRatingPercentage();?> %</span></div>
                 <div class="contnet">
                     <ul>
-                        <li>Positive: <span class="green">12</span></li>
-                        <li>Negative: <span class="red">27</span></li>
+                        <li>Positive: <span class="green"><?php echo $this->user->getPositiveRating(); ?></span></li>
+                        <li>Negative: <span class="red"><?php echo $this->user->getNegativeRating(); ?></span></li>
                     </ul>
                     <div class="btns-set">
                         <a href="#" class="grey-small-btn"><span>Bitcoin OTC</span></a>

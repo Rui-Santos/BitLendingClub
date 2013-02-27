@@ -68,18 +68,18 @@
 				</div>
 			</div>
 			<div class="box box1">
-				<div class="title">Reputation <span class="red">-35%</span></div>
+                <div class="title">Reputation <span class="red"><?php echo $this->user->getRatingPercentage() ?> %</span></div>
 				<div class="contnet">
 					<ul>
-						<li>Positive: <span class="green">12</span></li>
-						<li>Negative: <span class="red">27</span></li>
+						<li>Positive: <span class="green"><?php echo $this->user->getPositiveRating() ?></span></li>
+						<li>Negative: <span class="red"><?php echo $this->user->getNegativeRating() ?></span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="box box1 first">
+<!--			<div class="box box1 first">
 				<div class="title">Verified Assets</div>
 				<div class="contnet">
 					<ul>
@@ -89,7 +89,7 @@
 						<li>Last update: <span>- - -</span></li>
 					</ul>
 				</div>
-			</div>
+			</div>-->
 			<div class="box box1">
 				<div class="title">Credentials</div>
 				<div class="contnet">
@@ -165,7 +165,7 @@
 						<td><strong>22%</strong> funded<div class="funding-bg"><span style="width:22px;"></span></div></td>
 						<td>- - -</td>
 					</tr>
-					<tr>
+<!--					<tr>
 						<td><a href="#">ZIGGAP - Fast Secure Exchanges and Conversion</a></td>
 						<td>1820.0000</td>
 						<td>7%</td>
@@ -182,7 +182,7 @@
 						<td><a href="#">Stanson</a></td>
 						<td><strong>100%</strong> funded<div class="funding-bg"><span style="width:100px;"></span></div></td>
 						<td>- - -</td>
-					</tr>
+					</tr>-->
 				</tbody>
 				<tfoot>
 					<tr>
