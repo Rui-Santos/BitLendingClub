@@ -122,6 +122,13 @@ class Entity_Users
      */
     private $payments;
 
+    /**
+     * @var ArrayCollection $documents
+     * 
+     * @OneToMany(targetEntity="Entity_Documents", mappedBy="user", cascade={"persist"})
+     */
+    private $documents;
+
     public function __construct()
     {
         //       $this->isActive = 1;
@@ -129,6 +136,7 @@ class Entity_Users
         $this->payments = new ArrayCollection();
         $this->ratings = new ArrayCollection();
         $this->ratedList = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
 
     /**
@@ -478,6 +486,43 @@ class Entity_Users
             }
         }
         return $return;
+    }
+
+    /**
+     *
+     * @return type 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     *
+     * @param type $document 
+     */
+    public function addDocument($document)
+    {
+        $this->documents[] = $document;
+    }
+
+    /**
+     *
+     * @return real 
+     */
+    public function getCreditRating()
+    {
+        $rating = 0;
+        $docs = $this->getDocuments();
+        foreach ($docs as $value) {
+            if ($value->getIsReviewed() !== null) {
+                $rating += 2.5;
+            }
+        }
+        if ($this->getFbUserId() !== null) {
+            $rating += 2.5;
+        }
+        return $rating;
     }
 
     /**

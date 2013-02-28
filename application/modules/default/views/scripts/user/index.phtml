@@ -14,11 +14,11 @@
             <div class="ls-row ls-row-bg first">
                 <div class="ls-span ls-span6">
                     <span class="title">Active Loans</span>
-                    <div class="description">฿0.00 (0)</div>
+                    <div class="description">฿ <?php echo $this->activeLoansBitcoins; ?> (<?php echo $this->activeLoansCount; ?>)</div>
                 </div>
                 <div class="ls-span ls-span6">
                     <span class="title">Repaid Loans</span>
-                    <div class="description">฿0.00 (0)</div>
+                    <div class="description">฿<?php echo $this->repaidLoansBitcoins; ?> (<?php echo $this->repaidLoansCount; ?>)</div>
                 </div>
                 <div class="ls-span ls-span6">
                     <span class="title">Member Since</span>
@@ -32,15 +32,15 @@
             <div class="ls-row ls-row-bg">
                 <div class="ls-span ls-span6">
                     <span class="title">Payments Made</span>
-                    <div class="description">฿0.00 (0)</div>
+                    <div class="description">฿<?php echo $this->paymentsBitcoins ?> (<?php echo $this->paymentsCount ?>)</div>
                 </div>
                 <div class="ls-span ls-span6">
                     <span class="title">Overdue Payments</span>
-                    <div class="description">฿0.00 (0)</div>
+                    <div class="description">฿<?php echo $this->overduePaymentsBitcoins ?>   (<?php echo $this->overduePaymentsCount; ?>)</div>
                 </div>
                 <div class="ls-span ls-span6">
                     <span class="title">Reputation</span>
-                    <div class="description">100%</div>
+                    <div class="description"><?php echo $this->user->getRatingPercentage() ?>%</div>
                 </div>
                 <div class="ls-span ls-span6">
                     <span class="title">Account Ages</span>
@@ -55,15 +55,19 @@
 
         <div class="row">
             <div class="box box2 first">
-                <div class="title">Credit Rating <span class="red">2</span><span class="divider">/</span><span class="green">10</span></div>
+                <div class="title">Credit Rating <span class="red"><?php echo $this->user->getCreditRating(); ?></span><span class="divider">/</span><span class="green">10</span></div>
                 <div class="contnet">
                     <ol>
-                        <li>Identity veriﬁed: <span class="green">Yes</span></li>
+                        <?php foreach ($this->user->getDocuments() as $document) : ?>
+                            <li>
+                                <?php echo $document->getDocumentType()->getDescription(); ?>:  <?php if ($document->getIsReviewed() !== null) : ?><span class="green">Yes</span> <?php else : ?><span class="red">No</span><?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
 <!--						<li>Phone veriﬁed: <span class="red">No</span></li>-->
-                        <li>Address veriﬁed: <span class="red">No</span></li>
+<!--                        <li>Address veriﬁed: <span class="red">No</span></li>-->
 <!--						<li>Credit score veriﬁed: <span class="red">No</span></li>-->
-                        <li>Facebook: <span class="red">No</span></li>
-<!--						<li>LinkedIn: <span class="red">No</span></li>-->
+                        <li>Facebook: <?php if ($this->user->getFbUserId() == null || $this->user->getFbUserId() == 0) : ?><span class="red">No</span> <?php else : ?> <span class="green">Yes</span> <?php endif; ?></li>
+                        <li>Google +: <span class="red">No</span></li>
                     </ol>
                 </div>
             </div>
@@ -118,20 +122,20 @@
             <div class="page-title">
                 <h2 class="ll-second-title">Aleksander Karaivanov's Loans and Listings</h2>
                 <div class="table-toolbar">
-                    <div class="toolbar-sorter">
-                        <span>Show</span>
-                        <select>
-                            <option>10</option>
-                            <option>25</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>
-                        <span>results.</span>
-                    </div>
-                    <div class="toolbar-search">
-                        <input type="text" />
-                        <a href="#"></a>
-                    </div>
+                    <!--                    <div class="toolbar-sorter">
+                                            <span>Show</span>
+                                            <select>
+                                                <option>10</option>
+                                                <option>25</option>
+                                                <option>50</option>
+                                                <option>100</option>
+                                            </select>
+                                            <span>results.</span>
+                                        </div>
+                                        <div class="toolbar-search">
+                                            <input type="text" />
+                                            <a href="#"></a>
+                                        </div>-->
                 </div>
             </div>
             <table cellspacing="0" cellpadding="0">
@@ -169,11 +173,11 @@
 
                 </tbody>
                 <tfoot>
-                    <tr>
+<!--                    <tr>
                         <td colspan="6" class="paging">
                             <div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
                             <ul>
-                                <!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
+                                 pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) 
                                 <li><a href="#" class="arr no-prev"></a></li>
                                 <li class="current">1</li>
                                 <li><a href="#">2</a></li>
@@ -182,7 +186,7 @@
                                 <li><a href="#" class="arr next"></a></li>
                             </ul>
                         </td>
-                    </tr>
+                    </tr>-->
                 </tfoot>
             </table>
         </div>
@@ -192,22 +196,22 @@
         <div class="profile-content-right pcr-padding full-width-table mb-twenty profile-view-table">
             <div class="page-title">
                 <h2 class="ll-second-title">Aleksander Karaivanov's Ratings</h2>
-                <div class="table-toolbar">
-                    <div class="toolbar-sorter">
-                        <span>Show</span>
-                        <select>
-                            <option>10</option>
-                            <option>25</option>
-                            <option>50</option>
-                            <option>100</option>
-                        </select>
-                        <span>results.</span>
-                    </div>
-                    <div class="toolbar-search">
-                        <input type="text" />
-                        <a href="#"></a>
-                    </div>
-                </div>
+                <!--                <div class="table-toolbar">
+                                    <div class="toolbar-sorter">
+                                        <span>Show</span>
+                                        <select>
+                                            <option>10</option>
+                                            <option>25</option>
+                                            <option>50</option>
+                                            <option>100</option>
+                                        </select>
+                                        <span>results.</span>
+                                    </div>
+                                    <div class="toolbar-search">
+                                        <input type="text" />
+                                        <a href="#"></a>
+                                    </div>
+                                </div>-->
             </div>
             <table cellspacing="0" cellpadding="0">
                 <thead>
@@ -220,10 +224,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($this->user->getRatedList() as $rating) : ?>
+                    <?php foreach ($this->ratings as $rating) : ?>
                         <tr>
-                            <td><a href="#"><?php echo $rating->getCommenter()->getFullname(); ?></a></td>
-                            <td><a href="#"><?php echo $rating->getUser()->getFullname(); ?></a></td>
+                            <td><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $rating->getCommenter()->getId())); ?>"><?php echo $rating->getCommenter()->getFullname(); ?></a></td>
+                            <td><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $rating->getUser()->getId())); ?>"><?php echo $rating->getUser()->getFullname(); ?></a></td>
                             <td>2013-02-03 11:27:55 UTC</td>
                             <td><?php echo $rating->getRating(); ?></td>
                             <td><?php echo $rating->getComment(); ?></td>
@@ -234,16 +238,20 @@
                 <tfoot>
                     <tr>
                         <td colspan="6" class="paging">
-                            <div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div>
-                            <ul>
-                                <!-- pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) -->
-                                <li><a href="#" class="arr no-prev"></a></li>
-                                <li class="current">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#" class="arr next"></a></li>
-                            </ul>
+
+                            <?php
+                            echo $this->paginationControl(
+                                    $this->ratings, 'Sliding', 'partials/paginator.phtml');
+                            ?>
+                            <!--                            <ul>
+                                                             pagination next/previous classes ( .prev, .no-prev, .next, .no-next ) 
+                                                            <li><a href="#" class="arr no-prev"></a></li>
+                                                            <li class="current">1</li>
+                                                            <li><a href="#">2</a></li>
+                                                            <li><a href="#">3</a></li>
+                                                            <li><a href="#">4</a></li>
+                                                            <li><a href="#" class="arr next"></a></li>
+                                                        </ul>-->
                         </td>
                     </tr>
                 </tfoot>

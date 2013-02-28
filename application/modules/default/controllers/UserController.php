@@ -28,11 +28,19 @@ class Default_UserController extends Zend_Controller_Action
             throw new HttpException('Invalid http get parameter');
         }
         $this->view->user = $this->_model->get($id);
+        
+        
+        
+        
+        $paginator = Zend_Paginator::factory($this->_model->getRatingsAsArray($this->view->user));
+        $paginator->setCurrentPageNumber($this->_request->getParam('page', 1));
+        
+        $paginator->setItemCountPerPage(Model_Abstract::PER_PAGE);
+        $this->view->ratings = $paginator;
+        
         if (!$this->view->user) {
             $this->_helper->redirector('index', 'index');
         }
-
-//        App_DoctrineDebug::dump($this->view->user->getLoans()); exit;
     }
 
     public function rateAction()
@@ -46,7 +54,6 @@ class Default_UserController extends Zend_Controller_Action
                 if ($this->_model->rateForUser($values)) {
                     $this->_helper->flashMessenger->addMessage("You successfully rated for the user");
                 }
-                
             }
         }
     }

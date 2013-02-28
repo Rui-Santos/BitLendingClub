@@ -240,6 +240,24 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getNegativeRating();
     }
 
+    public function getDocuments()
+    {
+        $this->__load();
+        return parent::getDocuments();
+    }
+
+    public function addDocument($document)
+    {
+        $this->__load();
+        return parent::addDocument($document);
+    }
+
+    public function getCreditRating()
+    {
+        $this->__load();
+        return parent::getCreditRating();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -249,7 +267,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments', 'documents');
     }
 
     public function __clone()

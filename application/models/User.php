@@ -511,9 +511,30 @@ class Model_User extends Model_Abstract
         return true;
     }
 
+    /**
+     *
+     * @param type $options
+     * @param type $user_id
+     * @return type 
+     */
     public function updateWallet($options, $user_id)
     {
-        
         return $this->_em->getRepository('Entity_Wallets')->update($options + array('user_id' => $user_id));
     }
+
+    /**
+     *
+     * @param type $userEntity
+     * @return array 
+     */
+    public function getRatingsAsArray($userEntity)
+    {
+        $return = array();
+        $ratings = $userEntity->getRatings();
+        foreach ($ratings as $value) {
+            array_push($return, $value);
+        }
+        return $return;
+    }
+
 }
