@@ -90,10 +90,10 @@ class Default_LoanController extends Zend_Controller_Action
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
-        
+
         $invAmount = $this->_model->getInvestmentsAmount($loan->getInvestments());
         $this->view->investedAmount = $invAmount;
-        
+
         if ($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
             $this->view->canEdit = true;
         } else {
@@ -133,8 +133,6 @@ class Default_LoanController extends Zend_Controller_Action
         $id = Service_Auth::getLoggedUser()->getId();
         $this->view->userId = $id;
 
-        $this->_helper->layout->disableLayout();
-        $id = Service_Auth::getLoggedUser()->getId();
         $investForm = new Default_Form_Invest();
 
         if ($this->_request->isPost()) {
@@ -183,6 +181,26 @@ class Default_LoanController extends Zend_Controller_Action
                 $this->_helper->redirector('investments', 'profile');
             }
         }
+    }
+
+    public function finalizeAction()
+    {
+        $loanId = (int) $this->_request->getParam('lid', 0);
+        if (intval($loanId) == 0) {
+            throw new InvalidArgumentException('Invalid request parameter: loan id');
+        }
+
+        $loan = $this->_model->getLoan(array('id' => $loanId));
+
+        if ($loan->getBorrower()->getId() != Service_Auth::getLoggedUser()->getId()) {
+            throw new InvalidArgumentException('This is not your loan!');
+        }
+
+        if ($loan->getAmount() != Model_Loan::getInvestmentsAmount($loan->getInvestments())) {
+            throw new InvalidArgumentException('This loan is not 100% funded!');
+        }
+
+        $this->_model->finalizeLoan($loanId);
     }
 
 }

@@ -39,13 +39,13 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->loans as $loan): ?>
-                   
+                <?php foreach ($this->loans as $loan):
+                    $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true); ?>
                     <tr>
                         <td class="listing-title"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a><strong><?php echo $loan->getPurpose();?></strong>, <?php echo $loan->getTerm(); ?></td>
                         <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
                         <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
-                        <td><strong>35%</strong> funded<div class="funding-bg"><span style="width:35px;"></span></div></td>
+                        <td><strong><?php echo $investPercent; ?>%</strong> funded<div class="funding-bg"><span style="width:<?php echo $investPercent; ?>px;"></span></div></td>
                         <td><strong><?php echo $now->diff($loan->getExpirationDate())->format('%R%d');?></strong> days</td>
                         <td><strong><?php echo $loan->getBorrower()->getRatingPercentage(); ?></strong> positive <div class="reputation-makrs"><span>+10</span>, <span>-2</span></div></td>
                         <td class="rating"><strong class="green-star">10</strong> <a href="#">Full<br/>rating</a></td>
