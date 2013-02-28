@@ -129,7 +129,7 @@ class Default_LoanController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $loanId = (int) $this->_request->getParam('lid', 0);
         $this->view->loanId = $loanId;
-
+        
         $id = Service_Auth::getLoggedUser()->getId();
         $this->view->userId = $id;
 
@@ -138,7 +138,7 @@ class Default_LoanController extends Zend_Controller_Action
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
             if ($investForm->isValid($post)) {
-
+                
                 $values = $investForm->getValues();
                 $invModel = new Model_Investment();
                 $invItem = $invModel->create($values);

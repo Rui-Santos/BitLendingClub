@@ -2,8 +2,8 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Loans extends EntityRepository {
-    
+class Repository_Loans extends EntityRepository
+{
 
     /**
      * Get all Loans
@@ -11,7 +11,8 @@ class Repository_Loans extends EntityRepository {
      * @param array $criteria
      * @return array 
      */
-    public function getAll(array $criteria = array()) {
+    public function getAll(array $criteria = array())
+    {
         $query = $this->createQueryBuilder('deals');
 
         if (!empty($criteria)) {
@@ -38,7 +39,8 @@ class Repository_Loans extends EntityRepository {
      * @param integer $id
      * @return Entity_Loans
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         $entity = $this->find($id);
 
         if ($entity) {
@@ -56,7 +58,8 @@ class Repository_Loans extends EntityRepository {
      * @param integer $id
      * @return Entity_Loans
      */
-    public function createOrUpdate(array $params, $id = null) {
+    public function createOrUpdate(array $params, $id = null)
+    {
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
@@ -74,11 +77,11 @@ class Repository_Loans extends EntityRepository {
         $entity->setFrequency($params['frequency']);
         $entity->setPurpose($params['purpose']);
         $expiration = date_create_from_format('d/m/Y', $params['expirationDate']);
-       
+
         $entity->setExpirationDate($expiration);
-        
+
         $status = $em->getRepository('Entity_Loanstatus')->find($params['status']); // active
-        
+
         if ($status) {
             $entity->setStatus($status);
         }
@@ -95,16 +98,20 @@ class Repository_Loans extends EntityRepository {
 
         return $entity;
     }
-    
-    public function finalizeLoan($id) {
+
+    public function finalizeLoan($id)
+    {
         $entity = $this->find($id);
 
-        
+
         if ($entity) {
             $entity->setStatus($this->getEntityManager()->getRepository('Entity_Loanstatus')->find(Model_Loan::STATUS_INPROGRESS));
-                    
-            $this->getEntityManager()->remove($entity);
+            
+            $this->getEntityManager()->persist($entity);
             $this->getEntityManager()->flush();
+            $this->getEntityManager()->refresh($entity);
+
+            return $entity;
         }
 
         return $entity;
