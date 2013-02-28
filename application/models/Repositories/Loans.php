@@ -3,6 +3,7 @@
 use Doctrine\ORM\EntityRepository;
 
 class Repository_Loans extends EntityRepository {
+    
 
     /**
      * Get all Loans
@@ -91,6 +92,20 @@ class Repository_Loans extends EntityRepository {
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);
+
+        return $entity;
+    }
+    
+    public function finalizeLoan($id) {
+        $entity = $this->find($id);
+
+        
+        if ($entity) {
+            $entity->setStatus($this->getEntityManager()->getRepository('Entity_Loanstatus')->find(Model_Loan::STATUS_INPROGRESS));
+                    
+            $this->getEntityManager()->remove($entity);
+            $this->getEntityManager()->flush();
+        }
 
         return $entity;
     }

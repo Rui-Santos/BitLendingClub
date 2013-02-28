@@ -100,7 +100,8 @@ class Model_Loan extends Model_Abstract
 
     public function finalizeLoan($loanId)
     {
-        
+        $this->getRepository()->finalizeLoan($loanId);
+                
     }
 
 }
