@@ -8,12 +8,10 @@ class Model_Loan extends Model_Abstract
     const BUSINESS = "Business";
     const MEDICAL_EXPENSES = "Medical expenses";
     const OTHER = "other";
-    
     const STATUS_INPROGRESS = 2;
     const STATUS_ACTIVE = 1;
     const STATUS_REPAIED = 3;
     const STATUS_CANCELED = 4;
-    
 
     /**
      *
@@ -45,7 +43,7 @@ class Model_Loan extends Model_Abstract
             throw new InvalidArgumentException('Invalid argument: params');
         }
 
-        
+
         return $this->getRepository()->createOrUpdate($params + array('status' => self::STATUS_ACTIVE), null);
     }
 
@@ -79,21 +77,25 @@ class Model_Loan extends Model_Abstract
             return false;
         }
     }
-    
-    public function getInvestmentsForLoan($loanId)
+
+    public static function getInvestmentsAmount($investments, $flag = false)
     {
         $amount = 0;
-        $entity = $this->getRepository()->findOneBy(array('id'=>$loanId));
-        if ($entity && $entity instanceof Entity_Loans) {
-            $invModel = new Model_Investment();
-            $investments = $invModel->findBy(array('loan'=>$entity->getId()));
-            if(count($investments)>0){
-                foreach($investments as $investment){
-                    $amount+=$investment->getAmount();
-                }
+        $percent = 0;
+        if (!empty($investments)) {
+            foreach ($investments as $investment) {
+                $amount+=$investment->getAmount();
+                $loan = $investment->getLoan();
             }
-        } 
-        return $amount;
+            if (!empty($investment)) {
+                $percent = round(($amount / $investment->getLoan()->getAmount()) * 100);
+            }
+        }
+        if (!$flag) {
+            return $amount;
+        } else {
+            return $percent;
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 <?php $loan = $this->loan;
-$investPercent = round(($this->investedAmount/$loan->getAmount())*100);?>
+$investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true);?>
 <div id="main-wrapper">
     <ul id="tabs-nav">
         <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>

@@ -91,7 +91,7 @@ class Default_LoanController extends Zend_Controller_Action
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
         
-        $invAmount = $this->_model->getInvestmentsForLoan($loanId);
+        $invAmount = $this->_model->getInvestmentsAmount($loan->getInvestments());
         $this->view->investedAmount = $invAmount;
         
         if ($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
