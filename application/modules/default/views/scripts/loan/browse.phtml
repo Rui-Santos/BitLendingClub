@@ -1,4 +1,5 @@
-<?php $loan = $this->loan;
+<?php
+$loan = $this->loan;
 $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true);
 ?>
 <div id="main-wrapper">
@@ -13,7 +14,16 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
             <a href="javascript:history.go(-1)" class="grey-small-btn"><span>Back</span></a>
         </div>
 
-
+        <?php if ($this->canEdit): ?>
+            <?php if ($loan->getAmount() == $this->investedAmount): ?>
+                <div class="profile-content-right pcr-padding full-width-table mb-twenty">
+                    <div class="button-row">
+                        <span>There are enough investments to finalize your loan.</span>
+                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'finalize', 'lid' => $loan->getId()), null, true); ?>" id="dash-finalize" class="green-btn"><span>Get your bitcoins</span></a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
 
         <div class="profile-content-right pcr-padding full-width-table mb-twenty">
             <div class="page-title">
@@ -81,14 +91,14 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                 <h2 class="ll-second-title">Description</h2>
             </div>
             <div class="profile-content-wrapper">
-<?php echo $loan->getDescription(); ?>
+                <?php echo $loan->getDescription(); ?>
             </div>
         </div>
 
 
 
 
-<?php if (count($this->investments) > 0): ?>
+        <?php if (count($this->investments) > 0): ?>
             <div class="profile-content-right pcr-padding full-width-table mb-twenty">
                 <div class="page-title">
                     <h2 class="ll-second-title">Investments</h2>
@@ -117,32 +127,25 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                             <th>Listing title</th>
                             <th>Amount</th>
                             <th>Rate</th>
-    <?php if ($this->canEdit): ?><th>Remove investment</th><?php endif; ?>
+                            <?php if ($this->canEdit): ?><th>Remove investment</th><?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
-    <?php foreach ($this->investments as $investment): ?>
+                        <?php foreach ($this->investments as $investment): ?>
                             <tr>
                                 <td><a href="#"><?php echo $investment->getInvestor()->getFullname(); ?></a></td>
                                 <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a></td>
                                 <td><?php echo $investment->getAmount(); ?></td>
                                 <td><?php echo $investment->getRate(); ?>%</td>
-                            <?php if ($this->canEdit): ?><td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-investment', 'iid' => $investment->getId(), 'borrower' => 1)); ?>">Remove this investment</a></td><?php endif; ?>
+                                <?php if ($this->canEdit): ?><td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-investment', 'iid' => $investment->getId(), 'borrower' => 1)); ?>">Remove this investment</a></td><?php endif; ?>
                             </tr>
-    <?php endforeach; ?>
+                        <?php endforeach; ?>
                     </tbody>
 
                 </table>
             </div>
-        <?php if($loan->getAmount()==$this->investedAmount): ?>
-        <div class="profile-content-right pcr-padding full-width-table mb-twenty">
-            <div class="button-row">
-                <span>There are enough investments to finalize your loan.</span>
-                <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'finalize', 'lid' => $loan->getId()), null, true); ?>" id="dash-finalize" class="green-btn"><span>Get your bitcoins</span></a>
-            </div>
-        </div>
-        <?php endif;?>
-<?php else: ?>
+
+        <?php else: ?>
             <div class="profile-content-right pcr-padding full-width-table mb-twenty">
                 <div class="page-title">
                     <h2 class="ll-second-title">Investments</h2>
@@ -151,7 +154,7 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                     No investments yet.
                 </div>
             </div>
-<?php endif; ?>
+        <?php endif; ?>
 
         <div class="profile-content-right pcr-padding full-width-table">
             <div class="page-title">
@@ -159,23 +162,23 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
             </div>
             <div class="ls-row2">
                 <form name="comment-form" action="<?php
-echo $this->url(array('module' => 'default',
-    'controller' => 'loan', 'action' => 'comment'), null, true);
-?>" method="post">
+        echo $this->url(array('module' => 'default',
+            'controller' => 'loan', 'action' => 'comment'), null, true);
+        ?>" method="post">
                           <?php echo $this->form->getElement('comment'); ?>
-<?php echo $this->form->getElement('user_id'); ?>
+                          <?php echo $this->form->getElement('user_id'); ?>
                     <input type="hidden" name="loan_id" value="<?php echo $loan->getId(); ?>" id="loan_id"/>
                     <div class="buttons-set">
                         <a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Post comment</span></a>
                     </div>
             </div>
             <?php if (count($this->comments) > 0): ?>
-    <?php foreach ($this->comments as $comment): ?>
+                <?php foreach ($this->comments as $comment): ?>
                     <div class="ls-row2">
                         <span class="name-date"><a href="#"><?php echo $comment->getUser()->getFullname(); ?></a><span class="grey2">/</span><?php echo $comment->getPostedOn()->format('Y-m-d'); ?></span>
                         <span class="comment"><?php echo $comment->getComment(); ?></span>
                     </div>
-    <?php endforeach; ?>
+                <?php endforeach; ?>
                 <div class="paging">
                     <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
 
@@ -186,11 +189,11 @@ echo $this->url(array('module' => 'default',
 
                 </div>
 
-<?php else: ?>
+            <?php else: ?>
 
                 No comments added.
 
-<?php endif; ?>
+            <?php endif; ?>
         </div>
 
     </div>
