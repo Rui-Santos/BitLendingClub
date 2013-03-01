@@ -63,14 +63,40 @@ class Repository_Payments extends EntityRepository
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
-            $entity->setCreatedAt(new DateTime());
+            $entity->setDatePosted(new DateTime());
         } else {
             $entity = $this->find($id);
         }
 
         $em = $this->getEntityManager();
+        
+        $loan = $em->getRepository('Entity_Loans')->find($params['loan_id']);
+        
+        if ($loan) {
+            $entity->setLoan($loan);
+        }
+        
+        $entity->setAmount($params['amount']);
+        if($params['due_date']){
+            $entity->setDueDate($params['due_date']);
+        } else {
+            $entity->setDueDate(null);
+        }
 
-       //TODO: CREATE/UPDATE Payments
+        $user = $em->getRepository('Entity_Users')->find($params['user_id']);
+        if ($user) {
+            $entity->setBorrower($user);
+        }
+        
+        $entity->setPaymentAddress($params['address']);
+        
+        if($params['overdue_flag']){
+            $entity->setOverdueFlag($params['overdue_flag']);
+        } else {
+            $entity->setOverdueFlag(0); 
+        }
+        
+        
         
         $em->persist($entity);
         $em->flush();
