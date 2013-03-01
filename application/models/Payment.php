@@ -7,7 +7,7 @@ class Model_Payment extends Model_Abstract
      * Define entityName based on model
      * @var string
      */
-    protected $_entityName = 'Entity_Payment';
+    protected $_entityName = 'Entity_Payments';
 
     /**
      * Create wallet by specific params

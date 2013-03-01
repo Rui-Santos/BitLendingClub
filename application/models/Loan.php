@@ -101,10 +101,26 @@ class Model_Loan extends Model_Abstract
     public function finalizeLoan($loanId)
     {
         $this->getRepository()->finalizeLoan($loanId);
-        
-        // BTC payments
-        
-        //Model_Payment for each payments
+
+        $entity = $this->getRepository()->findOneBy(array('id' => $loanId));
+
+        $investments = $entity->getInvestments();
+        $paymentModel = new Model_Payment();
+        $walletModel = new Model_Wallet();
+        $userWallet = $walletModel->getWallet(array('user' => $entity->getBorrower()->getId()));
+
+
+        foreach ($investments as $investment) {
+            
+            // TODO: BTC API calls for payment
+
+            $params = array('loan_id' => $loanId,
+                'amount' => $investment->getAmount(),
+                'user_id' => $investment->getInvestor()->getId(),
+                'address' => $userWallet->getWalletPath());
+
+            $paymentModel->create($params);
+        }
     }
 
 }

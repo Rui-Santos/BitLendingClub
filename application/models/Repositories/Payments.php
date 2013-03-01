@@ -77,7 +77,7 @@ class Repository_Payments extends EntityRepository
         }
         
         $entity->setAmount($params['amount']);
-        if($params['due_date']){
+        if(@$params['due_date']){
             $entity->setDueDate($params['due_date']);
         } else {
             $entity->setDueDate(null);
@@ -90,14 +90,12 @@ class Repository_Payments extends EntityRepository
         
         $entity->setPaymentAddress($params['address']);
         
-        if($params['overdue_flag']){
-            $entity->setOverdueFlag($params['overdue_flag']);
-        } else {
-            $entity->setOverdueFlag(0); 
-        }
-        
-        
-        
+//        if($params['overdue_flag']){
+//            $entity->setOverdueFlag($params['overdue_flag']);
+//        } else {
+//            $entity->setOverdueFlag(0); 
+//        }
+
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);
