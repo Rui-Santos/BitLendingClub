@@ -126,4 +126,29 @@ class Service_Bitcoind extends Zend_Service_Abstract
         return join('_', array(self::ACCOUNT_CONST, $user_id));
     }
 
+    /**
+     * 
+     * @param type $toAddress
+     * @param type $ammount
+     * @param type $userId
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
+    public function sendPayment($toAddress, $ammount, $userId)
+    {
+        if ($toAddress == null || $toAddress == "") {
+            throw new InvalidArgumentException("Invalid Argument toAddress");
+        }
+        if (!is_numeric($ammount)) {
+            throw new InvalidArgumentException('invalid argument ammount');
+        }
+
+        if ($ammount == 0) {
+            return false;
+        }
+        $this->_configRcpClient();
+        $fromAccount = self::getBitcoindAccount($user_id);
+        return $this->getJsonRcpClient()->sendfrom($fromAccount, $toAddress, $ammount);
+    }
+
 }
