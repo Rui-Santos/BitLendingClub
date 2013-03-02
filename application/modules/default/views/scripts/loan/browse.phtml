@@ -2,6 +2,7 @@
 $loan = $this->loan;
 $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true);
 ?>
+<?php $now = new DateTime(); ?>
 <div id="main-wrapper">
     <ul id="tabs-nav">
         <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
@@ -34,7 +35,7 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                 <div class="ls-span ls-span1">
                     <span class="title">Expires</span>
 
-                    <div class="description"><?php echo $loan->getExpirationDate()->format('Y-m-d'); ?><span class="grey2">/</span><?php echo $loan->getExpirationDate()->format('H:i'); ?><span class="grey">(in 3 days)</span></div>
+                    <div class="description"><?php echo $loan->getExpirationDate()->format('Y-m-d'); ?><span class="grey2">/</span><?php echo $loan->getExpirationDate()->format('H:i'); ?><span class="grey">(in <?php echo $now->diff($loan->getExpirationDate())->format('%R%d'); ?> days)</span></div>
                 </div>
                 <div class="ls-span ls-span2">
                     <span class="title">Status</span>

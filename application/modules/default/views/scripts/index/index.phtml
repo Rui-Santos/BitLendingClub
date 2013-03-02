@@ -1,47 +1,49 @@
-	<div class="homepage-login-wrapper">
-            <?php if (count($this->form->getMessages()) > 0): ?>
-    <div class="reg-divider"><span>
-            <img src="/images/error_x.png" alt="" />
-            <?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span>
+<?php $now = new DateTime(); ?>	
+<div class="homepage-login-wrapper">
+    <?php if (count($this->form->getMessages()) > 0): ?>
+        <div class="reg-divider"><span>
+                <img src="/images/error_x.png" alt="" />
+                <?php echo $this->translate('Registration is incomplete. Please, retry'); ?></span>
         </div>
     <?php endif; ?>
-		<form name="reg-form" action="<?php echo $this->url(array('module' => 'default',
+    <form name="reg-form" action="<?php
+    echo $this->url(array('module' => 'default',
         'controller' => 'index', 'action' => 'index'), null, true);
     ?>" method="post">
-			<h2>Become a member <span>&amp;</span><br/>explore our full features.</h2>
-			<div class="input"><?php echo $this->form->getElement('email'); ?></div>
-			<div class="input input2 mr-ten"><?php echo $this->form->getElement('password'); ?></div>
-			<div class="input input2"><?php echo $this->form->getElement('password_confirm'); ?></div>
-			<a href="#" onclick="$(this).parents('form').submit();"><span>JOIN NOW</span></a>
-		</form>
-	</div>
+        <h2>Become a member <span>&amp;</span><br/>explore our full features.</h2>
+        <div class="input"><?php echo $this->form->getElement('email'); ?></div>
+        <div class="input input2 mr-ten"><?php echo $this->form->getElement('password'); ?></div>
+        <div class="input input2"><?php echo $this->form->getElement('password_confirm'); ?></div>
+        <a href="#" onclick="$(this).parents('form').submit();"><span>JOIN NOW</span></a>
+    </form>
+</div>
 </div>
 
 <div class="hp-green-wrapper">
-	<div class="hp-green-holder">
-		<h2>How to Get a Loan.</h2>
-		<span>The Borrower creates a loan listing. After the loan is funded, the bitcoins are sent to the borrower.</span>
-		<ul>
-			<li class="hp-icon1">Compose your loan listing</li>
-			<li class="hp-icon2">Watch investors fund your loan</li>
-			<li class="hp-icon3">Get your bitcoins</li>
-			<li class="hp-icon4">Make the payments</li>
-		</ul>
-	</div>	
+    <div class="hp-green-holder">
+        <h2>How to Get a Loan.</h2>
+        <span>The Borrower creates a loan listing. After the loan is funded, the bitcoins are sent to the borrower.</span>
+        <ul>
+            <li class="hp-icon1">Compose your loan listing</li>
+            <li class="hp-icon2">Watch investors fund your loan</li>
+            <li class="hp-icon3">Get your bitcoins</li>
+            <li class="hp-icon4">Make the payments</li>
+        </ul>
+    </div>	
 </div>
 
 <!-- MAIN -->
 <div id="main-wrapper">
-		
-	
-	<div class="page-title">
+
+
+    <div class="page-title">
         <h2 class="hp-listing-title">Featured Listings</h2>
-		<div class="table-toolbar">
-			<a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), 'default', true); ?>" class="view-all">View all</a>
-		</div>
-        
+        <div class="table-toolbar">
+            <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), 'default', true); ?>" class="view-all">View all</a>
+        </div>
+
     </div>
-    <?php if (count($this->loans)): ?>
+<?php if (count($this->loans)): ?>
 
 
         <table id="listing-table" cellspacing="0" cellpadding="0">
@@ -56,18 +58,19 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($this->loans as $loan): 
-                    $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true); ?>
+                <?php foreach ($this->loans as $loan):
+                    $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true);
+                    ?>
                     <tr>
                         <td class="listing-title"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a><strong>Business</strong>, <?php echo $loan->getTerm(); ?></td>
                         <td class="interest"><span><?php echo $loan->getAmount(); ?></span><?php echo $loan->getFrequency(); ?></td>
                         <!-- funding-bg / adding width to the span from 0 to 100 will fill the graphic  -->
                         <td><strong><?php echo $investPercent; ?>%</strong> funded<div class="funding-bg"><span style="width:<?php echo $investPercent; ?>px;"></span></div></td>
-                        <td><strong>8</strong> days</td>
-                        <td><strong><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> positive <div class="reputation-makrs"><span>+<?php echo $loan->getBorrower()->getPositiveRating();?></span>, <span><?php echo $loan->getBorrower()->getNegativeRating();?></span></div></td>
-                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage();?> %</strong> <a href="#">Full<br/>rating</a></td>
+                        <td><strong><?php echo $now->diff($loan->getExpirationDate())->format('%R%d'); ?></strong> days</td>
+                        <td><strong><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> positive <div class="reputation-makrs"><span>+<?php echo $loan->getBorrower()->getPositiveRating(); ?></span>, <span><?php echo $loan->getBorrower()->getNegativeRating(); ?></span></div></td>
+                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> <a href="#">Full<br/>rating</a></td>
                     </tr>
-                <?php endforeach; ?>
+    <?php endforeach; ?>
 
             </tbody>
             <tfoot>
@@ -78,12 +81,12 @@
                                 $this->loans, 'Sliding', 'partials/paginator.phtml');
                         ?>
                         <!--div class="listing-infotext">Showing <strong>1</strong> to <strong>10</strong> of  <span>44 entries</span></div-->
-                        
+
                     </td>
                 </tr>
             </tfoot>
         </table>
     <?php else: ?>
         <div>No loans found.</div>
-    <?php endif; ?>
+<?php endif; ?>
 </div>
