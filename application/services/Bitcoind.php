@@ -3,8 +3,11 @@
 /**
  * 
  */
-class Service_Bitcoind extends Zend_Service_Abstract
+class Service_Bitcoind extends Service_Bitcoind_Abstract
 {
+
+    private static $hexchars = "0123456789ABCDEF";
+    private static $base58chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
     const ACCOUNT_CONST = "account";
 
@@ -28,10 +31,6 @@ class Service_Bitcoind extends Zend_Service_Abstract
     public static function getInstance()
     {
 
-
-        if (self::$_em == null) {
-            self::$_em = Zend_Registry::get('em');
-        }
         if (self::$_instance == null) {
             self::$_instance = new self();
         }
@@ -43,7 +42,7 @@ class Service_Bitcoind extends Zend_Service_Abstract
      * @param type $client
      * @return \Service_Bitcoind 
      */
-    public function setJsonRcpClient($client)
+    public function setJsonRpcClient($client)
     {
         if ($this->_jsonRpcClient == null) {
             $this->_jsonRpcClient = $client;
@@ -55,13 +54,17 @@ class Service_Bitcoind extends Zend_Service_Abstract
      *
      * @return type 
      */
-    public function getJsonRcpClient()
+    public function getJsonRpcClient()
     {
         return $this->_jsonRpcClient;
     }
 
     public function sync($options)
     {
+        if (!is_array($options)) {
+            throw new BitcoinServiceException('you need to provide proper parameter $options - array with user_id in it');
+        }
+
         return $this->_configRcpClient()
                         ->_syncBalance($options)
                         ->_syncAddress($options);
@@ -71,7 +74,7 @@ class Service_Bitcoind extends Zend_Service_Abstract
     {
         // setting json rcp client with our bitcoind server
         $config = Zend_Registry::get('config');
-        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $config->btc->conn->user . ':' . $config->btc->conn->password . '@' . $config->btc->conn->url . '/'));
+        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $config->btc->conn->user . ':' . $config->btc->conn->pass . '@' . $config->btc->conn->host . '/'));
     }
 
     /**
@@ -86,7 +89,7 @@ class Service_Bitcoind extends Zend_Service_Abstract
         }
 
 
-        $address = $this->getJsonRcpClient()->getaccountaddress(self::getBitcoindAccount($options['user_id']));
+        $address = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindAccount($options['user_id']));
         $userModel = new Model_User();
         $userModel->updateWallet(array('address' => $address), $options['user_id']);
         return $this;
@@ -106,7 +109,7 @@ class Service_Bitcoind extends Zend_Service_Abstract
         // setting json rcp client with our bitcoind server
 
 
-        $balance = $this->getJsonRcpClient()->getbalance(self::getBitcoindAccount($options['user_id']));
+        $balance = $this->getJsonRpcClient()->getbalance(self::getBitcoindAccount($options['user_id']));
         $userModel = new Model_User();
         $userModel->updateWallet(array('balance' => $balance), $options['user_id']);
         return $this;
@@ -149,7 +152,7 @@ class Service_Bitcoind extends Zend_Service_Abstract
         $this->_configRcpClient();
         $fromAccount = self::getBitcoindAccount($user_id);
         try {
-            $transactionId = $this->getJsonRcpClient()->sendfrom($fromAccount, $toAddress, $ammount);
+            $transactionId = $this->getJsonRpcClient()->sendfrom($fromAccount, $toAddress, $ammount);
         } catch (Exception $e) {
             throw new BitcoinServiceException($e->getMessage());
         }

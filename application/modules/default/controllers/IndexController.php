@@ -13,7 +13,8 @@ class Default_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+      $service = Service_Bitcoind::getInstance()->sync(array('user_id' => Service_auth::getId()));
+      App_DoctrineDebug::dump($service);
       $registerForm = new Default_Form_Register(array('disableLoadDefaultDecorators' => true));
 
         if ($this->_request->isPost()) {
