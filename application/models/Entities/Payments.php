@@ -69,6 +69,13 @@ class Entity_Payments
     private $paymentaddress;
 
     /**
+     * @var integer
+     *
+     * @Column(name="type", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $type;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -213,6 +220,24 @@ class Entity_Payments
     public function getPaymentaddress()
     {
         return $this->paymentaddress;
+    }
+    /**
+     * 
+     * @return type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * 
+     * @param type $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
     }
 
 }

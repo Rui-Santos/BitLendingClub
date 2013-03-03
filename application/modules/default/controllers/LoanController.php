@@ -189,7 +189,7 @@ class Default_LoanController extends Zend_Controller_Action
             }
         }
     }
-
+    
     public function finalizeAction()
     {
         $loanId = (int) $this->_request->getParam('lid', 0);

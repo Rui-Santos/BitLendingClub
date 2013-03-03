@@ -2,7 +2,9 @@
 
 class Model_Payment extends Model_Abstract
 {
-
+    
+    const TYPE_REPAY = 2;
+    const TYPE_INVEST = 1;
     /**
      * Define entityName based on model
      * @var string
