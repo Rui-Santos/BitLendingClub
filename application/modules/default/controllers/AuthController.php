@@ -1,18 +1,22 @@
 <?php
 
-class Default_AuthController extends Zend_Controller_Action {
+class Default_AuthController extends Zend_Controller_Action
+{
 
     protected $_model;
 
-    public function init() {
+    public function init()
+    {
         $this->_model = new Model_User();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->_forward('login');
     }
 
-    public function loginAction() {
+    public function loginAction()
+    {
         error_log("log in action");
         $this->_helper->layout->disableLayout();
 
@@ -29,10 +33,10 @@ class Default_AuthController extends Zend_Controller_Action {
                 $result = $auth->authenticate($adapter);
 
                 if ($result->isValid()) {
-                    
+
                     // syncing for bitcoin api
                     Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
-                    
+
                     $this->_helper->viewRenderer->setNoRender(true);
                     $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
                     $this->getResponse()->setBody(json_encode(array("success" => "true")));
@@ -44,7 +48,12 @@ class Default_AuthController extends Zend_Controller_Action {
         $this->view->form = $loginForm;
     }
 
-    public function facebookLoginAction() {
+    /**
+     * 
+     * @throws InvalidArgumentException
+     */
+    public function facebookLoginAction()
+    {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
 
@@ -58,11 +67,16 @@ class Default_AuthController extends Zend_Controller_Action {
         $result = $auth->authenticate($adapter);
 
         if ($result->isValid()) {
+            Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
             $this->_helper->redirector('index', 'index');
         }
     }
 
-    public function registerAction() {
+    /**
+     * 
+     */
+    public function registerAction()
+    {
         // $this->_helper->layout->disableLayout();
 
         $registerForm = new Default_Form_Register(array('disableLoadDefaultDecorators' => true));
@@ -75,8 +89,11 @@ class Default_AuthController extends Zend_Controller_Action {
 
                 $userModel = new Model_User();
                 $userItem = $userModel->create($dataValues);
+                $walletModel = new Model_Wallet();
+                $walletItem = $walletModel->create(array('user_id' => $userItem->getId()));
 
-                if ($userItem) {
+                if ($userItem && $walletItem) {
+
                     $this->render('register-final');
 
                     //$this->_model->confirmRegistration($userItem->getId());
@@ -87,7 +104,8 @@ class Default_AuthController extends Zend_Controller_Action {
         $this->view->form = $registerForm;
     }
 
-    public function logoutAction() {
+    public function logoutAction()
+    {
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
 

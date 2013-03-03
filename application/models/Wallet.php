@@ -20,7 +20,8 @@ class Model_Wallet extends Model_Abstract
         if (empty($params)) {
             throw new InvalidArgumentException('Invalid argument: params');
         }
-
+        $params['balance'] = Service_Bitcoind::getInstance()->getBalance($params['user_id']);
+        $params['address'] = Service_Bitcoind::getInstance()->getAccountAddress($params['user_id']);
         return $this->getRepository()->createOrUpdate($params, null);
     }
 

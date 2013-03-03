@@ -125,10 +125,9 @@ class Repository_Users extends EntityRepository
         $em->flush();
         $em->refresh($entity);
         
-        if(is_null($id)){
-            $em->getRepository('Entity_Wallets')->createOrUpdate(array('user_id' => $entity->getId()));
-            
-        }
+//        if(is_null($id)){
+//            $em->getRepository('Entity_Wallets')->createOrUpdate(array('user_id' => $entity->getId()));   
+//        }
 
         return $entity;
        

@@ -60,33 +60,24 @@ class Repository_Wallets extends EntityRepository
      */
     public function createOrUpdate(array $params, $id = null)
     {
-
-
+        if (!isset($params['user_id'])) {
+            throw new Exception('Invalid parameter set: user_id');
+        }
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
         } else {
             $entity = $this->find($id);
         }
-
         $em = $this->getEntityManager();
-
-        $btcuser = Zend_Registry::get('config')->btc->conn->user;
-        $btcpass = Zend_Registry::get('config')->btc->conn->pass;
-        $btcurl = Zend_Registry::get('config')->btc->conn->host;
-        $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
-
-        if (isset($params['user_id'])) {
-            $user = $em->getRepository('Entity_Users')->find($params['user_id']);
-            if ($user) {
-                $entity->setUser($user);
-            }
+        $user = $em->getRepository('Entity_Users')->find($params['user_id']);
+        if (!$user) {
+            throw new Exception('No user with this id: user_id');
         }
 
-        $address = $bitcoin->getaccountaddress('account_' . $params['user_id']);
-        $entity->setWalletPath($address);
-        $balance = $bitcoin->getbalance('account_' . $params['user_id']);
-        $entity->setBalance($balance);
+        $entity->setUser($user);
+        $entity->setWalletPath($params['address']);
+        $entity->setBalance($params['balance']);
 
         $em->persist($entity);
         $em->flush();
@@ -99,11 +90,11 @@ class Repository_Wallets extends EntityRepository
     {
         $em = $this->getEntityManager();
         $entity = $this->findOneBy(array('user' => $params['user']));
-        
+
         if (!$entity) {
             throw new InvalidArgumentException('invalid user_id for wallet');
         }
-        
+
         $params['user'] = $this->_em->getRepository('Entity_Users')->find($params['user']);
         foreach ($params as $key => $value) {
             $setter = join('', array("set", ucfirst($key)));
