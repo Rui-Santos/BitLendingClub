@@ -98,10 +98,13 @@ class Repository_Wallets extends EntityRepository
     public function update($params = array())
     {
         $em = $this->getEntityManager();
-        $entity = $this->findOneBy(array('user' => $params['user_id']));
+        $entity = $this->findOneBy(array('user' => $params['user']));
+        
         if (!$entity) {
             throw new InvalidArgumentException('invalid user_id for wallet');
         }
+        
+        $params['user'] = $this->_em->getRepository('Entity_Users')->find($params['user']);
         foreach ($params as $key => $value) {
             $setter = join('', array("set", ucfirst($key)));
             call_user_func_array(array($entity, $setter), array($value));

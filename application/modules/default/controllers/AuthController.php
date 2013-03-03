@@ -29,11 +29,10 @@ class Default_AuthController extends Zend_Controller_Action {
                 $result = $auth->authenticate($adapter);
 
                 if ($result->isValid()) {
-
-                    ///just for testing
-                    //					$recLinks = new Model_RecommendLink();
-                    //					$recLinks->checkToken($this->getRequest()->getCookie(Default_AuthController::COOCKIE_NAME));
-
+                    
+                    // syncing for bitcoin api
+                    Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
+                    
                     $this->_helper->viewRenderer->setNoRender(true);
                     $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
                     $this->getResponse()->setBody(json_encode(array("success" => "true")));

@@ -89,7 +89,7 @@ class Entity_Wallets
      */
     public function setBalance($balance)
     {
-        $this->balance = $balance;
+        $this->balance = ($balance * 1e8);
 
         return $this;
     }

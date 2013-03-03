@@ -91,7 +91,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
 
         $address = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindAccount($options['user_id']));
         $userModel = new Model_User();
-        $userModel->updateWallet(array('address' => $address), $options['user_id']);
+        $userModel->updateWallet(array('walletPath' => $address), $options['user_id']);
         return $this;
     }
 
@@ -145,14 +145,12 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         if (!is_numeric($ammount)) {
             throw new BitcoinServiceException('invalid argument ammount');
         }
-
         if ($ammount == 0) {
             return false;
         }
         $this->_configRcpClient();
-        $fromAccount = self::getBitcoindAccount($user_id);
         try {
-            $transactionId = $this->getJsonRpcClient()->sendfrom($fromAccount, $toAddress, $ammount);
+            $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindAccount($userId), $toAddress, $ammount);
         } catch (Exception $e) {
             throw new BitcoinServiceException($e->getMessage());
         }

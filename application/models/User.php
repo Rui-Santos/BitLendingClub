@@ -519,7 +519,7 @@ class Model_User extends Model_Abstract
      */
     public function updateWallet($options, $user_id)
     {
-        return $this->_em->getRepository('Entity_Wallets')->update($options + array('user_id' => $user_id));
+        return $this->_em->getRepository('Entity_Wallets')->update($options + array('user' => $user_id));
     }
 
     /**
