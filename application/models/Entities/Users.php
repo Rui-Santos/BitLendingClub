@@ -540,7 +540,7 @@ class Entity_Users
             'username' => $this->getUsername(),
             'is_active' => $this->getIsActive(),
             'password' => $this->getPassword(),
-            'rating' => $this->getRating(),
+            
             'fbUserId' => $this->getFbUserId()
         );
 
