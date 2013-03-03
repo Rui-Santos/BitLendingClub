@@ -111,9 +111,8 @@ class Model_Loan extends Model_Abstract
 
 
         foreach ($investments as $investment) {
+            Service_Bitcoind::getInstance()->sendPayment($userWallet->getWalletPath(),$investment->getAmount(),$investment->getInvestor()->getId());
             
-            // TODO: BTC API calls for payment
-
             $params = array('loan_id' => $loanId,
                 'amount' => $investment->getAmount(),
                 'user_id' => $investment->getInvestor()->getId(),
