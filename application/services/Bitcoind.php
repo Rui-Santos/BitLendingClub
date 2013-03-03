@@ -160,7 +160,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
     {
         $this->_configRpcClient();
         try {
-            $balance = $this->getJsonRpcClient()->getbalance($user_id);
+            $balance = $this->getJsonRpcClient()->getbalance(self::getBitcoindAccount($user_id));
         } catch (Exception $e) {
             throw new BitcoinServiceException($e->getMessage());
         }

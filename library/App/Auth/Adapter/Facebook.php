@@ -12,6 +12,10 @@ class App_Auth_Adapter_Facebook implements Zend_Auth_Adapter_Interface
         $this->_token = $token;
     }
 
+    /**
+     * 
+     * @return \Zend_Auth_Result
+     */
     public function authenticate()
     {
         if ($this->_token == null) {
