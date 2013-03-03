@@ -6,9 +6,6 @@
 class Service_Bitcoind extends Service_Bitcoind_Abstract
 {
 
-    private static $hexchars = "0123456789ABCDEF";
-    private static $base58chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-
     const ACCOUNT_CONST = "account";
 
     /**
@@ -195,9 +192,15 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         return $transactionId;
     }
 
+    /**
+     * 
+     * @param type $adressesAmmountsPairs
+     * @param type $userId
+     * @return type
+     */
     public function sendPayments($adressesAmmountsPairs, $userId)
     {
-
+        
         return $transactionId;
     }
 

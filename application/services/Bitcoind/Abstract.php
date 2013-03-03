@@ -3,6 +3,9 @@
 abstract class Service_Bitcoind_Abstract extends Zend_Service_Abstract
 {
 
+    private static $hexchars = "0123456789ABCDEF";
+    private static $base58chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
     /**
      * 
      * @param type $pubkey

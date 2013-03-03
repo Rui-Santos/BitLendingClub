@@ -111,8 +111,8 @@ class Model_Loan extends Model_Abstract
 
 
         foreach ($investments as $investment) {
-            Service_Bitcoind::getInstance()->sendPayment($userWallet->getWalletPath(),$investment->getAmount(),$investment->getInvestor()->getId());
-            
+            Service_Bitcoind::getInstance()->sendPayment($userWallet->getWalletPath(), $investment->getAmount(), $investment->getInvestor()->getId());
+
             $params = array('loan_id' => $loanId,
                 'amount' => $investment->getAmount(),
                 'user_id' => $investment->getInvestor()->getId(),
@@ -120,6 +120,43 @@ class Model_Loan extends Model_Abstract
 
             $paymentModel->create($params);
         }
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @param type $status
+     * @return boolean
+     */
+    public function changeStatus($loanId, $status)
+    {
+        return true;
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @return boolean
+     */
+    public function checkRepaied($loanId)
+    {
+        return false;
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @return boolean
+     */
+    public function repay($loanId)
+    {
+        // sending some money to the people
+
+        $responseRepaied = $this->checkRepaied($loanId);
+        if ($responseRepaied) {
+            $this->changeStatus($loanId, self::STATUS_REPAIED);
+        }
+        return true;
     }
 
 }

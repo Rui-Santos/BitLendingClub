@@ -19,7 +19,7 @@ class Default_LoanController extends Zend_Controller_Action
         $criteria = array('status' => 1);
 
         $paginator = new Zend_Paginator(
-                        new App_Paginator_Adapter_Doctrine($this->_model->getAll($criteria)));
+                new App_Paginator_Adapter_Doctrine($this->_model->getAll($criteria)));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(Model_Page::PER_PAGE);
 
@@ -61,7 +61,7 @@ class Default_LoanController extends Zend_Controller_Action
         $loanModel = new Model_Loan();
 
         $paginator = new Zend_Paginator(
-                        new App_Paginator_Adapter_Doctrine($loanModel->getAll(array('borrower' => $userItem))));
+                new App_Paginator_Adapter_Doctrine($loanModel->getAll(array('borrower' => $userItem))));
 
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
@@ -92,7 +92,7 @@ class Default_LoanController extends Zend_Controller_Action
         }
         $comments = new Model_LoanComment();
         $paginator = new Zend_Paginator(
-                        new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
+                new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
@@ -208,6 +208,24 @@ class Default_LoanController extends Zend_Controller_Action
         }
 
         $this->_model->finalizeLoan($loanId);
+    }
+
+    /**
+     * 
+     */
+    public function repayAction()
+    {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        
+        $loanId = (int) $this->_request->getParam('lid', 0);
+        
+        $result = $this->_model->repay($loanId);
+        if (!$result) {
+            throw new Exception('Invalid result of repayment of loan'. $loanId);
+        }
+        Zend_Debug::dump($loanId);
+        
     }
 
 }
