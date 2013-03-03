@@ -16,7 +16,7 @@ class Default_UserController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_helper->authentication->checkAuthentication(false);
+        
         $this->_model = new Model_User();
         parent::init();
     }

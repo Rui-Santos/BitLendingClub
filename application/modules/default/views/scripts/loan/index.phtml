@@ -1,9 +1,9 @@
 <?php $now = new DateTime(); ?>
 <div id="main-wrapper">
     <ul id="tabs-nav">
-        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li>
+        <?php if (Service_Auth::getLoggedUser()) { ?><li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'overview'), null, true); ?>"><span class="overview-icon">Overview</span></a></li><?php } ?>
         <li class="selected"><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'index'), null, true); ?>"><span class="browse-listings-icon">Browse Loan Listings</span></a></li>
-        <li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Borrow</span></a></li>
+        <?php if (Service_Auth::getLoggedUser()) { ?><li><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'create'), null, true); ?>"><span class="automated-plan-icon">Borrow</span></a></li><?php } ?>
     </ul>
     <div class="page-title">
         <h1>Bitcoin Loan Listings</h1>
@@ -48,7 +48,7 @@
                         <td><strong><?php echo $investPercent; ?>%</strong> funded<div class="funding-bg"><span style="width:<?php echo $investPercent; ?>px;"></span></div></td>
                         <td><strong><?php echo $now->diff($loan->getExpirationDate())->format('%R%d');?></strong> days</td>
                         <td><strong><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> positive <div class="reputation-makrs"><span>+<?php echo $loan->getBorrower()->getPositiveRating();?></span>, <span><?php echo $loan->getBorrower()->getNegativeRating();?></span></div></td>
-                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage();?> %</strong> <a href="#">Full<br/>rating</a></td>
+                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage();?></strong> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>">Full<br/>rating</a></td>
                     </tr>
                 <?php endforeach; ?>
 

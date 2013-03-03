@@ -68,7 +68,7 @@
                         <td><strong><?php echo $investPercent; ?>%</strong> funded<div class="funding-bg"><span style="width:<?php echo $investPercent; ?>px;"></span></div></td>
                         <td><strong><?php echo $now->diff($loan->getExpirationDate())->format('%R%d'); ?></strong> days</td>
                         <td><strong><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> positive <div class="reputation-makrs"><span>+<?php echo $loan->getBorrower()->getPositiveRating(); ?></span>, <span><?php echo $loan->getBorrower()->getNegativeRating(); ?></span></div></td>
-                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage(); ?> %</strong> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>">Full<br/>rating</a></td>
+                        <td class="rating"><strong class="green-star"><?php echo $loan->getBorrower()->getRatingPercentage(); ?></strong> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>">Full<br/>rating</a></td>
                     </tr>
     <?php endforeach; ?>
 

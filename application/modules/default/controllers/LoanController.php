@@ -77,13 +77,19 @@ class Default_LoanController extends Zend_Controller_Action
         $loan = $this->_model->getLoan(array('id' => $loanId));
         $this->view->loan = $loan;
 
+        $activeLoans = $this->_model->findBy(array('borrower' => $loan->getBorrower()->getId(), 'status' => Model_Loan::STATUS_ACTIVE));
+        $this->view->activeLoans = count($activeLoans);
+        
+        $repaidLoans = $this->_model->findBy(array('borrower' => $loan->getBorrower()->getId(), 'status' => Model_Loan::STATUS_REPAIED));
+        $this->view->repaidLoans = count($repaidLoans);
+        
         $investments = new Model_Investment();
         $investments = $investments->findBy(array('loan' => $loanId));
         $this->view->investments = $investments;
-
-        $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
-        $this->view->form = $commentForm;
-
+        if (Service_Auth::getLoggedUser()) {
+            $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
+            $this->view->form = $commentForm;
+        }
         $comments = new Model_LoanComment();
         $paginator = new Zend_Paginator(
                         new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
@@ -93,11 +99,12 @@ class Default_LoanController extends Zend_Controller_Action
 
         $invAmount = $this->_model->getInvestmentsAmount($loan->getInvestments());
         $this->view->investedAmount = $invAmount;
-
-        if ($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
-            $this->view->canEdit = true;
-        } else {
-            $this->view->canEdit = false;
+        if (Service_Auth::getLoggedUser()) {
+            if ($loan->getBorrower()->getId() == Service_Auth::getLoggedUser()->getId()) {
+                $this->view->canEdit = true;
+            } else {
+                $this->view->canEdit = false;
+            }
         }
     }
 
@@ -129,7 +136,7 @@ class Default_LoanController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $loanId = (int) $this->_request->getParam('lid', 0);
         $this->view->loanId = $loanId;
-        
+
         $id = Service_Auth::getLoggedUser()->getId();
         $this->view->userId = $id;
 
@@ -138,7 +145,7 @@ class Default_LoanController extends Zend_Controller_Action
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
             if ($investForm->isValid($post)) {
-                
+
                 $values = $investForm->getValues();
                 $invModel = new Model_Investment();
                 $invItem = $invModel->create($values);
