@@ -19,7 +19,7 @@ class Default_LoanController extends Zend_Controller_Action
         $criteria = array('status' => 1);
 
         $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($this->_model->getAll($criteria)));
+                        new App_Paginator_Adapter_Doctrine($this->_model->getAll($criteria)));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(Model_Page::PER_PAGE);
 
@@ -36,7 +36,7 @@ class Default_LoanController extends Zend_Controller_Action
         $form = new Default_Form_Loan(array('purposesOpts' => Model_Loan::$_purposesOpts));
 
         if ($this->_request->isPost()) {
-            # adding the new entity after validating the input data
+# adding the new entity after validating the input data
             $post = $this->_request->getPost();
 
             if ($form->isValid($post)) {
@@ -61,7 +61,7 @@ class Default_LoanController extends Zend_Controller_Action
         $loanModel = new Model_Loan();
 
         $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($loanModel->getAll(array('borrower' => $userItem))));
+                        new App_Paginator_Adapter_Doctrine($loanModel->getAll(array('borrower' => $userItem))));
 
         $paginator->setCurrentPageNumber($this->_getParam('page'));
 
@@ -79,10 +79,10 @@ class Default_LoanController extends Zend_Controller_Action
 
         $activeLoans = $this->_model->findBy(array('borrower' => $loan->getBorrower()->getId(), 'status' => Model_Loan::STATUS_ACTIVE));
         $this->view->activeLoans = count($activeLoans);
-        
+
         $repaidLoans = $this->_model->findBy(array('borrower' => $loan->getBorrower()->getId(), 'status' => Model_Loan::STATUS_REPAIED));
         $this->view->repaidLoans = count($repaidLoans);
-        
+
         $investments = new Model_Investment();
         $investments = $investments->findBy(array('loan' => $loanId));
         $this->view->investments = $investments;
@@ -92,7 +92,7 @@ class Default_LoanController extends Zend_Controller_Action
         }
         $comments = new Model_LoanComment();
         $paginator = new Zend_Paginator(
-                new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
+                        new App_Paginator_Adapter_Doctrine($comments->getAll(array('loan' => $loanId))));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(5);
         $this->view->comments = $paginator;
@@ -125,7 +125,7 @@ class Default_LoanController extends Zend_Controller_Action
                 if ($commentItem) {
                     $this->_helper->redirector('browse', 'loan', null, array('lid' => $post['loan_id']));
 
-                    //$this->_model->confirmRegistration($userItem->getId());
+//$this->_model->confirmRegistration($userItem->getId());
                 }
             }
         }
@@ -164,7 +164,7 @@ class Default_LoanController extends Zend_Controller_Action
 
     public function deleteInvestmentAction()
     {
-        # fetching the id and checks 
+# fetching the id and checks 
         $id = $this->_request->getParam('iid', 0);
         if (intval($id) == 0) {
             throw new InvalidArgumentException('Invalid request parameter: $id');
@@ -217,15 +217,28 @@ class Default_LoanController extends Zend_Controller_Action
     {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        
+
         $loanId = (int) $this->_request->getParam('lid', 0);
-        
+
         $result = $this->_model->repay($loanId);
         if (!$result) {
-            throw new Exception('Invalid result of repayment of loan'. $loanId);
+            throw new Exception('Invalid result of repayment of loan' . $loanId);
         }
         Zend_Debug::dump($loanId);
-        
+    }
+
+    public function deleteLoanAction()
+    {
+        $loanId = (int) $this->_request->getParam('lid', 0);
+        if (intval($loanId) == 0) {
+            throw new InvalidArgumentException('Invalid request parameter: loan id');
+        }
+
+        $invItem = $this->_model->delete($loanId);
+        if ($invItem) {
+
+            $this->_helper->redirector('loans', 'profile');
+        }
     }
 
 }

@@ -131,7 +131,7 @@ class Entity_Loans
      */
     public function setAmount($amount)
     {
-        $this->amount = ($amount * 1e8);
+        $this->amount = $amount; //($amount * 1e8);
 
         return $this;
     }
