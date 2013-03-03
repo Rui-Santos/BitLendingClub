@@ -95,7 +95,9 @@ class Repository_Payments extends EntityRepository
 //        } else {
 //            $entity->setOverdueFlag(0); 
 //        }
-
+        
+        $entity->setType($params['type']);
+        
         $em->persist($entity);
         $em->flush();
         $em->refresh($entity);

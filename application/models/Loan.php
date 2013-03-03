@@ -115,6 +115,7 @@ class Model_Loan extends Model_Abstract
 
             $params = array('loan_id' => $loanId,
                 'amount' => $investment->getAmount(),
+                'type' => Model_Payment::TYPE_INVEST,
                 'user_id' => $investment->getInvestor()->getId(),
                 'address' => $userWallet->getWalletPath());
 
