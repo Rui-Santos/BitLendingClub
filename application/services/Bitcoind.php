@@ -74,7 +74,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
     {
 
         if ($this->getJsonRpcClient() !== null) {
-            return true;
+            return $this;
         }
         // setting json rcp client with our bitcoind server
         $config = Zend_Registry::get('config');
