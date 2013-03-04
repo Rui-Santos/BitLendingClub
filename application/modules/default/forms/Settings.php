@@ -72,6 +72,9 @@ class Default_Form_Settings extends Default_Form_Abstract
             'label' => 'Username',
             'class' => 'medium',
             'required' => false,
+            'validators' => array(
+                'Alpha'
+            ),
         ));
 
 //        $config = Zend_Registry::get('config');
