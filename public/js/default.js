@@ -1,21 +1,21 @@
 $(function() { 
-  if (typeof FB != 'undefined') {
-	    FB.init({
-	        appId      : '468101889902680',
-	        status     : true, 
-	        cookie     : true,
-	        xfbml      : true,
-	        oauth      : true
-	    });
+    if (typeof FB != 'undefined') {
+        FB.init({
+            appId      : '468101889902680',
+            status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true
+        });
     }
 
-  initLoginDialog();
+    initLoginDialog();
   
-  initWithdrawDialog();
+    initWithdrawDialog();
   
-  initFundDialog();
+    initFundDialog();
   
-  initDatepicker();
+    initDatepicker();
     
 });
 
@@ -76,16 +76,13 @@ var initFundDialog = function() {
 
 var initInvestDialog = function(loanId) {
     var modalDialog = $('#main-modal-dialog');
+
+    modalDialog.jqm({
+        ajax: '/loan/invest/lid/'+loanId
+    });                
+    modalDialog.jqmShow();
     
-   
-        
-        modalDialog.jqm({
-            ajax: '/loan/invest/lid/'+loanId
-        });                
-        modalDialog.jqmShow();
-    
-        e.preventDefault();
-   
+    e.preventDefault();
 
     $('#login-close').live('click', function(e){
         modalDialog.jqmHide();

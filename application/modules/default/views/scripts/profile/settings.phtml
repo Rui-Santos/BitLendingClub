@@ -1,47 +1,52 @@
 <div id="main-wrapper">
-	<ul id="tabs-nav">
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
-		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
-	</ul>
-	<div class="profile-content-wrapper">
-		<div class="full-width">
-			<h1>Basic settings</h1>
-			<form action="<?php echo $this->url(array('module' => 'default', 
-                'controller' => 'profile', 'action' => 'settings'), null, true); ?>" method="post" onsubmit="return doUpdate(this);">                
-<div class="field-box">
-                <?php echo $this->form->getElement('password'); ?>
+    <ul id="tabs-nav">
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+    </ul>
+    <div class="profile-content-wrapper">
+        <div class="full-width">
+            <h1>Basic settings</h1>
+            <form action="<?php echo $this->url(array('module' => 'default',
+    'controller' => 'profile', 'action' => 'settings'), null, true);
+?>" method="post" onsubmit="return doUpdate(this);">                
+
+                <div class="field-box">
+<?php echo $this->form->getElement('email'); ?>                
                 </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('password_confirm'); ?>                
+
+                <div class="field-box">
+<?php echo $this->form->getElement('password'); ?>
                 </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('firstname'); ?>
+                <div class="field-box">
+<?php echo $this->form->getElement('password_confirm'); ?>                
                 </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('lastname'); ?>
+                <div class="field-box">
+<?php echo $this->form->getElement('firstname'); ?>
                 </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('username'); ?>
+                <div class="field-box">
+<?php echo $this->form->getElement('lastname'); ?>
                 </div>
-    <div class="field-box">
-                <?php echo $this->form->getElement('address'); ?>
+                <div class="field-box">
+<?php echo $this->form->getElement('username'); ?>
                 </div>
-          <div class="buttons-set">     
-           <?php echo $this->form->getElement('save'); ?>
-		</div>		
-					
-				
-			</form>
-		</div>
-	</div>
+                <div class="field-box">
+<?php echo $this->form->getElement('address'); ?>
+                </div>
+                <div class="buttons-set">     
+<?php echo $this->form->getElement('save'); ?>
+                </div>		
+
+
+            </form>
+        </div>
+    </div>
 </div>
 
-            
-            
-           
-            
-        
+
+
+
+
