@@ -12,6 +12,7 @@ class Model_Loan extends Model_Abstract
     const STATUS_ACTIVE = 1;
     const STATUS_REPAIED = 3;
     const STATUS_CANCELED = 4;
+    const BlcPercentage = 0.1;
 
     /**
      *
@@ -23,6 +24,12 @@ class Model_Loan extends Model_Abstract
         3 => self::BUSINESS,
         4 => self::MEDICAL_EXPENSES,
         5 => self::OTHER
+    );
+    public static $_statuses = array(
+        self::STATUS_ACTIVE => 'active',
+        self::STATUS_INPROGRESS => 'in progress',
+        self::STATUS_REPAIED => 'repaied',
+        self::STATUS_CANCELED => 'canceled'
     );
 
     /**
@@ -97,13 +104,15 @@ class Model_Loan extends Model_Abstract
             return $percent;
         }
     }
-
+    /**
+     * 
+     * @param type $loanId
+     */
     public function finalizeLoan($loanId)
     {
-        $this->getRepository()->finalizeLoan($loanId);
-
-        $entity = $this->getRepository()->findOneBy(array('id' => $loanId));
-
+        $entity = $this->getRepository()->changeLoanStatus($loanId, self::STATUS_INPROGRESS);
+        $this->getRepository()->updateStartDate($loanId);
+        
         $investments = $entity->getInvestments();
         $paymentModel = new Model_Payment();
         $walletModel = new Model_Wallet();
@@ -131,7 +140,7 @@ class Model_Loan extends Model_Abstract
      */
     public function changeStatus($loanId, $status)
     {
-        return true;
+        return $this->getRepository()->changeLoanStatus($loanId, $status);
     }
 
     /**
@@ -141,6 +150,15 @@ class Model_Loan extends Model_Abstract
      */
     public function checkRepaied($loanId)
     {
+        if (!is_numeric($loanId)) {
+            throw new InvalidArgumentException('invalid parameter $loanid');
+        }
+
+        $repaymentsCount = $this->calculateRepaymentsCount($loanId);
+        $loan = $this->get($loanId);
+        if ($loan->getPayments()->count() == $repaymentsCount) {
+            return true;
+        }
         return false;
     }
 
@@ -151,13 +169,63 @@ class Model_Loan extends Model_Abstract
      */
     public function repay($loanId)
     {
-        // sending some money to the people
+        $paymentModel = new Model_Payment();
+
+        // sending some money to the people and repay a payment for a loan  
+        $loan = $this->get($loanId);
+        $investments = $loan->getInvestments();
+        foreach ($investments as $value) {
+            $fee = $value->getAmmount() / $this->getRepaymentsCount($loanId);
+            $percentile = ($fee * $value->getRate()) / 100;
+            $fee += $percentile;
+
+            $transactionId = Service_Bitcoind::getInstance()->sendPayment($value->getInvestor()->getWallet()->getWalletPath(), $fee, Service_Auth::getId());
+
+            if ($transactionId) {
+
+                $params = array(
+                    'loan_id' => $loanId,
+                    'amount' => $fee,
+                    'type' => Model_Payment::TYPE_REPAY,
+                    'user_id' => Service_Auth::getId(),
+                    'address' => $value->getInvestor()->getWallet()->getWalletPath());
+                $paymentModel->create($params);
+            }
+            // adding the btc's to the account to the server
+        }
+        //sending payment to blc (0.1 percentage)
+        Service_Bitcoind::sendPaymentToBlc($this->getBlcTax($loanId), Service_Auth::getId());
+        Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
 
         $responseRepaied = $this->checkRepaied($loanId);
         if ($responseRepaied) {
             $this->changeStatus($loanId, self::STATUS_REPAIED);
         }
         return true;
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @return type
+     */
+    public function calculateRepaymentsCount($loanId)
+    {
+        $entity = $this->get($loanId);
+        return round($entity->getTerm() / $entity->getFrequency);
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @return type
+     */
+    public function getBlcTax($loanId)
+    {
+        $loan = $this->get($loanId);
+
+        $blcFee = $loan->getAmmount() / $loan->getFrequency();
+        return ($blcFee * self::BlcPercentage) / 100;
     }
 
 }

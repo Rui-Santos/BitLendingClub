@@ -99,20 +99,37 @@ class Repository_Loans extends EntityRepository
         return $entity;
     }
 
-    public function finalizeLoan($id)
+    public function changeLoanStatus($id, $status)
     {
-        $entity = $this->find($id);
-
-
-        if ($entity) {
-            $entity->setStatus($this->getEntityManager()->getRepository('Entity_Loanstatus')->find(Model_Loan::STATUS_INPROGRESS));
-            
-            $this->getEntityManager()->persist($entity);
-            $this->getEntityManager()->flush();
-            $this->getEntityManager()->refresh($entity);
-
-            return $entity;
+        if (!in_array($status, array_keys(Model_Loan::$_statuses))) {
+            throw new InvalidArgumentException('invalid parameter $statusid');
         }
+
+        $entity = $this->find($id);
+        if (!$entity) {
+            throw new InvalidArgumentException('invalid entity parameter: $id');
+        }
+
+        $entity->setStatus($this->getEntityManager()->getRepository('Entity_Loanstatus')->find($status));
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->refresh($entity);
+        return $entity;
+    }
+
+    /**
+     * 
+     * @param type $loanId
+     * @return type
+     */
+    public function updateStartDate($loanId)
+    {
+        $entity = $this->find($loanId);
+        $entity->setStartDate(new DateTime());
+
+        $em->persist($entity);
+        $em->flush();
+        $em->refresh($entity);
 
         return $entity;
     }

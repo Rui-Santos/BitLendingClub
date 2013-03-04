@@ -7,6 +7,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
 {
 
     const ACCOUNT_CONST = "account";
+    const BLC_USERID = 0;
 
     /**
      *
@@ -56,6 +57,12 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         return $this->_jsonRpcClient;
     }
 
+    /**
+     * 
+     * @param type $options options like array('user_id' => $value);
+     * @return type
+     * @throws BitcoinServiceException
+     */
     public function sync($options)
     {
         if (!is_array($options)) {
@@ -67,6 +74,10 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
                         ->_syncAddress($options);
     }
 
+    /**
+     * 
+     * @return \Service_Bitcoind
+     */
     protected function _configRpcClient()
     {
 
@@ -194,13 +205,40 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
 
     /**
      * 
+     * @param type $ammount
+     * @param type $userId
+     * @return boolean
+     * @throws BitcoinServiceException
+     */
+    public function sendPaymentToBlc($ammount, $userId)
+    {
+        if (!is_numeric($ammount)) {
+            throw new BitcoinServiceException('invalid argument ammount');
+        }
+        if ($ammount == 0) {
+            return false;
+        }
+
+        $this->_configRpcClient();
+        try {
+            $toAddress = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindAccount(self::BLC_USERID));
+
+            $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindAccount($userId), $toAddress, $ammount);
+        } catch (Exception $e) {
+            throw new BitcoinServiceException($e->getMessage());
+        }
+        return $transactionId;
+    }
+
+    /**
+     * 
      * @param type $adressesAmmountsPairs
      * @param type $userId
      * @return type
      */
     public function sendPayments($adressesAmmountsPairs, $userId)
     {
-        
+
         return $transactionId;
     }
 

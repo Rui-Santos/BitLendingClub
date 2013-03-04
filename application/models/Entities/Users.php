@@ -129,6 +129,13 @@ class Entity_Users
      */
     private $documents;
 
+    /**
+     * @var ArrayCollection $wallets
+     * 
+     * @OneToMany(targetEntity="Entity_Wallets", mappedBy="user", cascade={"persist"})
+     */
+    private $wallets;
+
     public function __construct()
     {
         //       $this->isActive = 1;
@@ -137,6 +144,7 @@ class Entity_Users
         $this->ratings = new ArrayCollection();
         $this->ratedList = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->wallets = new ArrayCollection();
     }
 
     /**
@@ -526,6 +534,33 @@ class Entity_Users
     }
 
     /**
+     * 
+     * @param type $wallet
+     */
+    public function addWallet($wallet)
+    {
+        $this->wallets[] = $wallet;
+    }
+
+    /**
+     * 
+     * @return type
+     */
+    public function getWallets()
+    {
+        return $this->wallets;
+    }
+
+    /**
+     * 
+     * @return type
+     */
+    public function getWallet()
+    {
+        return $this->wallets->current();
+    }
+
+    /**
      *
      * @return type 
      */
@@ -540,7 +575,6 @@ class Entity_Users
             'username' => $this->getUsername(),
             'is_active' => $this->getIsActive(),
             'password' => $this->getPassword(),
-            
             'fbUserId' => $this->getFbUserId()
         );
 

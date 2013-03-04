@@ -103,6 +103,13 @@ class Entity_Loans
      * @OneToMany(targetEntity="Entity_Investments", mappedBy="loan", cascade={"persist"})
      */
     private $investments;
+    
+    /**
+     * @var \DateTime
+     *
+     * @Column(name="startDate", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $startDate;
 
     /**
      * 
@@ -350,5 +357,27 @@ class Entity_Loans
     {
         return $this->investments;
     }
+    
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     * @return Loans
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
 
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime 
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
 }
