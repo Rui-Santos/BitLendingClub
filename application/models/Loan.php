@@ -104,6 +104,7 @@ class Model_Loan extends Model_Abstract
             return $percent;
         }
     }
+
     /**
      * 
      * @param type $loanId
@@ -112,7 +113,7 @@ class Model_Loan extends Model_Abstract
     {
         $entity = $this->getRepository()->changeLoanStatus($loanId, self::STATUS_INPROGRESS);
         $this->getRepository()->updateStartDate($loanId);
-        
+
         $investments = $entity->getInvestments();
         $paymentModel = new Model_Payment();
         $walletModel = new Model_Wallet();
@@ -129,7 +130,9 @@ class Model_Loan extends Model_Abstract
                 'address' => $userWallet->getWalletPath());
 
             $paymentModel->create($params);
+            Service_Bitcoind::getInstance()->sync(array('balance', 'address'), $investment->getInvestor()->getId());
         }
+        Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
     }
 
     /**
@@ -195,7 +198,7 @@ class Model_Loan extends Model_Abstract
         }
         //sending payment to blc (0.1 percentage)
         Service_Bitcoind::sendPaymentToBlc($this->getBlcTax($loanId), Service_Auth::getId());
-        Service_Bitcoind::getInstance()->sync(array('balance', 'address'),Service_Auth::getId());
+        Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
 
         $responseRepaied = $this->checkRepaied($loanId);
         if ($responseRepaied) {
