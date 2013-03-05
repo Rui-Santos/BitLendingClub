@@ -26,7 +26,8 @@ class Default_Form_RateUser extends Default_Form_Abstract
     {
         $element = new Zend_Form_Element_Select('user_id', array(
                     'multiOptions' => $this->_usersOpts,
-                    'required' => true
+                    'required' => true,
+                    
                 ));
         $this->addElement($element);
 

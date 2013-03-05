@@ -1,3 +1,4 @@
+<?php $rateForm = $this->form; ?>
 <div id="main-wrapper">
 <!--	<ul id="tabs-nav">
 		<li><a href="#"><span class="dashboard-icon">Dashboard</span></a></li>
@@ -9,12 +10,12 @@
 	</ul>-->
 	<div class="profile-content-wrapper">
 		<div class="sidebar-left profile-sidebar">
-			<div class="sidebar-infoboard mb-twenty">
+			<!--div class="sidebar-infoboard mb-twenty">
 				<div class="sidebar-msg">
 					<span>Import your Bitcoin OTC Reputation</span>
 					<a href="#" class="green-btn"><span>Import</span></a>
 				</div>
-			</div>
+			</div-->
 			<div class="sidebar-infoboard">
 				<div class="title">Reputation <span class="red">-35%</span></div>
 				<ul>
@@ -27,25 +28,22 @@
 			<h1>Rate user</h1>
 			<p>Only users with a <strong>rating greater than 3</strong> can rate others.</p>
 			<p>You can only rate a user <strong>you had some interaction with</strong> (invested or borrowed from him).</p>
-			<form>
+			<form action="<?php
+            echo $this->url(array('module' => 'default',
+                'controller' => 'user', 'action' => 'rate'), null, true);
+            ?>" method="post">
 				<div class="field-box">
 					<label><span class="red">*</span> User Alias:</label>
-					<select>
-						<option selected="selected">Test</option>
-						<option selected="selected">Test2</option>
-						<option selected="selected">Test3</option>
-						<option selected="selected">Test4</option>
-						<option selected="selected">Test5</option>
-					</select>
+					<?php echo $rateForm->getElement('user_id'); ?>
 				</div>
 				<div class="field-box">
 					<label><span class="red">*</span> Rating:</label>
-					<input type="number" class="input-short" />
+					<input name="rating" id="rating" type="number" min="-10" max="10" class="input-short" />
 					<span class="info c-both mt-five">Value between -10 and 10.</span>
 				</div>
 				<div class="field-box">
 					<label><span class="red">*</span> Comment:</label>
-					<textarea type="text"></textarea>
+					<?php echo $rateForm->getElement('comment');?>
 				</div>
 				<div class="buttons-set">
 					<a href="#" class="green-btn"><span>Rate user</span></a>

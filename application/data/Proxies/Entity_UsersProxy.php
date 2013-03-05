@@ -258,6 +258,24 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
         return parent::getCreditRating();
     }
 
+    public function addWallet($wallet)
+    {
+        $this->__load();
+        return parent::addWallet($wallet);
+    }
+
+    public function getWallets()
+    {
+        $this->__load();
+        return parent::getWallets();
+    }
+
+    public function getWallet()
+    {
+        $this->__load();
+        return parent::getWallet();
+    }
+
     public function toArray()
     {
         $this->__load();
@@ -267,7 +285,7 @@ class Entity_UsersProxy extends \Entity_Users implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments', 'documents');
+        return array('__isInitialized__', 'id', 'username', 'email', 'password', 'isActive', 'fbUserId', 'firstname', 'lastname', 'createdAt', 'role', 'address', 'loans', 'ratings', 'ratedList', 'payments', 'documents', 'wallets');
     }
 
     public function __clone()
