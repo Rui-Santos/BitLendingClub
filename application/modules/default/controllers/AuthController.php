@@ -35,7 +35,7 @@ class Default_AuthController extends Zend_Controller_Action
                 if ($result->isValid()) {
 
                     // syncing for bitcoin api
-                    Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
+                    Service_Bitcoind::getInstance()->sync(array('balance', 'address'),Service_Auth::getId());
 
                     $this->_helper->viewRenderer->setNoRender(true);
                     $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
@@ -67,7 +67,8 @@ class Default_AuthController extends Zend_Controller_Action
         $result = $auth->authenticate($adapter);
 
         if ($result->isValid()) {
-            Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
+            
+            Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
             $this->_helper->redirector('index', 'index');
         }
     }

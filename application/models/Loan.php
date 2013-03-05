@@ -195,7 +195,7 @@ class Model_Loan extends Model_Abstract
         }
         //sending payment to blc (0.1 percentage)
         Service_Bitcoind::sendPaymentToBlc($this->getBlcTax($loanId), Service_Auth::getId());
-        Service_Bitcoind::getInstance()->sync(array('user_id' => Service_Auth::getId()));
+        Service_Bitcoind::getInstance()->sync(array('balance', 'address'),Service_Auth::getId());
 
         $responseRepaied = $this->checkRepaied($loanId);
         if ($responseRepaied) {

@@ -75,15 +75,17 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
      * @return type
      * @throws BitcoinServiceException
      */
-    public function sync($options)
+    public function sync($syncingOpts, $user_id)
     {
-        if (!is_array($options)) {
-            throw new BitcoinServiceException('you need to provide proper parameter $options - array with user_id in it');
+       
+        if (!is_array($syncingOpts)) {
+            throw new InvalidArgumentException('invalid parameter $syncingopts');
         }
-
-        return $this->_configRpcClient()
-                        ->_syncBalance($options)
-                        ->_syncAddress($options);
+        $this->_configRpcClient();
+        while ($syncingOpts) {
+            $opt = array_shift($syncingOpts);
+            call_user_func(array($this, join('', array("_sync", ucfirst($opt)))), array('user_id' => $user_id));
+        }
     }
 
     /**
@@ -100,7 +102,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         $config = Zend_Registry::get('config');
         $this->_user = $config->btc->conn->user;
         $this->_pass = $config->btc->conn->pass;
-        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $this->_user  . ':' . $this->_pass . '@' . $config->btc->conn->host . '/'));
+        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $this->_user . ':' . $this->_pass . '@' . $config->btc->conn->host . '/'));
     }
 
     /**
@@ -113,7 +115,6 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         if (!is_array($options)) {
             throw new InvalidArgumentException('invalid parameter $options');
         }
-
 
         $address = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindAccount($options['user_id']));
         $userModel = new Model_User();
