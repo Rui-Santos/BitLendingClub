@@ -154,7 +154,7 @@ class Default_ProfileController extends Zend_Controller_Action {
 
     public function withdrawAction() {
         $this->_helper->layout->disableLayout();
-        $id = Service_Auth::getLoggedUser()->getId();
+        
         $withdrawForm = new Default_Form_Withdraw();
 
         if ($this->_request->isPost()) {
@@ -167,10 +167,12 @@ class Default_ProfileController extends Zend_Controller_Action {
                 $btcpass = Zend_Registry::get('config')->btc->conn->pass;
                 $btcurl = Zend_Registry::get('config')->btc->conn->host;
                 $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
-                $isValid = $bitcoin->validateaddress($values['amount']);
-
+                $isValid = $bitcoin->validateaddress($values['address']);
+                
+                
                 if ($isValid['isvalid']) {
-                    $transfer = $bitcoin->sendfrom('account_' . $id, $values['address'], $values['amount']);
+                    $bitcoin->walletpassphrase($btcpass, 3000);
+                    $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $values['amount']);
                     
                     if ($transfer) {
                         $this->_helper->redirector('index', 'index');

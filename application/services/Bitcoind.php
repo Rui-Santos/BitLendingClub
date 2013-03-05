@@ -13,6 +13,18 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
      *
      * @var type 
      */
+    protected $_user = null;
+
+    /**
+     *
+     * @var type 
+     */
+    protected $_pass = null;
+
+    /**
+     *
+     * @var type 
+     */
     protected static $_instance;
 
     /**
@@ -86,7 +98,9 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         }
         // setting json rcp client with our bitcoind server
         $config = Zend_Registry::get('config');
-        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $config->btc->conn->user . ':' . $config->btc->conn->pass . '@' . $config->btc->conn->host . '/'));
+        $this->_user = $config->btc->conn->user;
+        $this->_pass = $config->btc->conn->pass;
+        return $this->setJsonRpcClient(new App_jsonRPCClient('http://' . $this->_user  . ':' . $this->_pass . '@' . $config->btc->conn->host . '/'));
     }
 
     /**
@@ -112,16 +126,15 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
      * @param type $options
      * @throws InvalidArgumentException 
      */
-    protected function _syncBalance($options)
+    public function _syncBalance($options)
     {
         if (!is_array($options)) {
             throw new InvalidArgumentException('invalid parameter $options');
         }
 
         // setting json rcp client with our bitcoind server
-
-
         $balance = $this->getJsonRpcClient()->getbalance(self::getBitcoindAccount($options['user_id']));
+
         $userModel = new Model_User();
         $userModel->updateWallet(array('balance' => $balance), $options['user_id']);
         return $this;
@@ -196,6 +209,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         }
         $this->_configRpcClient();
         try {
+            $this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
             $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindAccount($userId), $toAddress, $ammount);
         } catch (Exception $e) {
             throw new BitcoinServiceException($e->getMessage());
@@ -221,8 +235,9 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
 
         $this->_configRpcClient();
         try {
+            // getting btc address
             $toAddress = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindAccount(self::BLC_USERID));
-
+            $this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
             $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindAccount($userId), $toAddress, $ammount);
         } catch (Exception $e) {
             throw new BitcoinServiceException($e->getMessage());
