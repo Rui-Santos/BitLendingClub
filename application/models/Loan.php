@@ -12,7 +12,7 @@ class Model_Loan extends Model_Abstract
     const STATUS_ACTIVE = 1;
     const STATUS_REPAIED = 3;
     const STATUS_CANCELED = 4;
-    const BlcPercentage = 0.1;
+    const BlcPercentage = 1;
 
     /**
      *
