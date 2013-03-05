@@ -3,7 +3,8 @@
 /**
  * 
  */
-class Default_ProfileController extends Zend_Controller_Action {
+class Default_ProfileController extends Zend_Controller_Action
+{
 
     /**
      *
@@ -11,12 +12,14 @@ class Default_ProfileController extends Zend_Controller_Action {
      */
     protected $_model;
 
-    public function init() {
+    public function init()
+    {
         $this->_helper->authentication->checkAuthentication(false);
         $this->_model = new Model_User();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
         $user = $this->_model->get($id);
         $this->view->user = $user;
@@ -59,11 +62,13 @@ class Default_ProfileController extends Zend_Controller_Action {
         //Zend_Debug::dump(Zend_Auth::getInstance()->getIdentity());
     }
 
-    public function dashboardAction() {
+    public function dashboardAction()
+    {
         
     }
 
-    public function settingsAction() {
+    public function settingsAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
 
         $form = new Default_Form_Settings();
@@ -87,11 +92,13 @@ class Default_ProfileController extends Zend_Controller_Action {
         $this->view->assign(array('form' => $form, 'id' => $id));
     }
 
-    public function creditRatingAction() {
+    public function creditRatingAction()
+    {
         
     }
 
-    public function reputationAction() {
+    public function reputationAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
 
 
@@ -101,7 +108,8 @@ class Default_ProfileController extends Zend_Controller_Action {
         $this->view->user = $userItem;
     }
 
-    public function investmentsAction() {
+    public function investmentsAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
         $userItem = $this->_model->get($id);
 
@@ -116,7 +124,8 @@ class Default_ProfileController extends Zend_Controller_Action {
         $this->view->investments = $paginator;
     }
 
-    public function loansAction() {
+    public function loansAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
         $userItem = $this->_model->get($id);
 
@@ -131,7 +140,8 @@ class Default_ProfileController extends Zend_Controller_Action {
         $this->view->loans = $paginator;
     }
 
-    public function paymentsAction() {
+    public function paymentsAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
 
 
@@ -139,7 +149,8 @@ class Default_ProfileController extends Zend_Controller_Action {
         $userItem = $this->_model->get($id);
     }
 
-    public function fundAction() {
+    public function fundAction()
+    {
         $id = Service_Auth::getLoggedUser()->getId();
 
         $this->_helper->layout->disableLayout();
@@ -152,10 +163,13 @@ class Default_ProfileController extends Zend_Controller_Action {
         $this->view->wallet = $wallet;
     }
 
-    public function withdrawAction() {
+    public function withdrawAction()
+    {
         $this->_helper->layout->disableLayout();
-        
+
         $withdrawForm = new Default_Form_Withdraw();
+        $wallet = new Model_Wallet();
+        $currentWallet = $wallet->getWallet(array('user' => Service_Auth::getLoggedUser()->getId()));
 
         if ($this->_request->isPost()) {
             $post = $this->_request->getPost();
@@ -167,12 +181,16 @@ class Default_ProfileController extends Zend_Controller_Action {
                 $btcpass = Zend_Registry::get('config')->btc->conn->pass;
                 $btcurl = Zend_Registry::get('config')->btc->conn->host;
                 $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
+
                 $isValid = $bitcoin->validateaddress($values['address']);
-                
-                
+
+
                 if ($isValid['isvalid']) {
-                    $bitcoin->walletpassphrase($btcpass, 3000);
-                    $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $values['amount']);
+
+                    //$bitcoin->walletpassphrase($btcpass, 3000);
+                    if ($currentWallet->getBalance() > floatval($values['amount'])) {
+                        $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], floatval($values['amount']));
+                    }
                     
                     if ($transfer) {
                         $this->_helper->redirector('index', 'index');
@@ -189,7 +207,5 @@ class Default_ProfileController extends Zend_Controller_Action {
 
         $this->view->form = $withdrawForm;
     }
-    
-    
 
 }
