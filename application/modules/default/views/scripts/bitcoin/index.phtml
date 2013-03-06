@@ -4,13 +4,14 @@
     $btcpass = Zend_Registry::get('config')->btc->conn->pass;
     $btcurl = Zend_Registry::get('config')->btc->conn->host;
   $bitcoin = new App_jsonRPCClient('http://'.$btcuser.':'.$btcpass.'@'.$btcurl.'/');
- 
+  
+ $account = $bitcoin->getaccountaddress('account_1');
   # now check for appropriate funds in user account
   //
   //$account = $bitcoin->getnewaddress(); //param ($account)
  // $account = $bitcoin->getbalance();
 // $account = $bitcoin->help();
- $account = $bitcoin->getbalance('account_16');
+// $account = $bitcoin->getbalance('account_17');
  // 
  //$account = $bitcoin->listaccounts();
  //$account = $bitcoin->getbalance('account_1');

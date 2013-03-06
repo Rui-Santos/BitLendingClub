@@ -11,7 +11,6 @@ class Default_Form_Withdraw extends Default_Form_Abstract
             'label' => 'Amount of bitcoins',
             'placeholder' => 'Amount of bitcoins',
             'class' => 'medium',
-            'filters' => array('StringTrim'),
             'required' => true,
         ));        
 

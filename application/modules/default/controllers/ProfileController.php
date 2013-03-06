@@ -188,15 +188,20 @@ class Default_ProfileController extends Zend_Controller_Action
                 if ($isValid['isvalid']) {
 
                     //$bitcoin->walletpassphrase($btcpass, 3000);
-                    Zend_Debug::dump(floatval($values['amount']));exit;
-                    if ($currentWallet->getBalance() > (float)$values['amount']) {
-                        $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], (float)$values['amount']);
-                    }
-                    
-                    if ($transfer) {
-                        $this->_helper->redirector('index', 'index');
+                    // Zend_Debug::dump(sscanf($values['amount'],'D'));exit;
+                    $val = (float) $values['amount'];
+
+                    if ($currentWallet->getBalance() > $val) {
+
+                        $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $val);
+
+                        if ($transfer) {
+                            $this->view->successMsg = true;
+                        } else {
+                            $this->view->errorWithdrawAddress = true;
+                        }
                     } else {
-                        $this->view->errorWithdrawAddress = true;
+                        $this->view->errorBalance = true;
                     }
                 } else {
                     $this->view->errorWithdraw = true;

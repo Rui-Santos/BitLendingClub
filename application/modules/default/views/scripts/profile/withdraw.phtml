@@ -5,11 +5,17 @@
 				<div class="title">Withdraw Funds</div>
 				<form id="withdraw-form" action="<?php echo $this->url(array('module' => 'default', 
                 'controller' => 'profile', 'action' => 'withdraw'), null, true); ?>" method="post" onsubmit="return doWithdraw(this);">
-					<?php echo $this->form->getElement('amount'); ?>
+					<input name="amount" id="amount" placeholder="Amount of Bitcoins" type="number" min="0" class="medium" />
                 <?php echo $this->form->getElement('address'); ?>
 
             <?php if ($this->errorWithdrawAddress): ?>
                 <p class="errors"><?php echo $this->translate('Invalid withdraw address.'); ?></p>
+            <?php endif; ?>
+                <?php if ($this->errorBalance): ?>
+                <p class="errors"><?php echo $this->translate('Insufficient balance.'); ?></p>
+            <?php endif; ?>
+                 <?php if ($this->successMsg): ?>
+                <p class="errors"><?php echo $this->translate('Successful withdrawal.'); ?></p>
             <?php endif; ?>
 
 					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Withdraw</span></a>
