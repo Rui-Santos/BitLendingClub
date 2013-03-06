@@ -17,10 +17,10 @@
 				</div>
 			</div-->
 			<div class="sidebar-infoboard">
-				<div class="title">Reputation <span class="red">-35%</span></div>
+				<div class="title">Reputation <span class="red"><?php echo $this->user->getRatingPercentage();?> %</span></div>
 				<ul>
-					<li>Positive: <span class="green">4</span></li>
-					<li>Negative: <span class="red">17</span></li>
+					<li>Positive: <span class="green"><?php echo $this->user->getPositiveRating(); ?></span></li>
+					<li>Negative: <span class="red"><?php echo $this->user->getNegativeRating(); ?></span></li>
 				</ul>
 			</div>
 		</div>
@@ -46,9 +46,9 @@
 					<?php echo $rateForm->getElement('comment');?>
 				</div>
 				<div class="buttons-set">
-					<a href="#" class="green-btn"><span>Rate user</span></a>
+					<a href="#" onclick="$(this).parents('form').submit();" class="green-btn"><span>Rate user</span></a>
 					<span class="required"><span class="red">*</span> Required fields</span>
-					<a href="#" class="back-link">Back</a>
+					<a href="javascript:history.go(-1)" class="back-link">Back</a>
 				</div>
 			</form>
 		</div>

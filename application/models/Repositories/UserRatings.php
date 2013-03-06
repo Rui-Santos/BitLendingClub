@@ -2,7 +2,7 @@
 
 use Doctrine\ORM\EntityRepository;
 
-class Repository_Loans extends EntityRepository
+class Repository_UserRatings extends EntityRepository
 {
 
     /**

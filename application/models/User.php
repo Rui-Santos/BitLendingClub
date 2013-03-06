@@ -537,4 +537,20 @@ class Model_User extends Model_Abstract
         return $return;
     }
 
+    /*
+     * 
+     */
+
+    public function getUserOpts()
+    {
+        $returnOptsArray = array();
+
+        $entities = $this->getRepository()->findAll();
+        foreach ($entities as $entity) {
+            $returnOptsArray[$entity->getId()] = $entity->getUsername();
+        }
+
+        return $returnOptsArray;
+    }
+
 }
