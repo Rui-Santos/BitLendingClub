@@ -176,40 +176,44 @@ class Default_ProfileController extends Zend_Controller_Action
             if ($withdrawForm->isValid($post)) {
 
                 $values = $withdrawForm->getValues();
+                if ((float) $values['amount'] > 0) {
+                    $btcuser = Zend_Registry::get('config')->btc->conn->user;
+                    $btcpass = Zend_Registry::get('config')->btc->conn->pass;
+                    $btcurl = Zend_Registry::get('config')->btc->conn->host;
+                    $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
 
-                $btcuser = Zend_Registry::get('config')->btc->conn->user;
-                $btcpass = Zend_Registry::get('config')->btc->conn->pass;
-                $btcurl = Zend_Registry::get('config')->btc->conn->host;
-                $bitcoin = new App_jsonRPCClient('http://' . $btcuser . ':' . $btcpass . '@' . $btcurl . '/');
-
-                $isValid = $bitcoin->validateaddress($values['address']);
+                    $isValid = $bitcoin->validateaddress($values['address']);
 
 
-                if ($isValid['isvalid']) {
+                    if ($isValid['isvalid']) {
 
-                    //$bitcoin->walletpassphrase($btcpass, 3000);
-                    // Zend_Debug::dump(sscanf($values['amount'],'D'));exit;
-                    $val = (float) $values['amount'];
+                        //$bitcoin->walletpassphrase($btcpass, 3000);
+                        // Zend_Debug::dump(sscanf($values['amount'],'D'));exit;
+                        $val = (float) $values['amount'];
 
-                    if ($currentWallet->getBalance() > $val) {
+                        if ($currentWallet->getBalance() > $val) {
 
-                        $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $val);
+                            // $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $val);
 
-                        if ($transfer) {
-                            $this->view->successMsg = true;
+                            if ($transfer) {
+                                $this->view->successMsg = true;
+                            } else {
+                                $this->view->errorWithdrawAddress = true;
+                            }
                         } else {
-                            $this->view->errorWithdrawAddress = true;
+                            $this->view->errorBalance = true;
                         }
                     } else {
-                        $this->view->errorBalance = true;
+                        $this->view->errorWithdraw = true;
                     }
                 } else {
-                    $this->view->errorWithdraw = true;
+                    $this->view->errorInvalidAmount = true;
                 }
             } else {
                 $this->view->errorWithdraw = true;
             }
         }
+        
 
         $this->view->form = $withdrawForm;
     }

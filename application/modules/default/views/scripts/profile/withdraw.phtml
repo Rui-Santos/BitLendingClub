@@ -14,6 +14,9 @@
                 <?php if ($this->errorBalance): ?>
                 <p class="errors"><?php echo $this->translate('Insufficient balance.'); ?></p>
             <?php endif; ?>
+                <?php if ($this->errorInvalidAmount): ?>
+                <p class="errors"><?php echo $this->translate('Invalid amount.'); ?></p>
+            <?php endif; ?>
                  <?php if ($this->successMsg): ?>
                 <p class="errors"><?php echo $this->translate('Successful withdrawal.'); ?></p>
             <?php endif; ?>
