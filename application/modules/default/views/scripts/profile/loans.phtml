@@ -1,69 +1,92 @@
 <div id="main-wrapper">
-	<ul id="tabs-nav">
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
-		<li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
-		<li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
-	</ul>
-	
-	<div class="profile-content-wrapper">
+    <ul id="tabs-nav">
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'index'), null, true); ?>"><span class="dashboard-icon">Dashboard</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'rating', 'action' => 'index'), null, true); ?>"><span class="crating-icon">Credit rating</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'reputation'), null, true); ?>"><span class="rep-icon">Reputation</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'investments'), null, true); ?>"><span class="overview-icon">Investments</span></a></li>
+        <li class="selected"><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'loans'), null, true); ?>"><span class="loan-icon">Loans</span></a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'profile', 'action' => 'settings'), null, true); ?>"><span class="automated-plan-icon">Settings</span></a></li>
+    </ul>
 
-		<div class="profile-content-right pcr-padding full-width-table">
-			<div class="page-title">
-				<h1>Loans</h1>
-				<!--div class="table-toolbar">
-					<div class="toolbar-sorter">
-						<span>Show</span>
-						<select>
-							<option>10</option>
-							<option>25</option>
-							<option>50</option>
-							<option>100</option>
-						</select>
-						<span>results.</span>
-					</div>
-					<div class="toolbar-search">
-						<input type="text" />
-						<a href="#"></a>
-					</div>
-				</div-->
-			</div>
-                    <?php if(count($this->loans)): ?>
-			<table cellspacing="0" cellpadding="0">
-				<thead>
-					<tr>
-						<th>By</th>
-						<th>Listing title</th>
-						<th>Amount</th>
-						
-						<th>Term</th>
-						<th>Loan status</th>
-                        <th>Loan Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-                                    <?php foreach($this->loans as $loan):?>
-					<tr>
-						<td><a href="#"><?php echo $loan->getBorrower()->getFullname();?></a></td>
-						<td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle();?></a></td>
-						<td><?php echo $loan->getAmount();?></td>
-						
-						<td><?php echo $loan->getTerm();?></td>
-						<td><?php echo $loan->getStatus()->getName();?></td>
-                        <td><?php if(($loan->getStatus()->getId()==Model_Loan::STATUS_ACTIVE)||($loan->getStatus()->getId()==Model_Loan::STATUS_CANCELED)): ?><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-loan', 'lid' => $loan->getId())); ?>">Remove</a><?php endif;?>
-                            <?php if(($loan->getStatus()->getId()==Model_Loan::STATUS_ACTIVE)&&(Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)==100)): ?><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'finalize', 'lid' => $loan->getId())); ?>">Get your Bitcoins</a><?php endif;?>
-                        <?php if($loan->getStatus()->getId()==Model_Loan::STATUS_INPROGRESS): ?><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'repay', 'lid' => $loan->getId())); ?>">Repay</a></td><?php endif;?>
-					</tr>
-                                        <?php endforeach; ?>
-					
-				</tbody>
-				
-			</table>
-                    <?php else: ?>
-                    <div>No loans found.</div>
-                    <?php endif; ?>
-		</div>
-	</div>
+    <div class="profile-content-wrapper">
+
+        <div class="profile-content-right pcr-padding full-width-table">
+            <div class="page-title">
+                <h1>Loans</h1>
+                <!--div class="table-toolbar">
+                    <div class="toolbar-sorter">
+                        <span>Show</span>
+                        <select>
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                        <span>results.</span>
+                    </div>
+                    <div class="toolbar-search">
+                        <input type="text" />
+                        <a href="#"></a>
+                    </div>
+                </div-->
+            </div>
+            <?php if (count($this->loans)): ?>
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>By</th>
+                            <th>Listing title</th>
+                            <th>Amount</th>
+
+                            <th>Term</th>
+                            <th>Loan status</th>
+
+                            <th>Cancel</th>
+                            <th>Repay</th>
+                            <th>Start</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->loans as $loan): ?>
+                            <tr>
+                                <td><a href="#"><?php echo $loan->getBorrower()->getFullname(); ?></a></td>
+                                <td><a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'browse', 'lid' => $loan->getId()), null, true); ?>"><?php echo $loan->getTitle(); ?></a></td>
+                                <td><?php echo $loan->getAmount(); ?></td>
+
+                                <td><?php echo $loan->getTerm(); ?></td>
+                                <td><?php echo $loan->getStatus()->getName(); ?></td>
+
+                                <td>
+                                    <?php if (($loan->getStatus()->getId() == Model_Loan::STATUS_ACTIVE) || ($loan->getStatus()->getId() == Model_Loan::STATUS_CANCELED)): ?>
+                                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'delete-loan', 'lid' => $loan->getId())); ?>" class="cancel-btn"></a>
+                                    <?php else : ?>
+                                        <?php echo $this->translate('No Action'); ?>
+                                    <?php endif; ?>
+
+                                </td>
+                                <td>
+                                    <?php if (($loan->getStatus()->getId() == Model_Loan::STATUS_ACTIVE) && (Model_Loan::getInvestmentsAmount($loan->getInvestments(), true) == 100)): ?>
+                                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'finalize', 'lid' => $loan->getId())); ?>" class="start-btn"></a>
+                                    <?php else : ?>
+                                        <?php echo $this->translate('No Action'); ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?php if ($loan->getStatus()->getId() == Model_Loan::STATUS_INPROGRESS): ?>
+                                        <a href="<?php echo $this->url(array('controller' => 'loan', 'action' => 'repay', 'lid' => $loan->getId())); ?>" class="repay-btn"></a>
+                                    <?php else : ?>
+                                        <?php echo $this->translate('No Action'); ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+            <?php else: ?>
+                <div>No loans found.</div>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>

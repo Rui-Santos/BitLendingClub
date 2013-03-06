@@ -507,3 +507,12 @@ h1.how-it-works-title span{ font-weight:bold; text-transform:uppercase; color:#3
 
 /* vlado */
 .jqmWindow {display:none;}
+
+.cancel-btn{ background:url(../images/cancel-btn.png) no-repeat 0 0; width:30px; height:30px; display:inline-block; }
+.cancel-btn:hover{ background:url(../images/cancel-btn.png) no-repeat 0 100%; }
+.repay-btn{ background:url(../images/repay-btn.png) no-repeat 0 0; width:30px; height:30px; display:inline-block; }
+.repay-btn:hover{ background:url(../images/repay-btn.png) no-repeat 0 100%; }
+.start-btn{ background:url(../images/start-loan-btn.png) no-repeat 0 0; width:30px; height:30px; display:inline-block; }
+.start-btn:hover{ background:url(../images/start-loan-btn.png) no-repeat 0 100%; }
+.invest-btn{ background:url(../images/invest-btn.png) no-repeat 0 0; width:30px; height:30px; display:inline-block; }
+.invest-btn:hover{ background:url(../images/invest-btn.png) no-repeat 0 100%; }
