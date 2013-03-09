@@ -121,7 +121,7 @@ class Model_Loan extends Model_Abstract
 
 
         foreach ($investments as $investment) {
-            Service_Bitcoind::getInstance()->sendPayment($userWallet->getWalletPath(), $investment->getAmount(), $investment->getInvestor()->getId());
+            
 
             $params = array('loan_id' => $loanId,
                 'amount' => $investment->getAmount(),
@@ -130,8 +130,9 @@ class Model_Loan extends Model_Abstract
                 'address' => $userWallet->getWalletPath());
 
             $paymentModel->create($params);
-            Service_Bitcoind::getInstance()->sync(array('balance', 'address'), $investment->getInvestor()->getId());
+           // Service_Bitcoind::getInstance()->sync(array('balance', 'address'), $investment->getInvestor()->getId());
         }
+        Service_Bitcoind::getInstance()->sendLoanPayment($userWallet->getWalletPath(), $loanId->getAmount(), $loanId);
         Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
     }
 

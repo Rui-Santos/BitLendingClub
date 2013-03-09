@@ -40,6 +40,7 @@ class Default_AuthController extends Zend_Controller_Action
                     $this->_helper->viewRenderer->setNoRender(true);
                     $this->getResponse()->setHeader('Content-type', 'application/json;charset=UTF-8', true);
                     $this->getResponse()->setBody(json_encode(array("success" => "true")));
+                    
                 } else {
                     $this->view->errorLoginCredentials = true;
                 }
@@ -69,7 +70,7 @@ class Default_AuthController extends Zend_Controller_Action
         if ($result->isValid()) {
             
             Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
-            $this->_helper->redirector('index', 'index');
+            $this->_helper->redirector('index', 'profile');
         }
     }
 

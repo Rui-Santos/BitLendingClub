@@ -251,6 +251,37 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         }
         return $transactionId;
     }
+    
+    /**
+     * 
+     * @param type $toAddress
+     * @param type $ammount
+     * @param type $loan_id
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
+    public function getLoanPayment($toAddress, $ammount, $loan_id)
+    {
+       
+        if ($toAddress == null || $toAddress == "") {
+            throw new BitcoinServiceException("Invalid Argument toAddress");
+        }
+        if (!is_numeric($ammount)) {
+            throw new BitcoinServiceException('invalid argument ammount');
+        }
+        if ($ammount == 0) {
+            return false;
+        }
+        $this->_configRpcClient();
+       
+        try {
+            $this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
+            $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindLoanAccount($loan_id), $toAddress, $ammount);
+        } catch (Exception $e) {
+            throw new BitcoinServiceException($e->getMessage());
+        }
+        return $transactionId;
+    }
 
     /**
      * 
