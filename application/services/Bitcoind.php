@@ -242,6 +242,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
             return false;
         }
         $this->_configRpcClient();
+       
         try {
             $this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
             $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindAccount($userId), $toAddress, $ammount);
