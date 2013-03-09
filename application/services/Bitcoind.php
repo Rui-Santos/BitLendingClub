@@ -7,6 +7,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
 {
 
     const ACCOUNT_CONST = "account";
+    const LOAN_CONST = "loan";
     const BLC_USERID = 0;
 
     /**
@@ -153,6 +154,20 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
             throw new InvalidArgumentException('invalid argument $user_id');
         }
         return join('_', array(self::ACCOUNT_CONST, $user_id));
+    }
+    
+    /**
+     *
+     * @param type $user_id
+     * @return type
+     * @throws InvalidArgumentException 
+     */
+    public static function getBitcoindLoanAccount($loan_id)
+    {
+        if (!is_numeric($loan_id)) {
+            throw new InvalidArgumentException('invalid argument $loan_id');
+        }
+        return join('_', array(self::LOAN_CONST, $loan_id));
     }
 
     /**
