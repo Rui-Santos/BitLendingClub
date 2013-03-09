@@ -193,7 +193,7 @@ class Default_ProfileController extends Zend_Controller_Action
 
                         if ($currentWallet->getBalance() > $val) {
 
-                            // $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $val);
+                             $transfer = $bitcoin->sendfrom(Service_Bitcoind::getBitcoindAccount(Service_Auth::getLoggedUser()->getId()), $values['address'], $val);
 
                             if ($transfer) {
                                 $this->view->successMsg = true;

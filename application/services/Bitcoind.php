@@ -186,6 +186,23 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
         }
         return $address;
     }
+    
+    /**
+     * 
+     * @param type $loan_id
+     * @return type
+     * @throws BitcoinServiceException
+     */
+    public function getLoanAddress($loan_id)
+    {
+        $this->_configRpcClient();
+        try {
+            $address = $this->getJsonRpcClient()->getaccountaddress(self::getBitcoindLoanAccount($loan_id));
+        } catch (Exception $e) {
+            throw new BitcoinServiceException($e->getMessage());
+        }
+        return $address;
+    }
 
     /**
      * 
@@ -214,6 +231,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
      */
     public function sendPayment($toAddress, $ammount, $userId)
     {
+       
         if ($toAddress == null || $toAddress == "") {
             throw new BitcoinServiceException("Invalid Argument toAddress");
         }
