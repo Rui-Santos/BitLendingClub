@@ -134,7 +134,6 @@ class Model_Loan extends Model_Abstract
            // Service_Bitcoind::getInstance()->sync(array('balance', 'address'), $investment->getInvestor()->getId());
         }
         Service_Bitcoind::getInstance()->moveTo(Service_Bitcoind::getBitcoindLoanAccount($loanId), Service_Bitcoind::getBitcoindAccount($borrowerId), $loanId->getAmount());
-        
         Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
     }
 
