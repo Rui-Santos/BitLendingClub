@@ -117,6 +117,7 @@ class Model_Loan extends Model_Abstract
         $investments = $entity->getInvestments();
         $paymentModel = new Model_Payment();
         $walletModel = new Model_Wallet();
+        $borrowerId = $entity->getBorrower()->getId();
         $userWallet = $walletModel->getWallet(array('user' => $entity->getBorrower()->getId()));
 
 
@@ -132,7 +133,8 @@ class Model_Loan extends Model_Abstract
             $paymentModel->create($params);
            // Service_Bitcoind::getInstance()->sync(array('balance', 'address'), $investment->getInvestor()->getId());
         }
-        Service_Bitcoind::getInstance()->sendLoanPayment($userWallet->getWalletPath(), $loanId->getAmount(), $loanId);
+        Service_Bitcoind::getInstance()->moveTo(Service_Bitcoind::getBitcoindLoanAccount($loanId), Service_Bitcoind::getBitcoindAccount($borrowerId), $loanId->getAmount());
+        
         Service_Bitcoind::getInstance()->sync(array('balance', 'address'), Service_Auth::getId());
     }
 
