@@ -254,6 +254,40 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
     
     /**
      * 
+     * @param type $fromAccount
+     * @param type $toAccount
+     * @param type $amount
+     * @return boolean
+     * @throws InvalidArgumentException
+     */
+    public function moveTo($fromAccount, $toAccount, $amount)
+    {
+       
+        if ($fromAccount == null || $fromAccount == "") {
+            throw new BitcoinServiceException("Invalid Argument fromAccount");
+        }
+        if ($toAccount == null || $toAccount == "") {
+            throw new BitcoinServiceException("Invalid Argument toAccount");
+        }
+        if (!is_numeric($amount)) {
+            throw new BitcoinServiceException('invalid argument amount');
+        }
+        if ($amount == 0) {
+            return false;
+        }
+        $this->_configRpcClient();
+       
+        try {
+            //$this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
+            $transactionId = $this->getJsonRpcClient()->move($fromAccount, $toAccount, $amount);
+        } catch (Exception $e) {
+            throw new BitcoinServiceException($e->getMessage());
+        }
+        return $transactionId;
+    }
+    
+    /**
+     * 
      * @param type $toAddress
      * @param type $ammount
      * @param type $loan_id
@@ -278,6 +312,7 @@ class Service_Bitcoind extends Service_Bitcoind_Abstract
             $this->getJsonRpcClient()->walletpassphrase($this->_pass, 2000);
             $transactionId = $this->getJsonRpcClient()->sendfrom(self::getBitcoindLoanAccount($loan_id), $toAddress, $ammount);
         } catch (Exception $e) {
+            
             throw new BitcoinServiceException($e->getMessage());
         }
         return $transactionId;

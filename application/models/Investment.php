@@ -21,7 +21,8 @@ class Model_Investment extends Model_Abstract
             throw new InvalidArgumentException('Invalid argument: params');
         }
         
-        $investId = Service_Bitcoind::getInstance()->sendPayment(Service_Bitcoind::getInstance()->getLoanAddress($params['loan_id']),(float)$params['amount'], $params['user_id']);
+        
+        $investId = Service_Bitcoind::getInstance()->moveTo(Service_Bitcoind::getBitcoindAccount($params['user_id']), Service_Bitcoind::getBitcoindLoanAccount($params['loan_id']), (float)$params['amount']);
         
         if(!$investId){
             throw new InvalidArgumentException('Transaction investment error');
@@ -57,6 +58,23 @@ class Model_Investment extends Model_Abstract
         } else {
             return false;
         }
+    }
+    
+     /**
+     * Delete object by id
+     * @param integer $id 
+     * @return Entity
+     */
+    public function delete($id)
+    {
+        if (intval($id) == 0) {
+            throw new InvalidArgumentException('Invalid argument: id');
+        }
+        
+        $investment = $this->getRepository()->find($id);
+        App_DoctrineDebug::dump($investment);exit;
+        
+        return $this->getRepository()->delete($id);
     }
 
 
