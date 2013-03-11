@@ -12,7 +12,10 @@ class Default_Form_Settings extends Default_Form_Abstract
     public function init()
     {
         $recordExistsValidator = new App_Validate_RecordExists('Entity_Users', 'email');
-        $recordExistsValidator->setMessage('This e-mail already in use! Please choose another.', App_Validate_RecordExists::ITEM_EXISTS);
+        $recordExistsValidator->setMessage('This e-mail is already in use! Please choose another.', App_Validate_RecordExists::ITEM_EXISTS);
+        
+        $usernameExistsValidator = new App_Validate_RecordExists('Entity_Users', 'username');
+        $usernameExistsValidator->setMessage('This username is already in use! Please choose another.', App_Validate_RecordExists::ITEM_EXISTS);
 
         $this->addElement('text', 'email', array(
             'label' => 'E-mail', 
@@ -63,7 +66,7 @@ class Default_Form_Settings extends Default_Form_Abstract
 
 
         $this->addElement('text', 'address', array(
-            'label' => 'Address',
+            'label' => 'Bitcoin Address',
             'class' => 'large',
             'required' => false,
         ));
@@ -73,7 +76,8 @@ class Default_Form_Settings extends Default_Form_Abstract
             'class' => 'medium',
             'required' => false,
             'validators' => array(
-                'Alpha'
+                'Alpha',
+                $usernameExistsValidator
             ),
         ));
 
