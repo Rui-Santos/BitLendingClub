@@ -87,6 +87,10 @@ class Default_LoanController extends Zend_Controller_Action
         $investments = $investments->findBy(array('loan' => $loanId));
         $this->view->investments = $investments;
         if (Service_Auth::getLoggedUser()) {
+            $user = new Model_User();
+            $user = $user->getUser(array('id'=>Service_Auth::getLoggedUser()->getId()));
+            $this->view->loggedUser = $user;
+            
             $commentForm = new Default_Form_Comment(array('disableLoadDefaultDecorators' => true));
             $this->view->form = $commentForm;
         }

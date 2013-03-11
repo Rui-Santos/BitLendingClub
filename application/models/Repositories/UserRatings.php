@@ -62,9 +62,11 @@ class Repository_UserRatings extends EntityRepository
         if (is_null($id)) {
             $entityName = $this->getEntityName();
             $entity = new $entityName;
+            $entity->setDateCreated(new DateTime());
         } else {
             $entity = $this->find($id);
         }
+        $entity->setDateUpdated(new DateTime());
         $usersRepository = $em->getRepository("Entity_Users");
         $user = $usersRepository->find($params['user_id']);
         $commenter = $usersRepository->find($params['commenter_id']);

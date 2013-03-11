@@ -33,6 +33,20 @@ class Entity_UserRatings
      * @Column(name="rating", type="integer", precision=0, scale=0, nullable=false, unique=false)
      */
     private $rating;
+    
+     /**
+     * @var datetime $dateCreated
+     *
+     * @Column(name="date_created", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $dateCreated;
+    
+     /**
+     * @var datetime $dateUpdated
+     *
+     * @Column(name="date_updated", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $dateUpdated;
 
     /**
      * @var User
@@ -151,6 +165,46 @@ class Entity_UserRatings
     public function getCommenter()
     {
         return $this->commenter;
+    }
+    
+    /**
+     * Set dateCreated
+     *
+     * @param datetime $dateCreated
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return datetime 
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+    
+    /**
+     * Set dateUpdated
+     *
+     * @param datetime $dateUpdated
+     */
+    public function setDateUpdated($dateUpdated)
+    {
+        $this->dateUpdated = $dateUpdated;
+    }
+
+    /**
+     * Get dateUpdated
+     *
+     * @return datetime 
+     */
+    public function getDateUpdated()
+    {
+        return $this->dateUpdated;
     }
 
 }

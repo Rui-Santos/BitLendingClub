@@ -29,7 +29,7 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
         <div class="profile-content-right pcr-padding full-width-table mb-twenty">
             <div class="page-title">
                 <h2 class="ll-second-title">Loan Summary</h2>
-                 <?php if ((Service_Auth::getLoggedUser())&&(!$this->canEdit)): ?><a href="#" onclick="javascript:initInvestDialog(<?php echo $loan->getId(); ?>)" id="dash-invest"  class="green-small-btn"><span>Invest in this loan</span></a><?php endif; ?>
+                <?php if ((Service_Auth::getLoggedUser()) && (!$this->canEdit)): ?><?php if ($this->loggedUser->getWallet()->getBalance() > 0): ?><a href="#" onclick="javascript:initInvestDialog(<?php echo $loan->getId(); ?>)" id="dash-invest"  class="green-small-btn"><span>Invest in this loan</span></a><?php endif; ?><?php endif; ?>
             </div>
             <div class="ls-row first">
                 <div class="ls-span ls-span1">
@@ -51,7 +51,7 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                     <span class="title">Payment Frequency</span>
                     <div class="description">every <?php echo $loan->getFrequency(); ?> days</div>
                 </div>
-                
+
                 <div class="ls-span ls-span3">
                     <span class="title">% Funded</span>
                     <div class="description"><span class="f-left"><?php echo $investPercent; ?>% funded</span><div class="funding-bg f-left"><span style="width:<?php echo $investPercent; ?>px;"></span></div><span class="f-left grey">BTC <?php echo $loan->getAmount() - $this->investedAmount; ?> left</span></div>
@@ -60,7 +60,7 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
             <div class="ls-row">
                 <div class="ls-span ls-span1">
                     <span class="title">User Loan Activity</span>
-                    <div class="description"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>"><?php echo $this->activeLoans;?> Active</a>, <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>"><?php echo $this->repaidLoans;?> Repaid</a></div>
+                    <div class="description"><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>"><?php echo $this->activeLoans; ?> Active</a>, <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $loan->getBorrower()->getId()), null, true); ?>"><?php echo $this->repaidLoans; ?> Repaid</a></div>
                 </div>
                 <div class="ls-span ls-span2">
                     <span class="title">User</span>
@@ -76,13 +76,15 @@ $investPercent = Model_Loan::getInvestmentsAmount($loan->getInvestments(), true)
                 </div>
             </div>
         </div>
-        <?php if ((Service_Auth::getLoggedUser())&&(!$this->canEdit)): ?>
-            <div class="profile-content-right pcr-padding full-width-table mb-twenty">
-                <div class="button-row">
-                    <span>This loan meets your expectations.</span>
-                    <a href="#" onclick="javascript:initInvestDialog(<?php echo $loan->getId(); ?>)" id="dash-invest-2" class="green-btn"><span>Invest in this loan</span></a>
+        <?php if ((Service_Auth::getLoggedUser()) && (!$this->canEdit)): ?>
+            <?php if ($this->loggedUser->getWallet()->getBalance() > 0): ?>
+                <div class="profile-content-right pcr-padding full-width-table mb-twenty">
+                    <div class="button-row">
+                        <span>This loan meets your expectations.</span>
+                        <a href="#" onclick="javascript:initInvestDialog(<?php echo $loan->getId(); ?>)" id="dash-invest-2" class="green-btn"><span>Invest in this loan</span></a>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         <?php endif; ?>
         <div class="profile-content-right pcr-padding full-width-table mb-twenty">
             <div class="page-title">

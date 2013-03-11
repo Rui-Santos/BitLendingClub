@@ -2,7 +2,7 @@
     <div class="profile-content-wrapper profile-view-wrapper">
         <div class="ll-title">
             <h1 class="profile-icon"><?php echo $this->user->getFullname(); ?><span class="grey">'s profile</span></h1>
-            <a href="#" class="grey-small-btn"><span>Back</span></a>
+            <a href="javascript:history.go(-1)" class="grey-small-btn"><span>Back</span></a>
         </div>
 
 
@@ -24,10 +24,10 @@
                     <span class="title">Member Since</span>
                     <div class="description"><?php echo $this->user->getCreatedAt()->format('d M Y'); ?></div>
                 </div>
-                <div class="ls-span ls-span6">
+                <!--div class="ls-span ls-span6">
                     <span class="title">Credentials</span>
                     <div class="description"><span>eBay: <span>mikemarkov</span></span> <span>facebook: <span>247 firends</span></span></div>
-                </div>
+                </div-->
             </div>
             <div class="ls-row ls-row-bg">
                 <div class="ls-span ls-span6">
@@ -42,10 +42,10 @@
                     <span class="title">Reputation</span>
                     <div class="description"><?php echo $this->user->getRatingPercentage() ?>%</div>
                 </div>
-                <div class="ls-span ls-span6">
+                <!--div class="ls-span ls-span6">
                     <span class="title">Account Ages</span>
                     <div class="description"><span>eBay: <span>6 years</span></span> <span>paypal: <span>2 years</span></span></div>
-                </div>
+                </div-->
             </div>
         </div>
 
@@ -67,7 +67,7 @@
 <!--                        <li>Address veriﬁed: <span class="red">No</span></li>-->
 <!--						<li>Credit score veriﬁed: <span class="red">No</span></li>-->
                         <li>Facebook: <?php if ($this->user->getFbUserId() == null || $this->user->getFbUserId() == 0) : ?><span class="red">No</span> <?php else : ?> <span class="green">Yes</span> <?php endif; ?></li>
-                        <li>Google +: <span class="red">No</span></li>
+                        <!--li>Google +: <span class="red">No</span></li-->
                     </ol>
                 </div>
             </div>
@@ -94,14 +94,14 @@
                                 </ul>
                             </div>
                         </div>-->
-            <div class="box box1">
+            <!--div class="box box1">
                 <div class="title">Credentials</div>
                 <div class="contnet">
                     <ul>
-<!--						<li>PayPal: <span>almost 12 years</span></li>-->
+						<li>PayPal: <span>almost 12 years</span></li>
                         <li>eBay: <span>about 14 years</span></li>
                         <li>Facebook: <span>244 friends</span></li>
-<!--						<li>Linkedin: <span>78 connections</span></li>-->
+						<li>Linkedin: <span>78 connections</span></li>
                     </ul>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                         <li>eBay profile: <span>mikemarkov (64)</span></li>
                     </ul>
                 </div>
-            </div>
+            </div-->
         </div>
 
 
@@ -120,7 +120,7 @@
 
         <div class="profile-content-right pcr-padding full-width-table mb-twenty profile-view-table">
             <div class="page-title">
-                <h2 class="ll-second-title">Aleksander Karaivanov's Loans and Listings</h2>
+                <h2 class="ll-second-title"><?php echo $this->user->getUsername();?>'s Loans and Listings</h2>
                 <div class="table-toolbar">
                     <!--                    <div class="toolbar-sorter">
                                             <span>Show</span>
@@ -160,7 +160,7 @@
                             <td>
                                 <?php if (count($loan->getInvestments()) != 0) : ?>
                                     <?php foreach ($loan->getInvestments() as $investment) : ?> 
-                                        <a href="#"><?php echo $investment->getInvestor()->getUsername() ?></a><br />
+                                        <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $investment->getInvestor()->getId())); ?>"><?php echo $investment->getInvestor()->getUsername() ?></a><br />
                                     <?php endforeach; ?>
                                 <? else : ?>
                                     <?php echo $this->translate('No Investments'); ?>
@@ -195,7 +195,7 @@
 
         <div class="profile-content-right pcr-padding full-width-table mb-twenty profile-view-table">
             <div class="page-title">
-                <h2 class="ll-second-title">Aleksander Karaivanov's Ratings</h2>
+                <h2 class="ll-second-title"><?php echo $this->user->getUsername();?>'s Ratings</h2>
                 <!--                <div class="table-toolbar">
                                     <div class="toolbar-sorter">
                                         <span>Show</span>
@@ -228,7 +228,7 @@
                         <tr>
                             <td><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $rating->getCommenter()->getId())); ?>"><?php echo $rating->getCommenter()->getFullname(); ?></a></td>
                             <td><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'id' => $rating->getUser()->getId())); ?>"><?php echo $rating->getUser()->getFullname(); ?></a></td>
-                            <td>2013-02-03 11:27:55 UTC</td>
+                            <td><?php echo $rating->getDateUpdated()->format('d M Y'); ?></td>
                             <td><?php echo $rating->getRating(); ?></td>
                             <td><?php echo $rating->getComment(); ?></td>
                         </tr>
