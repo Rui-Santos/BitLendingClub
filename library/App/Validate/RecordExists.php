@@ -5,18 +5,19 @@ class App_Validate_RecordExists extends Zend_Validate_Abstract
     protected $_repository;
     protected $_field;
     protected $_excludeValue;
-    
+    protected $_entityId = null;
     const ITEM_EXISTS = 'itemExists';
     
     protected $_messageTemplates = array(
         self::ITEM_EXISTS => 'This record exists in the database.'
     );
 
-    public function __construct($entityName, $field, $excludeValue = null) {
+    public function __construct($entityName, $field, $excludeValue = null, $entityId = null) {
         $entityManager = Zend_Registry::get('em');
         $this->_repository = $entityManager->getRepository($entityName);
         $this->_field = $field;        
         $this->_excludeValue = $excludeValue;
+        $this->_entityId = $entityId;
     }
     
     public function setRepository($repository)
@@ -56,9 +57,16 @@ class App_Validate_RecordExists extends Zend_Validate_Abstract
 
         $queryParams = array();
         $queryParams[$this->_field] = $value;
-        
+
         if ($this->_excludeValue != null) {
             return ($value == $this->_excludeValue);
+        }
+        $entity = $this->_repository->find($this->_entityId);
+        if ($entity) {
+            $getter = join('', array('get', ucfirst($this->_field)));
+            if (call_user_func(array($entity, $getter)) == $value)  {
+                return true;
+            }
         }
         
         $result = $this->_repository->findBy($queryParams);
